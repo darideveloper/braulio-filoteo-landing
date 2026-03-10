@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "braulio-filoteo",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -9,6 +9,14 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.17.1"
-  }
+    "@astrojs/react": "^5.0.0",
+    "@astrojs/sitemap": "^3.7.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "astro": "^5.17.1",
+    "clsx": "^2.1.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "description": "Landing and contact page for Braulio Filoteo. Central point for content, social media, and podcasts."
 }
