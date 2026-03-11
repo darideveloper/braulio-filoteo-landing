@@ -1,0 +1,17 @@
+---
+const { color, label, role } = Astro.props;
+---
+
+<div class="flex flex-col gap-2 p-4 border border-brand-text/20 rounded-lg">
+  <div 
+    class="w-full h-32 rounded shadow-inner" 
+    style={`background-color: ${color}`}
+  ></div>
+  <div class="flex flex-col">
+    <span class="font-bold text-lg">{label}</span>
+    <span class="text-sm opacity-70">{role}</span>
+    <code class="text-xs mt-1 px-2 py-1 bg-brand-text/10 rounded self-start font-mono">
+      {color}
+    </code>
+  </div>
+</div>

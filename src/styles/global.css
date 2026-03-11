@@ -1,1 +1,61 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@theme {
+  /* Colors */
+  --color-brand-background: #000000;
+  --color-brand-heading: #9b30ff;
+  --color-brand-primary: #ff0099;
+  --color-brand-text: #d9d9d9;
+
+  /* Typography */
+  --font-brand-title: 'Metropolis', sans-serif;
+  --font-brand-sans: 'Inter Variable', sans-serif;
+}
+
+@layer base {
+  html,
+  body {
+    @apply bg-brand-background text-brand-text;
+    margin: 0;
+    width: 100vw;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-brand-title text-brand-heading;
+  }
+
+  /* Default font for everything else */
+  body {
+    @apply font-brand-sans;
+  }
+}
+
+/* Standard Container */
+.container {
+  @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+/* Primary Button Class (Reference style) */
+@layer components {
+  .btn-primary {
+    @apply bg-brand-primary text-white font-bold py-2 px-4 rounded transition-all hover:opacity-90;
+  }
+}
+
+/* Custom Scrollbar (Reference style) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand-primary);
+  border-radius: 4px;
+}
