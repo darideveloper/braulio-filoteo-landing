@@ -1,0 +1,28 @@
+---
+import clsx from 'clsx';
+import BrandButton from './BrandButton.astro';
+---
+
+<section class={clsx("relative min-h-[70vh] flex flex-col items-center justify-center text-center px-4 py-24 bg-brand-background")}>
+  <div class="container grid grid-cols-1 gap-12 max-w-5xl mx-auto">
+    <div class="space-y-6">
+      <h1 class={clsx("text-6xl sm:text-7xl md:text-9xl font-black uppercase tracking-tighter leading-none text-brand-heading")}>
+        Braulio Filoteo<span class="text-brand-primary">.</span>
+      </h1>
+      
+      <p class="text-xl sm:text-2xl text-brand-text max-w-2xl mx-auto font-light leading-relaxed">
+        Building bold identities and digital social hubs for the modern era of content and community.
+      </p>
+    </div>
+
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-6 pt-4">
+      <BrandButton>Get Started</BrandButton>
+      <a 
+        href="#contact" 
+        class="text-brand-text font-bold text-lg hover:text-brand-heading transition-colors"
+      >
+        View Projects
+      </a>
+    </div>
+  </div>
+</section>

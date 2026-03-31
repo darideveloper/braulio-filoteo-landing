@@ -2,10 +2,10 @@
 
 @theme {
   /* Colors */
-  --color-brand-background: #000000;
-  --color-brand-heading: #9b30ff;
-  --color-brand-primary: #ff0099;
-  --color-brand-text: #d9d9d9;
+  --color-brand-background: #121212;
+  --color-brand-heading: #ff6600;
+  --color-brand-primary: #9b30ff;
+  --color-brand-text: #b0b0b0;
 
   /* Typography */
   --font-brand-title: 'Metropolis', sans-serif;
