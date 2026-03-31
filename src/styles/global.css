@@ -2,20 +2,22 @@
 
 @theme {
   /* Colors */
-  --color-brand-background: #121212;
-  --color-brand-heading: #ff6600;
-  --color-brand-primary: #9b30ff;
-  --color-brand-text: #b0b0b0;
+  --color-brand-background: #0e0e0e;
+  --color-brand-surface: #1c1b1b;
+  --color-brand-primary: #fe6500;
+  --color-brand-accent: #9b30ff;
+  --color-brand-text-high: #e5e2e1;
+  --color-brand-text-muted: #cfc2d8;
 
   /* Typography */
-  --font-brand-title: 'Metropolis', sans-serif;
-  --font-brand-sans: 'Inter Variable', sans-serif;
+  --font-brand-display: 'Epilogue', sans-serif;
+  --font-brand-body: 'Inter', sans-serif;
 }
 
 @layer base {
   html,
   body {
-    @apply bg-brand-background text-brand-text;
+    @apply bg-brand-background text-brand-text-high;
     margin: 0;
     width: 100vw;
     overflow-x: hidden;
@@ -27,12 +29,12 @@
   h4,
   h5,
   h6 {
-    @apply font-brand-title text-brand-heading;
+    @apply font-brand-display text-brand-primary;
   }
 
   /* Default font for everything else */
   body {
-    @apply font-brand-sans;
+    @apply font-brand-body;
   }
 }
 
@@ -41,10 +43,31 @@
   @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
 }
 
+@layer utilities {
+  /* Tight Headline Effect */
+  .headline-xl {
+    @apply font-brand-display font-black tracking-[-0.06em] leading-[0.9] uppercase;
+  }
+
+  /* The Signature Glow */
+  .bg-glow-purple {
+    background: radial-gradient(
+      circle at center,
+      rgba(155, 48, 255, 0.15) 0%,
+      transparent 70%
+    );
+  }
+
+  /* Grayscale Image Hover */
+  .img-editorial {
+    @apply grayscale brightness-90 transition-all duration-700 ease-in-out hover:scale-105 hover:grayscale-0 hover:brightness-100;
+  }
+}
+
 /* Primary Button Class (Reference style) */
 @layer components {
   .btn-primary {
-    @apply bg-brand-primary text-white font-bold py-2 px-4 rounded transition-all hover:opacity-90;
+    @apply bg-brand-primary shadow-[0_10px_30px_-10px_rgba(254,101,0,0.4)] transition-all hover:opacity-90 active:scale-95 rounded-lg px-6 py-3 font-bold text-white;
   }
 }
 
@@ -53,9 +76,8 @@
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #1a1a1a;
+  @apply bg-brand-surface;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-brand-primary);
-  border-radius: 4px;
+  @apply bg-brand-accent rounded-full;
 }
