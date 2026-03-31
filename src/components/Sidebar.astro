@@ -1,0 +1,29 @@
+---
+import Navigation from './Navigation.astro';
+import { Image } from 'astro:assets';
+import logo from '../assets/images/logo.webp';
+---
+
+<aside class="hidden lg:flex flex-col w-[280px] h-screen fixed left-0 top-0 bg-black border-r border-brand-surface z-50 p-8">
+  <div class="mb-12">
+    <a href="/" class="block group">
+      <Image 
+        src={logo} 
+        alt="Braulio Filoteo Logo" 
+        width={180} 
+        height={60}
+        class="w-auto h-auto transition-transform group-hover:scale-105"
+      />
+    </a>
+  </div>
+
+  <div class="flex-grow">
+    <Navigation />
+  </div>
+
+  <div class="mt-auto">
+    <p class="text-[10px] uppercase font-brand-display tracking-[0.2em] text-brand-text-muted">
+      Est. 2024 / Braulio Filoteo.
+    </p>
+  </div>
+</aside>

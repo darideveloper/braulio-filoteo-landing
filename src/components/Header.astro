@@ -1,0 +1,101 @@
+---
+import Navigation from './Navigation.astro';
+import { Image } from 'astro:assets';
+import logo from '../assets/images/logo.webp';
+---
+
+<header class="flex lg:hidden items-center justify-between h-20 px-6 fixed top-0 left-0 right-0 bg-black border-b border-brand-surface z-50">
+  <a href="/" class="block">
+    <Image 
+      src={logo} 
+      alt="Braulio Filoteo Logo" 
+      width={120} 
+      height={40}
+      class="w-auto h-10"
+    />
+  </a>
+
+  <button 
+    id="mobile-menu-toggle"
+    class="text-brand-text-high hover:text-brand-primary transition-colors focus:outline-none"
+    aria-label="Toggle Mobile Menu"
+  >
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      width="32" 
+      height="32" 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      stroke-width="2" 
+      stroke-linecap="round" 
+      stroke-linejoin="round"
+      id="menu-icon-open"
+    >
+      <line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/>
+    </svg>
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      width="32" 
+      height="32" 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      stroke-width="2" 
+      stroke-linecap="round" 
+      stroke-linejoin="round"
+      id="menu-icon-close"
+      class="hidden"
+    >
+      <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+    </svg>
+  </button>
+
+  <div 
+    id="mobile-menu" 
+    class="fixed inset-0 top-20 bg-black translate-x-full transition-transform duration-300 ease-in-out z-40 p-10 flex flex-col gap-12 overflow-y-auto"
+  >
+    <Navigation className="gap-8" itemClassName="text-2xl" />
+    
+    <div class="mt-auto pb-10">
+       <p class="text-xs uppercase font-brand-display tracking-[0.2em] text-brand-text-muted">
+        Est. 2024 / Braulio Filoteo.
+      </p>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggleBtn = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const openIcon = document.getElementById('menu-icon-open');
+  const closeIcon = document.getElementById('menu-icon-close');
+
+  toggleBtn?.addEventListener('click', () => {
+    const isExpanded = menu?.classList.toggle('translate-x-full');
+    
+    // Invert the boolean because translate-x-full means CLOSED
+    const isOpen = !isExpanded;
+    
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      openIcon?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
+    } else {
+      document.body.style.overflow = '';
+      openIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+    }
+  });
+
+  // Close menu on navigation
+  const links = menu?.querySelectorAll('a');
+  links?.forEach(link => {
+    link.addEventListener('click', () => {
+      menu?.classList.add('translate-x-full');
+      document.body.style.overflow = '';
+      openIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+    });
+  });
+</script>

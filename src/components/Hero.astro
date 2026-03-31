@@ -3,25 +3,27 @@ import clsx from 'clsx';
 import BrandButton from './BrandButton.astro';
 ---
 
-<section class={clsx("relative min-h-[70vh] flex flex-col items-center justify-center text-center px-4 py-24 bg-brand-background")}>
-  <div class="container grid grid-cols-1 gap-12 max-w-5xl mx-auto">
-    <div class="space-y-6">
-      <h1 class={clsx("text-6xl sm:text-7xl md:text-9xl font-black uppercase tracking-tighter leading-none text-brand-heading")}>
-        Braulio Filoteo<span class="text-brand-primary">.</span>
+<section class={clsx("relative min-h-[80vh] flex flex-col items-center justify-center text-center px-6 py-32 bg-brand-background overflow-hidden group")}>
+  <div class="absolute inset-0 bg-glow-purple opacity-30 group-hover:opacity-40 transition-opacity"></div>
+  
+  <div class="container relative z-10 grid grid-cols-1 gap-16 max-w-6xl mx-auto">
+    <div class="space-y-8">
+      <h1 class="headline-xl text-7xl sm:text-8xl md:text-9xl tracking-tight text-brand-text-high">
+        Braulio <br class="hidden sm:block" /> Filoteo<span class="text-brand-primary">.</span>
       </h1>
       
-      <p class="text-xl sm:text-2xl text-brand-text max-w-2xl mx-auto font-light leading-relaxed">
-        Building bold identities and digital social hubs for the modern era of content and community.
+      <p class="text-2xl sm:text-3xl text-brand-text-muted max-w-2xl mx-auto font-brand-body font-light leading-relaxed">
+        Building <span class="text-brand-text-high font-bold italic">bold identities</span> and digital social hubs for the modern era of community.
       </p>
     </div>
 
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-6 pt-4">
-      <BrandButton>Get Started</BrandButton>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-10 pt-6">
+      <BrandButton>View the Portfolio</BrandButton>
       <a 
         href="#contact" 
-        class="text-brand-text font-bold text-lg hover:text-brand-heading transition-colors"
+        class="text-brand-accent font-brand-display font-black uppercase tracking-[0.2em] text-lg hover:text-brand-primary transition-colors border-b-2 border-brand-accent/20 pb-1"
       >
-        View Projects
+        Get in touch
       </a>
     </div>
   </div>

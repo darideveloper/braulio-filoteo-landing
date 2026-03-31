@@ -3,29 +3,34 @@ import BrandButton from './BrandButton.astro';
 import ColorSwatch from './ColorSwatch.astro';
 
 const colors = [
-  { label: 'Main Background', color: '#000000', role: 'Creates high contrast and depth.' },
-  { label: 'Headings', color: '#9b30ff', role: "Mirrors the brand's bold typography." },
-  { label: 'Primary Buttons', color: '#ff0099', role: 'High visibility for conversions.' },
-  { label: 'Body Text', color: '#D9D9D9', role: 'Soft white/gray for readability against black.' },
+  { label: 'Background', color: '#0E0E0E', role: 'Main dark surface for the canvas.' },
+  { label: 'Primary (Brand)', color: '#FE6500', role: 'CTA color and brand identity.' },
+  { label: 'Accent (Spiritual)', color: '#9B30FF', role: 'Borders, glows, and icons.' },
+  { label: 'Text High-Emphasis', color: '#E5E2E1', role: 'Maximum readability off-white.' },
 ];
 ---
 
-<div class="container py-16 space-y-12">
-  <section class="space-y-4 text-center max-w-3xl mx-auto">
-    <h1 class="text-7xl font-black uppercase tracking-tight">Braulio Filoteo</h1>
-    <p class="text-2xl text-brand-text opacity-90">
-      Brand identity and style system integration using Tailwind v4.
+<div class="container py-24 space-y-16">
+  <section class="space-y-6 text-center max-w-3xl mx-auto">
+    <h1 class="text-7xl font-black uppercase tracking-tight leading-none">
+      Design System <span class="text-brand-primary">Tokens</span>
+    </h1>
+    <p class="text-2xl text-brand-text-muted">
+      The "Electric Noir" brand identity implemented with Tailwind CSS v4.
     </p>
   </section>
 
-  <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+  <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
     {colors.map((c) => (
       <ColorSwatch {...c} />
     ))}
   </section>
 
-  <section class="flex flex-col items-center gap-8 py-12 bg-brand-text/5 rounded-2xl">
-    <h2 class="text-4xl font-bold">Call to Action</h2>
-    <BrandButton>Get Started Now</BrandButton>
+  <section class="flex flex-col items-center gap-10 py-16 bg-brand-surface border border-brand-accent/10 rounded-3xl relative overflow-hidden group">
+    <div class="absolute inset-0 bg-glow-purple opacity-50 group-hover:opacity-70 transition-opacity"></div>
+    <h2 class="text-5xl font-black uppercase tracking-widest relative z-10">Get <span class="text-brand-accent">Involved</span></h2>
+    <div class="relative z-10">
+      <BrandButton>Join the community</BrandButton>
+    </div>
   </section>
 </div>

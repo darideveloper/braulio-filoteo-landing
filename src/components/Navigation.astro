@@ -1,0 +1,50 @@
+---
+import clsx from 'clsx';
+
+interface Props {
+  className?: string;
+  itemClassName?: string;
+}
+
+const { className, itemClassName } = Astro.props;
+
+const navItems = [
+  {
+    label: 'Home',
+    href: '/',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-home"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`
+  },
+  {
+    label: 'Projects',
+    href: '/projects',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder-kanban"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/><path d="M8 10v4"/><path d="M12 10v2"/><path d="M16 10v6"/></svg>`
+  },
+  {
+    label: 'Social',
+    href: '/social',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share-2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>`
+  },
+  {
+    label: 'Contact',
+    href: '/contact',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>`
+  }
+];
+---
+
+<nav class={clsx("flex flex-col gap-4", className)}>
+  {navItems.map((item) => (
+    <a
+      href={item.href}
+      class={clsx(
+        "flex items-center gap-4 py-2 text-brand-text-muted transition-all hover:text-brand-primary group",
+        itemClassName
+      )}
+    >
+      <span class="w-6 h-6 flex items-center justify-center transition-transform group-hover:scale-110" set:html={item.icon} />
+      <span class="font-brand-display font-black uppercase tracking-widest text-sm">
+        {item.label}
+      </span>
+    </a>
+  ))}
+</nav>
