@@ -1,0 +1,24 @@
+---
+import clsx from 'clsx';
+
+interface Props {
+  value: string;
+  label: string;
+  variant?: 'primary' | 'secondary';
+}
+
+const { value, label, variant = 'primary' } = Astro.props;
+
+const variants = {
+  primary: "border-brand-primary",
+  secondary: "border-brand-secondary",
+};
+---
+
+<div class={clsx(
+  "border-l-4 pl-6 py-2",
+  variants[variant]
+)}>
+  <p class="font-brand-display text-2xl font-black tracking-tighter text-brand-text-high uppercase">{value}</p>
+  <p class="font-brand-body text-[10px] text-brand-text-muted tracking-widest uppercase mt-1">{label}</p>
+</div>

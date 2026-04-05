@@ -4,12 +4,12 @@
 TBD - created by archiving change add-hero-section. Update Purpose after archive.
 ## Requirements
 ### Requirement: Hero Section Content
-The Hero section MUST display "BRAULIO FILOTEO." in bold all-caps as the primary heading, utilizing premium architectural typography.
+The Hero section MUST display "BRAULIO FILOTEO" using the `EditorialPortrait` component for its main visual.
 
-#### Scenario: Display name correctly
+#### Scenario: Image usage in Hero
 - **WHEN** the Hero component is rendered.
-- **THEN** it displays "BRAULIO FILOTEO." with a trailing period.
-- **AND** it MUST use **Epilogue** with tight `-0.04em` letter spacing.
+- **THEN** it SHALL use an `EditorialPortrait` with its main editorial image.
+- **AND** it SHALL display the "EST. 2024" floating label and "DOCUMENTING HUMAN POTENTIAL" vertical text.
 
 ### Requirement: Hero Section Color Palette
 The Hero section MUST use `brand-background` (#0E0E0E) for its background and `brand-secondary` (#FE6500 - Editorial Orange) for its primary heading.
@@ -26,4 +26,20 @@ The Hero section MUST include a prominent call to action button utilizing the si
 - **THEN** the button SHALL use a 135° linear gradient from `brand-primary-light` (#DCB8FF) to `brand-primary` (#9B30FF).
 - **AND** it SHALL have sharp `0.25rem` (sm) corners.
 - **AND** typography SHALL use `Label-MD` (uppercase with 0.1em letter spacing).
+
+### Requirement: Atmospheric Glows
+The Hero section SHALL implement ambient background blurs for depth.
+
+#### Scenario: Render background blurs
+- **WHEN** the Hero component is rendered.
+- **THEN** it SHALL include at least two absolute-positioned glow elements (`bg-brand-primary/10` and `bg-brand-secondary/5`).
+- **AND** they SHALL have a `blur-[120px]` or higher filter.
+
+### Requirement: Editorial Statistics
+The Hero section SHALL display micro-credibility signals using consistent editorial styling.
+
+#### Scenario: Stat item structure
+- **GIVEN** a statistical metric.
+- **THEN** it SHALL feature a `border-l-4` accent using `brand-primary` or `brand-secondary`.
+- **AND** the number SHALL use `font-brand-display` at `text-2xl` or larger.
 

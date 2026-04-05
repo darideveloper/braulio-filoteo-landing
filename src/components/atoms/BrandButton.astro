@@ -3,38 +3,53 @@ import clsx from 'clsx';
 
 interface Props {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  href?: string;
   disabled?: boolean;
   class?: string;
+  icon?: string;
   [key: string]: any;
 }
 
 const { 
   variant = 'primary', 
+  href,
   disabled = false, 
   class: className,
+  icon,
   ...rest 
 } = Astro.props;
 
 const variants = {
   primary: "bg-brand-gradient text-white shadow-neon-purple hover:opacity-90 active:scale-95",
-  secondary: "bg-transparent border-2 border-brand-secondary text-brand-secondary hover:bg-brand-secondary/10 active:scale-95",
-  outline: "bg-transparent border-2 border-brand-primary text-brand-primary hover:bg-brand-primary/10 active:scale-95",
+  secondary: "bg-brand-secondary text-white shadow-[0_10px_30px_-10px_rgba(254,101,0,0.4)] hover:opacity-90 active:scale-95",
+  outline: "glass-surface border border-brand-surface-bright/30 text-brand-text-high hover:border-brand-secondary/50 active:scale-95",
   ghost: "bg-transparent text-brand-text-muted hover:text-brand-primary transition-colors",
 };
 
-const baseClasses = "inline-flex items-center justify-center min-w-[120px] px-6 py-3 label-md rounded-[0.25rem] transition-all cursor-pointer select-none";
+const baseClasses = "inline-flex items-center justify-center gap-3 px-10 py-5 label-md rounded-[0.25rem] transition-all cursor-pointer select-none group";
 const disabledClasses = "opacity-50 cursor-not-allowed pointer-events-none grayscale";
+
+const Element = href ? 'a' : 'button';
 ---
 
-<button
+<Element
+  href={href}
   class={clsx(
     baseClasses,
     variants[variant],
     disabled && disabledClasses,
     className
   )}
-  disabled={disabled}
+  {...href ? {} : { disabled }}
   {...rest}
 >
   <slot />
-</button>
+  {icon && (
+    <span class={clsx(
+      "material-symbols-outlined transition-transform",
+      variant === 'primary' || variant === 'secondary' ? "group-hover:translate-x-1" : "text-brand-secondary"
+    )}>
+      {icon}
+    </span>
+  )}
+</Element>

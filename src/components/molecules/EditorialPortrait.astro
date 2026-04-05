@@ -1,0 +1,80 @@
+---
+import clsx from 'clsx';
+
+interface Props {
+  src: string;
+  alt: string;
+  floatingLabel?: string;
+  verticalText?: string;
+  accent?: 'primary' | 'secondary';
+  aspect?: string;
+  showFrame?: boolean;
+  class?: string;
+}
+
+const { 
+  src, 
+  alt, 
+  floatingLabel, 
+  verticalText,
+  accent = 'primary',
+  aspect = 'aspect-[4/5]',
+  showFrame = true,
+  class: className 
+} = Astro.props;
+
+const accentColors = {
+  primary: {
+    border: "border-brand-primary/30",
+    text: "text-brand-secondary", // Floating label text uses secondary for contrast in design
+  },
+  secondary: {
+    border: "border-brand-secondary/30",
+    text: "text-brand-primary",
+  }
+};
+
+const currentAccent = accentColors[accent];
+---
+
+<div class={clsx("relative group", className)}>
+  <!-- Decorative Frame Element -->
+  {showFrame && (
+    <div class={clsx(
+      "absolute -top-6 -right-6 w-full h-full border-t-2 border-r-2 transition-all duration-700 group-hover:-top-4 group-hover:-right-4",
+      currentAccent.border
+    )}></div>
+  )}
+  
+  <div class={clsx("relative overflow-hidden rounded-lg bg-brand-surface shadow-2xl", aspect)}>
+    <img 
+      src={src} 
+      alt={alt} 
+      class="w-full h-full object-cover img-editorial" 
+    />
+    
+    <!-- Image Overlay Gradient -->
+    <div class="absolute inset-0 bg-gradient-to-t from-brand-background via-transparent to-transparent opacity-60"></div>
+    
+    <!-- Floating Label -->
+    {floatingLabel && (
+      <div class="absolute bottom-8 right-8 glass-surface p-4 border border-brand-surface-bright/30">
+        <span class={clsx(
+          "font-brand-display font-black text-xl tracking-tighter uppercase",
+          currentAccent.text
+        )}>
+          {floatingLabel}
+        </span>
+      </div>
+    )}
+  </div>
+
+  <!-- Side Text Element -->
+  {verticalText && (
+    <div class="absolute -left-12 top-1/2 -rotate-90 origin-center hidden xl:block">
+      <span class="font-brand-body text-[10px] tracking-[1em] text-brand-text-muted/40 font-bold uppercase whitespace-nowrap">
+        {verticalText}
+      </span>
+    </div>
+  )}
+</div>

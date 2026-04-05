@@ -1,0 +1,16 @@
+---
+import clsx from 'clsx';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<span class={clsx(
+  "bg-brand-surface-bright/40 text-brand-primary-light px-4 py-1 label-md border border-brand-surface-bright/20",
+  className
+)}>
+  <slot />
+</span>
