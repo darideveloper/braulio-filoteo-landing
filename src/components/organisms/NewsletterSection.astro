@@ -1,10 +1,9 @@
 ---
 import clsx from 'clsx';
-import Badge from '../atoms/Badge.astro';
-import EditorialHeadline from '../molecules/EditorialHeadline.astro';
 import SideBorderQuote from '../molecules/SideBorderQuote.astro';
 import MaterialIcon from '../atoms/MaterialIcon.astro';
 import BrandButton from '../atoms/BrandButton.astro';
+import SectionHeader from '../molecules/SectionHeader.astro';
 
 interface Props {
   class?: string;
@@ -20,13 +19,16 @@ const { class: className } = Astro.props;
   
   <div class="max-w-4xl w-full text-center relative z-10 space-y-12">
     <!-- Editorial Overline -->
-    <div class="flex flex-col items-center space-y-4">
-      <Badge>Membresía Privada</Badge>
-      <h1 class="hidden">Newsletter de Marca Personal y Storytelling — Braulio Filoteo</h1>
-      <EditorialHeadline class="!text-brand-secondary !tracking-[-0.06em] !leading-tight !mb-0">
+    <SectionHeader 
+      label="Membresía Privada"
+      align="center"
+      size="editorial"
+      titleColor="text-brand-secondary"
+    >
+      <Fragment slot="title">
         GRIT <span class="text-brand-text-high">en la vida cotidiana</span>
-      </EditorialHeadline>
-    </div>
+      </Fragment>
+    </SectionHeader>
     
     <!-- Descriptive Content Cluster -->
     <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">

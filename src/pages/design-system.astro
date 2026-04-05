@@ -9,7 +9,7 @@ import AboutCard from '../components/molecules/AboutCard.astro';
 import QuoteBlock from '../components/molecules/QuoteBlock.astro';
 import EditorialPortrait from '../components/molecules/EditorialPortrait.astro';
 import Navigation from '../components/molecules/Navigation.astro';
-import Header from '../components/organisms/Header.astro';
+import SectionHeader from '../components/molecules/SectionHeader.astro';
 import clsx from 'clsx';
 
 const colors = [
@@ -34,19 +34,21 @@ const typography = [
 
 <Layout title="Design System / Neon Noir">
   <main class="container py-[8.5rem] space-y-32">
-    <section>
-      <h1 class="display-lg mb-12 text-brand-secondary">Design System</h1>
-      <p class="body-lg text-brand-text-muted max-w-2xl">
-        A visual documentation of the "Neon Noir Editorial" branding, tokens, and utility classes.
-      </p>
-    </section>
+    <SectionHeader 
+      label="Brand Documentation"
+      title="Design System"
+      level={1}
+      titleColor="text-brand-secondary"
+      description="A visual documentation of the 'Neon Noir Editorial' branding, tokens, and utility classes."
+    />
 
     <!-- Atoms: Colors -->
     <section class="space-y-12">
-      <div class="space-y-4">
-        <span class="label-md text-brand-primary">Atoms</span>
-        <h2 class="headline-md uppercase tracking-widest text-brand-secondary">Color Palette</h2>
-      </div>
+      <SectionHeader 
+        label="Atoms"
+        title="Color Palette"
+        titleColor="text-brand-secondary"
+      />
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {colors.map((c) => (
           <ColorSwatch {...c} />
@@ -56,10 +58,11 @@ const typography = [
 
     <!-- Atoms: Typography -->
     <section class="space-y-12">
-      <div class="space-y-4">
-        <span class="label-md text-brand-primary">Atoms</span>
-        <h2 class="headline-md uppercase tracking-widest text-brand-secondary">Typography</h2>
-      </div>
+      <SectionHeader 
+        label="Atoms"
+        title="Typography"
+        titleColor="text-brand-secondary"
+      />
       <div class="space-y-12 bg-brand-surface p-12 rounded-[0.5rem]">
         {typography.map((type) => (
           <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-baseline">
@@ -74,10 +77,11 @@ const typography = [
 
     <!-- Atoms: New Components -->
     <section class="space-y-12">
-      <div class="space-y-4">
-        <span class="label-md text-brand-primary">Atoms</span>
-        <h2 class="headline-md uppercase tracking-widest text-brand-secondary">New Components</h2>
-      </div>
+      <SectionHeader 
+        label="Atoms"
+        title="New Components"
+        titleColor="text-brand-secondary"
+      />
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 bg-brand-surface p-12 rounded-[0.5rem]">
         <div class="space-y-4">
           <p class="text-xs text-brand-text-muted font-mono mb-4">Badge</p>
@@ -98,10 +102,11 @@ const typography = [
 
     <!-- Atoms: Buttons -->
     <section class="space-y-12">
-      <div class="space-y-4">
-        <span class="label-md text-brand-primary">Atoms</span>
-        <h2 class="headline-md uppercase tracking-widest text-brand-secondary">BrandButton</h2>
-      </div>
+      <SectionHeader 
+        label="Atoms"
+        title="BrandButton"
+        titleColor="text-brand-secondary"
+      />
       <div class="space-y-12 bg-brand-surface p-12 rounded-[0.5rem]">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div class="space-y-4">
@@ -126,10 +131,11 @@ const typography = [
 
     <!-- Molecules: EditorialPortrait -->
     <section class="space-y-12">
-      <div class="space-y-4">
-        <span class="label-md text-brand-primary">Molecules</span>
-        <h2 class="headline-md uppercase tracking-widest text-brand-secondary">EditorialPortrait</h2>
-      </div>
+      <SectionHeader 
+        label="Molecules"
+        title="EditorialPortrait"
+        titleColor="text-brand-secondary"
+      />
       <div class="grid grid-cols-1 md:grid-cols-2 gap-16 bg-brand-surface p-12 rounded-[0.5rem]">
         <div class="space-y-6">
           <p class="text-xs text-brand-text-muted font-mono">Primary Accent (Default)</p>
@@ -160,10 +166,11 @@ const typography = [
 
     <!-- Molecules: Navigation -->
     <section class="space-y-12">
-      <div class="space-y-4">
-        <span class="label-md text-brand-primary">Molecules</span>
-        <h2 class="headline-md uppercase tracking-widest text-brand-secondary">Navigation</h2>
-      </div>
+      <SectionHeader 
+        label="Molecules"
+        title="Navigation"
+        titleColor="text-brand-secondary"
+      />
       <div class="bg-brand-surface p-12 rounded-[0.5rem] max-w-sm">
         <Navigation />
       </div>
@@ -171,10 +178,11 @@ const typography = [
 
     <!-- Molecules: About Components -->
     <section class="space-y-12">
-      <div class="space-y-4">
-        <span class="label-md text-brand-primary">About</span>
-        <h2 class="headline-md uppercase tracking-widest text-brand-secondary">About Components</h2>
-      </div>
+      <SectionHeader 
+        label="About"
+        title="About Components"
+        titleColor="text-brand-secondary"
+      />
       <div class="space-y-12 bg-brand-surface p-12 rounded-[0.5rem]">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div class="space-y-4">
@@ -207,10 +215,11 @@ const typography = [
 
     <!-- Utilities -->
     <section class="space-y-12">
-      <div class="space-y-4">
-        <span class="label-md text-brand-primary">Utilities</span>
-        <h2 class="headline-md uppercase tracking-widest text-brand-secondary">Signature Effects</h2>
-      </div>
+      <SectionHeader 
+        label="Utilities"
+        title="Signature Effects"
+        titleColor="text-brand-secondary"
+      />
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
         <div class="space-y-4">
           <p class="text-xs text-brand-text-muted font-mono mb-4">.shadow-neon-purple</p>

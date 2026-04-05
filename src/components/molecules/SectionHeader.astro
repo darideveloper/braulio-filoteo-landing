@@ -3,8 +3,12 @@ import clsx from 'clsx';
 
 interface Props {
   label: string;
-  title: string;
+  title?: string;
   description?: string;
+  level?: 1 | 2;
+  align?: 'left' | 'center';
+  size?: 'standard' | 'editorial';
+  maxWidth?: string;
   labelColor?: string;
   titleColor?: string;
   class?: string;
@@ -14,13 +18,29 @@ const {
   label, 
   title, 
   description, 
+  level = 2,
+  align = 'left',
+  size = 'standard',
+  maxWidth,
   labelColor = "text-brand-primary", 
   titleColor = "text-brand-text-high",
   class: className 
 } = Astro.props;
+
+const Tag = level === 1 ? 'h1' : 'h2';
+const hasTitleSlot = Astro.slots.has('title');
+
+const sizeClasses = {
+  standard: "display-lg normal-case !text-[2.5rem] md:!text-[3.5rem] !leading-[1.1] tracking-[-0.04em]",
+  editorial: "text-5xl md:text-7xl lg:text-8xl font-black font-brand-display tracking-[-0.06em] leading-tight"
+};
 ---
 
-<div class={clsx("flex flex-col gap-4", className)}>
+<div class={clsx(
+  "flex flex-col gap-4",
+  align === 'center' && "items-center text-center",
+  className
+)} style={maxWidth ? { maxWidth } : {}}>
   <span class={clsx(
     "label-md tracking-[0.4em] uppercase",
     labelColor
@@ -28,15 +48,18 @@ const {
     {label}
   </span>
   
-  <h2 class={clsx(
-    "display-lg normal-case !text-[2.5rem] md:!text-[3.5rem] !leading-[1.1] tracking-[-0.04em]",
+  <Tag class={clsx(
+    sizeClasses[size],
     titleColor
   )}>
-    {title}
-  </h2>
+    {hasTitleSlot ? <slot name="title" /> : title}
+  </Tag>
 
   {description && (
-    <p class="headline-md text-brand-text-high max-w-3xl mt-2">
+    <p class={clsx(
+      "headline-md text-brand-text-high max-w-3xl mt-2",
+      align === 'center' && "mx-auto"
+    )}>
       {description}
     </p>
   )}

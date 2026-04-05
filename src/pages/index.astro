@@ -27,27 +27,22 @@ import BrandButton from '../components/atoms/BrandButton.astro'
         CUENTAS
       </span>,<br />CUENTA.
     </EditorialHeadline>
-    <p
-      slot='description'
-      class='text-xl md:text-2xl font-medium max-w-2xl mx-auto leading-relaxed text-slate-300 mb-12'
-    >
-      Las historias construyen <span
-        class='text-white border-b-2 border-brand-primary'>reputación</span
-      >. <br />
-      La reputación construye <span
-        class='text-white border-b-2 border-brand-primary'>oportunidades</span
-      >.
-    </p>
+    <div slot='description' class="mb-12">
+      <p>
+        Las historias construyen <span
+          class='text-white border-b-2 border-brand-primary'>reputación</span
+        >. <br />
+        La reputación construye <span
+          class='text-white border-b-2 border-brand-primary'>oportunidades</span
+        >.
+      </p>
+    </div>
     <BrandButton
       slot='cta'
       href='#'
       variant='secondary'
     >
       Empieza tu Viaje
-    </BrandButton>
-  </CtaSection>
-</Layout>
-a tu Viaje
     </BrandButton>
   </CtaSection>
 </Layout>
