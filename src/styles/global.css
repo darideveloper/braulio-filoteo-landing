@@ -2,12 +2,16 @@
 
 @theme {
   /* Colors */
-  --color-brand-background: #0e0e0e;
-  --color-brand-surface: #1c1b1b;
-  --color-brand-primary: #fe6500;
-  --color-brand-accent: #9b30ff;
-  --color-brand-text-high: #e5e2e1;
-  --color-brand-text-muted: #cfc2d8;
+  --color-brand-background: #0e0e0e; /* surface_container_lowest */
+  --color-brand-surface: #1c1b1b;    /* surface_container_low */
+  --color-brand-surface-bright: #393939;
+  
+  --color-brand-primary: #9b30ff;    /* primary_container (Purple) */
+  --color-brand-primary-light: #dcb8ff; /* primary */
+  --color-brand-secondary: #fe6500;  /* secondary_container (Orange) */
+  
+  --color-brand-text-high: #e5e2e1;  /* on_background */
+  --color-brand-text-muted: #cfc2d8; /* on_surface_variant */
 
   /* Typography */
   --font-brand-display: 'Epilogue', sans-serif;
@@ -29,7 +33,7 @@
   h4,
   h5,
   h6 {
-    @apply font-brand-display text-brand-primary;
+    @apply font-brand-display text-brand-secondary;
   }
 
   /* Default font for everything else */
@@ -43,35 +47,59 @@
   @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
 }
 
-@layer utilities {
-  /* Tight Headline Effect */
-  .headline-xl {
-    @apply font-brand-display font-black tracking-[-0.06em] leading-[0.9] uppercase;
-  }
-
-  /* The Signature Glow */
-  .bg-glow-purple {
-    background: radial-gradient(
-      circle at center,
-      rgba(155, 48, 255, 0.15) 0%,
-      transparent 70%
-    );
-  }
-
-  /* Grayscale Image Hover */
-  .img-editorial {
-    @apply grayscale brightness-90 transition-all duration-700 ease-in-out hover:scale-105 hover:grayscale-0 hover:brightness-100;
-  }
+/* Tailwind v4 Utility Definitions */
+@utility display-lg {
+  @apply font-brand-display text-[3.5rem] font-black tracking-[-0.04em] leading-[1.1] uppercase;
 }
 
-/* Primary Button Class (Reference style) */
+@utility headline-md {
+  @apply font-brand-display text-[1.75rem] font-bold leading-snug;
+}
+
+@utility label-md {
+  @apply font-brand-body text-[0.75rem] font-bold uppercase tracking-[0.1em];
+}
+
+@utility body-lg {
+  @apply font-brand-body text-[1rem] leading-relaxed;
+}
+
+@utility bg-brand-gradient {
+  background: linear-gradient(135deg, var(--color-brand-primary-light) 0%, var(--color-brand-primary) 100%);
+}
+
+@utility shadow-neon-purple {
+  box-shadow: 0 0 60px 0 rgba(155, 48, 255, 0.1);
+}
+
+@utility glass-surface {
+  @apply bg-brand-surface/60 backdrop-blur-[12px];
+}
+
+@utility headline-xl {
+  @apply display-lg;
+}
+
+@utility img-editorial {
+  @apply grayscale brightness-90 transition-all duration-700 ease-in-out hover:scale-105 hover:grayscale-0 hover:brightness-100;
+}
+
+@utility bg-glow-purple {
+  background: radial-gradient(
+    circle at center,
+    rgba(155, 48, 255, 0.15) 0%,
+    transparent 70%
+  );
+}
+
+/* Primary Button Class */
 @layer components {
   .btn-primary {
-    @apply bg-brand-primary shadow-[0_10px_30px_-10px_rgba(254,101,0,0.4)] transition-all hover:opacity-90 active:scale-95 rounded-lg px-6 py-3 font-bold text-white;
+    @apply bg-brand-gradient shadow-neon-purple transition-all hover:opacity-90 active:scale-95 rounded-[0.25rem] px-6 py-3 label-md text-white;
   }
 }
 
-/* Custom Scrollbar (Reference style) */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -79,5 +107,5 @@
   @apply bg-brand-surface;
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-brand-accent rounded-full;
+  @apply bg-brand-primary rounded-full;
 }

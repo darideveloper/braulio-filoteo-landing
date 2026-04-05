@@ -1,58 +1,60 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import BrandButton from '../components/atoms/BrandButton.astro';
+import ColorSwatch from '../components/atoms/ColorSwatch.astro';
+import Navigation from '../components/molecules/Navigation.astro';
+import Header from '../components/organisms/Header.astro';
 import clsx from 'clsx';
 
 const colors = [
-  { name: 'Background', variable: 'var(--color-brand-background)', hex: '#0E0E0E' },
-  { name: 'Surface', variable: 'var(--color-brand-surface)', hex: '#1C1B1B' },
-  { name: 'Primary', variable: 'var(--color-brand-primary)', hex: '#FE6500' },
-  { name: 'Accent', variable: 'var(--color-brand-accent)', hex: '#9B30FF' },
-  { name: 'Text High', variable: 'var(--color-brand-text-high)', hex: '#E5E2E1' },
-  { name: 'Text Muted', variable: 'var(--color-brand-text-muted)', hex: '#CFC2D8' },
+  { label: 'Background', color: '#0E0E0E', role: 'surface_container_lowest: The deepest foundation.' },
+  { label: 'Surface', color: '#1C1B1B', role: 'surface_container_low: The standard content stage.' },
+  { label: 'Surface Bright', color: '#393939', role: 'surface_bright: Elevated interactive elements.' },
+  { label: 'Primary (Action)', color: '#9B30FF', role: 'primary_container: High-intent interactions (Purple).' },
+  { label: 'Primary Light', color: '#DCB8FF', role: 'primary: Start color for CTA gradients.' },
+  { label: 'Secondary (Heading)', color: '#FE6500', role: 'secondary_container: Editorial Orange for headlines.' },
+  { label: 'Text High', color: '#E5E2E1', role: 'on_background: Maximum readability off-white.' },
+  { label: 'Text Muted', color: '#CFC2D8', role: 'on_surface_variant: Secondary descriptions.' },
 ];
 
 const typography = [
-  { label: 'Headline XL', class: 'headline-xl', text: 'Electric Noir' },
-  { label: 'Display Bold', class: 'font-brand-display font-black text-4xl', text: 'BIG & BOLD IDENTITY' },
-  { label: 'Body Regular', class: 'font-brand-body text-base', text: 'The design strategy uses a "Big & Bold" approach, mixing a geometric sans-serif for impact with a clean sans-serif for readability.' },
-  { label: 'Body Bold', class: 'font-brand-body font-bold text-base', text: 'Luxury tracking and editorial breaks.' },
-  { label: 'Luxury Metadata', class: 'font-brand-body uppercase tracking-[0.3em] text-xs text-brand-text-muted', text: 'Established 2024' },
+  { label: 'Display-LG', class: 'display-lg', text: 'NEON NOIR.' },
+  { label: 'Headline-MD', class: 'headline-md text-brand-secondary', text: 'Section Title Headline' },
+  { label: 'Label-MD', class: 'label-md text-brand-text-muted', text: 'Technical Metadata / Overline' },
+  { label: 'Body-LG', class: 'body-lg', text: 'The "Neon Noir Editorial" style favors dramatic whitespace, intentional asymmetry, and the visceral tension between deep shadows and vibrant accents.' },
+  { label: 'Body Bold', class: 'body-lg font-bold', text: 'Luxury tracking and editorial breaks.' },
 ];
 ---
 
-<Layout>
-  <main class="container py-20 space-y-24">
+<Layout title="Design System / Neon Noir">
+  <main class="container py-[8.5rem] space-y-32">
     <section>
-      <h1 class="headline-xl mb-12">Design System</h1>
-      <p class="text-brand-text-muted max-w-2xl">
-        A visual documentation of the "Electric Noir" branding, tokens, and utility classes.
+      <h1 class="display-lg mb-12 text-brand-secondary">Design System</h1>
+      <p class="body-lg text-brand-text-muted max-w-2xl">
+        A visual documentation of the "Neon Noir Editorial" branding, tokens, and utility classes.
       </p>
     </section>
 
-    <!-- Colors -->
-    <section class="space-y-8">
-      <h2 class="text-2xl font-brand-display uppercase tracking-widest border-b border-brand-accent/30 pb-4">Colors</h2>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-        {colors.map((color) => (
-          <div class="space-y-3">
-            <div 
-              class="h-24 w-full rounded-lg border border-brand-text-muted/10" 
-              style={{ backgroundColor: color.variable }}
-            ></div>
-            <div>
-              <p class="font-bold text-sm">{color.name}</p>
-              <p class="text-xs text-brand-text-muted font-mono uppercase">{color.hex}</p>
-              <p class="text-[10px] text-brand-text-muted/60 font-mono">{color.variable}</p>
-            </div>
-          </div>
+    <!-- Atoms: Colors -->
+    <section class="space-y-12">
+      <div class="space-y-4">
+        <span class="label-md text-brand-primary">Atoms</span>
+        <h2 class="headline-md uppercase tracking-widest text-brand-secondary">Color Palette</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {colors.map((c) => (
+          <ColorSwatch {...c} />
         ))}
       </div>
     </section>
 
-    <!-- Typography -->
-    <section class="space-y-8">
-      <h2 class="text-2xl font-brand-display uppercase tracking-widest border-b border-brand-accent/30 pb-4">Typography</h2>
-      <div class="space-y-12">
+    <!-- Atoms: Typography -->
+    <section class="space-y-12">
+      <div class="space-y-4">
+        <span class="label-md text-brand-primary">Atoms</span>
+        <h2 class="headline-md uppercase tracking-widest text-brand-secondary">Typography</h2>
+      </div>
+      <div class="space-y-12 bg-brand-surface p-12 rounded-[0.5rem]">
         {typography.map((type) => (
           <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-baseline">
             <p class="text-xs text-brand-text-muted font-mono">{type.label}</p>
@@ -64,58 +66,78 @@ const typography = [
       </div>
     </section>
 
+    <!-- Atoms: Buttons -->
+    <section class="space-y-12">
+      <div class="space-y-4">
+        <span class="label-md text-brand-primary">Atoms</span>
+        <h2 class="headline-md uppercase tracking-widest text-brand-secondary">BrandButton</h2>
+      </div>
+      <div class="space-y-12 bg-brand-surface p-12 rounded-[0.5rem]">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="space-y-4">
+            <p class="text-xs text-brand-text-muted font-mono">Primary (Gradient)</p>
+            <BrandButton variant="primary">Primary Action</BrandButton>
+          </div>
+          <div class="space-y-4">
+            <p class="text-xs text-brand-text-muted font-mono">Secondary (Outline Orange)</p>
+            <BrandButton variant="secondary">Secondary</BrandButton>
+          </div>
+          <div class="space-y-4">
+            <p class="text-xs text-brand-text-muted font-mono">Outline (Purple)</p>
+            <BrandButton variant="outline">Outline Action</BrandButton>
+          </div>
+          <div class="space-y-4">
+            <p class="text-xs text-brand-text-muted font-mono">Ghost</p>
+            <BrandButton variant="ghost">Ghost Action</BrandButton>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Molecules: Navigation -->
+    <section class="space-y-12">
+      <div class="space-y-4">
+        <span class="label-md text-brand-primary">Molecules</span>
+        <h2 class="headline-md uppercase tracking-widest text-brand-secondary">Navigation</h2>
+      </div>
+      <div class="bg-brand-surface p-12 rounded-[0.5rem] max-w-sm">
+        <Navigation />
+      </div>
+    </section>
+
     <!-- Utilities -->
-    <section class="space-y-8">
-      <h2 class="text-2xl font-brand-display uppercase tracking-widest border-b border-brand-accent/30 pb-4">Utilities</h2>
+    <section class="space-y-12">
+      <div class="space-y-4">
+        <span class="label-md text-brand-primary">Utilities</span>
+        <h2 class="headline-md uppercase tracking-widest text-brand-secondary">Signature Effects</h2>
+      </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
         <div class="space-y-4">
-          <p class="text-xs text-brand-text-muted font-mono mb-4">.bg-glow-purple</p>
-          <div class="h-64 w-full rounded-xl bg-brand-surface relative overflow-hidden border border-brand-accent/20">
-            <div class="absolute inset-0 bg-glow-purple"></div>
+          <p class="text-xs text-brand-text-muted font-mono mb-4">.shadow-neon-purple</p>
+          <div class="h-64 w-full rounded-[0.5rem] bg-brand-surface relative overflow-hidden shadow-neon-purple">
             <div class="absolute inset-0 flex items-center justify-center">
-              <span class="text-brand-text-muted text-sm">Radial Glow Effect</span>
+              <span class="text-brand-text-muted text-sm">Neon Glow (Box Shadow)</span>
             </div>
           </div>
         </div>
         <div class="space-y-4">
           <p class="text-xs text-brand-text-muted font-mono mb-4">.img-editorial (Hover to test)</p>
-          <div class="relative group aspect-video rounded-xl overflow-hidden border border-brand-accent/20">
+          <div class="relative group aspect-video rounded-[0.5rem] overflow-hidden">
             <img 
               src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?q=80&w=1000&auto=format&fit=crop" 
               alt="Test Image"
               class="w-full h-full object-cover img-editorial"
             />
             <div class="absolute bottom-4 left-4">
-               <span class="bg-brand-primary text-white text-[10px] font-bold px-2 py-1 rounded">EST. 2024</span>
+               <span class="bg-brand-gradient text-white label-md px-3 py-1 rounded-[0.25rem]">EST. 2024</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Components -->
-    <section class="space-y-8">
-      <h2 class="text-2xl font-brand-display uppercase tracking-widest border-b border-brand-accent/30 pb-4">Components</h2>
-      <div class="space-y-8">
-        <div class="flex flex-wrap gap-6 items-center">
-           <button class="btn-primary">Primary Action</button>
-           <button class="btn-primary opacity-50 cursor-not-allowed">Disabled Action</button>
-        </div>
-        
-        <div class="p-8 bg-brand-surface rounded-lg border border-brand-accent/20 max-w-md">
-          <h3 class="text-xl font-brand-display mb-4">Bento Card Base</h3>
-          <p class="text-brand-text-muted text-sm leading-relaxed">
-            Sharp corners (approx. 4px to 8px) and surface-low background for an aggressive look.
-          </p>
-          <div class="mt-6 flex justify-end">
-             <span class="text-4xl font-brand-display opacity-10">01</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="pt-20 border-t border-brand-surface text-center">
-       <p class="text-brand-text-muted text-xs font-mono uppercase tracking-[0.5em]">Electric Noir / 2026</p>
+    <footer class="pt-20 text-center">
+       <p class="label-md text-brand-text-muted tracking-[0.5em]">Neon Noir / 2026</p>
     </footer>
   </main>
 </Layout>

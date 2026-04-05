@@ -3,13 +3,13 @@ import clsx from 'clsx';
 import BrandButton from '../atoms/BrandButton.astro';
 ---
 
-<section class={clsx("relative min-h-[80vh] flex flex-col items-center justify-center text-center px-6 py-32 bg-brand-background overflow-hidden group")}>
+<section class={clsx("relative min-h-[80vh] flex flex-col items-center justify-center text-center px-6 py-[8.5rem] bg-brand-background overflow-hidden group")}>
   <div class="absolute inset-0 bg-glow-purple opacity-30 group-hover:opacity-40 transition-opacity"></div>
   
   <div class="container relative z-10 grid grid-cols-1 gap-16 max-w-6xl mx-auto">
     <div class="space-y-8">
-      <h1 class="headline-xl text-7xl sm:text-8xl md:text-9xl tracking-tight text-brand-text-high">
-        Braulio <br class="hidden sm:block" /> Filoteo<span class="text-brand-primary">.</span>
+      <h1 class="display-lg text-7xl sm:text-8xl md:text-9xl text-brand-secondary">
+        BRAULIO <br class="hidden sm:block" /> FILOTEO<span class="text-brand-primary">.</span>
       </h1>
       
       <p class="text-2xl sm:text-3xl text-brand-text-muted max-w-2xl mx-auto font-brand-body font-light leading-relaxed">
@@ -21,7 +21,7 @@ import BrandButton from '../atoms/BrandButton.astro';
       <BrandButton>View the Portfolio</BrandButton>
       <a 
         href="#contact" 
-        class="text-brand-accent font-brand-display font-black uppercase tracking-[0.2em] text-lg hover:text-brand-primary transition-colors border-b-2 border-brand-accent/20 pb-1"
+        class="text-brand-secondary label-md text-lg hover:text-brand-primary transition-colors pb-1"
       >
         Get in touch
       </a>

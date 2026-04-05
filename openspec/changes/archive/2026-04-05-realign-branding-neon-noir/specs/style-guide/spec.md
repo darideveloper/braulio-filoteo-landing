@@ -1,17 +1,4 @@
-# style-guide Specification
-
-## Purpose
-TBD - created by archiving change align-design-system-branding. Update Purpose after archive.
-## Requirements
-### Requirement: Design System Route
-The project SHALL provide a dedicated route to visualize and test all design tokens and utility variants.
-
-#### Scenario: Accessing the Style Guide
-- **GIVEN** a running application.
-- **WHEN** navigating to `/design-system`.
-- **THEN** a page SHALL be displayed containing sections for colors, typography, and UI utilities.
-
----
+## MODIFIED Requirements
 
 ### Requirement: Design Token Visualization
 The Design System page SHALL render all "Neon Noir" design tokens for visual confirmation and contrast testing.
@@ -35,4 +22,3 @@ The Design System page SHALL provide interactive or visual tests for Neon Noir s
 - **GIVEN** the Design System page.
 - **THEN** it SHALL contain a demonstration of the 60% opacity backdrop-blur utility on a background with signature textures or images.
 - **AND** it SHALL show the 135° primary gradient on a sample element with sharp `0.25rem` corners.
-

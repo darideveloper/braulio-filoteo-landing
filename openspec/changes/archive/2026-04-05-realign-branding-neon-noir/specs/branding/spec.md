@@ -1,8 +1,5 @@
-# branding Specification
+## MODIFIED Requirements
 
-## Purpose
-TBD - created by archiving change align-design-system-branding. Update Purpose after archive.
-## Requirements
 ### Requirement: Color Palette
 The project SHALL implement the "Neon Noir Editorial" high-contrast color scheme in the CSS theme, prioritizing "Midnight" foundations and "Electric Citrus" accents.
 
@@ -38,17 +35,7 @@ The project SHALL configure a premium hierarchy using **Epilogue** for an archit
 - **WHEN** using primary body text.
 - **THEN** it SHALL use **Inter** at `1rem` (Body-LG).
 
-### Requirement: UI Utilities
-The project SHALL provide specific CSS utilities for the "Electric Noir" aesthetic.
-
-#### Scenario: Purple Radial Glow
-- **GIVEN** an element with the `.bg-glow-purple` class.
-- **THEN** it SHALL have a radial gradient background starting with `rgba(155, 48, 255, 0.15)` at the center and fading to transparent.
-
-#### Scenario: Editorial Image Treatment
-- **GIVEN** an image with the `.img-editorial` class.
-- **THEN** it SHALL be grayscale (`100%`) and slightly darkened (`90% brightness`) by default.
-- **AND** it SHALL transition to full color (`0% grayscale`) and scale slightly (`1.05`) on hover.
+## ADDED Requirements
 
 ### Requirement: The No-Line Rule
 The system SHALL prohibit the use of `1px` solid borders for sectioning or element definition.
@@ -67,4 +54,3 @@ The UI SHALL utilize "Tonal Stepping" and "Ambient Glows" to create structural d
 #### Scenario: Glassmorphism
 - **GIVEN** a header or navigation overlay.
 - **THEN** it SHALL use `surface_variant` at `60%` opacity with a `blur(12px)` to maintain atmospheric depth.
-
