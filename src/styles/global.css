@@ -115,6 +115,15 @@
   );
 }
 
+@utility bg-noir-gradient {
+  background: radial-gradient(circle at center, var(--color-brand-surface) 0%, var(--color-brand-background) 100%);
+}
+
+@utility text-stroke-brand {
+  -webkit-text-stroke: 1px var(--color-brand-text-high);
+  color: transparent;
+}
+
 /* Primary Button Class */
 @layer components {
   .btn-primary {
