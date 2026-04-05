@@ -4,6 +4,9 @@ import BrandButton from '../components/atoms/BrandButton.astro';
 import ColorSwatch from '../components/atoms/ColorSwatch.astro';
 import Badge from '../components/atoms/Badge.astro';
 import StatItem from '../components/atoms/StatItem.astro';
+import AboutIcon from '../components/atoms/AboutIcon.astro';
+import AboutCard from '../components/molecules/AboutCard.astro';
+import QuoteBlock from '../components/molecules/QuoteBlock.astro';
 import EditorialPortrait from '../components/molecules/EditorialPortrait.astro';
 import Navigation from '../components/molecules/Navigation.astro';
 import Header from '../components/organisms/Header.astro';
@@ -163,6 +166,42 @@ const typography = [
       </div>
       <div class="bg-brand-surface p-12 rounded-[0.5rem] max-w-sm">
         <Navigation />
+      </div>
+    </section>
+
+    <!-- Molecules: About Components -->
+    <section class="space-y-12">
+      <div class="space-y-4">
+        <span class="label-md text-brand-primary">About</span>
+        <h2 class="headline-md uppercase tracking-widest text-brand-secondary">About Components</h2>
+      </div>
+      <div class="space-y-12 bg-brand-surface p-12 rounded-[0.5rem]">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div class="space-y-4">
+            <p class="text-xs text-brand-text-muted font-mono mb-4">AboutCard</p>
+            <AboutCard 
+              number="01"
+              title="Coleccionar historias"
+              description="Excavar hasta encontrar el núcleo de la experiencia humana, el fracaso y la resiliencia."
+            />
+          </div>
+          <div class="space-y-4">
+            <p class="text-xs text-brand-text-muted font-mono mb-4">QuoteBlock</p>
+            <QuoteBlock 
+              text="La inspiración está bien, pero la acción es mejor."
+              author="Manifiesto GRITones"
+            />
+          </div>
+        </div>
+        <div class="space-y-4">
+          <p class="text-xs text-brand-text-muted font-mono mb-4">AboutIcon Variants</p>
+          <div class="flex gap-8">
+            <AboutIcon icon="fitness_center" variant="primary" class="!text-4xl" />
+            <AboutIcon icon="menu_book" variant="secondary" class="!text-4xl" />
+            <AboutIcon icon="verified" variant="muted" class="!text-4xl" />
+            <AboutIcon icon="arrow_forward" variant="white" class="!text-4xl" />
+          </div>
+        </div>
       </div>
     </section>
 

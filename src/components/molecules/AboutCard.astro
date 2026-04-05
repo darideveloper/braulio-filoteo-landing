@@ -1,0 +1,27 @@
+---
+import clsx from 'clsx';
+
+interface Props {
+  number: string;
+  title: string;
+  description: string;
+  class?: string;
+}
+
+const { number, title, description, class: className } = Astro.props;
+---
+
+<div class={clsx(
+  "p-8 rounded-[1.5rem] bg-white/5 border border-white/10 hover:border-brand-secondary/30 transition-all duration-300 group",
+  className
+)}>
+  <span class="text-4xl font-brand-display font-black text-brand-secondary/30 mb-2 block tracking-tighter">
+    {number}
+  </span>
+  <h4 class="text-xl font-brand-display font-bold mb-2 text-brand-text-high italic">
+    {title}
+  </h4>
+  <p class="text-brand-text-muted text-sm leading-relaxed font-brand-body">
+    {description}
+  </p>
+</div>

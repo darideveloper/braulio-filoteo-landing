@@ -1,0 +1,68 @@
+---
+import AboutIcon from '../atoms/AboutIcon.astro';
+import AboutCard from '../molecules/AboutCard.astro';
+import QuoteBlock from '../molecules/QuoteBlock.astro';
+
+const missionPoints = [
+  {
+    number: "01",
+    title: "Coleccionar historias",
+    description: "Excavar hasta encontrar el núcleo de la experiencia humana, el fracaso y la resiliencia."
+  },
+  {
+    number: "02",
+    title: "Convertir voces en impacto",
+    description: "Transformar narrativas individuales en plataformas de autoridad y legado duradero."
+  }
+];
+
+const brandIcons = [
+  { icon: "fitness_center", label: "GRIT", variant: "primary" },
+  { icon: "menu_book", label: "Storytelling", variant: "primary" },
+  { icon: "verified", label: "Personal Brand", variant: "primary" },
+  { icon: "arrow_forward", label: "Sigue explorando", variant: "secondary", special: true }
+];
+---
+
+<section id="about" class="bg-brand-background py-24 px-6 lg:px-24">
+  <div class="container mx-auto">
+    <div class="grid lg:grid-cols-2 gap-20 items-start">
+      
+      <!-- Left Column: Mission -->
+      <div class="space-y-16">
+        <div>
+          <h2 class="text-brand-primary label-md tracking-[0.4em] mb-4">La Misión</h2>
+          <h3 class="display-lg normal-case !text-[2.5rem] md:!text-[3rem] !leading-tight text-brand-text-high">
+            Antes que podcaster, soy explorador de historias.
+          </h3>
+        </div>
+        
+        <div class="grid gap-6">
+          {missionPoints.map((point) => (
+            <AboutCard {...point} />
+          ))}
+        </div>
+      </div>
+
+      <!-- Right Column: Quote & Icons -->
+      <div class="space-y-12">
+        <QuoteBlock 
+          text="La inspiración está bien, pero la acción es mejor."
+          author="Manifiesto GRITones"
+        />
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {brandIcons.map((item) => (
+            <div class={`flex items-center gap-4 p-4 rounded-2xl ${item.special ? 'bg-brand-secondary/20' : 'bg-white/2'}`}>
+              <AboutIcon icon={item.icon} variant={item.variant as any} class="!text-3xl" />
+              <h4 class="text-xs font-bold text-brand-text-high uppercase tracking-widest">
+                {item.label}
+              </h4>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

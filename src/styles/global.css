@@ -16,6 +16,7 @@
   /* Typography */
   --font-brand-display: 'Epilogue', sans-serif;
   --font-brand-body: 'Inter', sans-serif;
+  --font-brand-icons: 'Material Symbols Outlined', sans-serif;
 }
 
 @layer base {
@@ -74,6 +75,16 @@
 
 @utility glass-surface {
   @apply bg-brand-surface/60 backdrop-blur-[12px];
+}
+
+@utility glass-card {
+  @apply bg-white/5 backdrop-blur-[10px] border border-white/10;
+}
+
+@utility text-brand-gradient {
+  background: linear-gradient(to right, var(--color-brand-secondary), var(--color-brand-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 @utility headline-xl {
