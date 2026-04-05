@@ -53,6 +53,18 @@
   @apply font-brand-display text-[3.5rem] font-black tracking-[-0.04em] leading-[1.1] uppercase;
 }
 
+@utility display-2xl {
+  @apply font-brand-display text-6xl md:text-8xl font-black tracking-tighter leading-[0.85] uppercase;
+}
+
+@utility decoration-editorial {
+  @apply underline decoration-brand-secondary/40 decoration-8 underline-offset-8;
+}
+
+@utility text-watermark {
+  @apply text-[30rem] font-black select-none opacity-[0.03] pointer-events-none;
+}
+
 @utility headline-md {
   @apply font-brand-display text-[1.75rem] font-bold leading-snug;
 }
