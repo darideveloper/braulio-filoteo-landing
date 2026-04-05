@@ -1,35 +1,46 @@
 ---
-import clsx from 'clsx';
-import MaterialIcon from '../atoms/MaterialIcon.astro';
+import clsx from 'clsx'
+import MaterialIcon from '../atoms/MaterialIcon.astro'
 
 interface Props {
-  watermark?: string;
-  showContact?: boolean;
-  class?: string;
+  watermark?: string
+  showContact?: boolean
+  class?: string
 }
 
-const { watermark, showContact = false, class: className } = Astro.props;
+const { watermark, showContact = false, class: className } = Astro.props
 ---
 
-<section class={clsx("relative min-h-screen flex items-center justify-center py-24 px-6 bg-black overflow-hidden", className)}>
-  <div class="max-w-4xl mx-auto text-center relative z-10">
-    <slot name="headline" />
-    <slot name="description" />
-
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
-      <slot name="cta" />
-      {showContact && (
-        <div class="flex items-center gap-4 text-sm font-bold tracking-widest uppercase text-brand-text-muted">
-          <MaterialIcon name="mail" class="text-brand-secondary" />
-          hola@brauliofiloteo.com
-        </div>
-      )}
+<section
+  class={clsx(
+    'relative min-h-screen flex items-center justify-center py-24 px-6 bg-black overflow-hidden',
+    className,
+  )}
+>
+  <div class='max-w-4xl mx-auto text-center relative z-10'>
+    <slot name='headline' />
+    <slot name='description' />
+    <div class='flex flex-col sm:flex-row items-center justify-center gap-6'>
+      <slot name='cta' />
+      {
+        showContact && (
+          <div class='flex items-center gap-4 text-sm font-bold tracking-widest uppercase text-brand-text-muted'>
+            <MaterialIcon
+              name='mail'
+              class='text-brand-secondary'
+            />
+            hola@brauliofiloteo.com
+          </div>
+        )
+      }
     </div>
   </div>
 
-  {watermark && (
-    <div class="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-      <span class="text-watermark">{watermark}</span>
-    </div>
-  )}
+  {
+    watermark && (
+      <div class='absolute inset-0 z-0 flex items-center justify-center pointer-events-none'>
+        <span class='text-watermark'>{watermark}</span>
+      </div>
+    )
+  }
 </section>

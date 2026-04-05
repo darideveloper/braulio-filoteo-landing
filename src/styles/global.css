@@ -58,7 +58,7 @@
 }
 
 @utility decoration-editorial {
-  @apply underline decoration-brand-secondary/40 decoration-8 underline-offset-8;
+  @apply underline decoration-brand-primary/40 decoration-8 underline-offset-8;
 }
 
 @utility text-watermark {

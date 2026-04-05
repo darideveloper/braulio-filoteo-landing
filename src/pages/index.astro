@@ -1,28 +1,46 @@
 ---
-import Hero from '../components/organisms/Hero.astro';
-import AboutSection from '../components/organisms/AboutSection.astro';
-import PodcastSection from '../components/organisms/PodcastSection.astro';
-import SocialSection from '../components/organisms/SocialSection.astro';
-import Layout from '../layouts/Layout.astro';
-import CtaSection from '../components/organisms/CtaSection.astro';
-import EditorialHeadline from '../components/molecules/EditorialHeadline.astro';
-import BrandButton from '../components/atoms/BrandButton.astro';
+import Hero from '../components/organisms/Hero.astro'
+import AboutSection from '../components/organisms/AboutSection.astro'
+import PodcastSection from '../components/organisms/PodcastSection.astro'
+import Layout from '../layouts/Layout.astro'
+import CtaSection from '../components/organisms/CtaSection.astro'
+import EditorialHeadline from '../components/molecules/EditorialHeadline.astro'
+import BrandButton from '../components/atoms/BrandButton.astro'
 ---
 
 <Layout>
-	<Hero />
+  <Hero />
   <AboutSection />
   <PodcastSection />
-  <SocialSection />
-  <CtaSection watermark="GRIT" showContact={true}>
-    <EditorialHeadline slot="headline">
-      LO QUE <span class="text-brand-secondary italic decoration-editorial">CUENTAS</span>,<br/>CUENTA.
+  <CtaSection
+    watermark='GRIT'
+    showContact={true}
+  >
+    <EditorialHeadline
+      slot='headline'
+      class='leading-[1.2] text-white'
+    >
+      LO QUE
+      <span class='text-brand-secondary italic decoration-editorial'>
+        CUENTAS
+      </span>,<br />CUENTA.
     </EditorialHeadline>
-    <p slot="description" class="text-xl md:text-2xl font-medium max-w-2xl mx-auto leading-relaxed text-slate-300 mb-12">
-      Las historias construyen <span class="text-white border-b-2 border-brand-primary">reputación</span>. <br/>
-      La reputación construye <span class="text-white border-b-2 border-brand-primary">oportunidades</span>.
+    <p
+      slot='description'
+      class='text-xl md:text-2xl font-medium max-w-2xl mx-auto leading-relaxed text-slate-300 mb-12'
+    >
+      Las historias construyen <span
+        class='text-white border-b-2 border-brand-primary'>reputación</span
+      >. <br />
+      La reputación construye <span
+        class='text-white border-b-2 border-brand-primary'>oportunidades</span
+      >.
     </p>
-    <BrandButton slot="cta" href="#" variant="primary">
+    <BrandButton
+      slot='cta'
+      href='#'
+      variant='secondary'
+    >
       Empieza tu Viaje
     </BrandButton>
   </CtaSection>
