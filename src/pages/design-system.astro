@@ -5,247 +5,332 @@ import ColorSwatch from '../components/atoms/ColorSwatch.astro';
 import Badge from '../components/atoms/Badge.astro';
 import StatItem from '../components/atoms/StatItem.astro';
 import AboutIcon from '../components/atoms/AboutIcon.astro';
+import MaterialIcon from '../components/atoms/MaterialIcon.astro';
+import SpotifyEmbed from '../components/atoms/SpotifyEmbed.astro';
 import AboutCard from '../components/molecules/AboutCard.astro';
 import QuoteBlock from '../components/molecules/QuoteBlock.astro';
 import EditorialPortrait from '../components/molecules/EditorialPortrait.astro';
 import Navigation from '../components/molecules/Navigation.astro';
 import SectionHeader from '../components/molecules/SectionHeader.astro';
+import EditorialHeadline from '../components/molecules/EditorialHeadline.astro';
+import PodcastCTA from '../components/molecules/PodcastCTA.astro';
+import SideBorderQuote from '../components/molecules/SideBorderQuote.astro';
 import clsx from 'clsx';
 
+if (import.meta.env.PROD) {
+  return Astro.redirect('/404');
+}
+
 const colors = [
-  { label: 'Background', color: '#0E0E0E', role: 'surface_container_lowest: The deepest foundation.' },
-  { label: 'Surface', color: '#1C1B1B', role: 'surface_container_low: The standard content stage.' },
-  { label: 'Surface Bright', color: '#393939', role: 'surface_bright: Elevated interactive elements.' },
-  { label: 'Primary (Action)', color: '#9B30FF', role: 'primary_container: High-intent interactions (Purple).' },
-  { label: 'Primary Light', color: '#DCB8FF', role: 'primary: Start color for CTA gradients.' },
-  { label: 'Secondary (Heading)', color: '#FE6500', role: 'secondary_container: Editorial Orange for headlines.' },
-  { label: 'Text High', color: '#E5E2E1', role: 'on_background: Maximum readability off-white.' },
-  { label: 'Text Muted', color: '#CFC2D8', role: 'on_surface_variant: Secondary descriptions.' },
+  { label: "Background", color: "#0E0E0E", role: "Deep Foundation" },
+  { label: "Surface", color: "#1C1B1B", role: "Standard Content Stage" },
+  { label: "Surface Bright", color: "#393939", role: "Elevated Elements" },
+  { label: "Primary (Action)", color: "#9B30FF", role: "High-intent Interactions" },
+  { label: "Primary Light", color: "#DCB8FF", role: "CTA Gradients" },
+  { label: "Secondary (Heading)", color: "#FE6500", role: "Editorial Headlines" },
+  { label: "Text High", color: "#E5E2E1", role: "Readability White" },
+  { label: "Text Muted", color: "#CFC2D8", role: "Secondary Descriptions" }
 ];
 
 const typography = [
-  { label: 'Display-LG', class: 'display-lg', text: 'NEON NOIR.' },
-  { label: 'Headline-MD', class: 'headline-md text-brand-secondary', text: 'Section Title Headline' },
-  { label: 'Label-MD', class: 'label-md text-brand-text-muted', text: 'Technical Metadata / Overline' },
-  { label: 'Body-LG', class: 'body-lg', text: 'The "Neon Noir Editorial" style favors dramatic whitespace, intentional asymmetry, and the visceral tension between deep shadows and vibrant accents.' },
-  { label: 'Body Bold', class: 'body-lg font-bold', text: 'Luxury tracking and editorial breaks.' },
+  { label: "Display-LG", class: "display-lg", text: "NEON NOIR." },
+  { label: "Headline-MD", class: "headline-md text-brand-secondary", text: "Section Title Headline" },
+  { label: "Label-MD", class: "label-md text-brand-text-muted", text: "Technical Metadata" },
+  { label: "Body-LG", class: "body-lg", text: "The Neon Noir Editorial style favors dramatic whitespace and intentional asymmetry." },
+  { label: "Body Bold", class: "body-lg font-bold", text: "Luxury tracking and editorial breaks." }
 ];
 ---
 
 <Layout title="Design System / Neon Noir">
-  <main class="container py-[8.5rem] space-y-32">
+  <main class="container py-[8.5rem] space-y-48">
     <SectionHeader 
       label="Brand Documentation"
       title="Design System"
       level={1}
       titleColor="text-brand-secondary"
-      description="A visual documentation of the 'Neon Noir Editorial' branding, tokens, and utility classes."
+      description="A visual documentation of the Neon Noir Editorial branding, tokens, and component library."
     />
 
-    <!-- Atoms: Colors -->
-    <section class="space-y-12">
-      <SectionHeader 
-        label="Atoms"
-        title="Color Palette"
-        titleColor="text-brand-secondary"
-      />
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        {colors.map((c) => (
-          <ColorSwatch {...c} />
-        ))}
+    <!-- 1. Foundations -->
+    <div class="space-y-24">
+      <div class="border-b border-brand-surface-bright/20 pb-8">
+        <h2 class="display-lg text-brand-text-high opacity-20 uppercase tracking-widest">01 / Foundations</h2>
       </div>
-    </section>
 
-    <!-- Atoms: Typography -->
-    <section class="space-y-12">
-      <SectionHeader 
-        label="Atoms"
-        title="Typography"
-        titleColor="text-brand-secondary"
-      />
-      <div class="space-y-12 bg-brand-surface p-12 rounded-[0.5rem]">
-        {typography.map((type) => (
-          <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-baseline">
-            <p class="text-xs text-brand-text-muted font-mono">{type.label}</p>
-            <div class={clsx("md:col-span-3", type.class)}>
-              {type.text}
+      <!-- Colors -->
+      <section class="space-y-12">
+        <SectionHeader 
+          label="Design Tokens"
+          title="Color Palette"
+          titleColor="text-brand-secondary"
+        />
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {colors.map((c) => (
+            <ColorSwatch {...c} />
+          ))}
+        </div>
+      </section>
+
+      <!-- Typography -->
+      <section class="space-y-12">
+        <SectionHeader 
+          label="Design Tokens"
+          title="Typography"
+          titleColor="text-brand-secondary"
+        />
+        <div class="space-y-12 bg-brand-surface p-12 rounded-[0.5rem]">
+          {typography.map((type) => (
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-baseline">
+              <p class="text-xs text-brand-text-muted font-mono">{type.label}</p>
+              <div class={clsx("md:col-span-3", type.class)}>
+                {type.text}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+
+    <!-- 2. Atoms -->
+    <div class="space-y-24">
+      <div class="border-b border-brand-surface-bright/20 pb-8">
+        <h2 class="display-lg text-brand-text-high opacity-20 uppercase tracking-widest">02 / Atoms</h2>
+      </div>
+
+      <!-- Buttons -->
+      <section class="space-y-12">
+        <SectionHeader 
+          label="Interactive"
+          title="BrandButton"
+          titleColor="text-brand-secondary"
+        />
+        <div class="space-y-12 bg-brand-surface p-12 rounded-[0.5rem]">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="space-y-4">
+              <p class="text-xs text-brand-text-muted font-mono">Primary (with Icon)</p>
+              <BrandButton variant="primary" icon="play_circle">Primary Action</BrandButton>
+            </div>
+            <div class="space-y-4">
+              <p class="text-xs text-brand-text-muted font-mono">Primary (No Icon)</p>
+              <BrandButton variant="primary">Primary Only</BrandButton>
+            </div>
+            <div class="space-y-4">
+              <p class="text-xs text-brand-text-muted font-mono">Secondary (Solid Orange)</p>
+              <BrandButton variant="secondary">Secondary</BrandButton>
+            </div>
+            <div class="space-y-4">
+              <p class="text-xs text-brand-text-muted font-mono">Outline (Glass + Icon)</p>
+              <BrandButton variant="outline" icon="mic">Outline Action</BrandButton>
             </div>
           </div>
-        ))}
-      </div>
-    </section>
-
-    <!-- Atoms: New Components -->
-    <section class="space-y-12">
-      <SectionHeader 
-        label="Atoms"
-        title="New Components"
-        titleColor="text-brand-secondary"
-      />
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 bg-brand-surface p-12 rounded-[0.5rem]">
-        <div class="space-y-4">
-          <p class="text-xs text-brand-text-muted font-mono mb-4">Badge</p>
-          <div class="flex gap-4">
-            <Badge>Host</Badge>
-            <Badge>Entrepreneur</Badge>
-          </div>
-        </div>
-        <div class="space-y-4">
-          <p class="text-xs text-brand-text-muted font-mono mb-4">StatItem</p>
-          <div class="flex gap-8">
-            <StatItem value="100+" label="Episodes" variant="primary" />
-            <StatItem value="30+" label="Projects" variant="secondary" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Atoms: Buttons -->
-    <section class="space-y-12">
-      <SectionHeader 
-        label="Atoms"
-        title="BrandButton"
-        titleColor="text-brand-secondary"
-      />
-      <div class="space-y-12 bg-brand-surface p-12 rounded-[0.5rem]">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div class="space-y-4">
-            <p class="text-xs text-brand-text-muted font-mono">Primary (Gradient + Icon)</p>
-            <BrandButton variant="primary" icon="play_circle">Primary Action</BrandButton>
-          </div>
-          <div class="space-y-4">
-            <p class="text-xs text-brand-text-muted font-mono">Secondary (Solid Orange)</p>
-            <BrandButton variant="secondary">Secondary</BrandButton>
-          </div>
-          <div class="space-y-4">
-            <p class="text-xs text-brand-text-muted font-mono">Outline (Glass + Icon)</p>
-            <BrandButton variant="outline" icon="mic">Outline Action</BrandButton>
-          </div>
-          <div class="space-y-4">
-            <p class="text-xs text-brand-text-muted font-mono">Ghost</p>
-            <BrandButton variant="ghost">Ghost Action</BrandButton>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Molecules: EditorialPortrait -->
-    <section class="space-y-12">
-      <SectionHeader 
-        label="Molecules"
-        title="EditorialPortrait"
-        titleColor="text-brand-secondary"
-      />
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 bg-brand-surface p-12 rounded-[0.5rem]">
-        <div class="space-y-6">
-          <p class="text-xs text-brand-text-muted font-mono">Primary Accent (Default)</p>
-          <div class="max-w-xs">
-            <EditorialPortrait 
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"
-              alt="Portrait Primary"
-              floatingLabel="EST. 2024"
-              verticalText="PRIMARY ACCENT"
-              accent="primary"
-            />
-          </div>
-        </div>
-        <div class="space-y-6">
-          <p class="text-xs text-brand-text-muted font-mono">Secondary Accent (Orange Frame)</p>
-          <div class="max-w-xs">
-            <EditorialPortrait 
-              src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1000&auto=format&fit=crop"
-              alt="Portrait Secondary"
-              floatingLabel="BIO"
-              verticalText="SECONDARY ACCENT"
-              accent="secondary"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Molecules: Navigation -->
-    <section class="space-y-12">
-      <SectionHeader 
-        label="Molecules"
-        title="Navigation"
-        titleColor="text-brand-secondary"
-      />
-      <div class="bg-brand-surface p-12 rounded-[0.5rem] max-w-sm">
-        <Navigation />
-      </div>
-    </section>
-
-    <!-- Molecules: About Components -->
-    <section class="space-y-12">
-      <SectionHeader 
-        label="About"
-        title="About Components"
-        titleColor="text-brand-secondary"
-      />
-      <div class="space-y-12 bg-brand-surface p-12 rounded-[0.5rem]">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div class="space-y-4">
-            <p class="text-xs text-brand-text-muted font-mono mb-4">AboutCard</p>
-            <AboutCard 
-              number="01"
-              title="Coleccionar historias"
-              description="Excavar hasta encontrar el núcleo de la experiencia humana, el fracaso y la resiliencia."
-            />
-          </div>
-          <div class="space-y-4">
-            <p class="text-xs text-brand-text-muted font-mono mb-4">QuoteBlock</p>
-            <QuoteBlock 
-              text="La inspiración está bien, pero la acción es mejor."
-              author="Manifiesto GRITones"
-            />
-          </div>
-        </div>
-        <div class="space-y-4">
-          <p class="text-xs text-brand-text-muted font-mono mb-4">AboutIcon Variants</p>
-          <div class="flex gap-8">
-            <AboutIcon icon="fitness_center" variant="primary" class="!text-4xl" />
-            <AboutIcon icon="menu_book" variant="secondary" class="!text-4xl" />
-            <AboutIcon icon="verified" variant="muted" class="!text-4xl" />
-            <AboutIcon icon="arrow_forward" variant="white" class="!text-4xl" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Utilities -->
-    <section class="space-y-12">
-      <SectionHeader 
-        label="Utilities"
-        title="Signature Effects"
-        titleColor="text-brand-secondary"
-      />
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-        <div class="space-y-4">
-          <p class="text-xs text-brand-text-muted font-mono mb-4">.shadow-neon-purple</p>
-          <div class="h-64 w-full rounded-[0.5rem] bg-brand-surface relative overflow-hidden shadow-neon-purple">
-            <div class="absolute inset-0 flex items-center justify-center">
-              <span class="text-brand-text-muted text-sm">Neon Glow (Box Shadow)</span>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="space-y-4">
+              <p class="text-xs text-brand-text-muted font-mono">Ghost</p>
+              <BrandButton variant="ghost">Ghost Action</BrandButton>
+            </div>
+            <div class="space-y-4">
+              <p class="text-xs text-brand-text-muted font-mono">Disabled (Primary)</p>
+              <BrandButton variant="primary" disabled>Locked Button</BrandButton>
+            </div>
+            <div class="space-y-4">
+              <p class="text-xs text-brand-text-muted font-mono">Disabled (Outline)</p>
+              <BrandButton variant="outline" disabled icon="lock">Locked Outline</BrandButton>
             </div>
           </div>
         </div>
-        <div class="space-y-4">
-          <p class="text-xs text-brand-text-muted font-mono mb-4">.img-editorial (Hover to test)</p>
-          <div class="relative group aspect-video rounded-[0.5rem] overflow-hidden">
-            <img 
-              src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?q=80&w=1000&auto=format&fit=crop" 
-              alt="Test Image"
-              class="w-full h-full object-cover img-editorial"
-            />
-            <div class="absolute bottom-4 left-4">
-               <span class="bg-brand-gradient text-white label-md px-3 py-1 rounded-[0.25rem]">EST. 2024</span>
+      </section>
+
+      <!-- Indicators & Media -->
+      <section class="space-y-12">
+        <SectionHeader 
+          label="Primitive UI"
+          title="Indicators & Media"
+          titleColor="text-brand-secondary"
+        />
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 bg-brand-surface p-12 rounded-[0.5rem]">
+          <div class="space-y-4">
+            <p class="text-xs text-brand-text-muted font-mono mb-4">Badge</p>
+            <div class="flex gap-4">
+              <Badge>Host</Badge>
+              <Badge class="!bg-brand-secondary/20 !text-brand-secondary !border-brand-secondary/30">Entrepreneur</Badge>
+            </div>
+          </div>
+          <div class="space-y-4">
+            <p class="text-xs text-brand-text-muted font-mono mb-4">StatItem</p>
+            <div class="flex gap-8">
+              <StatItem value="100+" label="Episodes" variant="primary" />
+              <StatItem value="2.5k" label="Subscribers" variant="secondary" />
+            </div>
+          </div>
+          <div class="space-y-4">
+            <p class="text-xs text-brand-text-muted font-mono mb-4">MaterialIcon & AboutIcon</p>
+            <div class="flex flex-wrap gap-8 items-center">
+              <MaterialIcon name="mic_external_on" class="text-3xl text-brand-secondary" />
+              <MaterialIcon name="history_edu" class="text-3xl text-brand-primary" />
+              <AboutIcon icon="fitness_center" variant="primary" class="!text-3xl" />
+              <AboutIcon icon="menu_book" variant="secondary" class="!text-3xl" />
+            </div>
+          </div>
+          <div class="space-y-4">
+            <p class="text-xs text-brand-text-muted font-mono mb-4">SpotifyEmbed</p>
+            <div class="max-w-md w-full">
+              <SpotifyEmbed 
+                url="https://open.spotify.com/show/2v8G6l6f6j9S9Z9O9N9I9" 
+                height={152} 
+                title="Mini Player"
+              />
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
-    <footer class="pt-20 text-center">
+    <!-- 3. Molecules -->
+    <div class="space-y-24">
+      <div class="border-b border-brand-surface-bright/20 pb-8">
+        <h2 class="display-lg text-brand-text-high opacity-20 uppercase tracking-widest">03 / Molecules</h2>
+      </div>
+
+      <!-- Editorial Elements -->
+      <section class="space-y-12">
+        <SectionHeader 
+          label="Visual Language"
+          title="Editorial Elements"
+          titleColor="text-brand-secondary"
+        />
+        <div class="bg-brand-surface p-12 rounded-[0.5rem] space-y-16">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-16">
+            <div class="space-y-6">
+              <p class="text-xs text-brand-text-muted font-mono">Portrait: Primary Accent</p>
+              <div class="max-w-[280px]">
+                <EditorialPortrait 
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"
+                  alt="Portrait Primary"
+                  floatingLabel="EST. 2024"
+                  verticalText="PRIMARY ACCENT"
+                  accent="primary"
+                />
+              </div>
+            </div>
+            <div class="space-y-6">
+              <p class="text-xs text-brand-text-muted font-mono">Portrait: Secondary Accent</p>
+              <div class="max-w-[280px]">
+                <EditorialPortrait 
+                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1000&auto=format&fit=crop"
+                  alt="Portrait Secondary"
+                  floatingLabel="BIO"
+                  verticalText="SECONDARY ACCENT"
+                  accent="secondary"
+                />
+              </div>
+            </div>
+            <div class="space-y-6">
+              <p class="text-xs text-brand-text-muted font-mono">Headline & Section Header</p>
+              <div class="space-y-8">
+                <EditorialHeadline>DISEÑO CRÍTICO.</EditorialHeadline>
+                <SectionHeader 
+                  label="Enfoque"
+                  title="Nueva Perspectiva"
+                  level={2}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Content Blocks -->
+      <section class="space-y-12">
+        <SectionHeader 
+          label="Narrative UI"
+          title="Content Blocks"
+          titleColor="text-brand-secondary"
+        />
+        <div class="space-y-12 bg-brand-surface p-12 rounded-[0.5rem]">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="space-y-4">
+              <p class="text-xs text-brand-text-muted font-mono mb-4">AboutCard (Grid Pattern)</p>
+              <div class="space-y-4">
+                <AboutCard number="01" title="Estrategia" description="Definición del núcleo narrativo." />
+                <AboutCard number="02" title="Ejecución" description="Producción de alto impacto." />
+              </div>
+            </div>
+            <div class="lg:col-span-2 space-y-4">
+              <p class="text-xs text-brand-text-muted font-mono mb-4">QuoteBlock & SideBorderQuote</p>
+              <div class="space-y-8">
+                <QuoteBlock 
+                  text="La inspiración está bien, pero la acción es mejor. El grit es el motor de la transformation real."
+                  author="Manifiesto GRITones"
+                />
+                <SideBorderQuote class="text-xl text-brand-text-high max-w-xl">
+                  "El carácter no se construye en la comodidad, sino en la tensión entre lo que somos y lo que aspiramos ser."
+                </SideBorderQuote>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-8 border-t border-brand-surface-bright/20 pt-12">
+            <p class="text-xs text-brand-text-muted font-mono">PodcastCTA (Complex Molecule)</p>
+            <PodcastCTA 
+              title="¿Tienes una historia que merece ser escuchada?"
+              description="Llevamos tu mensaje al siguiente nivel con Podcast Express."
+              href="#"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Navigation -->
+      <section class="space-y-12">
+        <SectionHeader 
+          label="Interface"
+          title="Navigation"
+          titleColor="text-brand-secondary"
+        />
+        <div class="bg-brand-surface p-12 rounded-[0.5rem] max-w-sm">
+          <Navigation />
+        </div>
+      </section>
+    </div>
+
+    <!-- 4. Utilities -->
+    <div class="space-y-24">
+      <div class="border-b border-brand-surface-bright/20 pb-8">
+        <h2 class="display-lg text-brand-text-high opacity-20 uppercase tracking-widest">04 / Utilities</h2>
+      </div>
+
+      <section class="space-y-12">
+        <SectionHeader 
+          label="Signature"
+          title="Effects & Behaviors"
+          titleColor="text-brand-secondary"
+        />
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div class="space-y-4">
+            <p class="text-xs text-brand-text-muted font-mono mb-4">.shadow-neon-purple</p>
+            <div class="h-64 w-full rounded-[0.5rem] bg-brand-surface relative overflow-hidden shadow-neon-purple">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-brand-text-muted text-sm">Neon Glow (Box Shadow)</span>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-4">
+            <p class="text-xs text-brand-text-muted font-mono mb-4">.img-editorial (Hover to test)</p>
+            <div class="relative group aspect-video rounded-[0.5rem] overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?q=80&w=1000&auto=format&fit=crop" 
+                alt="Test Image"
+                class="w-full h-full object-cover img-editorial"
+              />
+              <div class="absolute bottom-4 left-4">
+                 <span class="bg-brand-gradient text-white label-md px-3 py-1 rounded-[0.25rem]">EST. 2024</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="pt-20 text-center border-t border-brand-surface-bright/20">
        <p class="label-md text-brand-text-muted tracking-[0.5em]">Neon Noir / 2026</p>
     </footer>
   </main>

@@ -2,9 +2,19 @@
 import Navigation from '../molecules/Navigation.astro';
 import { Image } from 'astro:assets';
 import logo from '../../assets/images/logo.webp';
+import clsx from 'clsx';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
 ---
 
-<header class="flex xl:hidden items-center justify-between h-20 px-6 fixed top-0 left-0 right-0 glass-surface z-50">
+<header class={clsx(
+  "flex xl:hidden items-center justify-between h-20 px-6 fixed top-0 left-0 right-0 glass-surface z-50",
+  className
+)}>
   <a href="/" class="block">
     <Image 
       src={logo} 

@@ -1,8 +1,7 @@
-# style-guide Specification
+# style-guide-update Spec Delta
 
-## Purpose
-TBD - created by archiving change align-design-system-branding. Update Purpose after archive.
-## Requirements
+## MODIFIED Requirements
+
 ### Requirement: Design System Route
 The project SHALL provide a dedicated route to visualize and test all design tokens, utility variants, **and all components in the library (Atoms, Molecules, and Organisms)**.
 
@@ -24,13 +23,7 @@ The Design System page SHALL render all "Neon Noir" design tokens for visual con
 - **THEN** it SHALL demonstrate the `Display-LG` (3.5rem, -0.04em) and `Headline-MD` (1.75rem) scales using **Epilogue**.
 - **AND** it SHALL show the technical `Label-MD` (0.75rem, uppercase, 0.1em tracking) using **Inter**.
 
-### Requirement: Utility Verification
-The Design System page SHALL provide interactive or visual tests for Neon Noir specific UI utilities.
-
-#### Scenario: Glassmorphism and Depth
-- **GIVEN** the Design System page.
-- **THEN** it SHALL contain a demonstration of the 60% opacity backdrop-blur utility on a background with signature textures or images.
-- **AND** it SHALL show the 135° primary gradient on a sample element with sharp `0.25rem` corners.
+## ADDED Requirements
 
 ### Requirement: Component Showcase
 The Design System page SHALL showcase every component in `src/components/` with its available variants and states.
@@ -49,4 +42,3 @@ The Design System page SHALL showcase every component in `src/components/` with 
 #### Scenario: Organismic Components
 - **GIVEN** the Organisms section on the Design System page.
 - **THEN** it SHALL render `Header`, `Hero`, `AboutSection`, `CtaSection`, `NewsletterSection`, and `PodcastSection` in constrained containers.
-

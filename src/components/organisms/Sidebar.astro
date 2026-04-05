@@ -2,9 +2,19 @@
 import Navigation from '../molecules/Navigation.astro';
 import { Image } from 'astro:assets';
 import logo from '../../assets/images/logo.webp';
+import clsx from 'clsx';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
 ---
 
-<aside class="hidden xl:flex flex-col w-[280px] h-screen fixed left-0 top-0 bg-brand-surface z-50 p-8">
+<aside class={clsx(
+  "hidden xl:flex flex-col w-[280px] h-screen fixed left-0 top-0 bg-brand-surface z-50 p-8",
+  className
+)}>
   <div class="mb-12">
     <a href="/" class="block group">
       <Image 
