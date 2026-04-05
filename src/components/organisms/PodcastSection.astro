@@ -1,6 +1,7 @@
 ---
 import clsx from 'clsx';
 import SectionHeader from '../molecules/SectionHeader.astro';
+import SideBorderQuote from '../molecules/SideBorderQuote.astro';
 import SpotifyEmbed from '../atoms/SpotifyEmbed.astro';
 import PodcastCTA from '../molecules/PodcastCTA.astro';
 import BrandButton from '../atoms/BrandButton.astro';
@@ -30,9 +31,9 @@ const { class: className } = Astro.props;
         />
       </div>
       <div class="lg:col-span-4 pb-2">
-        <p class="text-brand-text-high font-brand-body text-lg border-l-2 border-brand-primary pl-6 py-2 italic leading-relaxed">
+        <SideBorderQuote class="text-brand-text-high font-brand-body text-lg leading-relaxed">
           Conversaciones con personas que transformaron momentos difíciles en carácter. La prueba de que el Grit es el activo más valioso de un líder.
-        </p>
+        </SideBorderQuote>
       </div>
     </div>
 
