@@ -2,6 +2,7 @@
 import AboutIcon from '../atoms/AboutIcon.astro';
 import AboutCard from '../molecules/AboutCard.astro';
 import QuoteBlock from '../molecules/QuoteBlock.astro';
+import SectionHeader from '../molecules/SectionHeader.astro';
 
 const missionPoints = [
   {
@@ -30,12 +31,10 @@ const brandIcons = [
       
       <!-- Left Column: Mission -->
       <div class="space-y-16">
-        <div>
-          <h2 class="text-brand-primary label-md tracking-[0.4em] mb-4">La Misión</h2>
-          <h3 class="display-lg normal-case !text-[2.5rem] md:!text-[3rem] !leading-tight text-brand-text-high">
-            Antes que podcaster, soy explorador de historias.
-          </h3>
-        </div>
+        <SectionHeader 
+          label="La Misión" 
+          title="Antes que podcaster, soy explorador de historias."
+        />
         
         <div class="grid gap-6">
           {missionPoints.map((point) => (

@@ -1,0 +1,14 @@
+---
+import clsx from 'clsx';
+
+interface Props {
+  name: string;
+  class?: string;
+}
+
+const { name, class: className } = Astro.props;
+---
+
+<span class={clsx("material-symbols-outlined", className)}>
+  {name}
+</span>

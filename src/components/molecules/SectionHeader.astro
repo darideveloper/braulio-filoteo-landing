@@ -1,0 +1,45 @@
+---
+import clsx from 'clsx';
+
+interface Props {
+  label: string;
+  title: string;
+  description?: string;
+  labelColor?: string;
+  titleColor?: string;
+  class?: string;
+}
+
+const { 
+  label, 
+  title, 
+  description, 
+  labelColor = "text-brand-primary", 
+  titleColor = "text-brand-text-high",
+  class: className 
+} = Astro.props;
+---
+
+<div class={clsx("flex flex-col gap-4", className)}>
+  <span class={clsx(
+    "label-md tracking-[0.4em] uppercase",
+    labelColor
+  )}>
+    {label}
+  </span>
+  
+  <h2 class={clsx(
+    "display-lg normal-case !text-[2.5rem] md:!text-[3.5rem] !leading-[1.1] tracking-[-0.04em]",
+    titleColor
+  )}>
+    {title}
+  </h2>
+
+  {description && (
+    <p class="headline-md text-brand-text-high max-w-3xl mt-2">
+      {description}
+    </p>
+  )}
+  
+  <slot />
+</div>

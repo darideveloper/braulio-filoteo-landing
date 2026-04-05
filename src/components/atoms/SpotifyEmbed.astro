@@ -1,0 +1,35 @@
+---
+import clsx from 'clsx';
+
+interface Props {
+  url: string;
+  height?: string | number;
+  title?: string;
+  class?: string;
+}
+
+const { 
+  url, 
+  height = 452, 
+  title = "Spotify Player",
+  class: className
+} = Astro.props;
+
+// Ensure URL is in embed format if possible, or just use as provided
+// Most Spotify share URLs need to be converted to /embed/
+const embedUrl = url.includes('/embed/') ? url : url.replace('open.spotify.com/', 'open.spotify.com/embed/');
+---
+
+<div class={clsx("w-full overflow-hidden rounded-xl", className)}>
+  <iframe
+    style="border-radius:12px"
+    src={embedUrl}
+    width="100%"
+    height={height}
+    frameborder="0"
+    allowfullscreen=""
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    loading="lazy"
+    title={title}
+  ></iframe>
+</div>
