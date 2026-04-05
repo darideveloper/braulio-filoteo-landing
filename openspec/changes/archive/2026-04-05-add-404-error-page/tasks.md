@@ -1,0 +1,20 @@
+## 1. Implementation
+- [x] 1.1 Scaffold 404 Page
+  - Create `src/pages/404.astro`.
+  - Integrate `Layout.astro` and set the page title to `404 - Page Not Found / Braulio Filoteo`.
+  - *Validation*: Verify the page renders at `/404`.
+- [x] 1.2 Implement Editorial 404 Headline
+  - Use `EditorialHeadline` with the text "404.".
+  - Apply `text-brand-primary` and `drop-shadow-neon-purple` for visual branding.
+  - *Validation*: Confirm the headline style matches existing editorial patterns.
+- [x] 1.3 Add Messaging and Navigation CTA
+  - Add the error message: "PARECE QUE TE HAS PERDIDO EN LA <span class='text-white italic'>NARRATIVA</span>.".
+  - Use `BrandButton` with `href='/'`, `variant='primary'`, and `icon='arrow_forward'`.
+  - *Validation*: Verify the button correctly redirects to the index page.
+- [x] 1.4 Style and Layout Refinement
+  - Use Tailwind's flexbox to center content vertically and horizontally within the main viewport area (min-height ~80vh).
+  - Ensure the page remains fully responsive on mobile viewports.
+  - *Validation*: Perform a visual check across different viewport widths.
+- [x] 1.5 Final Build Check
+  - Run the project's build command to ensure no regressions or errors were introduced.
+  - *Validation*: `npm run build` succeeds without errors related to the new page.
