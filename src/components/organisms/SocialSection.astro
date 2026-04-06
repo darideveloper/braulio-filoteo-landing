@@ -1,0 +1,185 @@
+---
+import clsx from 'clsx';
+import SectionHeader from '../molecules/SectionHeader.astro';
+import EditorialPortrait from '../molecules/EditorialPortrait.astro';
+import SocialCard from '../molecules/SocialCard.astro';
+
+interface Platform {
+  platform: string;
+  description: string;
+  icon: string;
+  tag: string;
+  href: string;
+  accentColor: 'primary' | 'secondary' | 'error';
+}
+
+interface Portrait {
+  src: string;
+  alt: string;
+}
+
+const platforms: Platform[] = [
+  {
+    platform: "LinkedIn",
+    description: "Perspectivas profesionales y análisis detallados sobre el futuro editorial.",
+    icon: "share",
+    tag: "Network",
+    href: "#",
+    accentColor: "primary"
+  },
+  {
+    platform: "Instagram",
+    description: "Inspiración visual, detrás de cámaras y fragmentos de nuestra estética diaria.",
+    icon: "photo_camera",
+    tag: "Visual",
+    href: "#",
+    accentColor: "primary"
+  },
+  {
+    platform: "YouTube",
+    description: "Contenido audiovisual de larga duración, entrevistas y workshops técnicos.",
+    icon: "play_circle",
+    tag: "Content",
+    href: "#",
+    accentColor: "primary"
+  }
+];
+
+const portraits: Portrait[] = [
+  {
+    src: "https://lh3.googleusercontent.com/aida-public/AB6AXuBDbJwdWPNPmBp2vfG639vgjxk8DZ420WbFWtHBEWVhDxeKPANExgu5aSbEYIH8lPj77zOiPuOVc6WXX_dbO3eDmH6vX9T3edVvvCFuFJxpXICT8z3-j6Nl1FuBbcouIw7b66QWSOiQQz32J81gYLmfzG6aQLunv1Vo35rB8_UPN43Xmi0Djx5gXwuj2nEFdLbLtt43tyTp-yud7xiV4HYTMDs13sjBWSWTOycY_dIbcR3bzhRL0u8hcrarceyiw2DmSgZBgOuAj3E",
+    alt: "Braulio Editorial Portrait 1"
+  },
+  {
+    src: "https://lh3.googleusercontent.com/aida-public/AB6AXuB-JfvosJrjN1_vz4G4fC95wTDwyTCQKnyeUFfAWyshOv5gI_aZ4UchsQjPMUSMqbcjpGX_3q0Tra7QXNdsAVARpbJQBftSrd8l1lxFqU7x6mh6dSeSU6Sp4p2pOnf8HeGuNW7DNSjPOq7N5y_AAQzEFuJEAq7Wd7lgHsZHQ43J7ptMS5_ZQ49S1FZzKpvf6uSt108HNTHRB8BK8XE9U1VPcsg9TUN0V4-dQLGfgf2YyIpKaLEFIy_yaKpAfNRlzuV_b9msft8FzhQ",
+    alt: "Braulio Editorial Portrait 2"
+  },
+  {
+    src: "https://lh3.googleusercontent.com/aida-public/AB6AXuB_rPxMNyxhEe6LC4WqUnsRfKRvlJRwtlByXkU7FQ0nfWl5w_PgAhcUKWkH2imVBxYcxUcMGVUjuhi6AVJd10e8r57lsIFwCPBv5YoQ9UFCK2_3PSnaZgkkKT7INiIjZbyeVu2e0-N1m81vAlBTZX5b3qAz7NIbWfU6fa74V07rbZFLp-c6a1Wz4iAaO09EcDgGxnzNXYFmxNJ06x75Zl4BtNP0qM63dcPp-7KQ0Hw9y7XUuwbF3M9_Ykk69u7hqYOXnAxb2l47mzg",
+    alt: "Braulio Editorial Portrait 3"
+  },
+  {
+    src: "https://lh3.googleusercontent.com/aida-public/AB6AXuDZ5rw3ESxrCYuSQSTN1bUHHajGb4hUQoeL4__072bJew6bOaEsBAXNJpGmvSYupIrAwxfQNetWAYbF51tiMRPROt1DeVW5UCFjjoUAkAUnhy8aIzdyCJhytajRk-Kxn3wksUnE7kv9DVffKDde0c79fgpnrGustRkujLa15jIMiUxPhezZjIzaQfUYL-IDJK0HAcof_U6yQUI6yluhOggmBaX20uhJjHpIlblng7XNPdCf6V_w2NvxCv4Kr-xBJgOfOYEJnphNbcE",
+    alt: "Braulio Editorial Portrait 4"
+  }
+];
+---
+
+<section class="bg-brand-background py-32 px-6 md:px-12">
+  <div class="max-w-[1440px] mx-auto">
+    <!-- Header Area -->
+    <div class="mb-24">
+      <SectionHeader 
+        label="Connect & Amplify"
+        title="Conversaciones que continúan."
+        description="Mantener presencia constante y ampliar conversaciones a través de nuestros ecosistemas digitales."
+        size="editorial"
+        titleColor="text-brand-secondary"
+      />
+    </div>
+
+    <!-- Editorial Gallery Slider -->
+    <div class="mb-24 relative group">
+      <div 
+        id="social-slider"
+        class="flex gap-6 overflow-x-auto hide-scrollbar snap-x pb-4 cursor-grab active:cursor-grabbing select-none"
+      >
+        {portraits.map((portrait, index) => (
+          <EditorialPortrait 
+            src={portrait.src}
+            alt={portrait.alt}
+            variant="minimal"
+            aspect="aspect-[3/4]"
+            class="min-w-[300px] md:min-w-[450px] snap-center flex-shrink-0"
+            data-index={index}
+          />
+        ))}
+      </div>
+      
+      <!-- Gallery Indicators -->
+      <div class="flex justify-center gap-3 mt-8">
+        {portraits.map((_, index) => (
+          <button
+            class="slider-dot w-8 h-1 bg-brand-outline-variant/30 rounded-full transition-all duration-300 hover:bg-brand-primary/50"
+            data-index={index}
+            aria-label={`Go to slide ${index + 1}`}
+          ></button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Platform Engagement Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {platforms.map((platform) => (
+        <SocialCard {...platform} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const slider = document.getElementById('social-slider');
+  const dots = document.querySelectorAll('.slider-dot');
+  
+  if (slider && dots.length > 0) {
+    // Initial active dot
+    dots[0].classList.add('!bg-brand-primary');
+
+    // Drag to scroll logic
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    slider.addEventListener('mousedown', (e) => {
+      isDown = true;
+      slider.classList.add('active');
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    });
+
+    slider.addEventListener('mouseleave', () => {
+      isDown = false;
+    });
+
+    slider.addEventListener('mouseup', () => {
+      isDown = false;
+    });
+
+    slider.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - startX) * 2; // Scroll speed
+      slider.scrollLeft = scrollLeft - walk;
+    });
+
+    // Scroll sync with dots
+    slider.addEventListener('scroll', () => {
+      const scrollPos = slider.scrollLeft;
+      const containerWidth = slider.offsetWidth;
+      const itemWidth = slider.querySelector('.flex-shrink-0').offsetWidth + 24; // width + gap
+      
+      const activeIndex = Math.round(scrollPos / itemWidth);
+      
+      dots.forEach((dot, index) => {
+        if (index === activeIndex) {
+          dot.classList.add('!bg-brand-primary');
+        } else {
+          dot.classList.remove('!bg-brand-primary');
+        }
+      });
+    });
+
+    // Click dots to scroll
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const index = parseInt(dot.getAttribute('data-index'));
+        const itemWidth = slider.querySelector('.flex-shrink-0').offsetWidth + 24;
+        slider.scrollTo({
+          left: index * itemWidth,
+          behavior: 'smooth'
+        });
+      });
+    });
+  }
+</script>

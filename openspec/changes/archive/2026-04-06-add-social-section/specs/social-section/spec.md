@@ -1,23 +1,6 @@
-# social-section Specification
+# social-section Spec Delta
 
-## Purpose
-TBD - created by archiving change update-hero-section-to-neon-noir-editorial. Update Purpose after archive.
-## Requirements
-### Requirement: High-Contrast Layout
-The Social Section MUST use the deepest brand background and provide a clear horizontal/vertical separation from other content.
-
-#### Scenario: Section styling
-- **WHEN** the SocialSection component is rendered.
-- **THEN** it SHALL use `brand-background` (#0E0E0E).
-- **AND** it SHALL have a `border-t` using `brand-surface-bright/20`.
-
-### Requirement: Social Navigation
-The Social Section SHALL provide accessible links to social platforms using consistent technical typography.
-
-#### Scenario: Verify link typography
-- **GIVEN** the social links in the Social Section.
-- **THEN** they SHALL use the `label-md` utility (Inter, uppercase, 0.1em tracking).
-- **AND** they SHALL transition to `brand-primary` on hover.
+## ADDED Requirements
 
 ### Requirement: Editorial Portrait Gallery
 The Social Section MUST include a horizontal scrolling gallery for editorial portraits that provides a tactile, high-end feel.
@@ -44,4 +27,3 @@ The `SocialSection` component MUST be fully configurable through props to ensure
 - **WHEN** a new object is added to the `platforms` array prop.
 - **THEN** the component SHALL automatically render the corresponding `SocialCard` in the grid.
 - **AND** it SHALL apply the correct icon and text without additional markup.
-

@@ -9,6 +9,7 @@ interface Props {
   accent?: 'primary' | 'secondary';
   aspect?: string;
   showFrame?: boolean;
+  variant?: 'default' | 'minimal';
   class?: string;
 }
 
@@ -20,6 +21,7 @@ const {
   accent = 'primary',
   aspect = 'aspect-[4/5]',
   showFrame = true,
+  variant = 'default',
   class: className 
 } = Astro.props;
 
@@ -35,11 +37,13 @@ const accentColors = {
 };
 
 const currentAccent = accentColors[accent];
+const isMinimal = variant === 'minimal';
+const shouldShowFrame = !isMinimal && showFrame;
 ---
 
 <div class={clsx("relative group", className)}>
   <!-- Decorative Frame Element -->
-  {showFrame && (
+  {shouldShowFrame && (
     <div class={clsx(
       "absolute -top-6 -right-6 w-full h-full border-t-2 border-r-2 transition-all duration-700 group-hover:-top-4 group-hover:-right-4",
       currentAccent.border
@@ -57,7 +61,7 @@ const currentAccent = accentColors[accent];
     <div class="absolute inset-0 bg-gradient-to-t from-brand-background via-transparent to-transparent opacity-60"></div>
     
     <!-- Floating Label -->
-    {floatingLabel && (
+    {!isMinimal && floatingLabel && (
       <div class="absolute bottom-8 right-8 glass-surface p-4 border border-brand-surface-bright/30">
         <span class={clsx(
           "font-brand-display font-black text-xl tracking-tighter uppercase",
@@ -70,7 +74,7 @@ const currentAccent = accentColors[accent];
   </div>
 
   <!-- Side Text Element -->
-  {verticalText && (
+  {!isMinimal && verticalText && (
     <div class="absolute -left-12 top-1/2 -rotate-90 origin-center hidden xl:block">
       <span class="font-brand-body text-[10px] tracking-[1em] text-brand-text-muted/40 font-bold uppercase whitespace-nowrap">
         {verticalText}

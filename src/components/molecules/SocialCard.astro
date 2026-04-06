@@ -1,0 +1,76 @@
+---
+import clsx from 'clsx';
+import MaterialIcon from '../atoms/MaterialIcon.astro';
+
+interface Props {
+  platform: string;
+  description: string;
+  icon: string;
+  tag: string;
+  href: string;
+  accentColor?: 'primary' | 'secondary';
+  class?: string;
+}
+
+const { 
+  platform, 
+  description, 
+  icon, 
+  tag, 
+  href, 
+  accentColor = 'primary',
+  class: className 
+} = Astro.props;
+
+const accentClasses = {
+  primary: "hover:border-brand-primary/60 group-hover:bg-brand-primary text-brand-primary",
+  secondary: "hover:border-brand-secondary/60 group-hover:bg-brand-secondary text-brand-secondary"
+};
+
+const iconContainerClasses = {
+  primary: "group-hover:bg-brand-primary",
+  secondary: "group-hover:bg-brand-secondary"
+};
+---
+
+<a 
+  href={href} 
+  class={clsx(
+    "group relative bg-brand-surface p-10 rounded-xl transition-all duration-500 hover:bg-brand-surface-bright border-b-4 border-transparent block",
+    accentColor === 'primary' && "hover:border-brand-primary",
+    accentColor === 'secondary' && "hover:border-brand-secondary",
+    className
+  )}
+>
+  <div class="flex justify-between items-start mb-12">
+    <div class={clsx(
+      "w-14 h-14 bg-brand-surface-bright flex items-center justify-center rounded-lg transition-colors duration-500",
+      iconContainerClasses[accentColor]
+    )}>
+      <MaterialIcon 
+        name={icon} 
+        class={clsx(
+          "text-3xl transition-colors duration-500",
+          accentColor === 'primary' && "text-brand-primary group-hover:text-white",
+          accentColor === 'secondary' && "text-brand-secondary group-hover:text-white"
+        )} 
+      />
+    </div>
+    <span class="text-[10px] uppercase tracking-widest text-brand-primary font-bold">
+      {tag}
+    </span>
+  </div>
+
+  <h3 class="font-brand-display text-2xl font-bold text-brand-text-high mb-2">
+    {platform}
+  </h3>
+  
+  <p class="text-brand-text-muted text-sm mb-8 leading-relaxed">
+    {description}
+  </p>
+
+  <div class="inline-flex items-center gap-2 font-brand-body text-xs uppercase tracking-widest font-bold text-brand-secondary group-hover:text-brand-primary transition-colors">
+    View Profile
+    <MaterialIcon name="arrow_forward" class="text-sm" />
+  </div>
+</a>

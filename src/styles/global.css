@@ -13,6 +13,8 @@
   --color-brand-text-high: #e5e2e1;  /* on_background */
   --color-brand-text-muted: #cfc2d8; /* on_surface_variant */
 
+  --color-brand-outline-variant: #4d4355;
+
   /* Typography */
   --font-brand-display: 'Epilogue', sans-serif;
   --font-brand-body: 'Inter', sans-serif;
@@ -122,6 +124,22 @@
 @utility text-stroke-brand {
   -webkit-text-stroke: 1px var(--color-brand-text-high);
   color: transparent;
+}
+
+@utility hide-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@utility snap-x {
+  scroll-snap-type: x mandatory;
+}
+
+@utility snap-center {
+  scroll-snap-align: center;
 }
 
 /* Primary Button Class */
