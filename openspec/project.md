@@ -11,7 +11,13 @@ Landing and contact page for Braulio Filoteo. This page will be his social hub: 
 
 ## Project Conventions
 
+### Specification DRY Mandates
+- **Single Source of Truth:** Design tokens (colors, fonts, sizes) SHALL only be defined in `specs/branding/spec.md`. All other specifications SHALL reference these tokens by name.
+- **Architectural Rules:** Core implementation patterns (e.g., section interfaces, editorial filters) SHALL be defined in `specs/core-architecture/spec.md`.
+
 ### Code Style
+- **Atomic Composition:** Developers SHALL NOT create new HTML for common elements (buttons, icons, headers). Always use components from `src/components/atoms/` or `molecules/`.
+- **Loop Rendering:** All repetitive UI elements SHALL be rendered via `.map()` (or equivalent loop logic) from data arrays/objects. Hardcoded repeated markup is prohibited.
 - Use `clsx` library for complex or conditional classes instead of Astro's native `class:list`.
 - Use TypeScript for all components and logic.
 - Follow Astro's component-based architecture.

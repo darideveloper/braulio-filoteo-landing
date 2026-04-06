@@ -4,6 +4,13 @@ import Badge from '../atoms/Badge.astro';
 import BrandButton from '../atoms/BrandButton.astro';
 import StatItem from '../atoms/StatItem.astro';
 import EditorialPortrait from '../molecules/EditorialPortrait.astro';
+
+const badges = ["HOST", "ENTREPRENEUR", "CO-FOUNDER"];
+
+const stats = [
+  { value: "100+", label: "Host de GRITones Podcast", variant: "primary" },
+  { value: "30+", label: "Emprendedor | Cofundador de GRITones Studio", variant: "secondary" }
+];
 ---
 
 <section class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-brand-background">
@@ -16,9 +23,9 @@ import EditorialPortrait from '../molecules/EditorialPortrait.astro';
       <!-- Hero Content -->
       <div class="lg:col-span-7 flex flex-col items-start order-2 lg:order-1">
         <div class="flex flex-wrap gap-3 mb-8">
-          <Badge>HOST</Badge>
-          <Badge>ENTREPRENEUR</Badge>
-          <Badge>CO-FOUNDER</Badge>
+          {badges.map((text) => (
+            <Badge key={text}>{text}</Badge>
+          ))}
         </div>
 
         <h2 class="font-brand-display text-brand-text-muted/60 text-sm md:text-base font-bold tracking-[0.3em] uppercase mb-4">
@@ -50,16 +57,14 @@ import EditorialPortrait from '../molecules/EditorialPortrait.astro';
 
         <!-- Micro-credibility Stats & Titles -->
         <div class="mt-16 flex flex-col md:flex-row gap-8 items-start">
-          <StatItem 
-            value="100+" 
-            label="Host de GRITones Podcast" 
-            variant="primary" 
-          />
-          <StatItem 
-            value="30+" 
-            label="Emprendedor | Cofundador de GRITones Studio" 
-            variant="secondary" 
-          />
+          {stats.map((stat) => (
+            <StatItem 
+              key={stat.label}
+              value={stat.value} 
+              label={stat.label} 
+              variant={stat.variant as any} 
+            />
+          ))}
         </div>
       </div>
 

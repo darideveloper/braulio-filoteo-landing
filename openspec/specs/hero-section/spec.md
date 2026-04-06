@@ -12,20 +12,21 @@ The Hero section MUST display "BRAULIO FILOTEO" using the `EditorialPortrait` co
 - **AND** it SHALL display the "EST. 2024" floating label and "DOCUMENTING HUMAN POTENTIAL" vertical text.
 
 ### Requirement: Hero Section Color Palette
-The Hero section MUST use `brand-background` (#0E0E0E) for its background and `brand-secondary` (#FE6500 - Editorial Orange) for its primary heading.
+The Hero section MUST use `brand-background` for its background and `brand-secondary` for its primary heading.
 
 #### Scenario: Verify color contrast
 - **WHEN** the Hero component is rendered.
-- **THEN** the main title SHALL be #FE6500 (Orange) on a #0E0E0E background (Midnight).
+- **THEN** the main title SHALL use the `brand-secondary` (Editorial Orange) token.
+- **AND** the background SHALL use the `brand-background` (Midnight) token.
 
 ### Requirement: Hero Section Call to Action
 The Hero section MUST include a prominent call to action button utilizing the signature brand gradient and sharp architecture.
 
 #### Scenario: Render CTA button
 - **WHEN** the Hero component is rendered.
-- **THEN** the button SHALL use a 135° linear gradient from `brand-primary-light` (#DCB8FF) to `brand-primary` (#9B30FF).
+- **THEN** the button SHALL use a 135° linear gradient from `brand-primary-light` to `brand-primary`.
 - **AND** it SHALL have sharp `0.25rem` (sm) corners.
-- **AND** typography SHALL use `Label-MD` (uppercase with 0.1em letter spacing).
+- **AND** typography SHALL use `Label-MD` (uppercase with 0.1em letter spacing) as defined in the global typography strategy.
 
 ### Requirement: Atmospheric Glows
 The Hero section SHALL implement ambient background blurs for depth.
@@ -42,4 +43,3 @@ The Hero section SHALL display micro-credibility signals using consistent editor
 - **GIVEN** a statistical metric.
 - **THEN** it SHALL feature a `border-l-4` accent using `brand-primary` or `brand-secondary`.
 - **AND** the number SHALL use `font-brand-display` at `text-2xl` or larger.
-

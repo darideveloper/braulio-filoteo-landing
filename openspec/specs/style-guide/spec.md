@@ -16,13 +16,13 @@ The Design System page SHALL render all "Neon Noir" design tokens for visual con
 
 #### Scenario: Color Swatches
 - **GIVEN** the Design System page.
-- **THEN** it SHALL display color swatches for all brand colors, including `surface_container_lowest` (#0E0E0E), `surface_container_low` (#1C1B1B), `primary_container` (#9B30FF), `secondary_container` (#FE6500), and `primary` (#DCB8FF).
-- **AND** it SHALL show text contrast for "Editorial Orange" (#FE6500) against the "Midnight" background.
+- **THEN** it SHALL display color swatches for all brand colors defined in `specs/branding/spec.md`.
+- **AND** it SHALL show text contrast for "Editorial Orange" against the "Midnight" background using the exact tokens from the branding spec.
 
 #### Scenario: Typography Scales
 - **GIVEN** the Design System page.
-- **THEN** it SHALL demonstrate the `Display-LG` (3.5rem, -0.04em) and `Headline-MD` (1.75rem) scales using **Epilogue**.
-- **AND** it SHALL show the technical `Label-MD` (0.75rem, uppercase, 0.1em tracking) using **Inter**.
+- **THEN** it SHALL demonstrate the typography scales (Display, Headline, Label) using the fonts and spacing defined in `specs/branding/spec.md`.
+- **AND** it SHALL show the technical `Label-MD` scale using **Inter** as defined in the global strategy.
 
 ### Requirement: Utility Verification
 The Design System page SHALL provide interactive or visual tests for Neon Noir specific UI utilities.
@@ -49,4 +49,3 @@ The Design System page SHALL showcase every component in `src/components/` with 
 #### Scenario: Organismic Components
 - **GIVEN** the Organisms section on the Design System page.
 - **THEN** it SHALL render `Header`, `Hero`, `AboutSection`, `CtaSection`, `NewsletterSection`, and `PodcastSection` in constrained containers.
-

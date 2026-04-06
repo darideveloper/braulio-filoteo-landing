@@ -3,6 +3,15 @@ import AboutIcon from '../atoms/AboutIcon.astro';
 import AboutCard from '../molecules/AboutCard.astro';
 import QuoteBlock from '../molecules/QuoteBlock.astro';
 import SectionHeader from '../molecules/SectionHeader.astro';
+import SectionWrapper from './SectionWrapper.astro';
+import type { SectionProps } from '../../types/Section';
+
+interface Props extends Partial<SectionProps> {}
+
+const { 
+  id = "about", 
+  variant = "lowest" 
+} = Astro.props;
 
 const missionPoints = [
   {
@@ -25,43 +34,41 @@ const brandIcons = [
 ];
 ---
 
-<section id="about" class="bg-brand-background py-24 px-6 lg:px-24">
-  <div class="container mx-auto">
-    <div class="grid lg:grid-cols-2 gap-20 items-start">
+<SectionWrapper id={id} variant={variant}>
+  <div class="grid lg:grid-cols-2 gap-20 items-start">
+    
+    <!-- Left Column: Mission -->
+    <div class="space-y-16">
+      <SectionHeader 
+        label="La Misión" 
+        title="Antes que podcaster, soy explorador de historias."
+      />
       
-      <!-- Left Column: Mission -->
-      <div class="space-y-16">
-        <SectionHeader 
-          label="La Misión" 
-          title="Antes que podcaster, soy explorador de historias."
-        />
-        
-        <div class="grid gap-6">
-          {missionPoints.map((point) => (
-            <AboutCard {...point} />
-          ))}
-        </div>
+      <div class="grid gap-6">
+        {missionPoints.map((point) => (
+          <AboutCard {...point} />
+        ))}
       </div>
-
-      <!-- Right Column: Quote & Icons -->
-      <div class="space-y-12">
-        <QuoteBlock 
-          text="La inspiración está bien, pero la acción es mejor."
-          author="Manifiesto GRITones"
-        />
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {brandIcons.map((item) => (
-            <div class={`flex items-center gap-4 p-4 rounded-2xl ${item.special ? 'bg-brand-secondary/20' : 'bg-white/2'}`}>
-              <AboutIcon icon={item.icon} variant={item.variant as any} class="!text-3xl" />
-              <h4 class="text-xs font-bold text-brand-text-high uppercase tracking-widest">
-                {item.label}
-              </h4>
-            </div>
-          ))}
-        </div>
-      </div>
-
     </div>
+
+    <!-- Right Column: Quote & Icons -->
+    <div class="space-y-12">
+      <QuoteBlock 
+        text="La inspiración está bien, pero la acción es mejor."
+        author="Manifiesto GRITones"
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {brandIcons.map((item) => (
+          <div key={item.label} class={`flex items-center gap-4 p-4 rounded-2xl ${item.special ? 'bg-brand-secondary/20' : 'bg-white/2'}`}>
+            <AboutIcon icon={item.icon} variant={item.variant as any} class="!text-3xl" />
+            <h4 class="text-xs font-bold text-brand-text-high uppercase tracking-widest">
+              {item.label}
+            </h4>
+          </div>
+        ))}
+      </div>
+    </div>
+
   </div>
-</section>
+</SectionWrapper>

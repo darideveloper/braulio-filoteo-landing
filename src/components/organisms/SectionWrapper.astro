@@ -1,0 +1,49 @@
+---
+import clsx from 'clsx';
+import type { SectionProps } from '../../types/Section';
+import SectionHeader from '../molecules/SectionHeader.astro';
+
+interface Props extends SectionProps {
+  class?: string;
+  containerClass?: string;
+  headerClass?: string;
+  showDivider?: boolean;
+}
+
+const {
+  id,
+  title,
+  label,
+  description,
+  variant = 'lowest',
+  class: className,
+  containerClass,
+  headerClass,
+  showDivider = false,
+} = Astro.props;
+
+const backgroundClasses = {
+  lowest: "bg-brand-background", 
+  low: "bg-brand-surface",      
+  bright: "bg-brand-surface-bright", 
+};
+---
+
+<section id={id} class={clsx(
+  backgroundClasses[variant],
+  "py-24 px-6 lg:px-24 relative overflow-hidden",
+  showDivider && "border-t border-brand-surface-bright/20",
+  className
+)}>
+  <div class={clsx("container mx-auto relative z-10", containerClass)}>
+    {(title || label || description) && (
+      <SectionHeader 
+        label={label || ""} 
+        title={title} 
+        description={description}
+        class={clsx("mb-16", headerClass)}
+      />
+    )}
+    <slot />
+  </div>
+</section>
