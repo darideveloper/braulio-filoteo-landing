@@ -1,4 +1,8 @@
 ---
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/free-mode';
+
 import clsx from 'clsx';
 import SectionHeader from '../molecules/SectionHeader.astro';
 import EditorialPortrait from '../molecules/EditorialPortrait.astro';
@@ -80,31 +84,24 @@ const portraits: Portrait[] = [
 
     <!-- Editorial Gallery Slider -->
     <div class="mb-24 relative group">
-      <div 
-        id="social-slider"
-        class="flex gap-6 overflow-x-auto hide-scrollbar snap-x pb-4 cursor-grab active:cursor-grabbing select-none"
-      >
-        {portraits.map((portrait, index) => (
-          <EditorialPortrait 
-            src={portrait.src}
-            alt={portrait.alt}
-            variant="minimal"
-            aspect="aspect-[3/4]"
-            class="min-w-[300px] md:min-w-[450px] snap-center flex-shrink-0"
-            data-index={index}
-          />
-        ))}
-      </div>
-      
-      <!-- Gallery Indicators -->
-      <div class="flex justify-center gap-3 mt-8">
-        {portraits.map((_, index) => (
-          <button
-            class="slider-dot w-8 h-1 bg-brand-outline-variant/30 rounded-full transition-all duration-300 hover:bg-brand-primary/50"
-            data-index={index}
-            aria-label={`Go to slide ${index + 1}`}
-          ></button>
-        ))}
+      <div class="swiper social-swiper">
+        <div class="swiper-wrapper pb-4 cursor-grab active:cursor-grabbing select-none">
+          {portraits.map((portrait, index) => (
+            <div class="swiper-slide !w-auto">
+              <EditorialPortrait 
+                src={portrait.src}
+                alt={portrait.alt}
+                variant="minimal"
+                aspect="aspect-[3/4]"
+                class="w-[300px] md:w-[450px]"
+                data-index={index}
+              />
+            </div>
+          ))}
+        </div>
+        
+        <!-- Gallery Indicators -->
+        <div class="swiper-pagination !static mt-8 flex justify-center gap-3"></div>
       </div>
     </div>
 
@@ -118,68 +115,54 @@ const portraits: Portrait[] = [
 </section>
 
 <script>
-  const slider = document.getElementById('social-slider');
-  const dots = document.querySelectorAll('.slider-dot');
-  
-  if (slider && dots.length > 0) {
-    // Initial active dot
-    dots[0].classList.add('!bg-brand-primary');
+  import Swiper from 'swiper';
+  import { FreeMode, Pagination, Mousewheel } from 'swiper/modules';
 
-    // Drag to scroll logic
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-    slider.addEventListener('mousedown', (e) => {
-      isDown = true;
-      slider.classList.add('active');
-      startX = e.pageX - slider.offsetLeft;
-      scrollLeft = slider.scrollLeft;
-    });
-
-    slider.addEventListener('mouseleave', () => {
-      isDown = false;
-    });
-
-    slider.addEventListener('mouseup', () => {
-      isDown = false;
-    });
-
-    slider.addEventListener('mousemove', (e) => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - slider.offsetLeft;
-      const walk = (x - startX) * 2; // Scroll speed
-      slider.scrollLeft = scrollLeft - walk;
-    });
-
-    // Scroll sync with dots
-    slider.addEventListener('scroll', () => {
-      const scrollPos = slider.scrollLeft;
-      const containerWidth = slider.offsetWidth;
-      const itemWidth = slider.querySelector('.flex-shrink-0').offsetWidth + 24; // width + gap
-      
-      const activeIndex = Math.round(scrollPos / itemWidth);
-      
-      dots.forEach((dot, index) => {
-        if (index === activeIndex) {
-          dot.classList.add('!bg-brand-primary');
-        } else {
-          dot.classList.remove('!bg-brand-primary');
-        }
-      });
-    });
-
-    // Click dots to scroll
-    dots.forEach((dot) => {
-      dot.addEventListener('click', () => {
-        const index = parseInt(dot.getAttribute('data-index'));
-        const itemWidth = slider.querySelector('.flex-shrink-0').offsetWidth + 24;
-        slider.scrollTo({
-          left: index * itemWidth,
-          behavior: 'smooth'
-        });
-      });
+  const swiperElement = document.querySelector('.social-swiper');
+  if (swiperElement) {
+    new Swiper(swiperElement as HTMLElement, {
+      modules: [FreeMode, Pagination, Mousewheel],
+      slidesPerView: 'auto',
+      spaceBetween: 24,
+      freeMode: {
+        enabled: true,
+        momentumBounce: false,
+      },
+      mousewheel: {
+        forceToAxis: true,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+        renderBullet: function (index, className) {
+          return '<span class="' + className + ' custom-bullet"></span>';
+        },
+      },
     });
   }
 </script>
+
+<style is:global>
+  /* Swiper Pagination Branding Override */
+  .social-swiper .swiper-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem; /* gap-3 */
+  }
+  
+  .social-swiper .custom-bullet {
+    width: 2rem !important; /* w-8 */
+    height: 0.25rem !important; /* h-1 */
+    border-radius: 9999px !important; /* rounded-full */
+    background: var(--color-brand-outline-variant) !important;
+    opacity: 0.3 !important;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: block;
+  }
+  
+  .social-swiper .swiper-pagination-bullet-active {
+    background: var(--color-brand-primary) !important;
+    opacity: 1 !important;
+  }
+</style>
