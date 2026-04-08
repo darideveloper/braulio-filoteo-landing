@@ -70,7 +70,7 @@ const typography = [
           title="Color Palette"
           titleColor="text-brand-secondary"
         />
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="grid grid-cols-1 @sm:grid-cols-2 @lg:grid-cols-4 gap-8">
           {colors.map((c) => (
             <ColorSwatch {...c} />
           ))}
@@ -86,9 +86,9 @@ const typography = [
         />
         <div class="space-y-12 bg-brand-surface p-12 rounded-[0.5rem]">
           {typography.map((type) => (
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-baseline">
+            <div class="grid grid-cols-1 @md:grid-cols-4 gap-4 items-baseline">
               <p class="text-xs text-brand-text-muted font-mono">{type.label}</p>
-              <div class={clsx("md:col-span-3", type.class)}>
+              <div class={clsx("@md:col-span-3", type.class)}>
                 {type.text}
               </div>
             </div>
@@ -111,7 +111,7 @@ const typography = [
           titleColor="text-brand-secondary"
         />
         <div class="space-y-12 bg-brand-surface p-12 rounded-[0.5rem]">
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="grid grid-cols-1 @md:grid-cols-2 @lg:grid-cols-4 gap-8">
             <div class="space-y-4">
               <p class="text-xs text-brand-text-muted font-mono">Primary (with Icon)</p>
               <BrandButton variant="primary" icon="play_circle">Primary Action</BrandButton>
@@ -129,7 +129,7 @@ const typography = [
               <BrandButton variant="outline" icon="mic">Outline Action</BrandButton>
             </div>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="grid grid-cols-1 @md:grid-cols-2 @lg:grid-cols-4 gap-8">
             <div class="space-y-4">
               <p class="text-xs text-brand-text-muted font-mono">Ghost</p>
               <BrandButton variant="ghost">Ghost Action</BrandButton>
@@ -143,7 +143,7 @@ const typography = [
               <BrandButton variant="outline" disabled icon="lock">Locked Outline</BrandButton>
             </div>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 border-t border-brand-surface-bright/10 pt-8">
+          <div class="grid grid-cols-1 @md:grid-cols-2 @lg:grid-cols-4 gap-8 border-t border-brand-surface-bright/10 pt-8">
             <div class="space-y-4">
               <p class="text-xs text-brand-text-muted font-mono">Circular (Primary)</p>
               <BrandButton variant="primary" icon="add" circular />
@@ -163,7 +163,7 @@ const typography = [
           title="Indicators & Media"
           titleColor="text-brand-secondary"
         />
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 bg-brand-surface p-12 rounded-[0.5rem]">
+        <div class="grid grid-cols-1 @md:grid-cols-2 gap-12 bg-brand-surface p-12 rounded-[0.5rem]">
           <div class="space-y-4">
             <p class="text-xs text-brand-text-muted font-mono mb-4">Badge</p>
             <div class="flex gap-4">
@@ -215,7 +215,7 @@ const typography = [
           titleColor="text-brand-secondary"
         />
         <div class="bg-brand-surface p-12 rounded-[0.5rem] space-y-16">
-          <div class="grid grid-cols-1 lg:grid-cols-3 gap-16">
+          <div class="grid grid-cols-1 @lg:grid-cols-3 gap-16">
             <div class="space-y-6">
               <p class="text-xs text-brand-text-muted font-mono">Portrait: Primary Accent</p>
               <div class="max-w-[280px]">
@@ -263,7 +263,7 @@ const typography = [
           titleColor="text-brand-secondary"
         />
         <div class="space-y-12 bg-brand-surface p-12 rounded-[0.5rem]">
-          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div class="grid grid-cols-1 @lg:grid-cols-3 gap-8">
             <div class="space-y-4">
               <p class="text-xs text-brand-text-muted font-mono mb-4">AboutCard (Grid Pattern)</p>
               <div class="space-y-4">
@@ -271,7 +271,7 @@ const typography = [
                 <AboutCard number="02" title="Ejecución" description="Producción de alto impacto." />
               </div>
             </div>
-            <div class="lg:col-span-2 space-y-4">
+            <div class="@lg:col-span-2 space-y-4">
               <p class="text-xs text-brand-text-muted font-mono mb-4">QuoteBlock & SideBorderQuote</p>
               <div class="space-y-8">
                 <QuoteBlock 
@@ -316,7 +316,7 @@ const typography = [
           titleColor="text-brand-secondary"
           />
           <div class="space-y-12 bg-brand-surface p-12 rounded-[0.5rem]">
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="grid grid-cols-1 @md:grid-cols-2 @lg:grid-cols-4 gap-8">
            <MatrixCard title="narrativa personal" icon="auto_stories" />
            <MatrixCard title="consistencia" icon="sync" />
            <MatrixCard title="conversaciones" icon="forum" />
@@ -376,7 +376,7 @@ const typography = [
           title="Effects & Behaviors"
           titleColor="text-brand-secondary"
         />
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="grid grid-cols-1 @md:grid-cols-2 gap-12">
           <div class="space-y-4">
             <p class="text-xs text-brand-text-muted font-mono mb-4">.shadow-neon-purple / .neon-glow</p>
             <div class="h-64 w-full rounded-[0.5rem] bg-brand-surface relative overflow-hidden shadow-neon-purple">
@@ -395,7 +395,7 @@ const typography = [
                ))}
              </div>
           </div>
-          <div class="space-y-4 md:col-span-2">
+          <div class="space-y-4 @md:col-span-2">
             <p class="text-xs text-brand-text-muted font-mono mb-4">.img-editorial (Hover to test)</p>
             <div class="relative group aspect-video rounded-[0.5rem] overflow-hidden">
               <img 

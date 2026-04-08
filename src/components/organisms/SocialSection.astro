@@ -69,7 +69,7 @@ const portraits: Portrait[] = [
 ];
 ---
 
-<section class="bg-brand-background py-32 px-6 md:px-12">
+<section class="bg-brand-background py-32 px-6 @md:px-12">
   <div class="max-w-[1440px] mx-auto">
     <!-- Header Area -->
     <div class="mb-24">
@@ -93,7 +93,7 @@ const portraits: Portrait[] = [
                 alt={portrait.alt}
                 variant="minimal"
                 aspect="aspect-[3/4]"
-                class="w-[300px] md:w-[450px]"
+                class="w-[300px] @md:w-[450px]"
                 data-index={index}
               />
             </div>
@@ -106,7 +106,7 @@ const portraits: Portrait[] = [
     </div>
 
     <!-- Platform Engagement Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 @md:grid-cols-3 gap-8">
       {platforms.map((platform) => (
         <SocialCard {...platform} />
       ))}

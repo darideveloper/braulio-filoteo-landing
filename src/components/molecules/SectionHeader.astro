@@ -31,8 +31,8 @@ const Tag = level === 1 ? 'h1' : 'h2';
 const hasTitleSlot = Astro.slots.has('title');
 
 const sizeClasses = {
-  standard: "display-lg normal-case !text-[2.5rem] md:!text-[3.5rem] !leading-[1.1] tracking-[-0.04em]",
-  editorial: "text-5xl md:text-7xl lg:text-8xl font-black font-brand-display tracking-[-0.06em] leading-tight"
+  standard: "display-lg normal-case !text-[2.5rem] @md:!text-[3.5rem] !leading-[1.1] tracking-[-0.04em]",
+  editorial: "text-5xl @md:text-7xl @lg:text-8xl font-black font-brand-display tracking-[-0.06em] leading-tight"
 };
 ---
 

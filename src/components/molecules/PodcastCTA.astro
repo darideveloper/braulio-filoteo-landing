@@ -13,10 +13,10 @@ const { title, description, href, class: className } = Astro.props;
 ---
 
 <div class={clsx(
-  "bg-brand-surface border-2 border-brand-primary/20 p-8 rounded-2xl max-w-4xl w-full flex flex-col md:flex-row items-center justify-between gap-6 hover:border-brand-primary/50 transition-colors shadow-neon-purple",
+  "bg-brand-surface border-2 border-brand-primary/20 p-8 rounded-2xl max-w-4xl w-full flex flex-col @md:flex-row items-center justify-between gap-6 hover:border-brand-primary/50 transition-colors shadow-neon-purple",
   className
 )}>
-  <div class="text-center md:text-left">
+  <div class="text-center @md:text-left">
     <h4 class="headline-md text-brand-text-high mb-2">
       {title}
     </h4>
@@ -29,7 +29,7 @@ const { title, description, href, class: className } = Astro.props;
     variant="primary" 
     href={href} 
     icon="arrow_forward"
-    class="!px-8 !py-4 text-left leading-tight justify-between w-full md:w-auto"
+    class="!px-8 !py-4 text-left leading-tight justify-between w-full @md:w-auto"
   >
     <span>
       ¿Quieres lanzar el tuyo? Crea tu podcast

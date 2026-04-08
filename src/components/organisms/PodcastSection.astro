@@ -13,15 +13,15 @@ interface Props {
 const { class: className } = Astro.props;
 ---
 
-<section id="podcast" class={clsx("relative py-24 px-6 md:px-12 lg:px-24 overflow-hidden bg-brand-background", className)}>
+<section id="podcast" class={clsx("relative py-24 px-6 @md:px-12 @lg:px-24 overflow-hidden bg-brand-background", className)}>
   <!-- Ambient Glow Effects -->
   <div class="absolute top-0 right-0 -z-10 w-[500px] h-[500px] bg-brand-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
   <div class="absolute bottom-0 left-0 -z-10 w-[400px] h-[400px] bg-brand-secondary/5 rounded-full blur-[100px] pointer-events-none"></div>
 
   <div class="container mx-auto max-w-screen-2xl relative z-10">
     <!-- Header Section -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end mb-16">
-      <div class="lg:col-span-8">
+    <div class="grid grid-cols-1 @lg:grid-cols-12 gap-12 items-end mb-16">
+      <div class="@lg:col-span-8">
         <SectionHeader 
           label="Editorial Series" 
           title="GRITones Podcast"
@@ -30,7 +30,7 @@ const { class: className } = Astro.props;
           description="Donde las historias de fracaso se convierten en manuales de éxito. Únete a más de +100 conversaciones con líderes que se atrevieron a endurecer para brillar."
         />
       </div>
-      <div class="lg:col-span-4 pb-2">
+      <div class="@lg:col-span-4 pb-2">
         <SideBorderQuote class="text-brand-text-high font-brand-body text-lg leading-relaxed">
           Conversaciones con personas que transformaron momentos difíciles en carácter. La prueba de que el Grit es el activo más valioso de un líder.
         </SideBorderQuote>
