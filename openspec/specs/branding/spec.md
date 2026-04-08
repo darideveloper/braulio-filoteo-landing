@@ -35,6 +35,11 @@ The project SHALL implement the "Neon Noir Editorial" high-contrast color scheme
 - **THEN** `on_background` SHALL be set to `#E5E2E1` for primary body text.
 - **AND** `on_surface_variant` SHALL be set to `#CFC2D8` for secondary descriptions.
 
+#### Scenario: Primary Brand Gradient
+- **GIVEN** an element with the `.text-brand-gradient` class.
+- **THEN** it SHALL have a text gradient transitioning from `#FFFFFF` to `brand-primary`.
+- **AND** it SHALL use `-webkit-background-clip: text` for the effect.
+
 ### Requirement: Typography Strategy
 The project SHALL configure a premium hierarchy using **Epilogue** for an architectural editorial voice and **Inter** for functional readability.
 

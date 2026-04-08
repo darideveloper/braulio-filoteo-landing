@@ -77,5 +77,5 @@ The project SHALL provide a `MatrixCard` molecule for transformation-oriented gr
 
 #### Scenario: MatrixCard Large Visuals
 - **GIVEN** a `MatrixCard` component.
-- **THEN** it SHALL feature a large scale icon (at least `text-8xl`) as the primary visual element.
+- **THEN** it SHALL feature a large scale icon (using `text-5xl!`) as the primary visual element.
 - **AND** it SHALL feature an interactive progress-line that expands on hover.

@@ -107,7 +107,7 @@
 }
 
 @utility text-brand-gradient {
-  background: linear-gradient(to right, var(--color-brand-secondary), var(--color-brand-primary));
+  background: linear-gradient(to right, #ffffff, var(--color-brand-primary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

@@ -64,7 +64,7 @@ import SectionWrapper from '../components/organisms/SectionWrapper.astro'
   </HeroEditorial>
 
   <SectionWrapper variant="lowest" class="py-24">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       <MatrixCard title="claridad de propósito" icon="target" />
       <MatrixCard title="narrativa personal" icon="auto_stories" />
       <MatrixCard title="consistencia" icon="sync" />
@@ -72,12 +72,17 @@ import SectionWrapper from '../components/organisms/SectionWrapper.astro'
     </div>
   </SectionWrapper>
 
-  <FeatureCTA 
-    label="El Vehículo" 
-    ctaText="Inicia tu Proyecto" 
-    icon="mic"
-    watermark="PODCAST"
-  >
-    El vehículo más poderoso para hacerlo es un <span class="decoration-editorial">podcast</span>.
-  </FeatureCTA>
+  <SectionWrapper variant="lowest" class="py-24 relative overflow-hidden">
+    <FeatureCTA 
+      label="El Vehículo" 
+      ctaText="Inicia tu Proyecto" 
+      icon="mic"
+      watermark="VOICE"
+      watermarkAlign="right"
+      watermarkSize="20rem"
+      watermarkOpacity={0.08}
+    >
+      El vehículo más poderoso para hacerlo es un <span class="decoration-editorial">podcast</span>.
+    </FeatureCTA>
+  </SectionWrapper>
 </Layout>

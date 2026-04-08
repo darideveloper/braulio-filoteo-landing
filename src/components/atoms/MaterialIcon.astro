@@ -7,7 +7,7 @@ interface Props {
   class?: string;
 }
 
-const { name, size = 'text-2xl', class: className } = Astro.props;
+const { name, size = 'text-2xl!', class: className } = Astro.props;
 ---
 
 <span class={clsx("material-symbols-outlined", size, className)}>
