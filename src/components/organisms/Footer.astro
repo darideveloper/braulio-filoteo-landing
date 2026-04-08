@@ -1,0 +1,58 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../../assets/images/logo.webp';
+import SocialLinks from '../atoms/SocialLinks.astro';
+import clsx from 'clsx';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+const currentYear = new Date().getFullYear();
+---
+
+<footer class={clsx(
+  "bg-brand-background py-16 px-6 xl:ml-[280px] relative overflow-hidden",
+  className
+)}>
+  {/* Ambient Purple Glow */}
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-glow-purple opacity-40 pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto relative z-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 items-center">
+      
+      {/* Column 1: Logo and Text */}
+      <div class="flex flex-col items-center md:items-start gap-4 text-center md:text-left">
+        <a href="/" class="block group">
+          <Image 
+            src={logo} 
+            alt="Braulio Filoteo Logo" 
+            width={140} 
+            height={46}
+            class="w-auto h-12 transition-transform group-hover:scale-105"
+          />
+        </a>
+        <p class="text-xs text-brand-text-muted leading-relaxed max-w-[280px]">
+          Explorando la narrativa personal y el impacto de la voz en la era digital.
+        </p>
+      </div>
+
+      {/* Column 2: Socials */}
+      <div class="flex justify-center items-center">
+        <SocialLinks />
+      </div>
+
+      {/* Column 3: Copyright */}
+      <div class="flex flex-col items-center md:items-end gap-2 text-center md:text-right">
+        <p class="text-[10px] uppercase font-brand-display tracking-[0.2em] text-brand-text-muted">
+          Est. 2024 / Braulio Filoteo.
+        </p>
+        <div class="text-[11px] uppercase tracking-wider text-brand-text-muted font-brand-display">
+          © {currentYear} Braulio Filoteo. <br class="md:hidden" /> All rights reserved.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>

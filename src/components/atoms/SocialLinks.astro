@@ -1,0 +1,28 @@
+---
+import MaterialIcon from './MaterialIcon.astro';
+import clsx from 'clsx';
+
+const platforms = [
+  { name: 'LinkedIn', icon: 'share', href: '#' },
+  { name: 'Instagram', icon: 'photo_camera', href: '#' },
+  { name: 'YouTube', icon: 'play_circle', href: '#' }
+];
+
+interface Props {
+  className?: string;
+}
+
+const { className } = Astro.props;
+---
+
+<div class={clsx("flex items-center gap-6", className)}>
+  {platforms.map((platform) => (
+    <a 
+      href={platform.href} 
+      class="text-brand-text-muted hover:text-brand-primary transition-all hover:scale-110"
+      aria-label={platform.name}
+    >
+      <MaterialIcon name={platform.icon} size="text-2xl" />
+    </a>
+  ))}
+</div>

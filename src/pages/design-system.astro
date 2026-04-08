@@ -18,6 +18,7 @@ import SideBorderQuote from '../components/molecules/SideBorderQuote.astro';
 import MatrixCard from '../components/molecules/MatrixCard.astro';
 import FeatureCTA from '../components/molecules/FeatureCTA.astro';
 import HeroEditorial from '../components/organisms/HeroEditorial.astro';
+import Footer from '../components/organisms/Footer.astro';
 import clsx from 'clsx';
 
 if (import.meta.env.PROD) {
@@ -348,6 +349,17 @@ const typography = [
                 title="Tu voz puede convertirse en una plataforma."
                 description="Hoy la marca personal no se construye con frases motivacionales. Se construye con la profundidad de las ideas y la radicalidad de la ejecución."
               />
+            </div>
+          </section>
+
+          <section class="space-y-12">
+            <SectionHeader 
+              label="Layout"
+              title="Footer"
+              titleColor="text-brand-secondary"
+            />
+            <div class="border border-brand-surface-bright/20 rounded-[0.5rem] overflow-hidden">
+               <Footer />
             </div>
           </section>
           </div>
