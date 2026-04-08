@@ -3,7 +3,6 @@
 ## Purpose
 TBD - created by archiving change align-design-system-branding. Update Purpose after archive.
 ## Requirements
-
 ### Requirement: Single Source of Truth for Tokens
 The `branding` specification SHALL be the authoritative source for all hex codes, font sizes, and spacing tokens in the project.
 
@@ -41,22 +40,12 @@ The project SHALL implement the "Neon Noir Editorial" high-contrast color scheme
 - **AND** it SHALL use `-webkit-background-clip: text` for the effect.
 
 ### Requirement: Typography Strategy
-The project SHALL configure a premium hierarchy using **Epilogue** for an architectural editorial voice and **Inter** for functional readability.
+The brand identity SHALL define a core typography system based on 'Epilogue' (Display) and 'Inter' (Body).
 
-#### Scenario: Display and Headline Styling
-- **GIVEN** a top-level headline using `Display-LG` (3.5rem).
-- **THEN** it SHALL use **Epilogue** with `-0.04em` letter spacing.
-- **AND** it SHALL NOT force `uppercase` styling by default.
-- **WHEN** using `Display-2XL` (6rem - 8rem).
-- **THEN** it SHALL use **Epilogue** with tight tracking and NOT force `uppercase` styling by default.
-- **WHEN** using `Headline-MD` (1.75rem) for section titles.
-- **THEN** it SHALL use **Epilogue** and default to the "Editorial Orange" (`secondary_container`) color.
-
-#### Scenario: Label and Body Styling
-- **GIVEN** a label or overline using `Label-MD` (0.75rem).
-- **THEN** it SHALL be uppercase with `0.1em` letter spacing.
-- **WHEN** using primary body text.
-- **THEN** it SHALL use **Inter** at `1rem` (Body-LG).
+#### Scenario: Display Headline (Added)
+- **WHEN** a display headline requires maximum impact (e.g., Noir Hero).
+- **THEN** it SHALL use a `line-height` of `0.9` (`leading-[0.9]`).
+- **AND** it SHALL use `tracking-tighter`.
 
 ### Requirement: UI Utilities
 The project SHALL provide specific CSS utilities for the "Electric Noir" aesthetic.

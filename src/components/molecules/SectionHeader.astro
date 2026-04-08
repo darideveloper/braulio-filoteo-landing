@@ -12,6 +12,7 @@ interface Props {
   labelColor?: string;
   titleColor?: string;
   withBorder?: boolean;
+  layout?: 'standard' | 'inline';
   class?: string;
 }
 
@@ -26,11 +27,14 @@ const {
   labelColor = "text-brand-primary", 
   titleColor = "text-brand-text-high",
   withBorder = false,
+  layout = 'standard',
   class: className 
 } = Astro.props;
 
 const Tag = level === 1 ? 'h1' : 'h2';
 const hasTitleSlot = Astro.slots.has('title');
+
+const isInline = layout === 'inline';
 
 const sizeClasses = {
   standard: "display-lg normal-case !text-[2.5rem] @md:!text-[3.5rem] !leading-[1.1] tracking-[-0.04em]",
@@ -43,19 +47,40 @@ const sizeClasses = {
   align === 'center' && "items-center text-center",
   className
 )} style={maxWidth ? { maxWidth } : {}}>
-  <span class={clsx(
-    "label-md tracking-[0.4em] uppercase",
-    labelColor
-  )}>
-    {label}
-  </span>
-  
-  <Tag class={clsx(
-    sizeClasses[size],
-    titleColor
-  )}>
-    {hasTitleSlot ? <slot name="title" /> : title}
-  </Tag>
+  {isInline ? (
+    <div class="flex flex-col @md:flex-row justify-between items-baseline mb-12 gap-4">
+      <Tag class={clsx(
+        sizeClasses[size],
+        titleColor,
+        "uppercase"
+      )}>
+        {hasTitleSlot ? <slot name="title" /> : title}
+      </Tag>
+      <div class="h-px flex-grow mx-8 bg-brand-outline-variant/20 hidden @md:block"></div>
+      <span class={clsx(
+        "label-md tracking-tight uppercase",
+        labelColor
+      )}>
+        {label}
+      </span>
+    </div>
+  ) : (
+    <>
+      <span class={clsx(
+        "label-md tracking-[0.4em] uppercase",
+        labelColor
+      )}>
+        {label}
+      </span>
+      
+      <Tag class={clsx(
+        sizeClasses[size],
+        titleColor
+      )}>
+        {hasTitleSlot ? <slot name="title" /> : title}
+      </Tag>
+    </>
+  )}
 
   {description && (
     <p class={clsx(

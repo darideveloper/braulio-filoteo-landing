@@ -1,0 +1,67 @@
+---
+import clsx from 'clsx';
+import SectionWrapper from './SectionWrapper.astro';
+import EditorialPortrait from '../molecules/EditorialPortrait.astro';
+
+interface Props {
+  badge: string;
+  title: string;
+  description: string;
+  image: {
+    src: string;
+    alt: string;
+  };
+  statBox?: {
+    value: string;
+    label: string;
+  };
+  class?: string;
+}
+
+const { 
+  badge, 
+  title, 
+  description, 
+  image, 
+  statBox,
+  class: className 
+} = Astro.props;
+
+const hasTitleSlot = Astro.slots.has('title');
+---
+
+<SectionWrapper variant="lowest" class={clsx("pt-32 pb-24", className)} containerClass="editorial-grid gap-12 items-end">
+  <div class="col-span-12 @md:col-span-7">
+    <span class="text-brand-primary-light tracking-[0.2em] font-bold text-[10px] uppercase mb-4 block">
+      {badge}
+    </span>
+    
+    <h1 class="text-6xl @md:text-8xl font-black font-brand-display tracking-tightest leading-tightest text-brand-text-high mb-8 normal-case">
+      {hasTitleSlot ? <slot name="title" /> : title}
+    </h1>
+    
+    <p class="text-xl @md:text-2xl text-brand-text-muted max-w-2xl font-light leading-relaxed">
+      {description}
+    </p>
+  </div>
+  
+  <div class="col-span-12 @md:col-span-5">
+    <EditorialPortrait 
+      src={image.src}
+      alt={image.alt}
+      framePosition="top-left"
+      accent="primary"
+    >
+      {statBox && (
+        <div slot="statCard">
+          <div class="text-brand-secondary font-brand-display font-black text-4xl leading-none italic">
+            {statBox.value}
+          </div>
+          <div class="text-[10px] tracking-widest text-brand-text-muted uppercase mt-1">
+            {statBox.label}
+          </div>
+        </div>
+      )}
+    </EditorialPortrait>
+  </div>
+</SectionWrapper>

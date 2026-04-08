@@ -8,11 +8,43 @@ import CtaSection from '../components/organisms/CtaSection.astro'
 import SocialSection from '../components/organisms/SocialSection.astro'
 import EditorialHeadline from '../components/molecules/EditorialHeadline.astro'
 import BrandButton from '../components/atoms/BrandButton.astro'
-import HeroEditorial from '../components/organisms/HeroEditorial.astro'
-import MatrixCard from '../components/molecules/MatrixCard.astro'
+import HeroNoir from '../components/organisms/HeroNoir.astro'
+import GritonesSection from '../components/organisms/GritonesSection.astro'
 import FeatureCTA from '../components/molecules/FeatureCTA.astro'
 import SectionWrapper from '../components/organisms/SectionWrapper.astro'
 import PlansSection from '../components/organisms/PlansSection.astro'
+
+const services = [
+  {
+    span: 2,
+    icon: "mic",
+    title: "producción de podcast",
+    description: "Elevamos tu narrativa sonora con calidad broadcast y dirección creativa de primer nivel.",
+    footerLabel: "Audio Excellence"
+  },
+  {
+    span: 1,
+    icon: "hub",
+    title: "estrategia de marca personal",
+    description: "Construcción de autoridad y presencia digital para fundadores e innovadores.",
+    footerLabel: "Authority"
+  },
+  {
+    span: 1,
+    icon: "auto_stories",
+    title: "storytelling de marca",
+    description: "Narrativas que conectan, inspiran y convierten espectadores en embajadores.",
+    footerLabel: "Narrative"
+  },
+  {
+    span: 4,
+    variant: "gradient" as const,
+    icon: "ads_click",
+    title: "contenido narrativo",
+    description: "Transformamos ideas complejas en piezas de contenido digeribles, impactantes y altamente estratégicas para canales sociales y corporativos.",
+    footerLabel: "Premium Tier"
+  }
+];
 ---
 
 <Layout>
@@ -53,26 +85,6 @@ import PlansSection from '../components/organisms/PlansSection.astro'
   <NewsletterSection />
   <SocialSection />
 
-  <!-- Voice Editorial Sections -->
-  <HeroEditorial 
-    badge="Metodología Noir"
-    title="Tu voz puede convertirse en una plataforma."
-    description="Hoy la marca personal no se construye con frases motivacionales. Se construye con la profundidad de las ideas y la radicalidad de la ejecución."
-  >
-    <span slot="title">
-      Tu voz puede <span class="text-brand-gradient italic">convertirse</span> en una plataforma.
-    </span>
-  </HeroEditorial>
-
-  <SectionWrapper variant="lowest" class="py-24">
-    <div class="grid grid-cols-1 @sm:grid-cols-2 @lg:grid-cols-4 gap-6">
-      <MatrixCard title="claridad de propósito" icon="target" />
-      <MatrixCard title="narrativa personal" icon="auto_stories" />
-      <MatrixCard title="consistencia" icon="sync" />
-      <MatrixCard title="conversaciones profundas" icon="forum" />
-    </div>
-  </SectionWrapper>
-
   <SectionWrapper variant="lowest" class="py-24 relative overflow-hidden">
     <FeatureCTA 
       label="El Vehículo" 
@@ -88,4 +100,31 @@ import PlansSection from '../components/organisms/PlansSection.astro'
   </SectionWrapper>
 
   <PlansSection />
+
+  <!-- Gritones Studio Sections -->
+  <HeroNoir 
+    badge="Executive Vision"
+    title="Cofundador de GRITones Studio."
+    description="Un estudio creativo dedicado a ayudar a líderes y emprendedores a transformar su voz en contenido estratégico."
+    image={{
+      src: "https://lh3.googleusercontent.com/aida-public/AB6AXuBY8zKubqHcJ8YtJMLp1a3N0XMuJGycX6uEE4y95UdS7z5-f0zjz-7Rbt4zSPxfmRr2wfJHRTvcSg_pkadPPNHNGi2r-AK_dacNZWjGD-iMrknlFGDeJwiiDQbrKwGh9Qm1qewjtsIDOej80HmMWZMguAZAgUii21ulGqwPWPh_U4yMkruVtF2j4qMDBsk65mSiJzcQsrc56aYrrvfwXGjnOA9kUKiSGHTjarnBZerDS34H6gOhPumcxy_BWmuqzv52e3N54PPWz44",
+      alt: "Cofundador Profile"
+    }}
+    statBox={{
+      value: "01/04",
+      label: "Creative Leadership"
+    }}
+  >
+    <span slot="title">
+      Cofundador de <br/>
+      <span class="text-brand-secondary">GRITones Studio.</span>
+    </span>
+  </HeroNoir>
+
+  <GritonesSection 
+    title="SERVICIOS / CORE"
+    label="Strategic Content Development"
+    subtitle="Transformamos la profundidad de tus ideas en activos digitales de alto impacto."
+    services={services}
+  />
 </Layout>

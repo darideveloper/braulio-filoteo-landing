@@ -9,6 +9,7 @@ interface Props {
   accent?: 'primary' | 'secondary';
   aspect?: string;
   showFrame?: boolean;
+  framePosition?: 'top-right' | 'top-left';
   variant?: 'default' | 'minimal';
   class?: string;
 }
@@ -21,6 +22,7 @@ const {
   accent = 'primary',
   aspect = 'aspect-[4/5]',
   showFrame = true,
+  framePosition = 'top-right',
   variant = 'default',
   class: className 
 } = Astro.props;
@@ -39,18 +41,26 @@ const accentColors = {
 const currentAccent = accentColors[accent];
 const isMinimal = variant === 'minimal';
 const shouldShowFrame = !isMinimal && showFrame;
+
+const hasStatCard = Astro.slots.has('statCard');
+
+const frameClasses = {
+  'top-right': "-top-6 -right-6 border-t-2 border-r-2 group-hover:-top-4 group-hover:-right-4",
+  'top-left': "-top-4 -left-4 border-t-2 border-l-2 group-hover:-top-2 group-hover:-left-2"
+};
 ---
 
 <div class={clsx("relative group", className)}>
   <!-- Decorative Frame Element -->
   {shouldShowFrame && (
     <div class={clsx(
-      "absolute -top-6 -right-6 w-full h-full border-t-2 border-r-2 transition-all duration-700 group-hover:-top-4 group-hover:-right-4",
+      "absolute w-full h-full transition-all duration-700",
+      frameClasses[framePosition],
       currentAccent.border
     )}></div>
   )}
   
-  <div class={clsx("relative overflow-hidden rounded-lg bg-brand-surface shadow-2xl", aspect)}>
+  <div class={clsx("relative overflow-hidden rounded-sm bg-brand-surface shadow-2xl", aspect)}>
     <img 
       src={src} 
       alt={alt} 
@@ -72,6 +82,13 @@ const shouldShowFrame = !isMinimal && showFrame;
       </div>
     )}
   </div>
+
+  <!-- Stat Card Slot -->
+  {hasStatCard && (
+    <div class="absolute -bottom-6 -right-6 p-8 bg-brand-background border border-brand-outline-variant/10 shadow-2xl z-20">
+      <slot name="statCard" />
+    </div>
+  )}
 
   <!-- Side Text Element -->
   {!isMinimal && verticalText && (

@@ -45,20 +45,17 @@ The `SectionHeader` SHALL support different horizontal alignments.
 - **AND** the container SHALL use `items-center` and `text-center` classes.
 
 ### Requirement: Header Intro Paragraph
-The `SectionHeader` SHALL support an optional large intro paragraph.
+The `SectionHeader` molecule SHALL support an optional large intro paragraph.
 
-#### Scenario: Rendering with Intro
-- **GIVEN** a `SectionHeader`.
-- **WHEN** a `description` prop or slot is provided.
-- **THEN** it SHALL render the text using the `Headline-MD` utility (e.g., text-2xl or 3xl).
-- **AND** it SHALL appear below the title with a maximum width to ensure readability.
-
-#### Scenario: Bordered Description
-- **GIVEN** a `SectionHeader` with `withBorder=true`.
+#### Scenario: Inline Horizontal Variant (Added)
+- **GIVEN** a `SectionHeader` with `layout="inline"`.
 - **WHEN** rendered.
-- **THEN** the description SHALL feature a `border-l-4 border-brand-primary pl-6`.
+- **THEN** the title, a decorative flex-line, and the label SHALL be arranged in a single row using `flex-row` and `items-baseline`.
+- **AND** the flex-line SHALL use `h-px`, `flex-grow`, and `bg-brand-outline-variant/20`.
+- **AND** it SHALL support hiding the line on small screens (`hidden md:block`).
 
 ### Requirement: Editorial Scaling
+
 The `SectionHeader` SHALL support high-impact editorial scaling for display titles.
 
 #### Scenario: Rendering with Editorial Size

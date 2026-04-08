@@ -1,0 +1,48 @@
+---
+import clsx from 'clsx';
+import SectionWrapper from './SectionWrapper.astro';
+import SectionHeader from '../molecules/SectionHeader.astro';
+import ServiceCard from '../molecules/ServiceCard.astro';
+import BrandButton from '../atoms/BrandButton.astro';
+
+interface Service {
+  title: string;
+  description: string;
+  icon: string;
+  footerLabel: string;
+  span?: 1 | 2 | 4;
+  variant?: 'default' | 'gradient';
+}
+
+interface Props {
+  title: string;
+  label: string;
+  subtitle: string;
+  services: Service[];
+  class?: string;
+}
+
+const { title, label, subtitle, services, class: className } = Astro.props;
+---
+
+<SectionWrapper class={clsx("py-24", className)}>
+  <SectionHeader 
+    layout="inline"
+    title={title}
+    label={label}
+    description={subtitle}
+    class="mb-16"
+  />
+
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+    {services.map((service) => (
+      <ServiceCard {...service}>
+        {service.span === 4 && (
+          <BrandButton slot="cta" variant="outline" icon="arrow_forward">
+            Explorar Portafolio
+          </BrandButton>
+        )}
+      </ServiceCard>
+    ))}
+  </div>
+</SectionWrapper>

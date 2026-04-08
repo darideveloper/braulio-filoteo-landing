@@ -53,6 +53,10 @@
 }
 
 /* Tailwind v4 Utility Definitions */
+@utility leading-tightest {
+  line-height: 0.9;
+}
+
 @utility editorial-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
