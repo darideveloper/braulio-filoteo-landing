@@ -44,11 +44,11 @@ const { title = "Braulio Filoteo / Creative Portfolio" } = Astro.props;
     />
   </head>
   <body class="bg-brand-background text-brand-text-high antialiased">
-    <div class="flex flex-col xl:flex-row min-h-screen">
+    <div class="min-h-screen flex flex-col">
       <Sidebar />
       <Header />
       
-      <main class="flex-grow min-h-screen xl:ml-[280px] pt-20 xl:pt-0">
+      <main class="min-h-screen xl:ml-[280px] pt-20 xl:pt-0">
         <slot />
       </main>
     </div>

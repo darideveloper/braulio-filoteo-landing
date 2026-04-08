@@ -26,7 +26,7 @@
   body {
     @apply bg-brand-background text-brand-text-high;
     margin: 0;
-    width: 100vw;
+    width: 100%;
     overflow-x: hidden;
   }
 
