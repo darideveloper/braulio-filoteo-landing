@@ -19,7 +19,9 @@ The project SHALL implement the "Neon Noir Editorial" high-contrast color scheme
 #### Scenario: Background and Surface Hierarchy
 - **GIVEN** the global CSS theme.
 - **THEN** the `brand-background` SHALL be set to `surface_container_lowest` (#0E0E0E).
-- **AND** the `brand-surface` SHALL be set to `surface_container_low` (#1C1B1B).
+- **AND** the `brand-surface` SHALL be set to `surface_container` (#131313).
+- **AND** the `brand-surface-container` SHALL be set to `#201F1F`.
+- **AND** the `brand-surface-low` SHALL be set to `surface_container_low` (#1C1B1B).
 - **AND** additional tiers SHALL include `surface_bright` (#393939) for elevated elements.
 
 #### Scenario: Primary Action and Heading Roles
@@ -39,6 +41,9 @@ The project SHALL configure a premium hierarchy using **Epilogue** for an archit
 #### Scenario: Display and Headline Styling
 - **GIVEN** a top-level headline using `Display-LG` (3.5rem).
 - **THEN** it SHALL use **Epilogue** with `-0.04em` letter spacing.
+- **AND** it SHALL NOT force `uppercase` styling by default.
+- **WHEN** using `Display-2XL` (6rem - 8rem).
+- **THEN** it SHALL use **Epilogue** with tight tracking and NOT force `uppercase` styling by default.
 - **WHEN** using `Headline-MD` (1.75rem) for section titles.
 - **THEN** it SHALL use **Epilogue** and default to the "Editorial Orange" (`secondary_container`) color.
 
@@ -59,6 +64,14 @@ The project SHALL provide specific CSS utilities for the "Electric Noir" aesthet
 - **GIVEN** an image with the `.img-editorial` class.
 - **THEN** it SHALL be grayscale (`100%`) and slightly darkened (`90% brightness`) by default.
 - **AND** it SHALL transition to full color (`0% grayscale`) and scale slightly (`1.05`) on hover.
+
+#### Scenario: Editorial Asymmetric Grid
+- **GIVEN** an element with the `.editorial-grid` class.
+- **THEN** it SHALL be a 12-column grid.
+
+#### Scenario: Neon Glow Ambient Shadow
+- **GIVEN** an element with the `.neon-glow` class.
+- **THEN** it SHALL use a massive blur (`60px`) at `10%` opacity using the `primary` (Purple) color.
 
 ### Requirement: The No-Line Rule
 The system SHALL prohibit the use of `1px` solid borders for sectioning or element definition.

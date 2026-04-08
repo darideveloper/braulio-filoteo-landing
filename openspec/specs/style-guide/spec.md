@@ -32,20 +32,28 @@ The Design System page SHALL provide interactive or visual tests for Neon Noir s
 - **THEN** it SHALL contain a demonstration of the 60% opacity backdrop-blur utility on a background with signature textures or images.
 - **AND** it SHALL show the 135° primary gradient on a sample element with sharp `0.25rem` corners.
 
+#### Scenario: Editorial Asymmetric Grid
+- **GIVEN** the Design System page.
+- **THEN** it SHALL demonstrate the 12-column `editorial-grid` utility.
+
+#### Scenario: Neon Glow Ambient Shadow
+- **GIVEN** the Design System page.
+- **THEN** it SHALL demonstrate the `.neon-glow` utility.
+
 ### Requirement: Component Showcase
 The Design System page SHALL showcase every component in `src/components/` with its available variants and states.
 
 #### Scenario: Atomic Components
 - **GIVEN** the Atoms section on the Design System page.
-- **THEN** it SHALL render `BrandButton` with all variants (`primary`, `secondary`, `outline`, `ghost`), `disabled` state, and icon usage.
-- **AND** it SHALL render `Badge`, `StatItem`, `AboutIcon`, `MaterialIcon`, and `SpotifyEmbed`.
+- **THEN** it SHALL render `BrandButton` with all variants (`primary`, `secondary`, `outline`, `ghost`), `disabled` state, `circular` variant, and icon usage.
+- **AND** it SHALL render `Badge`, `StatItem`, `AboutIcon`, `MaterialIcon` (showing scaling sizes), and `SpotifyEmbed`.
 
 #### Scenario: Molecular Components
 - **GIVEN** the Molecules section on the Design System page.
 - **THEN** it SHALL render `EditorialPortrait` with all variants (`accent`, `aspect`, `showFrame`).
-- **AND** it SHALL render `SectionHeader` showcasing `align="left"` vs `align="center"`, `level={1}` vs `level={2}`, and the `title` slot.
-- **AND** it SHALL render `EditorialHeadline`, `PodcastCTA`, `SideBorderQuote`, `QuoteBlock`, `AboutCard`, and `Navigation`.
+- **AND** it SHALL render `SectionHeader` showcasing `align="left"` vs `align="center"`, `level={1}` vs `level={2}`, the `title` slot, and `size="editorial"`.
+- **AND** it SHALL render `EditorialHeadline`, `PodcastCTA`, `SideBorderQuote`, `QuoteBlock`, `AboutCard`, `Navigation`, `MatrixCard`, and `FeatureCTA`.
 
 #### Scenario: Organismic Components
 - **GIVEN** the Organisms section on the Design System page.
-- **THEN** it SHALL render `Header`, `Hero`, `AboutSection`, `CtaSection`, `NewsletterSection`, and `PodcastSection` in constrained containers.
+- **THEN** it SHALL render `Header`, `Hero`, `AboutSection`, `CtaSection`, `NewsletterSection`, `PodcastSection`, and `HeroEditorial` in constrained containers.

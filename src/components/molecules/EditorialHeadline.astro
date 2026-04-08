@@ -8,6 +8,6 @@ interface Props {
 const { class: className } = Astro.props;
 ---
 
-<h2 class={clsx("display-2xl mb-12", className)}>
+<h2 class={clsx("display-2xl mb-12 uppercase", className)}>
   <slot />
 </h2>

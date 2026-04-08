@@ -15,6 +15,9 @@ import SectionHeader from '../components/molecules/SectionHeader.astro';
 import EditorialHeadline from '../components/molecules/EditorialHeadline.astro';
 import PodcastCTA from '../components/molecules/PodcastCTA.astro';
 import SideBorderQuote from '../components/molecules/SideBorderQuote.astro';
+import MatrixCard from '../components/molecules/MatrixCard.astro';
+import FeatureCTA from '../components/molecules/FeatureCTA.astro';
+import HeroEditorial from '../components/organisms/HeroEditorial.astro';
 import clsx from 'clsx';
 
 if (import.meta.env.PROD) {
@@ -23,7 +26,9 @@ if (import.meta.env.PROD) {
 
 const colors = [
   { label: "Background", color: "#0E0E0E", role: "Deep Foundation" },
-  { label: "Surface", color: "#1C1B1B", role: "Standard Content Stage" },
+  { label: "Surface", color: "#131313", role: "Standard Content Stage" },
+  { label: "Surface Low", color: "#1C1B1B", role: "Sunken Elements" },
+  { label: "Surface Container", color: "#201F1F", role: "Standard Container" },
   { label: "Surface Bright", color: "#393939", role: "Elevated Elements" },
   { label: "Primary (Action)", color: "#9B30FF", role: "High-intent Interactions" },
   { label: "Primary Light", color: "#DCB8FF", role: "CTA Gradients" },
@@ -137,6 +142,16 @@ const typography = [
               <BrandButton variant="outline" disabled icon="lock">Locked Outline</BrandButton>
             </div>
           </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 border-t border-brand-surface-bright/10 pt-8">
+            <div class="space-y-4">
+              <p class="text-xs text-brand-text-muted font-mono">Circular (Primary)</p>
+              <BrandButton variant="primary" icon="add" circular />
+            </div>
+            <div class="space-y-4">
+              <p class="text-xs text-brand-text-muted font-mono">Circular (Secondary)</p>
+              <BrandButton variant="secondary" icon="mic" circular />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -163,12 +178,12 @@ const typography = [
             </div>
           </div>
           <div class="space-y-4">
-            <p class="text-xs text-brand-text-muted font-mono mb-4">MaterialIcon & AboutIcon</p>
+            <p class="text-xs text-brand-text-muted font-mono mb-4">MaterialIcon Scaling</p>
             <div class="flex flex-wrap gap-8 items-center">
-              <MaterialIcon name="mic_external_on" class="text-3xl text-brand-secondary" />
-              <MaterialIcon name="history_edu" class="text-3xl text-brand-primary" />
-              <AboutIcon icon="fitness_center" variant="primary" class="!text-3xl" />
-              <AboutIcon icon="menu_book" variant="secondary" class="!text-3xl" />
+              <MaterialIcon name="mic" size="text-2xl" class="text-brand-secondary" />
+              <MaterialIcon name="mic" size="text-4xl" class="text-brand-secondary" />
+              <MaterialIcon name="mic" size="text-6xl" class="text-brand-secondary" />
+              <MaterialIcon name="mic" size="text-8xl" class="text-brand-secondary" />
             </div>
           </div>
           <div class="space-y-4">
@@ -288,15 +303,60 @@ const typography = [
         />
         <div class="bg-brand-surface p-12 rounded-[0.5rem] max-w-sm">
           <Navigation />
-        </div>
-      </section>
-    </div>
+          </div>
+          </div>
+          </section>
 
-    <!-- 4. Utilities -->
-    <div class="space-y-24">
-      <div class="border-b border-brand-surface-bright/20 pb-8">
-        <h2 class="display-lg text-brand-text-high opacity-20 uppercase tracking-widest">04 / Utilities</h2>
-      </div>
+          <!-- Voice Editorial Molecules -->
+          <section class="space-y-12">
+          <SectionHeader 
+          label="Voice Style"
+          title="Editorial Molecules"
+          titleColor="text-brand-secondary"
+          />
+          <div class="space-y-12 bg-brand-surface p-12 rounded-[0.5rem]">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+           <MatrixCard title="narrativa personal" icon="auto_stories" />
+           <MatrixCard title="consistencia" icon="sync" />
+           <MatrixCard title="conversaciones" icon="forum" />
+           <MatrixCard title="claridad" icon="target" />
+          </div>
+          <div class="border-t border-brand-surface-bright/20 pt-12">
+          <FeatureCTA label="Test Label" ctaText="Test CTA" icon="mic">
+            Testing the <span class="decoration-editorial">editorial</span> CTA variant.
+          </FeatureCTA>
+          </div>
+          </div>
+          </section>
+          </div>
+
+          <!-- 4. Organisms -->
+          <div class="space-y-24">
+          <div class="border-b border-brand-surface-bright/20 pb-8">
+            <h2 class="display-lg text-brand-text-high opacity-20 uppercase tracking-widest">04 / Organisms</h2>
+          </div>
+
+          <section class="space-y-12">
+            <SectionHeader 
+              label="Layout"
+              title="HeroEditorial"
+              titleColor="text-brand-secondary"
+            />
+            <div class="border border-brand-surface-bright/20 rounded-[0.5rem] overflow-hidden scale-90 origin-top">
+              <HeroEditorial 
+                badge="Metodología Noir"
+                title="Tu voz puede convertirse en una plataforma."
+                description="Hoy la marca personal no se construye con frases motivacionales. Se construye con la profundidad de las ideas y la radicalidad de la ejecución."
+              />
+            </div>
+          </section>
+          </div>
+
+          <!-- 5. Utilities -->
+          <div class="space-y-24">
+          <div class="border-b border-brand-surface-bright/20 pb-8">
+            <h2 class="display-lg text-brand-text-high opacity-20 uppercase tracking-widest">05 / Utilities</h2>
+          </div>
 
       <section class="space-y-12">
         <SectionHeader 
@@ -306,7 +366,7 @@ const typography = [
         />
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div class="space-y-4">
-            <p class="text-xs text-brand-text-muted font-mono mb-4">.shadow-neon-purple</p>
+            <p class="text-xs text-brand-text-muted font-mono mb-4">.shadow-neon-purple / .neon-glow</p>
             <div class="h-64 w-full rounded-[0.5rem] bg-brand-surface relative overflow-hidden shadow-neon-purple">
               <div class="absolute inset-0 flex items-center justify-center">
                 <span class="text-brand-text-muted text-sm">Neon Glow (Box Shadow)</span>
@@ -314,6 +374,16 @@ const typography = [
             </div>
           </div>
           <div class="space-y-4">
+             <p class="text-xs text-brand-text-muted font-mono mb-4">.editorial-grid (12 cols)</p>
+             <div class="editorial-grid gap-4 bg-brand-surface p-4 rounded-[0.5rem]">
+               {Array.from({ length: 12 }).map((_, i) => (
+                 <div class="h-12 bg-brand-primary/20 border border-brand-primary/30 flex items-center justify-center text-[10px] font-mono text-brand-primary">
+                   {i + 1}
+                 </div>
+               ))}
+             </div>
+          </div>
+          <div class="space-y-4 md:col-span-2">
             <p class="text-xs text-brand-text-muted font-mono mb-4">.img-editorial (Hover to test)</p>
             <div class="relative group aspect-video rounded-[0.5rem] overflow-hidden">
               <img 

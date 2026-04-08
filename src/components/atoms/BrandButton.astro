@@ -7,6 +7,7 @@ interface Props {
   disabled?: boolean;
   class?: string;
   icon?: string;
+  circular?: boolean;
   [key: string]: any;
 }
 
@@ -16,6 +17,7 @@ const {
   disabled = false, 
   class: className,
   icon,
+  circular = false,
   ...rest 
 } = Astro.props;
 
@@ -26,7 +28,10 @@ const variants = {
   ghost: "bg-transparent text-brand-text-muted hover:text-brand-primary transition-colors",
 };
 
-const baseClasses = "inline-flex items-center justify-center gap-3 px-10 py-5 label-md rounded-[0.25rem] transition-all cursor-pointer select-none group";
+const baseClasses = clsx(
+  "inline-flex items-center justify-center gap-3 transition-all cursor-pointer select-none group",
+  circular ? "p-6 rounded-full" : "px-10 py-5 rounded-[0.25rem] label-md"
+);
 const disabledClasses = "opacity-50 cursor-not-allowed pointer-events-none grayscale";
 
 const Element = href ? 'a' : 'button';

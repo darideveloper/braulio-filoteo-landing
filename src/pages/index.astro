@@ -8,6 +8,10 @@ import CtaSection from '../components/organisms/CtaSection.astro'
 import SocialSection from '../components/organisms/SocialSection.astro'
 import EditorialHeadline from '../components/molecules/EditorialHeadline.astro'
 import BrandButton from '../components/atoms/BrandButton.astro'
+import HeroEditorial from '../components/organisms/HeroEditorial.astro'
+import MatrixCard from '../components/molecules/MatrixCard.astro'
+import FeatureCTA from '../components/molecules/FeatureCTA.astro'
+import SectionWrapper from '../components/organisms/SectionWrapper.astro'
 ---
 
 <Layout>
@@ -47,4 +51,33 @@ import BrandButton from '../components/atoms/BrandButton.astro'
   </CtaSection>
   <NewsletterSection />
   <SocialSection />
+
+  <!-- Voice Editorial Sections -->
+  <HeroEditorial 
+    badge="Metodología Noir"
+    title="Tu voz puede convertirse en una plataforma."
+    description="Hoy la marca personal no se construye con frases motivacionales. Se construye con la profundidad de las ideas y la radicalidad de la ejecución."
+  >
+    <span slot="title">
+      Tu voz puede <span class="text-brand-gradient italic">convertirse</span> en una plataforma.
+    </span>
+  </HeroEditorial>
+
+  <SectionWrapper variant="lowest" class="py-24">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <MatrixCard title="claridad de propósito" icon="target" />
+      <MatrixCard title="narrativa personal" icon="auto_stories" />
+      <MatrixCard title="consistencia" icon="sync" />
+      <MatrixCard title="conversaciones profundas" icon="forum" />
+    </div>
+  </SectionWrapper>
+
+  <FeatureCTA 
+    label="El Vehículo" 
+    ctaText="Inicia tu Proyecto" 
+    icon="mic"
+    watermark="PODCAST"
+  >
+    El vehículo más poderoso para hacerlo es un <span class="decoration-editorial">podcast</span>.
+  </FeatureCTA>
 </Layout>

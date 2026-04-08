@@ -1,0 +1,18 @@
+---
+import MaterialIcon from '../atoms/MaterialIcon.astro';
+
+interface Props {
+  title: string;
+  icon: string;
+}
+
+const { title, icon } = Astro.props;
+---
+
+<div class="bg-brand-surface-low p-10 flex flex-col justify-between min-h-[300px] group hover:bg-brand-surface-container transition-colors duration-500">
+  <MaterialIcon name={icon} size="text-[12rem]" class="text-brand-secondary" />
+  <div>
+    <h3 class="font-brand-display text-2xl font-bold uppercase text-brand-text-high mb-2">{title}</h3>
+    <div class="h-1 w-0 group-hover:w-full bg-brand-primary transition-all duration-700"></div>
+  </div>
+</div>

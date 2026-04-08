@@ -1,0 +1,32 @@
+---
+import MaterialIcon from '../atoms/MaterialIcon.astro';
+
+interface Props {
+  label: string;
+  ctaText: string;
+  icon: string;
+  watermark?: string;
+}
+
+const { label, ctaText, icon, watermark } = Astro.props;
+---
+
+<div class="relative flex flex-col items-center text-center max-w-4xl mx-auto py-12">
+  {watermark && (
+    <div class="absolute inset-0 flex items-center justify-center -z-10 overflow-hidden pointer-events-none">
+      <span class="text-watermark uppercase">{watermark}</span>
+    </div>
+  )}
+  <p class="label-md text-brand-primary tracking-[0.3em] uppercase mb-6">{label}</p>
+  <h2 class="display-lg text-4xl md:text-6xl text-brand-text-high mb-12 normal-case">
+    <slot />
+  </h2>
+  <div class="flex items-center gap-4 group cursor-pointer">
+    <div class="bg-brand-secondary text-white p-6 rounded-[0.25rem] group-hover:bg-brand-primary transition-colors duration-300">
+      <MaterialIcon name={icon} size="text-4xl" />
+    </div>
+    <span class="font-brand-display font-bold text-xl uppercase tracking-tighter group-hover:text-brand-primary transition-colors">
+      {ctaText}
+    </span>
+  </div>
+</div>

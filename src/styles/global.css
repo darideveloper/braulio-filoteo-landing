@@ -3,7 +3,9 @@
 @theme {
   /* Colors */
   --color-brand-background: #0e0e0e; /* surface_container_lowest */
-  --color-brand-surface: #1c1b1b;    /* surface_container_low */
+  --color-brand-surface: #131313;    /* surface_container */
+  --color-brand-surface-container: #201f1f;
+  --color-brand-surface-low: #1c1b1b;
   --color-brand-surface-bright: #393939;
   
   --color-brand-primary: #9b30ff;    /* primary_container (Purple) */
@@ -51,12 +53,21 @@
 }
 
 /* Tailwind v4 Utility Definitions */
+@utility editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+@utility neon-glow {
+  box-shadow: 0 0 60px 0 rgba(155, 48, 255, 0.1);
+}
+
 @utility display-lg {
-  @apply font-brand-display text-[3.5rem] font-black tracking-[-0.04em] leading-[1.1] uppercase;
+  @apply font-brand-display text-[3.5rem] font-black tracking-[-0.04em] leading-[1.1];
 }
 
 @utility display-2xl {
-  @apply font-brand-display text-6xl md:text-8xl font-black tracking-tighter leading-[0.85] uppercase;
+  @apply font-brand-display text-6xl md:text-8xl font-black tracking-tighter leading-[0.85];
 }
 
 @utility decoration-editorial {

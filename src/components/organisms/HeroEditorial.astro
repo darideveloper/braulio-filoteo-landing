@@ -1,0 +1,27 @@
+---
+import SectionWrapper from './SectionWrapper.astro';
+
+interface Props {
+  badge: string;
+  title: string;
+  description: string;
+}
+
+const { badge, title, description } = Astro.props;
+
+const hasTitleSlot = Astro.slots.has('title');
+---
+
+<SectionWrapper variant="lowest" class="py-24" containerClass="editorial-grid gap-y-16">
+  <div class="col-span-12 md:col-span-9">
+    <p class="label-md text-brand-secondary mb-4">{badge}</p>
+    <h1 class="display-2xl text-[3.5rem] md:text-[5rem] text-brand-text-high mb-8 normal-case">
+      {hasTitleSlot ? <slot name="title" /> : title}
+    </h1>
+  </div>
+  <div class="col-span-12 md:col-start-6 md:col-span-6 border-l-4 border-brand-primary pl-8 py-4">
+    <p class="text-xl md:text-2xl font-light text-brand-text-muted leading-relaxed">
+      {description}
+    </p>
+  </div>
+</SectionWrapper>

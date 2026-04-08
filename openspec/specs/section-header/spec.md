@@ -53,3 +53,29 @@ The `SectionHeader` SHALL support an optional large intro paragraph.
 - **WHEN** a `description` prop or slot is provided.
 - **THEN** it SHALL render the text using the `Headline-MD` utility (e.g., text-2xl or 3xl).
 - **AND** it SHALL appear below the title with a maximum width to ensure readability.
+
+### Requirement: Editorial Scaling
+The `SectionHeader` SHALL support high-impact editorial scaling for display titles.
+
+#### Scenario: Rendering with Editorial Size
+- **GIVEN** a `SectionHeader` with `size="editorial"`.
+- **WHEN** rendered.
+- **THEN** it SHALL use a massive typography scale (e.g., `text-5xl md:text-7xl lg:text-8xl`).
+- **AND** it SHALL use `font-black` and tight letter-spacing (`tracking-[-0.06em]`).
+
+### Requirement: FeatureCTA Molecule
+The project SHALL provide a `FeatureCTA` molecule for high-impact call-to-action sections with atmospheric depth.
+
+#### Scenario: FeatureCTA Refined Layout
+- **GIVEN** a `FeatureCTA` component.
+- **THEN** it SHALL support a large background watermark text (using the `.text-watermark` utility).
+- **AND** the icon wrapper SHALL use square-rounded corners (`rounded-[0.25rem]`) instead of a full circle.
+- **AND** it SHALL NOT force uppercase on the main title.
+
+### Requirement: MatrixCard Molecule
+The project SHALL provide a `MatrixCard` molecule for transformation-oriented grid displays.
+
+#### Scenario: MatrixCard Large Visuals
+- **GIVEN** a `MatrixCard` component.
+- **THEN** it SHALL feature a large scale icon (at least `text-8xl`) as the primary visual element.
+- **AND** it SHALL feature an interactive progress-line that expands on hover.

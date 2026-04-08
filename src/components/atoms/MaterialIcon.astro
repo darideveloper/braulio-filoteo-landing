@@ -3,12 +3,13 @@ import clsx from 'clsx';
 
 interface Props {
   name: string;
+  size?: string; // e.g., 'text-6xl', 'text-4xl'
   class?: string;
 }
 
-const { name, class: className } = Astro.props;
+const { name, size = 'text-2xl', class: className } = Astro.props;
 ---
 
-<span class={clsx("material-symbols-outlined", className)}>
+<span class={clsx("material-symbols-outlined", size, className)}>
   {name}
 </span>
