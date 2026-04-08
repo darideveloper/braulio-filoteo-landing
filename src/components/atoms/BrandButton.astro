@@ -2,7 +2,7 @@
 import clsx from 'clsx';
 
 interface Props {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  variant?: 'primary' | 'primary-gradient' | 'secondary' | 'outline' | 'outline-secondary' | 'ghost';
   href?: string;
   disabled?: boolean;
   class?: string;
@@ -23,8 +23,10 @@ const {
 
 const variants = {
   primary: "bg-brand-primary text-white shadow-neon-purple hover:opacity-90 active:scale-95",
+  'primary-gradient': "bg-brand-gradient text-white shadow-xl hover:scale-[1.05] transition-transform duration-500",
   secondary: "bg-brand-secondary text-white shadow-[0_10px_30px_-10px_rgba(254,101,0,0.4)] hover:opacity-90 active:scale-95",
   outline: "glass-surface border border-brand-surface-bright/30 text-brand-text-high hover:border-brand-secondary/50 active:scale-95",
+  'outline-secondary': "border-2 border-brand-secondary text-brand-secondary hover:bg-brand-secondary hover:text-white transition-all duration-300",
   ghost: "bg-transparent text-brand-text-muted hover:text-brand-primary transition-colors",
 };
 

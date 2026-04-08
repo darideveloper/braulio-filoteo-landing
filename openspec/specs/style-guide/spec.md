@@ -45,15 +45,7 @@ The Design System page SHALL showcase every component in `src/components/` with 
 
 #### Scenario: Atomic Components
 - **GIVEN** the Atoms section on the Design System page.
-- **THEN** it SHALL render `BrandButton` with all variants (`primary`, `secondary`, `outline`, `ghost`), `disabled` state, `circular` variant, and icon usage.
-- **AND** it SHALL render `Badge`, `StatItem`, `AboutIcon`, `MaterialIcon` (showing scaling sizes), and `SpotifyEmbed`.
+- **THEN** it SHALL render `BrandButton` with all variants (`primary`, `primary-gradient`, `secondary`, `outline`, `outline-secondary`, `ghost`), `disabled` state, `circular` variant, and icon usage.
+- **AND** it SHALL render `Badge` with `filled`, `outline`, and `premium` variants.
+- **AND** it SHALL render `StatItem`, `AboutIcon`, `MaterialIcon` (showing scaling sizes and `filled` variant), and `SpotifyEmbed`.
 
-#### Scenario: Molecular Components
-- **GIVEN** the Molecules section on the Design System page.
-- **THEN** it SHALL render `EditorialPortrait` with all variants (`accent`, `aspect`, `showFrame`).
-- **AND** it SHALL render `SectionHeader` showcasing `align="left"` vs `align="center"`, `level={1}` vs `level={2}`, the `title` slot, and `size="editorial"`.
-- **AND** it SHALL render `EditorialHeadline`, `PodcastCTA`, `SideBorderQuote`, `QuoteBlock`, `AboutCard`, `Navigation`, `MatrixCard`, and `FeatureCTA`.
-
-#### Scenario: Organismic Components
-- **GIVEN** the Organisms section on the Design System page.
-- **THEN** it SHALL render `Header`, `Hero`, `AboutSection`, `CtaSection`, `NewsletterSection`, `PodcastSection`, and `HeroEditorial` in constrained containers.

@@ -11,6 +11,7 @@ interface Props {
   maxWidth?: string;
   labelColor?: string;
   titleColor?: string;
+  withBorder?: boolean;
   class?: string;
 }
 
@@ -24,6 +25,7 @@ const {
   maxWidth,
   labelColor = "text-brand-primary", 
   titleColor = "text-brand-text-high",
+  withBorder = false,
   class: className 
 } = Astro.props;
 
@@ -58,6 +60,7 @@ const sizeClasses = {
   {description && (
     <p class={clsx(
       "headline-md text-brand-text-high max-w-3xl mt-2",
+      withBorder && "border-l-4 border-brand-primary pl-6",
       align === 'center' && "mx-auto"
     )}>
       {description}

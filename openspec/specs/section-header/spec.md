@@ -2,7 +2,6 @@
 
 ## Purpose
 The `SectionHeader` molecule provides a standardized way to render section titles, overlines (labels), and introductory descriptions, ensuring visual consistency across the project while allowing for necessary flexibility in heading levels and alignment.
-
 ## Requirements
 ### Requirement: Reusable Section Header
 The system SHALL provide a `SectionHeader` molecule to standardize section titles and labels.
@@ -54,6 +53,11 @@ The `SectionHeader` SHALL support an optional large intro paragraph.
 - **THEN** it SHALL render the text using the `Headline-MD` utility (e.g., text-2xl or 3xl).
 - **AND** it SHALL appear below the title with a maximum width to ensure readability.
 
+#### Scenario: Bordered Description
+- **GIVEN** a `SectionHeader` with `withBorder=true`.
+- **WHEN** rendered.
+- **THEN** the description SHALL feature a `border-l-4 border-brand-primary pl-6`.
+
 ### Requirement: Editorial Scaling
 The `SectionHeader` SHALL support high-impact editorial scaling for display titles.
 
@@ -79,3 +83,4 @@ The project SHALL provide a `MatrixCard` molecule for transformation-oriented gr
 - **GIVEN** a `MatrixCard` component.
 - **THEN** it SHALL feature a large scale icon (using `text-5xl!`) as the primary visual element.
 - **AND** it SHALL feature an interactive progress-line that expands on hover.
+

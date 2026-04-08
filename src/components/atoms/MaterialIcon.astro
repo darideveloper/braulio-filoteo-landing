@@ -4,12 +4,16 @@ import clsx from 'clsx';
 interface Props {
   name: string;
   size?: string; // e.g., 'text-6xl', 'text-4xl'
+  filled?: boolean;
   class?: string;
 }
 
-const { name, size = 'text-2xl!', class: className } = Astro.props;
+const { name, size = 'text-2xl!', filled = false, class: className } = Astro.props;
 ---
 
-<span class={clsx("material-symbols-outlined", size, className)}>
+<span 
+  class={clsx("material-symbols-outlined", size, className)}
+  style={filled ? { fontVariationSettings: "'FILL' 1" } : {}}
+>
   {name}
 </span>

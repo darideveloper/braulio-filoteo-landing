@@ -2,14 +2,22 @@
 import clsx from 'clsx';
 
 interface Props {
+  variant?: 'filled' | 'outline' | 'premium';
   class?: string;
 }
 
-const { class: className } = Astro.props;
+const { variant = 'filled', class: className } = Astro.props;
+
+const variants = {
+  filled: "bg-brand-surface-bright/40 text-brand-primary-light border-brand-surface-bright/20",
+  outline: "border-brand-secondary/30 text-brand-secondary bg-transparent",
+  premium: "bg-brand-primary text-white border-brand-primary/20",
+};
 ---
 
 <span class={clsx(
-  "bg-brand-surface-bright/40 text-brand-primary-light px-4 py-1 label-md border border-brand-surface-bright/20",
+  "px-4 py-1 label-md border rounded-full",
+  variants[variant],
   className
 )}>
   <slot />
