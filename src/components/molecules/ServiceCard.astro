@@ -23,9 +23,9 @@ const {
 } = Astro.props;
 
 const spanClasses = {
-  1: "md:col-span-1",
-  2: "md:col-span-2",
-  4: "md:col-span-4"
+  1: "@md:col-span-1",
+  2: "@md:col-span-2",
+  4: "@md:col-span-4"
 };
 
 const isBanner = span === 4;
@@ -39,12 +39,12 @@ const isGradient = variant === 'gradient';
   isGradient && "bg-gradient-to-r from-brand-surface-low to-brand-surface-bright border-l-4 border-brand-primary",
   className
 )}>
-  <div class={clsx("flex flex-col", isBanner && "md:flex-row md:items-start justify-between gap-8")}>
+  <div class={clsx("flex flex-col", isBanner && "@md:flex-row @md:items-start justify-between gap-8")}>
     <div class={clsx(isBanner && "max-w-xl")}>
       <MaterialIcon name={icon} size="text-4xl" class="text-brand-secondary mb-6 block" />
       <h3 class={clsx(
         "font-bold font-brand-display text-brand-text-high mb-4 uppercase",
-        isBanner ? "text-3xl md:text-4xl" : "text-2xl"
+        isBanner ? "text-3xl @md:text-4xl" : "text-2xl"
       )}>
         {title}
       </h3>
@@ -54,7 +54,7 @@ const isGradient = variant === 'gradient';
     </div>
     
     {isBanner && (
-      <div class="mt-8 md:mt-0">
+      <div class="mt-8 @md:mt-0">
         <slot name="cta" />
       </div>
     )}
