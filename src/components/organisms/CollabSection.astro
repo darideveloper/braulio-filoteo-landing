@@ -17,7 +17,7 @@ const collabs = [
   class="border-y border-brand-outline-variant/5"
 >
   <div class="editorial-grid gap-y-16">
-    <div class="col-span-12 lg:col-span-5">
+    <div class="col-span-12 @7xl:col-span-6">
       <SectionHeader
         label="Let's create together"
         title="Colaboremos"
@@ -26,7 +26,7 @@ const collabs = [
         titleColor="text-brand-text-high"
       />
     </div>
-    <div class="col-span-12 lg:col-span-7 flex flex-col">
+    <div class="col-span-12 @7xl:col-span-5 @7xl:col-start-8 flex flex-col">
       {collabs.map((collab) => (
         <CollabItem {...collab} />
       ))}

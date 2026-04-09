@@ -38,8 +38,8 @@ const isInline = layout === 'inline';
 const isInlineStart = layout === 'inline-start';
 
 const sizeClasses = {
-  standard: "display-lg normal-case !text-[2.5rem] @md:!text-[3.5rem] !leading-[1.1] tracking-[-0.04em]",
-  editorial: "text-5xl @md:text-7xl @lg:text-8xl font-black font-brand-display tracking-[-0.06em] leading-tight"
+  standard: "display-lg normal-case !text-[2.5rem] @3xl:!text-[3.5rem] !leading-[1.1] tracking-[-0.04em]",
+  editorial: "text-5xl @3xl:text-7xl @5xl:text-8xl font-black font-brand-display tracking-[-0.06em] leading-tight"
 };
 ---
 
@@ -49,7 +49,7 @@ const sizeClasses = {
   className
 )} style={maxWidth ? { maxWidth } : {}}>
   {isInline ? (
-    <div class="flex flex-col @md:flex-row justify-between items-baseline mb-12 gap-4">
+    <div class="flex flex-col @3xl:flex-row justify-between items-baseline mb-12 gap-4">
       <Tag class={clsx(
         sizeClasses[size],
         titleColor,
@@ -57,7 +57,7 @@ const sizeClasses = {
       )}>
         {hasTitleSlot ? <slot name="title" /> : title}
       </Tag>
-      <div class="h-px flex-grow mx-8 bg-brand-outline-variant/20 hidden @md:block"></div>
+      <div class="h-px flex-grow mx-8 bg-brand-outline-variant/20 hidden @3xl:block"></div>
       <span class={clsx(
         "label-md tracking-tight uppercase",
         labelColor
@@ -66,7 +66,7 @@ const sizeClasses = {
       </span>
     </div>
   ) : isInlineStart ? (
-    <div class="flex flex-col @md:flex-row items-baseline gap-4 mb-12">
+    <div class="flex flex-col @3xl:flex-row items-baseline gap-4 mb-12">
       <span class={clsx(
         "label-md tracking-[0.2em] uppercase",
         labelColor

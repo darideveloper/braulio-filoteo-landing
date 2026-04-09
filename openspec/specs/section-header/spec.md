@@ -4,15 +4,13 @@
 The `SectionHeader` molecule provides a standardized way to render section titles, overlines (labels), and introductory descriptions, ensuring visual consistency across the project while allowing for necessary flexibility in heading levels and alignment.
 ## Requirements
 ### Requirement: Reusable Section Header
-The system SHALL provide a `SectionHeader` molecule to standardize section titles and labels.
+The `SectionHeader` molecule SHALL be updated to support more baseline-oriented editorial layouts.
 
-#### Scenario: Rendering Header with Custom Colors
-- **GIVEN** a `SectionHeader` with `label="EDITORIAL SERIES"` and `title="GRITONES PODCAST"`.
-- **WHEN** the `labelColor` is set to `text-brand-primary-light`.
-- **AND** the `titleColor` is set to `text-brand-secondary`.
-- **THEN** it SHALL render the label in uppercase using the `Label-MD` utility.
-- **AND** it SHALL render the title using the `Display-LG` utility.
-- **AND** the label SHALL appear above the title with consistent spacing.
+#### Scenario: Inline Start Layout
+- **GIVEN** a `SectionHeader` with `layout="inline-start"`.
+- **THEN** it SHALL render the label (`label-md`) and the title (`display-lg`) on the same horizontal axis.
+- **AND** the label SHALL appear before the title.
+- **AND** it SHALL support custom `labelColor` and `titleColor`.
 
 ### Requirement: Flexible Heading Levels
 The `SectionHeader` SHALL support different heading levels for semantic correctness.
