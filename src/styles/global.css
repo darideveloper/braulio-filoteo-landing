@@ -24,6 +24,10 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
   html,
   body {
     @apply bg-brand-background text-brand-text-high;

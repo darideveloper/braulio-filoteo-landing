@@ -1,11 +1,11 @@
 export const navItems = [
   {
-    label: 'Home',
+    label: 'Inicio',
     href: '#home',
     icon: 'home'
   },
   {
-    label: 'About',
+    label: 'Biografía',
     href: '#about',
     icon: 'person'
   },
@@ -15,17 +15,17 @@ export const navItems = [
     icon: 'mic'
   },
   {
-    label: 'Studio',
+    label: 'GRITones',
     href: '#studio',
     icon: 'settings'
   },
   {
-    label: 'Methodology',
-    href: '#methodology',
-    icon: 'hub'
+    label: 'Planes',
+    href: '#plans',
+    icon: 'payments'
   },
   {
-    label: 'Social',
+    label: 'Contacto',
     href: '#social',
     icon: 'share'
   }

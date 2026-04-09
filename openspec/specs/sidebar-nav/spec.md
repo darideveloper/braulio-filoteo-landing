@@ -21,25 +21,28 @@ The layout MUST adapt to different screen sizes, transitions between a sidebar o
 - **And** the desktop sidebar is hidden.
 
 ### Requirement: REQ-2 - Navigation Components
-The shell MUST include a branding element (logo) and a navigation menu with icons and text.
+The shell MUST include a branding element (logo) and a navigation menu with icons and text, using a single source of truth for all links.
 
-#### Scenario: Desktop Sidebar Content
-- **Given** the sidebar is visible.
-- **Then** the brand logo (`logo.webp`) is displayed at the top.
-- **And** a vertical list of navigation links with icons (Home, Projects, Social, Contact) is shown below the logo.
-
-#### Scenario: Mobile Header Content
-- **Given** the mobile header is visible.
-- **Then** the brand logo is displayed on the left.
-- **And** a burger menu button is displayed on the right.
+#### Scenario: Navigation Items and Language
+- **GIVEN** the navigation system is loaded.
+- **THEN** it SHALL display the following items in Spanish:
+  - "Inicio" (#home)
+  - "Biografía" (#about)
+  - "Podcast" (#podcast)
+  - "Estudio" (#studio)
+  - "Planes" (#plans)
+  - "Social" (#social)
+- **AND** it SHALL NOT include "Methodology".
 
 ### Requirement: REQ-3 - Mobile Navigation Interaction
-The mobile navigation menu MUST be toggleable via the burger button.
+The mobile navigation menu MUST be toggleable via the burger button and remain fully visible and accessible when active.
 
-#### Scenario: Toggle Mobile Menu
-- **Given** the mobile header is visible.
-- **When** the user clicks the burger button.
-- **Then** a menu overlay slides in or appears, displaying the navigation links.
+#### Scenario: Display Mobile Menu Content
+- **GIVEN** the mobile header is visible and the burger button is clicked.
+- **WHEN** the menu overlay is toggled on.
+- **THEN** it SHALL be rendered with `z-index: 50` or higher to ensure it's on top of all page sections.
+- **AND** it SHALL have `overflow-y-auto` to allow users to scroll if the content is taller than the remaining viewport.
+- **AND** the menu labels MUST remain fully legible and centered within the viewport.
 
 ### Requirement: REQ-4 - "Neon Noir Editorial" Styling
 The navigation elements MUST follow the "Neon Noir Editorial" high-contrast design, favoring atmospheric depth over hard borders.
@@ -55,4 +58,13 @@ The navigation elements MUST follow the "Neon Noir Editorial" high-contrast desi
 - **WHEN** in an active or hover state.
 - **THEN** it SHALL NOT use a divider or underline.
 - **AND** it SHALL provide a subtle `surface_bright` (#393939) background highlight or a 2px `brand-primary` (Purple) side stroke.
+
+### Requirement: REQ-5 - Smooth Scrolling and Logo Interaction
+The global navigation MUST provide a refresh-free scroll back to the home section when clicking the brand logo or internal hash links.
+
+#### Scenario: Smooth Return to Top
+- **GIVEN** any brand logo link in the layout.
+- **WHEN** the user clicks the logo.
+- **THEN** it SHALL navigate smoothly to the `#home` section.
+- **AND** it SHALL NOT trigger a full page reload.
 

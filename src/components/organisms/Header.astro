@@ -1,6 +1,4 @@
 ---
-import Navigation from '../molecules/Navigation.astro';
-import SocialLinks from '../atoms/SocialLinks.astro';
 import { Image } from 'astro:assets';
 import logo from '../../assets/images/logo.webp';
 import clsx from 'clsx';
@@ -13,87 +11,78 @@ const { class: className } = Astro.props;
 ---
 
 <header class={clsx(
-  "flex xl:hidden items-center justify-between h-20 px-6 fixed top-0 left-0 right-0 glass-surface z-50 border-b border-white/5",
+  "flex xl:hidden items-center justify-between h-20 px-6 fixed top-0 left-0 right-0 glass-surface z-40 border-b border-white/5",
   className
 )}>
-  <a href="/" class="block">
+  <a href="#home" class="block relative z-40">
     <Image 
       src={logo} 
       alt="Braulio Filoteo Logo" 
-      width={120} 
-      height={40}
-      class="w-auto h-10"
+      width={60} 
+      height={20}
+      class="w-auto h-5"
     />
   </a>
 
   <button 
     id="mobile-menu-toggle"
-    class="relative w-10 h-10 flex flex-col justify-center items-center group focus:outline-none"
+    class="relative w-10 h-10 flex flex-col justify-center items-center group focus:outline-none z-[70]"
     aria-label="Toggle Mobile Menu"
   >
     <div id="burger-top" class="w-6 h-0.5 bg-brand-text-high mb-1.5 transition-all duration-300 rounded-full"></div>
     <div id="burger-mid" class="w-6 h-0.5 bg-brand-text-high mb-1.5 transition-all duration-300 rounded-full"></div>
     <div id="burger-bot" class="w-6 h-0.5 bg-brand-text-high transition-all duration-300 rounded-full"></div>
   </button>
-
-  <div 
-    id="mobile-menu" 
-    class="fixed inset-0 top-20 bg-brand-background translate-x-full transition-all duration-500 ease-[cubic-bezier(0.85,0,0.15,1)] z-40 p-10 flex flex-col gap-12 overflow-y-auto"
-  >
-    <div class="py-6">
-      <Navigation className="gap-8" itemClassName="text-xl py-4" />
-    </div>
-    
-    <div class="mt-auto pb-12 space-y-12">
-      <div>
-        <p class="label-md text-[0.65rem] text-brand-text-muted mb-6 tracking-[0.3em]">
-          Conecta
-        </p>
-        <SocialLinks className="gap-6" iconSize="text-2xl" />
-      </div>
-
-      <div class="pt-8 border-t border-brand-outline-variant/20">
-        <p class="text-[10px] uppercase font-brand-display tracking-[0.25em] text-brand-text-muted/60">
-          Est. 2024 / Braulio Filoteo.
-        </p>
-      </div>
-    </div>
-  </div>
 </header>
 
 <script>
   const toggleBtn = document.getElementById('mobile-menu-toggle');
-  const menu = document.getElementById('mobile-menu');
+  const sidebar = document.getElementById('global-sidebar');
+  const overlay = document.getElementById('sidebar-overlay');
+  
   const burgerTop = document.getElementById('burger-top');
   const burgerMid = document.getElementById('burger-mid');
   const burgerBot = document.getElementById('burger-bot');
 
-  toggleBtn?.addEventListener('click', () => {
-    const isOpen = menu?.classList.toggle('translate-x-full');
+  const toggleMenu = () => {
+    const isOpen = sidebar?.classList.contains('translate-x-0');
     
-    // isOpen is true if translate-x-full was ADDED (menu closed)
     if (!isOpen) {
       document.body.style.overflow = 'hidden';
+      // Open
+      sidebar?.classList.remove('-translate-x-full');
+      sidebar?.classList.add('translate-x-0');
+      overlay?.classList.remove('opacity-0', 'pointer-events-none');
+      overlay?.classList.add('opacity-100', 'pointer-events-auto');
+      
       burgerTop?.classList.add('rotate-45', 'translate-y-2');
       burgerMid?.classList.add('opacity-0');
       burgerBot?.classList.add('-rotate-45', '-translate-y-2');
     } else {
       document.body.style.overflow = '';
+      // Close
+      sidebar?.classList.add('-translate-x-full');
+      sidebar?.classList.remove('translate-x-0');
+      overlay?.classList.add('opacity-0', 'pointer-events-none');
+      overlay?.classList.remove('opacity-100', 'pointer-events-auto');
+      
       burgerTop?.classList.remove('rotate-45', 'translate-y-2');
       burgerMid?.classList.remove('opacity-0');
       burgerBot?.classList.remove('-rotate-45', '-translate-y-2');
     }
-  });
+  };
+
+  toggleBtn?.addEventListener('click', toggleMenu);
+  overlay?.addEventListener('click', toggleMenu);
 
   // Close menu on navigation
-  const links = menu?.querySelectorAll('a');
+  const links = sidebar?.querySelectorAll('a');
   links?.forEach(link => {
     link.addEventListener('click', () => {
-      menu?.classList.add('translate-x-full');
-      document.body.style.overflow = '';
-      burgerTop?.classList.remove('rotate-45', 'translate-y-2');
-      burgerMid?.classList.remove('opacity-0');
-      burgerBot?.classList.remove('-rotate-45', '-translate-y-2');
+      // Only close if it's currently open (on mobile)
+      if (sidebar?.classList.contains('translate-x-0') && window.innerWidth < 1280) {
+          toggleMenu();
+      }
     });
   });
 </script>
