@@ -1,0 +1,104 @@
+---
+import clsx from 'clsx';
+---
+
+<div id="loader" class="fixed inset-0 z-[999] bg-brand-background flex flex-col items-center justify-center overflow-hidden">
+  <div class="relative flex flex-col items-center">
+    <!-- Signature Mark -->
+    <div class="mb-8 overflow-hidden">
+      <h1 id="loader-text" class="display-lg text-brand-text-high tracking-tighter opacity-0 translate-y-full">
+        BRAULIO <span class="text-brand-primary italic">FILOTEO</span>
+      </h1>
+    </div>
+
+    <!-- Progress Container -->
+    <div class="w-64 h-px bg-brand-surface-bright/20 relative overflow-hidden">
+      <div id="loader-bar" class="absolute inset-0 bg-brand-primary origin-left scale-x-0"></div>
+    </div>
+    
+    <div class="mt-4 overflow-hidden">
+      <span id="loader-status" class="label-md text-brand-text-muted opacity-0 translate-y-full block">
+        EST. 2024 / DOCUMENTING POTENTIAL
+      </span>
+    </div>
+  </div>
+
+  <!-- Background Layer for Wipe Effect -->
+  <div id="loader-wipe" class="absolute inset-0 bg-brand-primary translate-y-full"></div>
+</div>
+
+<script>
+  import { gsap } from 'gsap';
+
+  function initLoader() {
+    const loader = document.getElementById('loader');
+    if (!loader) return;
+
+    const tl = gsap.timeline();
+
+    // 1. Initial Reveal
+    tl.to(["#loader-text", "#loader-status"], {
+      autoAlpha: 1,
+      y: 0,
+      duration: 1,
+      stagger: 0.2,
+      ease: "power4.out"
+    })
+    .to("#loader-bar", {
+      scaleX: 1,
+      duration: 2.5,
+      ease: "power1.inOut"
+    }, "-=0.5");
+
+    // 2. Exit Coordination
+    window.addEventListener('load', () => {
+      // Ensure the progress bar completes if it hasn't
+      gsap.to("#loader-bar", {
+        scaleX: 1,
+        duration: 0.4,
+        ease: "none",
+        onComplete: () => {
+          // Final Exit Timeline
+          const exitTl = gsap.timeline({
+            onComplete: () => {
+              loader.style.display = 'none';
+              document.dispatchEvent(new Event('loader:complete'));
+            }
+          });
+
+          exitTl.to("#loader-text, #loader-status, #loader-bar", {
+            autoAlpha: 0,
+            y: -20,
+            duration: 0.6,
+            ease: "power2.in"
+          })
+          .to("#loader-wipe", {
+            y: "-100%",
+            duration: 1,
+            ease: "expo.inOut"
+          }, "-=0.2")
+          .to(loader, {
+            autoAlpha: 0,
+            duration: 0.5
+          }, "-=0.8");
+        }
+      });
+    });
+
+    // Fallback timeout for safety (6 seconds)
+    setTimeout(() => {
+      if (loader.style.display !== 'none') {
+        window.dispatchEvent(new Event('load'));
+      }
+    }, 6000);
+  }
+
+  // Run on page load
+  initLoader();
+</script>
+
+<style>
+  #loader {
+    pointer-events: none;
+  }
+</style>

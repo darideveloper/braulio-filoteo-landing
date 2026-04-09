@@ -157,6 +157,16 @@
   scroll-snap-align: center;
 }
 
+@utility js-reveal {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.no-js .js-reveal {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
 /* Primary Button Class */
 @layer components {
   .btn-primary {

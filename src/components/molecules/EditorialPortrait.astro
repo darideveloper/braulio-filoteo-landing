@@ -1,9 +1,13 @@
 ---
 import clsx from 'clsx';
+import { Image } from 'astro:assets';
 
 interface Props {
-  src: string;
+  src: string | any;
   alt: string;
+  width?: number;
+  height?: number;
+  inferSize?: boolean;
   floatingLabel?: string;
   verticalText?: string;
   accent?: 'primary' | 'secondary';
@@ -17,6 +21,9 @@ interface Props {
 const { 
   src, 
   alt, 
+  width,
+  height,
+  inferSize = true,
   floatingLabel, 
   verticalText,
   accent = 'primary',
@@ -50,21 +57,25 @@ const frameClasses = {
 };
 ---
 
-<div class={clsx("relative group js-portrait-container", className)}>
+<div class={clsx("relative group js-portrait-container", className)} style="will-change: transform;">
   <!-- Decorative Frame Element -->
   {shouldShowFrame && (
     <div class={clsx(
       "absolute w-full h-full transition-all duration-700 js-portrait-frame",
       frameClasses[framePosition],
       currentAccent.border
-    )}></div>
+    )} style="will-change: transform;"></div>
   )}
   
   <div class={clsx("relative overflow-hidden rounded-sm bg-brand-surface shadow-2xl", aspect)}>
-    <img 
+    <Image 
       src={src} 
       alt={alt} 
+      width={width}
+      height={height}
+      inferSize={inferSize}
       class="w-full h-full object-cover img-editorial js-portrait-img" 
+      style="will-change: transform;"
     />
     
     <!-- Image Overlay Gradient -->

@@ -8,6 +8,11 @@ import SectionHeader from '../molecules/SectionHeader.astro';
 import EditorialPortrait from '../molecules/EditorialPortrait.astro';
 import SocialCard from '../molecules/SocialCard.astro';
 
+import portrait1 from '../../assets/images/portrait-1.svg';
+import portrait2 from '../../assets/images/portrait-2.svg';
+import portrait3 from '../../assets/images/portrait-3.svg';
+import portrait4 from '../../assets/images/portrait-4.svg';
+
 interface Platform {
   platform: string;
   description: string;
@@ -18,7 +23,7 @@ interface Platform {
 }
 
 interface Portrait {
-  src: string;
+  src: any;
   alt: string;
 }
 
@@ -51,19 +56,19 @@ const platforms: Platform[] = [
 
 const portraits: Portrait[] = [
   {
-    src: "https://lh3.googleusercontent.com/aida-public/AB6AXuBDbJwdWPNPmBp2vfG639vgjxk8DZ420WbFWtHBEWVhDxeKPANExgu5aSbEYIH8lPj77zOiPuOVc6WXX_dbO3eDmH6vX9T3edVvvCFuFJxpXICT8z3-j6Nl1FuBbcouIw7b66QWSOiQQz32J81gYLmfzG6aQLunv1Vo35rB8_UPN43Xmi0Djx5gXwuj2nEFdLbLtt43tyTp-yud7xiV4HYTMDs13sjBWSWTOycY_dIbcR3bzhRL0u8hcrarceyiw2DmSgZBgOuAj3E",
+    src: portrait1,
     alt: "Braulio Editorial Portrait 1"
   },
   {
-    src: "https://lh3.googleusercontent.com/aida-public/AB6AXuB-JfvosJrjN1_vz4G4fC95wTDwyTCQKnyeUFfAWyshOv5gI_aZ4UchsQjPMUSMqbcjpGX_3q0Tra7QXNdsAVARpbJQBftSrd8l1lxFqU7x6mh6dSeSU6Sp4p2pOnf8HeGuNW7DNSjPOq7N5y_AAQzEFuJEAq7Wd7lgHsZHQ43J7ptMS5_ZQ49S1FZzKpvf6uSt108HNTHRB8BK8XE9U1VPcsg9TUN0V4-dQLGfgf2YyIpKaLEFIy_yaKpAfNRlzuV_b9msft8FzhQ",
+    src: portrait2,
     alt: "Braulio Editorial Portrait 2"
   },
   {
-    src: "https://lh3.googleusercontent.com/aida-public/AB6AXuB_rPxMNyxhEe6LC4WqUnsRfKRvlJRwtlByXkU7FQ0nfWl5w_PgAhcUKWkH2imVBxYcxUcMGVUjuhi6AVJd10e8r57lsIFwCPBv5YoQ9UFCK2_3PSnaZgkkKT7INiIjZbyeVu2e0-N1m81vAlBTZX5b3qAz7NIbWfU6fa74V07rbZFLp-c6a1Wz4iAaO09EcDgGxnzNXYFmxNJ06x75Zl4BtNP0qM63dcPp-7KQ0Hw9y7XUuwbF3M9_Ykk69u7hqYOXnAxb2l47mzg",
+    src: portrait3,
     alt: "Braulio Editorial Portrait 3"
   },
   {
-    src: "https://lh3.googleusercontent.com/aida-public/AB6AXuDZ5rw3ESxrCYuSQSTN1bUHHajGb4hUQoeL4__072bJew6bOaEsBAXNJpGmvSYupIrAwxfQNetWAYbF51tiMRPROt1DeVW5UCFjjoUAkAUnhy8aIzdyCJhytajRk-Kxn3wksUnE7kv9DVffKDde0c79fgpnrGustRkujLa15jIMiUxPhezZjIzaQfUYL-IDJK0HAcof_U6yQUI6yluhOggmBaX20uhJjHpIlblng7XNPdCf6V_w2NvxCv4Kr-xBJgOfOYEJnphNbcE",
+    src: portrait4,
     alt: "Braulio Editorial Portrait 4"
   }
 ];

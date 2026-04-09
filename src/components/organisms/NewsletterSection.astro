@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import clsx from 'clsx';
 import SideBorderQuote from '../molecules/SideBorderQuote.astro';
 import MaterialIcon from '../atoms/MaterialIcon.astro';
@@ -6,6 +7,9 @@ import BrandButton from '../atoms/BrandButton.astro';
 import SectionHeader from '../molecules/SectionHeader.astro';
 import SectionWrapper from './SectionWrapper.astro';
 import type { SectionProps } from '../../types/Section';
+
+import avatarMale from '../../assets/images/avatar-male.svg';
+import avatarFemale from '../../assets/images/avatar-female.svg';
 
 interface Props extends Partial<SectionProps> {}
 
@@ -101,10 +105,22 @@ const kineticWords = [
       <div class="flex items-center justify-center gap-3 pt-4">
         <div class="flex -space-x-2">
           <div class="w-8 h-8 rounded-full border border-brand-background bg-brand-surface-bright flex items-center justify-center overflow-hidden">
-            <img alt="Líder suscrito" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7rgGrGZGq17KMOE4FPgmwRuTFU7qj_kQSyEh26TZQWmMwZXUJx1Hzoa961VuvRjn0zPosT1p7JaJbDCb_Fr3ubESf7-FJEYPXwBzP8Jkiolevq9NbtmtH-O7DlbpPC8pVk6WM9PCowK2S-keoK5PYHgB8WBE_ygVDwtf861-ceZmcEhFeO4uDCFnP4bmulio7EM3GOyfjTdps5Dj7Xkn423G9FscBn7miKRPay0OeL2iT-D0335v3v3czyEm4wBasUKvCd-ypLPQ" />
+            <Image 
+              src={avatarMale} 
+              alt="Líder suscrito" 
+              width={32} 
+              height={32} 
+              class="w-full h-full object-cover" 
+            />
           </div>
           <div class="w-8 h-8 rounded-full border border-brand-background bg-brand-surface-bright flex items-center justify-center overflow-hidden">
-            <img alt="Líder suscrita" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxAkK0H-misVnzVAVmEpmCz5C95ZZo_1X4T9J8cksLkUbShmrN8P2XUSmVRQ3iKtrgx8Yl30fgsdIWrhdTP_hSv4S9DZsY09LYem2xVqmNZWAMk4W2yezAbwuuYSzoJMGDNgdJfzW0q9LNY0zbrcNOuCoiN3tbttVqAIQjVuTjikSLIOCG2mqt-vlSNwoyuNGI5A9uaIy7Wg4pd2I0w7MX1mNJrrev8YZBuTwGjwRR-wZtEH2ifvGPj8VOL1d841cw6UhEpKceP3k" />
+            <Image 
+              src={avatarFemale} 
+              alt="Líder suscrita" 
+              width={32} 
+              height={32} 
+              class="w-full h-full object-cover" 
+            />
           </div>
           <div class="w-8 h-8 rounded-full border border-brand-background bg-brand-primary flex items-center justify-center text-[10px] font-bold text-white">
             +2k
