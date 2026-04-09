@@ -1,0 +1,32 @@
+---
+import MaterialIcon from '../atoms/MaterialIcon.astro';
+
+interface Props {
+  title: string;
+  icon: string;
+  href?: string;
+}
+
+const { title, icon, href = "#" } = Astro.props;
+---
+
+<a 
+  href={href}
+  class="group flex items-center justify-between py-10 border-b border-brand-outline-variant/20 hover:px-4 transition-all duration-300"
+>
+  <div class="flex items-center gap-8">
+    <MaterialIcon 
+      name={icon} 
+      size="text-3xl!" 
+      class="text-brand-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300" 
+    />
+    <h4 class="font-brand-display text-3xl md:text-4xl font-bold text-brand-text-high">
+      {title}
+    </h4>
+  </div>
+  <MaterialIcon 
+    name="arrow_forward" 
+    size="text-2xl!" 
+    class="text-brand-text-muted group-hover:text-brand-primary transition-colors duration-300" 
+  />
+</a>

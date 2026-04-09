@@ -50,11 +50,11 @@ const frameClasses = {
 };
 ---
 
-<div class={clsx("relative group", className)}>
+<div class={clsx("relative group js-portrait-container", className)}>
   <!-- Decorative Frame Element -->
   {shouldShowFrame && (
     <div class={clsx(
-      "absolute w-full h-full transition-all duration-700",
+      "absolute w-full h-full transition-all duration-700 js-portrait-frame",
       frameClasses[framePosition],
       currentAccent.border
     )}></div>
@@ -64,7 +64,7 @@ const frameClasses = {
     <img 
       src={src} 
       alt={alt} 
-      class="w-full h-full object-cover img-editorial" 
+      class="w-full h-full object-cover img-editorial js-portrait-img" 
     />
     
     <!-- Image Overlay Gradient -->
@@ -72,7 +72,7 @@ const frameClasses = {
     
     <!-- Floating Label -->
     {!isMinimal && floatingLabel && (
-      <div class="absolute bottom-8 right-8 glass-surface p-4 border border-brand-surface-bright/30">
+      <div class="absolute bottom-8 right-8 glass-surface p-4 border border-brand-surface-bright/30 js-portrait-label">
         <span class={clsx(
           "font-brand-display font-black text-xl tracking-tighter uppercase",
           currentAccent.text

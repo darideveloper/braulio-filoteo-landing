@@ -1,0 +1,35 @@
+---
+import SectionWrapper from './SectionWrapper.astro';
+import CollabItem from '../molecules/CollabItem.astro';
+import SectionHeader from '../molecules/SectionHeader.astro';
+
+const collabs = [
+  { title: "Conferencias", icon: "mic" },
+  { title: "Entrevistas", icon: "chat_bubble" },
+  { title: "Podcasts", icon: "podcasts" },
+  { title: "Proyectos Narrativos", icon: "edit_note" }
+];
+---
+
+<SectionWrapper
+  id="colaboraciones"
+  variant="lowest"
+  class="border-y border-brand-outline-variant/5"
+>
+  <div class="editorial-grid gap-y-16">
+    <div class="col-span-12 lg:col-span-5">
+      <SectionHeader
+        label="Let's create together"
+        title="Colaboremos"
+        description="Buscando siempre expandir los límites de la narrativa digital a través de alianzas estratégicas y contenido de alto impacto."
+        size="editorial"
+        titleColor="text-brand-text-high"
+      />
+    </div>
+    <div class="col-span-12 lg:col-span-7 flex flex-col">
+      {collabs.map((collab) => (
+        <CollabItem {...collab} />
+      ))}
+    </div>
+  </div>
+</SectionWrapper>

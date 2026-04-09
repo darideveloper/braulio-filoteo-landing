@@ -7,7 +7,11 @@ interface Props extends SectionProps {
   class?: string;
   containerClass?: string;
   headerClass?: string;
+  headerLayout?: 'standard' | 'inline' | 'inline-start';
   showDivider?: boolean;
+  titleColor?: string;
+  labelColor?: string;
+  size?: 'standard' | 'editorial';
 }
 
 const {
@@ -19,7 +23,11 @@ const {
   class: className,
   containerClass,
   headerClass,
+  headerLayout = 'standard',
   showDivider = false,
+  titleColor,
+  labelColor,
+  size = 'standard',
 } = Astro.props;
 
 const backgroundClasses = {
@@ -41,6 +49,10 @@ const backgroundClasses = {
         label={label || ""} 
         title={title} 
         description={description}
+        layout={headerLayout}
+        titleColor={titleColor}
+        labelColor={labelColor}
+        size={size}
         class={clsx("mb-16", headerClass)}
       />
     )}

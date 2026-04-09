@@ -1,0 +1,39 @@
+---
+import clsx from 'clsx';
+import MaterialIcon from '../atoms/MaterialIcon.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  icon: string;
+  number: string;
+  variant?: 'lowest' | 'low';
+}
+
+const { title, description, icon, number, variant = 'lowest' } = Astro.props;
+
+const backgroundClasses = {
+  lowest: "bg-brand-background hover:bg-brand-surface",
+  low: "bg-brand-surface hover:bg-brand-surface-container",
+};
+---
+
+<div class={clsx(
+  "group relative aspect-square p-10 flex flex-col justify-between border border-brand-outline-variant/10 transition-colors duration-500",
+  backgroundClasses[variant]
+)}>
+  <div class="flex justify-between items-start">
+    <MaterialIcon name={icon} size="text-4xl!" class="text-brand-primary" />
+    <span class="font-brand-display text-4xl font-light text-brand-surface-bright/30 group-hover:text-brand-primary/20 transition-colors">
+      {number}
+    </span>
+  </div>
+  <div>
+    <h3 class="font-brand-display text-2xl font-bold text-brand-text-high mb-3 tracking-tight">
+      {title}
+    </h3>
+    <p class="text-brand-text-muted body-lg font-light leading-relaxed">
+      {description}
+    </p>
+  </div>
+</div>

@@ -13,10 +13,10 @@ const stats = [
 ];
 ---
 
-<section class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-brand-background">
+<section class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-brand-background js-hero-section">
   <!-- Ambient Glow Effects -->
-  <div class="absolute top-1/4 -left-20 w-96 h-96 bg-brand-primary/10 rounded-full blur-[120px]"></div>
-  <div class="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-brand-secondary/5 rounded-full blur-[150px]"></div>
+  <div class="absolute top-1/4 -left-20 w-96 h-96 bg-brand-primary/10 rounded-full blur-[120px] js-hero-glow"></div>
+  <div class="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-brand-secondary/5 rounded-full blur-[150px] js-hero-glow"></div>
 
   <div class="container mx-auto px-6 @md:px-12 relative z-10">
     <div class="grid grid-cols-1 @lg:grid-cols-12 gap-12 items-center">
@@ -24,29 +24,31 @@ const stats = [
       <div class="@lg:col-span-7 flex flex-col items-start order-2 @lg:order-1">
         <div class="flex flex-wrap gap-3 mb-8">
           {badges.map((text) => (
-            <Badge key={text}>{text}</Badge>
+            <div class="js-hero-badge">
+              <Badge key={text}>{text}</Badge>
+            </div>
           ))}
         </div>
 
-        <h2 class="font-brand-display text-brand-text-muted/60 text-sm @md:text-base font-bold tracking-[0.3em] uppercase mb-4">
+        <h2 class="font-brand-display text-brand-text-muted/60 text-sm @md:text-base font-bold tracking-[0.3em] uppercase mb-4 js-hero-subheadline">
           COLECCIONISTA DE HISTORIAS HUMANAS
         </h2>
 
-        <div class="mb-2">
+        <div class="mb-2 js-hero-eyebrow">
           <span class="font-brand-display text-xs @md:text-sm font-bold tracking-[0.5em] text-brand-text-muted italic uppercase opacity-70">
             ENDURE TO SHINE
           </span>
         </div>
 
-        <h1 class="headline-xl text-5xl @md:text-8xl text-brand-text-high mb-8 uppercase">
+        <h1 class="headline-xl text-5xl @md:text-8xl text-brand-text-high mb-8 uppercase js-hero-headline">
           BRAULIO <br/> FILOTEO
         </h1>
 
-        <p class="font-brand-body text-lg @md:text-2xl text-brand-text-muted max-w-xl leading-relaxed mb-10">
+        <p class="font-brand-body text-lg @md:text-2xl text-brand-text-muted max-w-xl leading-relaxed mb-10 js-hero-description">
           Exploro conversaciones que revelan propósito, carácter y legado.
         </p>
 
-        <div class="flex flex-col @sm:flex-row gap-5 w-full @sm:w-auto">
+        <div class="flex flex-col @sm:flex-row gap-5 w-full @sm:w-auto js-hero-cta">
           <BrandButton variant="secondary" icon="play_circle">
             Escucha GRITones
           </BrandButton>
@@ -58,18 +60,20 @@ const stats = [
         <!-- Micro-credibility Stats & Titles -->
         <div class="mt-16 flex flex-col @md:flex-row gap-8 items-start">
           {stats.map((stat) => (
-            <StatItem 
-              key={stat.label}
-              value={stat.value} 
-              label={stat.label} 
-              variant={stat.variant as any} 
-            />
+            <div class="js-hero-stat">
+              <StatItem 
+                key={stat.label}
+                value={stat.value} 
+                label={stat.label} 
+                variant={stat.variant as any} 
+              />
+            </div>
           ))}
         </div>
       </div>
 
       <!-- Hero Image Portrait Area -->
-      <div class="@lg:col-span-5 order-1 @lg:order-2">
+      <div class="@lg:col-span-5 order-1 @lg:order-2 js-hero-portrait">
         <EditorialPortrait 
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7YTGptSm0JHvGo-qJutMtIDx4Gpnm6zo2C1PXLRmBX5DztrEgA2jKVoZM1Rje0I_dJrF04UjNPefqBoe7fSCsyNHaLqxIDlyZ-fxC2PjPYNnN1oRtENymQaPoBv56aXmn8IIMeCwwhjeSKqj-xqXjrlbFfmM9fYIt8AlFFocph-v33VWk7-r23_g10yCAz82GAjxYFPvkDF9VuP8tcnzZlrcBSEzUd2l2VU5rfcUSsCJ5_BLoNWjVTLNdg8a3ufZ4ErFnwvU5gPQ"
           alt="Braulio Filoteo Editorial Portrait"
@@ -81,8 +85,148 @@ const stats = [
   </div>
 
   <!-- Scroll Indicator -->
-  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-40">
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-40 js-hero-scroll">
     <span class="font-brand-body text-[10px] tracking-[0.3em] uppercase">Scroll</span>
     <div class="w-px h-12 bg-gradient-to-b from-brand-primary to-transparent"></div>
   </div>
 </section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initHeroAnimations() {
+    const hero = document.querySelector('.js-hero-section');
+    if (!hero) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      // 1. Entrance Timeline
+      const tl = gsap.timeline({
+        defaults: { ease: "power4.out", duration: 1 }
+      });
+
+      tl.from(".js-portrait-img", { 
+        scale: 1.15, 
+        autoAlpha: 0, 
+        duration: 1.6 
+      })
+      .from(".js-portrait-frame", {
+        scale: 0.9,
+        autoAlpha: 0,
+        duration: 1.2
+      }, "-=1.2")
+      .from(".js-hero-headline", { 
+        y: 60, 
+        autoAlpha: 0, 
+        duration: 1.2 
+      }, "-=1")
+      .from(".js-hero-subheadline", { 
+        y: 20, 
+        autoAlpha: 0 
+      }, "-=1")
+      .from(".js-hero-eyebrow", { 
+        y: 10, 
+        autoAlpha: 0 
+      }, "-=0.8")
+      .from(".js-hero-badge", { 
+        x: -20, 
+        autoAlpha: 0, 
+        stagger: 0.1 
+      }, "-=0.8")
+      .from(".js-hero-description", { 
+        y: 20, 
+        autoAlpha: 0 
+      }, "-=0.6")
+      .from(".js-hero-cta", { 
+        y: 20, 
+        autoAlpha: 0 
+      }, "-=0.4")
+      .from(".js-hero-stat", { 
+        y: 20, 
+        autoAlpha: 0, 
+        stagger: 0.1 
+      }, "-=0.4")
+      .from(".js-portrait-label", {
+        scale: 0.8,
+        autoAlpha: 0
+      }, "-=0.4")
+      .from(".js-hero-scroll", {
+        y: -20,
+        autoAlpha: 0
+      }, "-=0.2");
+
+      // 2. Scroll Parallax
+      gsap.to(".js-hero-portrait", {
+        yPercent: 15,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".js-hero-section",
+          start: "top top",
+          end: "bottom top",
+          scrub: true
+        }
+      });
+
+      gsap.to(".js-hero-glow", {
+        y: (i) => i === 0 ? 100 : -100,
+        x: (i) => i === 0 ? 50 : -50,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".js-hero-section",
+          start: "top top",
+          end: "bottom top",
+          scrub: true
+        }
+      });
+
+      gsap.to(".js-hero-scroll", {
+        autoAlpha: 0,
+        scrollTrigger: {
+          trigger: ".js-hero-section",
+          start: "10% top",
+          end: "20% top",
+          scrub: true
+        }
+      });
+
+      // 3. Mouse Parallax
+      hero.addEventListener('mousemove', (e: any) => {
+        const { clientX, clientY } = e;
+        const { innerWidth, innerHeight } = window;
+        
+        const xPos = (clientX / innerWidth) - 0.5;
+        const yPos = (clientY / innerHeight) - 0.5;
+
+        gsap.to(".js-portrait-container", {
+          x: xPos * 20,
+          y: yPos * 20,
+          duration: 1,
+          ease: "power2.out"
+        });
+
+        gsap.to(".js-portrait-frame", {
+          x: xPos * -15,
+          y: yPos * -15,
+          duration: 1,
+          ease: "power2.out"
+        });
+      });
+    });
+
+    mm.add("(prefers-reduced-motion: reduce)", () => {
+      // Simplified entrance for reduced motion
+      gsap.from(".js-hero-section", {
+        autoAlpha: 0,
+        duration: 1,
+        ease: "none"
+      });
+    });
+  }
+
+  // Initialize on load
+  initHeroAnimations();
+</script>
