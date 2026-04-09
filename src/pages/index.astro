@@ -6,6 +6,7 @@ import NewsletterSection from '../components/organisms/NewsletterSection.astro'
 import Layout from '../layouts/Layout.astro'
 import CtaSection from '../components/organisms/CtaSection.astro'
 import SocialSection from '../components/organisms/SocialSection.astro'
+import YourStory from '../components/organisms/YourStory.astro'
 import EditorialHeadline from '../components/molecules/EditorialHeadline.astro'
 import BrandButton from '../components/atoms/BrandButton.astro'
 import HeroNoir from '../components/organisms/HeroNoir.astro'
@@ -52,9 +53,16 @@ const services = [
 ---
 
 <Layout>
-  <Hero />
-  <AboutSection />
-  <PodcastSection />
+  <div id="home">
+    <Hero />
+  </div>
+  <div id="about">
+    <AboutSection />
+  </div>
+  <div id="podcast">
+    <PodcastSection />
+  </div>
+
   <CtaSection
     watermark='GRIT'
     showContact={true}
@@ -87,7 +95,9 @@ const services = [
     </BrandButton>
   </CtaSection>
   <NewsletterSection />
-  <SocialSection />
+  <div id="social">
+    <SocialSection />
+  </div>
 
   <SectionWrapper variant="lowest" class="py-24 relative overflow-hidden">
     <FeatureCTA 
@@ -103,35 +113,43 @@ const services = [
     </FeatureCTA>
   </SectionWrapper>
 
-  <PlansSection />
+  <div id="plans">
+    <PlansSection />
+  </div>
 
   <!-- Gritones Studio Sections -->
-  <HeroNoir 
-    badge="Executive Vision"
-    title="Cofundador de GRITones Studio."
-    description="Un estudio creativo dedicado a ayudar a líderes y emprendedores a transformar su voz en contenido estratégico."
-    image={{
-      src: founderPortrait,
-      alt: "Cofundador Profile"
-    }}
-    statBox={{
-      value: "01/04",
-      label: "Creative Leadership"
-    }}
-  >
-    <span slot="title">
-      Cofundador de <br/>
-      <span class="text-brand-secondary">GRITones Studio.</span>
-    </span>
-  </HeroNoir>
+  <div id="studio">
+    <HeroNoir 
+      badge="Executive Vision"
+      title="Cofundador de GRITones Studio."
+      description="Un estudio creativo dedicado a ayudar a líderes y emprendedores a transformar su voz en contenido estratégico."
+      image={{
+        src: founderPortrait,
+        alt: "Cofundador Profile"
+      }}
+      statBox={{
+        value: "01/04",
+        label: "Creative Leadership"
+      }}
+    >
+      <span slot="title">
+        Cofundador de <br/>
+        <span class="text-brand-secondary">GRITones Studio.</span>
+      </span>
+    </HeroNoir>
 
-  <GritonesSection 
-    title="SERVICIOS / CORE"
-    label="Strategic Content Development"
-    subtitle="Transformamos la profundidad de tus ideas en activos digitales de alto impacto."
-    services={services}
-  />
+    <GritonesSection 
+      title="SERVICIOS / CORE"
+      label="Strategic Content Development"
+      subtitle="Transformamos la profundidad de tus ideas en activos digitales de alto impacto."
+      services={services}
+    />
+  </div>
 
-  <PillarsSection />
+  <div id="methodology">
+    <PillarsSection />
+  </div>
+  
   <CollabSection />
+  <YourStory />
 </Layout>

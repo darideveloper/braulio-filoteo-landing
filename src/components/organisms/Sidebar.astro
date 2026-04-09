@@ -1,5 +1,6 @@
 ---
 import Navigation from '../molecules/Navigation.astro';
+import SocialLinks from '../atoms/SocialLinks.astro';
 import { Image } from 'astro:assets';
 import logo from '../../assets/images/logo.webp';
 import clsx from 'clsx';
@@ -12,28 +13,43 @@ const { class: className } = Astro.props;
 ---
 
 <aside class={clsx(
-  "hidden xl:flex flex-col w-[280px] h-screen fixed left-0 top-0 bg-brand-surface z-50 p-8",
+  "hidden xl:flex flex-col w-[300px] h-screen fixed left-0 top-0 glass-surface z-50 border-r border-brand-outline-variant/10",
   className
 )}>
-  <div class="mb-12">
-    <a href="/" class="block group">
-      <Image 
-        src={logo} 
-        alt="Braulio Filoteo Logo" 
-        width={180} 
-        height={60}
-        class="w-auto h-auto transition-transform group-hover:scale-105"
-      />
-    </a>
-  </div>
+  {/* Accent Glow */}
+  <div class="absolute top-0 right-0 w-[1px] h-full bg-gradient-to-b from-transparent via-brand-primary/30 to-transparent"></div>
 
-  <div class="flex-grow">
-    <Navigation />
-  </div>
+  <div class="p-10 flex flex-col h-full relative z-10">
+    <div class="mb-16">
+      <a href="/" class="block group">
+        <Image 
+          src={logo} 
+          alt="Braulio Filoteo Logo" 
+          width={180} 
+          height={60}
+          class="w-auto h-auto transition-all duration-500 group-hover:scale-105 group-hover:brightness-110"
+        />
+      </a>
+    </div>
 
-  <div class="mt-auto">
-    <p class="text-[10px] uppercase font-brand-display tracking-[0.2em] text-brand-text-muted">
-      Est. 2024 / Braulio Filoteo.
-    </p>
+    <div class="flex-grow">
+      <Navigation />
+    </div>
+
+    <div class="mt-auto space-y-12">
+      <div>
+        <p class="label-md text-[0.65rem] text-brand-text-muted mb-6 tracking-[0.3em]">
+          Ecosistema Digital
+        </p>
+        <SocialLinks className="gap-4" iconSize="text-lg" />
+      </div>
+
+      <div class="pt-8 border-t border-brand-outline-variant/20">
+        <p class="text-[10px] uppercase font-brand-display tracking-[0.25em] text-brand-text-muted/60 leading-relaxed">
+          Braulio Filoteo. <br />
+          <span class="text-brand-primary/40">© {new Date().getFullYear()}</span>
+        </p>
+      </div>
+    </div>
   </div>
 </aside>
