@@ -21,12 +21,17 @@ Developers SHALL NOT create new HTML for elements (e.g., buttons, icons, or head
 - **AND** it SHALL NOT define its own button styling or markup in the section component.
 
 ### Requirement: Standardized Section Interface
-The `SectionWrapper` organism SHALL be updated to provide more granular control over its internal `SectionHeader`.
+The `SectionWrapper` organism SHALL be updated to provide global layout consistency for all main content sections.
 
-#### Scenario: Header Prop Passthrough
-- **GIVEN** a `SectionWrapper` with `headerLayout="inline-start"` and `titleColor="text-brand-secondary"`.
-- **THEN** it SHALL pass these props to the `SectionHeader`.
-- **AND** the section layout SHALL reflect these header-specific customizations.
+#### Scenario: Full-Screen Section Default
+- **GIVEN** a `SectionWrapper` component without a specified height.
+- **THEN** it SHALL apply `min-height: 100vh` to its base element.
+- **AND** it SHALL vertically center its content container using flexbox.
+
+#### Scenario: Opting Out of Full Height
+- **GIVEN** a `SectionWrapper` with `fullHeight={false}`.
+- **THEN** it SHALL NOT apply `min-height: 100vh`.
+- **AND** it SHALL revert to its default padding-based height.
 
 ### Requirement: Media & Filter Standardization
 Any component rendering images SHALL apply the project's standard "Editorial Treatment" to ensure a consistent visual aesthetic.

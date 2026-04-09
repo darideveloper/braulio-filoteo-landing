@@ -28,6 +28,7 @@ const {
   titleColor,
   labelColor,
   size = 'standard',
+  fullHeight = true,
 } = Astro.props;
 
 const backgroundClasses = {
@@ -40,11 +41,12 @@ const backgroundClasses = {
 <section id={id} class={clsx(
   backgroundClasses[variant],
   "py-24 px-6 @lg:px-24 relative overflow-hidden",
+  fullHeight && "min-h-screen flex items-center w-full",
   showDivider && "border-t border-brand-surface-bright/20",
   className
 )}>
   <slot name="background" />
-  <div class={clsx("container mx-auto relative z-10", containerClass)}>
+  <div class={clsx("container mx-auto relative z-10 w-full", containerClass)}>
     {(title || label || description) && (
       <SectionHeader 
         label={label || ""} 
