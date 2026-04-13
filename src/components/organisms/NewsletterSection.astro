@@ -1,149 +1,193 @@
 ---
-import { Image } from 'astro:assets';
-import clsx from 'clsx';
-import SideBorderQuote from '../molecules/SideBorderQuote.astro';
-import MaterialIcon from '../atoms/MaterialIcon.astro';
-import BrandButton from '../atoms/BrandButton.astro';
-import SectionHeader from '../molecules/SectionHeader.astro';
-import SectionWrapper from './SectionWrapper.astro';
-import type { SectionProps } from '../../types/Section';
+import { Image } from 'astro:assets'
+import clsx from 'clsx'
+import SideBorderQuote from '../molecules/SideBorderQuote.astro'
+import MaterialIcon from '../atoms/MaterialIcon.astro'
+import SectionHeader from '../molecules/SectionHeader.astro'
+import SectionWrapper from './SectionWrapper.astro'
+import type { SectionProps } from '../../types/Section'
 
-import avatarMale from '../../assets/images/avatar-male.svg';
-import avatarFemale from '../../assets/images/avatar-female.svg';
+import avatarMale from '../../assets/images/avatar-male.svg'
+import avatarFemale from '../../assets/images/avatar-female.svg'
 
 interface Props extends Partial<SectionProps> {}
 
-const { 
-  id = "newsletter", 
-  variant = "lowest",
-  class: className 
-} = Astro.props;
+const { id = 'newsletter', variant = 'lowest', class: className } = Astro.props
 
 const features = [
-  { icon: "mic_external_on", label: "Audios Inéditos" },
-  { icon: "history_edu", label: "Ensayos Semanales" }
-];
+  { icon: 'mic_external_on', label: 'Audios Inéditos' },
+  { icon: 'history_edu', label: 'Ensayos Semanales' },
+]
 
 const kineticWords = [
-  { text: "DISCIPLINA", variant: "stroke" },
-  { text: "CARÁCTER", variant: "filled" },
-  { text: "LIDERAZGO", variant: "stroke" },
-  { text: "GRIT", variant: "filled" }
-];
+  { text: 'DISCIPLINA', variant: 'stroke' },
+  { text: 'CARÁCTER', variant: 'filled' },
+  { text: 'LIDERAZGO', variant: 'stroke' },
+  { text: 'GRIT', variant: 'filled' },
+]
 ---
 
-<SectionWrapper 
-  id={id} 
+<SectionWrapper
+  id={id}
   variant={variant}
-  class={clsx("bg-noir-gradient", className)}
-  containerClass="max-w-4xl w-full text-center space-y-12"
+  class={clsx('bg-noir-gradient', className)}
+  containerClass='max-w-4xl w-full text-center space-y-12'
 >
   <!-- Atmospheric Glow Elements -->
-  <div class="absolute top-1/4 -left-24 w-96 h-96 bg-brand-primary/10 rounded-full blur-[120px] pointer-events-none"></div>
-  <div class="absolute bottom-1/4 -right-24 w-96 h-96 bg-brand-secondary/5 rounded-full blur-[120px] pointer-events-none"></div>
-  
-  <!-- Editorial Overline -->
-  <SectionHeader 
-    label="Membresía Privada"
-    align="center"
-    size="editorial"
-    titleColor="text-brand-secondary"
+  <div
+    class='absolute top-1/4 -left-24 w-96 h-96 bg-brand-primary/10 rounded-full blur-[120px] pointer-events-none'
   >
-    <Fragment slot="title">
-      GRIT <span class="text-brand-text-high">en la vida cotidiana</span>
+  </div>
+  <div
+    class='absolute bottom-1/4 -right-24 w-96 h-96 bg-brand-secondary/5 rounded-full blur-[120px] pointer-events-none'
+  >
+  </div>
+
+  <!-- Editorial Overline -->
+  <SectionHeader
+    label='Membresía Privada'
+    align='center'
+    size='editorial'
+    titleColor='text-brand-secondary'
+  >
+    <Fragment slot='title'>
+      GRIT <span class='text-brand-text-high'>en la vida cotidiana</span>
     </Fragment>
   </SectionHeader>
-  
+
   <!-- Descriptive Content Cluster -->
-  <div class="grid grid-cols-1 @md:grid-cols-12 gap-8 items-start">
-    <div class="@md:col-span-12 space-y-6">
-      <SideBorderQuote class="text-xl @md:text-2xl font-light text-brand-text-high text-left max-w-2xl mx-auto">
-        "Reflexiones en audio y texto sobre liderazgo, decisiones difíciles y la realidad detrás del emprendimiento."
+  <div class='grid grid-cols-1 @md:grid-cols-12 gap-8 items-start'>
+    <div class='@md:col-span-12 space-y-6'>
+      <SideBorderQuote
+        class='text-xl @md:text-2xl font-light text-brand-text-high text-left max-w-2xl mx-auto'
+      >
+        "Reflexiones en audio y texto sobre liderazgo, decisiones difíciles y la
+        realidad detrás del emprendimiento."
       </SideBorderQuote>
-      
-      <div class="max-w-xl mx-auto space-y-4">
-        <p class="text-brand-text-muted font-brand-body leading-relaxed text-lg">
-          Lo que no cuento en el podcast, lo envío por aquí. Reflexiones crudas sobre el camino del líder, enviadas en formato de audio corto y texto para leer en 3 minutos.
+
+      <div class='max-w-xl mx-auto space-y-4'>
+        <p
+          class='text-brand-text-muted font-brand-body leading-relaxed text-lg'
+        >
+          Lo que no cuento en el podcast, lo envío por aquí. Reflexiones crudas
+          sobre el camino del líder, enviadas en formato de audio corto y texto
+          para leer en 3 minutos.
         </p>
-        <div class="flex flex-wrap justify-center gap-4 py-4">
-          {features.map((feature) => (
-            <div key={feature.label} class="flex items-center gap-2 text-brand-text-high text-sm font-brand-body uppercase tracking-widest font-bold">
-              <MaterialIcon name={feature.icon} class="text-brand-secondary text-lg" />
-              {feature.label}
-            </div>
-          ))}
+        <div class='flex flex-wrap justify-center gap-4 py-4'>
+          {
+            features.map((feature) => (
+              <div
+                key={feature.label}
+                class='flex items-center gap-2 text-brand-text-high text-sm font-brand-body uppercase tracking-widest font-bold'
+              >
+                <MaterialIcon
+                  name={feature.icon}
+                  class='text-brand-secondary text-lg'
+                />
+                {feature.label}
+              </div>
+            ))
+          }
         </div>
       </div>
     </div>
   </div>
-  
-  <!-- Form Section -->
-  <div class="max-w-2xl mx-auto w-full pt-8">
-    <div class="bg-brand-surface p-2 rounded-lg border border-brand-surface-bright/10 shadow-2xl">
-      <form class="flex flex-col @xl:flex-row gap-2">
-        <div class="flex-grow relative group">
-          <input 
-            class="w-full bg-brand-surface-bright/50 border-none text-brand-text-high placeholder:text-brand-text-muted/40 px-6 py-4 focus:ring-0 focus:border-none font-brand-body text-lg transition-all outline-none" 
-            placeholder="[ Escribe tu mejor email... ]" 
-            required 
-            type="email"
-          />
-          <div class="absolute bottom-0 left-0 h-[2px] w-0 bg-brand-primary group-focus-within:w-full transition-all duration-500"></div>
-        </div>
-        <BrandButton variant="secondary" class="!px-10 !py-4 font-black tracking-tighter !text-lg !rounded-none">
-          [ QUIERO UNIRME ]
-        </BrandButton>
-      </form>
+
+  <!-- Substack Embed Section -->
+  <div class='max-w-2xl mx-auto w-full pt-8'>
+    <div
+      class='bg-brand-surface min-h-[320px] rounded-lg overflow-hidden border border-brand-surface-bright/10 shadow-2xl'
+    >
+      <iframe
+        src='https://brauliofiloteo.substack.com/embed'
+        width='100%'
+        height='400'
+        frameborder='0'
+        scrolling='no'
+        title='Suscripción a la Membresía Privada en Substack'
+        style='filter: invert(1) hue-rotate(180deg); background-color: #1a1a1a;'
+      ></iframe>
     </div>
-    
+
+    <!-- Adblocker Fallback -->
+    <p class='text-xs text-brand-text-muted mt-4 font-brand-body'>
+      ¿No ves el formulario? <a
+        href='https://brauliofiloteo.substack.com'
+        target='_blank'
+        rel='noopener noreferrer'
+        class='underline text-brand-secondary hover:text-brand-primary transition-colors'
+        >Suscríbete aquí</a
+      >.
+    </p>
+
     <!-- Value Proposition & Social Proof -->
-    <div class="mt-8 space-y-4">
-      <p class="text-brand-text-muted font-brand-body font-bold text-xs uppercase tracking-[0.15em] leading-relaxed max-w-lg mx-auto">
-        Una dosis semanal de carácter directa a tu bandeja de entrada. Menos ruido, más profundidad. Incluye acceso a audios exclusivos no publicados en el podcast.
+    <div class='mt-8 space-y-4'>
+      <p
+        class='text-brand-text-muted font-brand-body font-bold text-xs uppercase tracking-[0.15em] leading-relaxed max-w-lg mx-auto'
+      >
+        Una dosis semanal de carácter directa a tu bandeja de entrada. Menos
+        ruido, más profundidad. Incluye acceso a audios exclusivos no publicados
+        en el podcast.
       </p>
-      
-      <div class="flex items-center justify-center gap-3 pt-4">
-        <div class="flex -space-x-2">
-          <div class="w-8 h-8 rounded-full border border-brand-background bg-brand-surface-bright flex items-center justify-center overflow-hidden">
-            <Image 
-              src={avatarMale} 
-              alt="Líder suscrito" 
-              width={32} 
-              height={32} 
-              class="w-full h-full object-cover" 
+
+      <div class='flex items-center justify-center gap-3 pt-4'>
+        <div class='flex -space-x-2'>
+          <div
+            class='w-8 h-8 rounded-full border border-brand-background bg-brand-surface-bright flex items-center justify-center overflow-hidden'
+          >
+            <Image
+              src={avatarMale}
+              alt='Líder suscrito'
+              width={32}
+              height={32}
+              class='w-full h-full object-cover'
             />
           </div>
-          <div class="w-8 h-8 rounded-full border border-brand-background bg-brand-surface-bright flex items-center justify-center overflow-hidden">
-            <Image 
-              src={avatarFemale} 
-              alt="Líder suscrita" 
-              width={32} 
-              height={32} 
-              class="w-full h-full object-cover" 
+          <div
+            class='w-8 h-8 rounded-full border border-brand-background bg-brand-surface-bright flex items-center justify-center overflow-hidden'
+          >
+            <Image
+              src={avatarFemale}
+              alt='Líder suscrita'
+              width={32}
+              height={32}
+              class='w-full h-full object-cover'
             />
           </div>
-          <div class="w-8 h-8 rounded-full border border-brand-background bg-brand-primary flex items-center justify-center text-[10px] font-bold text-white">
+          <div
+            class='w-8 h-8 rounded-full border border-brand-background bg-brand-primary flex items-center justify-center text-[10px] font-bold text-white'
+          >
             +2k
           </div>
         </div>
-        <p class="text-brand-text-muted text-xs italic font-brand-body">
-          Únete a +2,500 líderes que ya reciben GRIT. Sin spam. Solo historias que construyen carácter.
+        <p class='text-brand-text-muted text-xs italic font-brand-body'>
+          Únete a +2,500 líderes que ya reciben GRIT. Sin spam. Solo historias
+          que construyen carácter.
         </p>
       </div>
     </div>
   </div>
-  
+
   <!-- Kinetic Scroller Decoration (Subtle Visual Interest) -->
-  <div class="absolute bottom-0 left-0 w-full overflow-hidden opacity-5 pointer-events-none">
-    <div class="flex gap-4 p-8 whitespace-nowrap">
-      {kineticWords.map((word) => (
-        <span key={word.text} class={clsx(
-          "text-9xl font-black font-brand-display uppercase",
-          word.variant === 'stroke' ? "text-stroke-brand" : "text-brand-text-high"
-        )}>
-          {word.text}
-        </span>
-      ))}
+  <div
+    class='absolute bottom-0 left-0 w-full overflow-hidden opacity-5 pointer-events-none'
+  >
+    <div class='flex gap-4 p-8 whitespace-nowrap'>
+      {
+        kineticWords.map((word) => (
+          <span
+            key={word.text}
+            class={clsx(
+              'text-9xl font-black font-brand-display uppercase',
+              word.variant === 'stroke'
+                ? 'text-stroke-brand'
+                : 'text-brand-text-high',
+            )}
+          >
+            {word.text}
+          </span>
+        ))
+      }
     </div>
   </div>
 </SectionWrapper>

@@ -1,24 +1,27 @@
 ---
 import '../styles/global.css'
-import Sidebar from '../components/organisms/Sidebar.astro';
-import Header from '../components/organisms/Header.astro';
-import Footer from '../components/organisms/Footer.astro';
-import Loader from '../components/organisms/Loader.astro';
+import Sidebar from '../components/organisms/Sidebar.astro'
+import Header from '../components/organisms/Header.astro'
+import Footer from '../components/organisms/Footer.astro'
+import Loader from '../components/organisms/Loader.astro'
 
 interface Props {
-  title?: string;
+  title?: string
 }
 
-const { title = "Braulio Filoteo / Creative Portfolio" } = Astro.props;
+const { title = 'Braulio Filoteo / Creative Portfolio' } = Astro.props
 ---
 
 <!doctype html>
-<html lang='en' class="bg-brand-background no-js">
+<html
+  lang='en'
+  class='bg-brand-background no-js'
+>
   <head>
     <meta charset='UTF-8' />
     <script is:inline>
-      document.documentElement.classList.remove('no-js');
-      document.documentElement.classList.add('js');
+      document.documentElement.classList.remove('no-js')
+      document.documentElement.classList.add('js')
     </script>
     <meta
       name='viewport'
@@ -39,26 +42,39 @@ const { title = "Braulio Filoteo / Creative Portfolio" } = Astro.props;
     />
     <title>{title}</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,300..900;1,300..900&family=Inter:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link
+      rel='preconnect'
+      href='https://fonts.googleapis.com'
+    />
+    <link
+      rel='preconnect'
+      href='https://fonts.gstatic.com'
+      crossorigin
+    />
+    <link
+      href='https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,300..900;1,300..900&family=Inter:ital,wght@0,100..900;1,100..900&display=swap'
+      rel='stylesheet'
+    />
+    <link
+      href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap'
+      rel='stylesheet'
+    />
 
     <link
       rel='sitemap'
       href='/sitemap-index.xml'
     />
     <script>
-      import '../scripts/gsap-init';
+      import '../scripts/gsap-init'
     </script>
   </head>
-  <body class="bg-brand-background text-brand-text-high antialiased">
+  <body class='bg-brand-background text-brand-text-high antialiased'>
     <Loader />
-    <div class="min-h-screen flex flex-col">
+    <div class='min-h-screen flex flex-col'>
       <Sidebar />
       <Header />
-      
-      <main class="@container min-h-screen xl:ml-[250px]">
+
+      <main class='@container min-h-screen xl:ml-[250px]'>
         <slot />
         <Footer />
       </main>
