@@ -1,70 +1,83 @@
 ---
-import clsx from 'clsx';
-import type { SectionProps } from '../../types/Section';
-import SectionWrapper from './SectionWrapper.astro';
-import EditorialPortrait from '../molecules/EditorialPortrait.astro';
+import clsx from 'clsx'
+import type { SectionProps } from '../../types/Section'
+import SectionWrapper from './SectionWrapper.astro'
+import EditorialPortrait from '../molecules/EditorialPortrait.astro'
 
 interface Props extends Partial<SectionProps> {
-  badge: string;
-  title: string;
-  description: string;
+  badge: string
+  title: string
+  description: string
   image: {
-    src: string;
-    alt: string;
-  };
+    src: string
+    alt: string
+  }
   statBox?: {
-    value: string;
-    label: string;
-  };
-  class?: string;
+    value: string
+    label: string
+  }
+  class?: string
 }
 
-const { 
-  id,
-  badge, 
-  title, 
-  description, 
-  image, 
+const {
+  id = 'studio',
+  badge,
+  title,
+  description,
+  image,
   statBox,
-  class: className 
-} = Astro.props;
+  class: className,
+} = Astro.props
 
-const hasTitleSlot = Astro.slots.has('title');
+const hasTitleSlot = Astro.slots.has('title')
 ---
 
-<SectionWrapper id={id} variant="lowest" class={clsx("pt-32 pb-24", className)} containerClass="grid grid-cols-1 @3xl:editorial-grid gap-8 @3xl:gap-12 items-end px-6 @3xl:px-0">
-  <div class="col-span-1 @3xl:col-span-7">
-    <span class="text-brand-primary-light tracking-[0.2em] font-bold text-[10px] uppercase mb-4 block">
+<SectionWrapper
+  id={id}
+  variant='lowest'
+  class={clsx('pt-32 pb-24', className)}
+  containerClass='grid grid-cols-1 @3xl:editorial-grid gap-8 @3xl:gap-12 items-end px-6 @3xl:px-0'
+>
+  <div class='col-span-1 @3xl:col-span-7'>
+    <span
+      class='text-brand-primary-light tracking-[0.2em] font-bold text-[10px] uppercase mb-4 block'
+    >
       {badge}
     </span>
 
-    <h2 class="text-4xl @3xl:text-8xl font-black font-brand-display tracking-tightest leading-tightest text-brand-text-high mb-8 normal-case">
-      {hasTitleSlot ? <slot name="title" /> : title}
+    <h2
+      class='text-4xl @3xl:text-8xl font-black font-brand-display tracking-tightest leading-tightest text-brand-text-high mb-8 normal-case'
+    >
+      {hasTitleSlot ? <slot name='title' /> : title}
     </h2>
 
-    <p class="text-lg @3xl:text-2xl text-brand-text-muted max-w-2xl font-light leading-relaxed">
+    <p
+      class='text-lg @3xl:text-2xl text-brand-text-muted max-w-2xl font-light leading-relaxed'
+    >
       {description}
     </p>
   </div>
 
-  <div class="col-span-1 @3xl:col-span-5 mt-12 @3xl:mt-0">
-    <EditorialPortrait 
+  <div class='col-span-1 @3xl:col-span-5 mt-12 @3xl:mt-0'>
+    <EditorialPortrait
       src={image.src}
       alt={image.alt}
-      framePosition="top-left"
-      accent="primary"
-      class="max-w-[calc(100%-2rem)] mx-auto @3xl:max-w-none"
+      framePosition='top-left'
+      accent='primary'
+      class='max-w-[calc(100%-2rem)] mx-auto @3xl:max-w-none'
     >
-      {statBox && (
-        <div slot="statCard">
-          <div class="text-brand-secondary font-brand-display font-black text-4xl leading-none italic">
-            {statBox.value}
+      {
+        statBox && (
+          <div slot='statCard'>
+            <div class='text-brand-secondary font-brand-display font-black text-4xl leading-none italic'>
+              {statBox.value}
+            </div>
+            <div class='text-[10px] tracking-widest text-brand-text-muted uppercase mt-1'>
+              {statBox.label}
+            </div>
           </div>
-          <div class="text-[10px] tracking-widest text-brand-text-muted uppercase mt-1">
-            {statBox.label}
-          </div>
-        </div>
-      )}
+        )
+      }
     </EditorialPortrait>
   </div>
 </SectionWrapper>

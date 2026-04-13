@@ -1,142 +1,185 @@
 ---
-import clsx from 'clsx';
-import Badge from '../atoms/Badge.astro';
-import MaterialIcon from '../atoms/MaterialIcon.astro';
-import BrandButton from '../atoms/BrandButton.astro';
+import clsx from 'clsx'
+import Badge from '../atoms/Badge.astro'
+import MaterialIcon from '../atoms/MaterialIcon.astro'
+import BrandButton from '../atoms/BrandButton.astro'
 
 interface Props {
-  title: string;
-  subtitle: string;
-  icon: string;
-  badge: string;
-  badgeVariant?: 'filled' | 'outline' | 'premium';
-  features: string[];
-  result?: { label: string; value: string };
-  cta: { label: string; href: string };
-  variant?: 'entry' | 'premium';
-  class?: string;
+  id: string
+  title: string
+  subtitle: string
+  icon: string
+  badge: string
+  badgeVariant?: 'filled' | 'outline' | 'premium'
+  features: string[]
+  result?: { label: string; value: string }
+  cta: { label: string; href: string }
+  variant?: 'entry' | 'premium'
+  class?: string
 }
 
-const { 
-  title, 
-  subtitle, 
-  icon, 
-  badge, 
+const {
+  id,
+  title,
+  subtitle,
+  icon,
+  badge,
   badgeVariant,
-  features, 
-  result, 
-  cta, 
-  variant = 'entry', 
-  class: className 
-} = Astro.props;
+  features,
+  result,
+  cta,
+  variant = 'entry',
+  class: className,
+} = Astro.props
 
-const isPremium = variant === 'premium';
+const isPremium = variant === 'premium'
 ---
 
-<div class={clsx(
-  "h-full p-8 @md:p-12 rounded-xl flex flex-col justify-between overflow-hidden relative group",
-  !isPremium && "bg-brand-surface-low border-t border-white/5",
-  isPremium && "bg-brand-surface-bright shadow-neon-purple",
-  className
-)}>
-  {isPremium && (
-    <div class="absolute inset-0 bg-gradient-to-br from-brand-primary/10 to-transparent pointer-events-none"></div>
+<div
+  class={clsx(
+    'h-full p-8 @md:p-12 rounded-xl flex flex-col justify-between overflow-hidden relative group',
+    !isPremium && 'bg-brand-surface-low border-t border-white/5',
+    isPremium && 'bg-brand-surface-bright shadow-neon-purple',
+    className,
   )}
+  id={id}
+>
+  {
+    isPremium && (
+      <div class='absolute inset-0 bg-gradient-to-br from-brand-primary/10 to-transparent pointer-events-none' />
+    )
+  }
 
-  <div class="relative z-10">
-    <div class="flex justify-between items-start mb-12">
-      <MaterialIcon 
-        name={icon} 
-        size="text-4xl" 
+  <div class='relative z-10'>
+    <div class='flex justify-between items-start mb-12'>
+      <MaterialIcon
+        name={icon}
+        size='text-4xl'
         filled={isPremium}
-        class={isPremium ? "text-brand-primary" : "text-brand-secondary"} 
+        class={isPremium ? 'text-brand-primary' : 'text-brand-secondary'}
       />
       <Badge variant={badgeVariant || (isPremium ? 'premium' : 'outline')}>
         {badge}
       </Badge>
     </div>
 
-    <div class={clsx("grid gap-12", isPremium && "@2xl:grid-cols-2")}>
+    <div class={clsx('grid gap-12', isPremium && '@2xl:grid-cols-2')}>
       <div>
-        <h3 class={clsx(
-          "font-brand-display font-black uppercase tracking-tight mb-4 leading-none",
-          !isPremium && "text-4xl text-brand-text-high",
-          isPremium && "text-5xl text-brand-text-high tracking-tighter"
-        )}>
+        <h3
+          class={clsx(
+            'font-brand-display font-black uppercase tracking-tight mb-4 leading-none',
+            !isPremium && 'text-4xl text-brand-text-high',
+            isPremium && 'text-5xl text-brand-text-high tracking-tighter',
+          )}
+        >
           {title}
         </h3>
-        <p class={clsx(
-          "font-medium",
-          !isPremium && "text-brand-text-muted text-lg",
-          isPremium && "text-brand-text-muted text-xl leading-relaxed"
-        )}>
+        <p
+          class={clsx(
+            'font-medium',
+            !isPremium && 'text-brand-text-muted text-lg',
+            isPremium && 'text-brand-text-muted text-xl leading-relaxed',
+          )}
+        >
           {subtitle}
         </p>
       </div>
 
-      <div class="space-y-6">
-        {isPremium && (
-          <p class="label-sm text-brand-primary-light/60">Mentoría directa para:</p>
-        )}
-        <ul class="space-y-4">
-          {features.map((feature) => (
-            <li class="flex items-center gap-3 group/item">
-              {isPremium ? (
-                <div class="w-8 h-[1px] bg-brand-primary group-hover/item:w-12 transition-all"></div>
-              ) : (
-                <MaterialIcon name="check_circle" size="text-sm" filled class="text-brand-secondary" />
-              )}
-              <span class={clsx(
-                "uppercase tracking-wider font-bold text-brand-text-high",
-                !isPremium && "text-sm",
-                isPremium && "text-sm tracking-[0.1em]"
-              )}>
-                {feature}
-              </span>
-            </li>
-          ))}
+      <div class='space-y-6'>
+        {
+          isPremium && (
+            <p class='label-sm text-brand-primary-light/60'>
+              Mentoría directa para:
+            </p>
+          )
+        }
+        <ul class='space-y-4'>
+          {
+            features.map((feature) => (
+              <li class='flex items-center gap-3 group/item'>
+                {isPremium ? (
+                  <div class='w-8 h-[1px] bg-brand-primary group-hover/item:w-12 transition-all' />
+                ) : (
+                  <MaterialIcon
+                    name='check_circle'
+                    size='text-sm'
+                    filled
+                    class='text-brand-secondary'
+                  />
+                )}
+                <span
+                  class={clsx(
+                    'uppercase tracking-wider font-bold text-brand-text-high',
+                    !isPremium && 'text-sm',
+                    isPremium && 'text-sm tracking-[0.1em]',
+                  )}
+                >
+                  {feature}
+                </span>
+              </li>
+            ))
+          }
         </ul>
       </div>
     </div>
 
-    {result && (
-      <div class={clsx(
-        "p-6 rounded-lg mt-8",
-        !isPremium && "bg-brand-secondary/10",
-        isPremium && "bg-brand-primary/10"
-      )}>
-        <p class={clsx(
-          "text-[0.75rem] uppercase tracking-widest font-bold mb-1",
-          !isPremium && "text-brand-secondary",
-          isPremium && "text-brand-primary-light"
-        )}>
-          {result.label}
-        </p>
-        <p class="text-brand-text-high font-brand-display font-bold">
-          {result.value}
-        </p>
-      </div>
-    )}
+    {
+      result && (
+        <div
+          class={clsx(
+            'p-6 rounded-lg mt-8',
+            !isPremium && 'bg-brand-secondary/10',
+            isPremium && 'bg-brand-primary/10',
+          )}
+        >
+          <p
+            class={clsx(
+              'text-[0.75rem] uppercase tracking-widest font-bold mb-1',
+              !isPremium && 'text-brand-secondary',
+              isPremium && 'text-brand-primary-light',
+            )}
+          >
+            {result.label}
+          </p>
+          <p class='text-brand-text-high font-brand-display font-bold'>
+            {result.value}
+          </p>
+        </div>
+      )
+    }
   </div>
 
-  <div class={clsx("mt-16", isPremium && "flex flex-col @md:flex-row items-center gap-8")}>
-    <BrandButton 
-      href={cta.href} 
+  <div
+    class={clsx(
+      'mt-16',
+      isPremium && 'flex flex-col @md:flex-row items-center gap-8',
+    )}
+  >
+    <BrandButton
+      href={cta.href}
       variant={isPremium ? 'primary-gradient' : 'outline-secondary'}
-      class={!isPremium ? "w-full" : "w-full @md:w-auto px-12 py-5"}
+      class={!isPremium ? 'w-full' : 'w-full @md:w-auto px-12 py-5'}
     >
       {cta.label}
     </BrandButton>
-    
-    {isPremium && (
-      <p class="text-brand-text-muted text-[0.7rem] uppercase tracking-widest italic opacity-60">
-        * Cupos limitados por trimestre
-      </p>
-    )}
+
+    {
+      isPremium && (
+        <p class='text-brand-text-muted text-[0.7rem] uppercase tracking-widest italic opacity-60'>
+          * Cupos limitados por trimestre
+        </p>
+      )
+    }
   </div>
 
   {/* Background Decoration */}
-  <div class="absolute -bottom-10 -right-10 opacity-10 group-hover:opacity-20 transition-opacity pointer-events-none">
-    <MaterialIcon name={icon} size="text-[12rem]" class="text-white" />
+  <div
+    class='absolute -bottom-10 -right-10 opacity-10 group-hover:opacity-20 transition-opacity pointer-events-none'
+  >
+    <MaterialIcon
+      name={icon}
+      size='text-[12rem]'
+      class='text-white'
+    />
   </div>
 </div>

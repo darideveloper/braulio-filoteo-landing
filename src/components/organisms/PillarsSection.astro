@@ -5,7 +5,7 @@ import PillarCard from '../molecules/PillarCard.astro';
 
 interface Props extends Partial<SectionProps> {}
 
-const { id } = Astro.props;
+const { id = "methodology" } = Astro.props;
 
 const pillars = [
   {

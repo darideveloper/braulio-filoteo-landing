@@ -1,16 +1,16 @@
 ---
-import clsx from 'clsx';
-import type { SectionProps } from '../../types/Section';
-import SectionWrapper from './SectionWrapper.astro';
-import SectionHeader from '../molecules/SectionHeader.astro';
-import PlansCard from '../molecules/PlansCard.astro';
-import MaterialIcon from '../atoms/MaterialIcon.astro';
+import clsx from 'clsx'
+import type { SectionProps } from '../../types/Section'
+import SectionWrapper from './SectionWrapper.astro'
+import SectionHeader from '../molecules/SectionHeader.astro'
+import PlansCard from '../molecules/PlansCard.astro'
+import MaterialIcon from '../atoms/MaterialIcon.astro'
 
 interface Props extends Partial<SectionProps> {
-  class?: string;
+  class?: string
 }
 
-const { id, class: className } = Astro.props;
+const { id = 'plans', class: className } = Astro.props
 
 const plans = [
   {
@@ -22,17 +22,18 @@ const plans = [
     features: [
       'Arquitectura de marca personal',
       'Naming & Portada',
-      'Tráiler & Publicación'
+      'Tráiler & Publicación',
     ],
     result: {
       label: 'Resultado directo',
-      value: 'Sales con tu podcast publicado.'
+      value: 'Sales con tu podcast publicado.',
     },
     cta: {
       label: 'Ver próxima inmersión',
-      href: '#'
+      href: '#',
     },
-    colSpan: '@4xl:col-span-5'
+    colSpan: '@4xl:col-span-5',
+    id: 'podcast-express',
   },
   {
     variant: 'premium',
@@ -44,55 +45,77 @@ const plans = [
       'Posicionamiento',
       'Storytelling',
       'Crecimiento de audiencia',
-      'Autoridad digital'
+      'Autoridad digital',
     ],
     cta: {
       label: 'Aplicar al programa',
-      href: '#'
+      href: '#',
     },
-    colSpan: '@4xl:col-span-7'
-  }
-];
+    colSpan: '@4xl:col-span-7',
+    id: 'podcast-pro',
+  },
+]
 ---
 
-<SectionWrapper id={id} class={clsx("py-24", className)}>
-  <div class="relative">
-    <SectionHeader 
-      label="Oferta de valor"
-      title="Ecosistema de Planes"
-      description="Dos caminos para convertir tu voz en una plataforma real."
+<SectionWrapper
+  id={id}
+  class={clsx('py-24', className)}
+>
+  <div class='relative'>
+    <SectionHeader
+      label='Oferta de valor'
+      title='Ecosistema de Planes'
+      description='Dos caminos para convertir tu voz en una plataforma real.'
       withBorder
-      class="mb-24"
+      class='mb-24'
     />
-    
+
     {/* Decorative Glow */}
-    <div class="absolute -top-20 -left-20 w-96 h-96 bg-brand-primary/10 blur-[120px] rounded-full -z-10"></div>
+    <div
+      class='absolute -top-20 -left-20 w-96 h-96 bg-brand-primary/10 blur-[120px] rounded-full -z-10'
+    >
+    </div>
   </div>
 
-  <div class="grid grid-cols-1 @4xl:grid-cols-12 gap-8">
-    {plans.map((plan) => (
-      <div class={plan.colSpan}>
-        <PlansCard {...plan} />
-      </div>
-    ))}
+  <div class='grid grid-cols-1 @4xl:grid-cols-12 gap-8'>
+    {
+      plans.map((plan) => (
+        <div class={plan.colSpan}>
+          <PlansCard {...plan} />
+        </div>
+      ))
+    }
   </div>
 
   {/* Section Outro */}
-  <footer class="mt-32 border-t border-brand-outline-variant/10 pt-12 flex flex-col @md:flex-row items-end justify-between gap-8">
-    <div class="max-w-md">
-      <h3 class="font-brand-display text-2xl font-bold text-brand-text-high mb-4 uppercase italic">
+  <footer
+    class='mt-32 border-t border-brand-outline-variant/10 pt-12 flex flex-col @md:flex-row items-end justify-between gap-8'
+  >
+    <div class='max-w-md'>
+      <h3
+        class='font-brand-display text-2xl font-bold text-brand-text-high mb-4 uppercase italic'
+      >
         ¿No sabes cuál elegir?
       </h3>
-      <p class="text-brand-text-muted text-sm leading-relaxed">
-        Agenda una llamada de claridad de 15 minutos para analizar tu situación actual y determinar el mejor punto de partida para tu proyecto.
+      <p class='text-brand-text-muted text-sm leading-relaxed'>
+        Agenda una llamada de claridad de 15 minutos para analizar tu situación
+        actual y determinar el mejor punto de partida para tu proyecto.
       </p>
     </div>
-    
-    <a class="inline-flex items-center gap-4 group" href="#">
-      <span class="font-brand-display font-black uppercase text-brand-secondary tracking-tighter text-xl">
+
+    <a
+      class='inline-flex items-center gap-4 group'
+      href='#'
+    >
+      <span
+        class='font-brand-display font-black uppercase text-brand-secondary tracking-tighter text-xl'
+      >
         Agendar Llamada
       </span>
-      <MaterialIcon name="arrow_forward" class="text-brand-secondary group-hover:translate-x-2 transition-transform" />
+      <MaterialIcon
+        name='arrow_forward'
+        class='text-brand-secondary group-hover:translate-x-2 transition-transform'
+      />
     </a>
   </footer>
 </SectionWrapper>

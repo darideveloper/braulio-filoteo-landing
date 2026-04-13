@@ -23,7 +23,7 @@ interface Props extends Partial<SectionProps> {
   class?: string;
 }
 
-const { id, title, label, subtitle, services, class: className } = Astro.props;
+const { id = 'services', title, label, subtitle, services, class: className } = Astro.props;
 ---
 
 <SectionWrapper id={id} class={clsx("py-24", className)}>

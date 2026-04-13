@@ -6,7 +6,7 @@ import SectionHeader from '../molecules/SectionHeader.astro';
 
 interface Props extends Partial<SectionProps> {}
 
-const { id } = Astro.props;
+const { id = "colaboraciones" } = Astro.props;
 
 const collabs = [
   { title: "Conferencias", icon: "mic" },
