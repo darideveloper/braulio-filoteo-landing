@@ -99,65 +99,70 @@ const stats = [
 
 <script>
   import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-  gsap.registerPlugin(ScrollTrigger);
+  import { animationManager } from '../../scripts/animation-manager';
 
   function initHeroAnimations() {
     const hero = document.querySelector('.js-hero-section');
     if (!hero) return;
 
+    // 1. Entrance Timeline (Paused by default, managed by orchestrator)
+    const tl = gsap.timeline({
+      paused: true,
+      defaults: { force3D: true }
+    });
+
+    // Unhide elements for GSAP to capture the correct 'to' state
+    gsap.set(".js-reveal", { autoAlpha: 1 });
+
+    tl.from(".js-hero-portrait", {
+      scale: 1.15,
+      autoAlpha: 0,
+      duration: 1.4,
+      ease: "power2.out"
+    })
+    .from(".js-hero-headline", { 
+      y: 60, 
+      autoAlpha: 0, 
+      duration: 1.2 
+    }, "-=1")
+    .from(".js-hero-subheadline", { 
+      y: 20, 
+      autoAlpha: 0 
+    }, "-=1")
+    .from(".js-hero-eyebrow", { 
+      y: 10, 
+      autoAlpha: 0 
+    }, "-=0.8")
+    .from(".js-hero-badge", { 
+      x: -20, 
+      autoAlpha: 0, 
+      stagger: 0.1 
+    }, "-=0.8")
+    .from(".js-hero-description", { 
+      y: 20, 
+      autoAlpha: 0 
+    }, "-=0.6")
+    .from(".js-hero-cta", { 
+      y: 20, 
+      autoAlpha: 0 
+    }, "-=0.4")
+    .from(".js-hero-stat", { 
+      y: 20, 
+      autoAlpha: 0, 
+      stagger: 0.1 
+    }, "-=0.4")
+    .from(".js-hero-scroll", {
+      y: -20,
+      autoAlpha: 0
+    }, "-=0.2");
+
+    // Register with orchestrator
+    animationManager.registerEntrance(tl);
+
+    // 2. Optimized Scroll Animations (Using global GSAP instance)
     const mm = gsap.matchMedia();
 
     mm.add("(prefers-reduced-motion: no-preference)", () => {
-      // Unhide elements for GSAP to capture the correct 'to' state
-      // Since the loader is covering the screen, this won't cause a FOUC.
-      gsap.set(".js-reveal", { autoAlpha: 1 });
-
-      // 1. Entrance Timeline (Paused by default, waits for loader)
-      const tl = gsap.timeline({
-        paused: true,
-        defaults: { ease: "power4.out", duration: 1, force3D: true }
-      });
-
-      tl.from(".js-hero-headline", { 
-        y: 60, 
-        autoAlpha: 0, 
-        duration: 1.2 
-      })
-      .from(".js-hero-subheadline", { 
-        y: 20, 
-        autoAlpha: 0 
-      }, "-=1")
-      .from(".js-hero-eyebrow", { 
-        y: 10, 
-        autoAlpha: 0 
-      }, "-=0.8")
-      .from(".js-hero-badge", { 
-        x: -20, 
-        autoAlpha: 0, 
-        stagger: 0.1 
-      }, "-=0.8")
-      .from(".js-hero-description", { 
-        y: 20, 
-        autoAlpha: 0 
-      }, "-=0.6")
-      .from(".js-hero-cta", { 
-        y: 20, 
-        autoAlpha: 0 
-      }, "-=0.4")
-      .from(".js-hero-stat", { 
-        y: 20, 
-        autoAlpha: 0, 
-        stagger: 0.1 
-      }, "-=0.4")
-      .from(".js-hero-scroll", {
-        y: -20,
-        autoAlpha: 0
-      }, "-=0.2");
-
-      // 2. Optimized Scroll Animations
-      // Consolidate triggers where possible and use force3D
       gsap.to(".js-hero-glow", {
         y: (i) => i === 0 ? 80 : -80,
         x: (i) => i === 0 ? 40 : -40,
@@ -167,7 +172,7 @@ const stats = [
           trigger: ".js-hero-section",
           start: "top top",
           end: "bottom top",
-          scrub: 1.5 // Slightly increased for smoother tracking
+          scrub: 1.5
         }
       });
 
@@ -183,26 +188,9 @@ const stats = [
           scrub: true
         }
       });
-
-      // Wait for loader to complete before playing
-      document.addEventListener('loader:complete', () => {
-        tl.play();
-      });
-    });
-
-    mm.add("(prefers-reduced-motion: reduce)", () => {
-      // Unhide elements for reduced motion
-      gsap.set(".js-reveal", { autoAlpha: 1 });
-
-      // Simplified entrance for reduced motion
-      gsap.from(".js-hero-section", {
-        autoAlpha: 0,
-        duration: 1,
-        ease: "none"
-      });
     });
   }
 
-  // Initialize on load
+  // Initialize
   initHeroAnimations();
 </script>
