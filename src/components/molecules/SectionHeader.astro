@@ -11,6 +11,7 @@ interface Props {
   maxWidth?: string;
   labelColor?: string;
   titleColor?: string;
+  titleClass?: string;
   withBorder?: boolean;
   layout?: 'standard' | 'inline' | 'inline-start';
   class?: string;
@@ -26,6 +27,7 @@ const {
   maxWidth,
   labelColor = "text-brand-primary", 
   titleColor = "text-brand-text-high",
+  titleClass,
   withBorder = false,
   layout = 'standard',
   class: className 
@@ -53,7 +55,8 @@ const sizeClasses = {
       <Tag class={clsx(
         sizeClasses[size],
         titleColor,
-        "uppercase"
+        "uppercase",
+        titleClass
       )}>
         {hasTitleSlot ? <slot name="title" /> : title}
       </Tag>
@@ -76,7 +79,8 @@ const sizeClasses = {
       <Tag class={clsx(
         sizeClasses[size],
         titleColor,
-        "uppercase"
+        "uppercase",
+        titleClass
       )}>
         {hasTitleSlot ? <slot name="title" /> : title}
       </Tag>
@@ -92,7 +96,8 @@ const sizeClasses = {
       
       <Tag class={clsx(
         sizeClasses[size],
-        titleColor
+        titleColor,
+        titleClass
       )}>
         {hasTitleSlot ? <slot name="title" /> : title}
       </Tag>

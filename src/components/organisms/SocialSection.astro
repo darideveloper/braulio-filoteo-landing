@@ -84,6 +84,7 @@ const portraits: Portrait[] = [
         description="Mantener presencia constante y ampliar conversaciones a través de nuestros ecosistemas digitales."
         size="editorial"
         titleColor="text-brand-secondary"
+        titleClass="text-[2.4rem] @3xl:text-7xl @5xl:text-8xl"
       />
     </div>
 
@@ -111,7 +112,7 @@ const portraits: Portrait[] = [
     </div>
 
     <!-- Platform Engagement Grid -->
-    <div class="grid grid-cols-1 @md:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 @3xl:grid-cols-3 gap-8">
       {platforms.map((platform) => (
         <SocialCard {...platform} />
       ))}
