@@ -34,7 +34,7 @@ const { title, label, subtitle, services, class: className } = Astro.props;
     class="mb-16"
   />
 
-  <div class="grid grid-cols-1 @md:grid-cols-4 gap-4">
+  <div class="grid grid-cols-1 @5xl:grid-cols-4 gap-4">
     {services.map((service) => (
       <ServiceCard {...service}>
         {service.span === 4 && (
