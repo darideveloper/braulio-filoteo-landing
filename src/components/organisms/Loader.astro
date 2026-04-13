@@ -5,8 +5,8 @@ import clsx from 'clsx';
 <div id="loader" class="fixed inset-0 z-[999] bg-brand-background flex flex-col items-center justify-center overflow-hidden">
   <div class="relative flex flex-col items-center">
     <!-- Signature Mark -->
-    <div class="mb-8 overflow-hidden">
-      <h1 id="loader-text" class="display-lg text-brand-text-high tracking-tighter opacity-0 translate-y-full">
+    <div class="mb-8 overflow-hidden px-2">
+      <h1 id="loader-text" class="text-center display-lg text-brand-text-high tracking-tighter opacity-0 translate-y-full">
         BRAULIO <span class="text-brand-primary italic">FILOTEO</span>
       </h1>
     </div>
@@ -58,6 +58,9 @@ import clsx from 'clsx';
         duration: 0.4,
         ease: "none",
         onComplete: () => {
+          // DEBUG: Loader exit animation disabled to keep it on screen
+          document.dispatchEvent(new Event('loader:complete'));
+          /*
           // Final Exit Timeline
           const exitTl = gsap.timeline({
             onComplete: () => {
@@ -81,6 +84,7 @@ import clsx from 'clsx';
             autoAlpha: 0,
             duration: 0.5
           }, "-=0.8");
+          */
         }
       });
     });
