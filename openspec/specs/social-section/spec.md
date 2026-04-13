@@ -4,12 +4,14 @@
 TBD - created by archiving change update-hero-section-to-neon-noir-editorial. Update Purpose after archive.
 ## Requirements
 ### Requirement: High-Contrast Layout
-The Social Section MUST use the deepest brand background and provide a clear horizontal/vertical separation from other content.
+The Social Section MUST use the deepest brand background and provide a high-impact, full-screen visual experience.
 
 #### Scenario: Section styling
 - **WHEN** the SocialSection component is rendered.
 - **THEN** it SHALL use `brand-background` (#0E0E0E).
 - **AND** it SHALL have a `border-t` using `brand-surface-bright/20`.
+- **AND** it SHALL have a minimum height of `100vh` (e.g., `min-h-screen`).
+- **AND** its main content SHALL be vertically centered.
 
 ### Requirement: Social Navigation
 The Social Section SHALL provide accessible links to social platforms using consistent technical typography.

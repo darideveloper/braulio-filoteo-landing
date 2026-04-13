@@ -11,7 +11,7 @@ interface Props {
 const { className, itemClassName } = Astro.props;
 ---
 
-<nav class={clsx("flex flex-col gap-0 xl:gap-4", className)}>
+<nav class={clsx("flex flex-col gap-0", className)}>
   {navItems.map((item) => (
     <a
       href={item.href}

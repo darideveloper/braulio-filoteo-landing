@@ -21,17 +21,18 @@ Developers SHALL NOT create new HTML for elements (e.g., buttons, icons, or head
 - **AND** it SHALL NOT define its own button styling or markup in the section component.
 
 ### Requirement: Standardized Section Interface
-The `SectionWrapper` organism SHALL be updated to provide global layout consistency for all main content sections.
+All main content sections SHALL adhere to a global layout consistency to ensure a high-impact, editorial feel throughout the site.
 
-#### Scenario: Full-Screen Section Default
-- **GIVEN** a `SectionWrapper` component without a specified height.
+#### Scenario: Full-Screen Section Mandate
+- **GIVEN** any main content section (e.g., Hero, About, Social, etc.).
 - **THEN** it SHALL apply `min-height: 100vh` to its base element.
-- **AND** it SHALL vertically center its content container using flexbox.
+- **AND** it SHALL vertically center its content container using flexbox (e.g., `flex items-center`).
+- **AND** it SHALL provide consistent vertical padding (e.g., `py-24` or `py-32`).
 
-#### Scenario: Opting Out of Full Height
-- **GIVEN** a `SectionWrapper` with `fullHeight={false}`.
-- **THEN** it SHALL NOT apply `min-height: 100vh`.
-- **AND** it SHALL revert to its default padding-based height.
+#### Scenario: SectionWrapper Defaults
+- **GIVEN** a `SectionWrapper` component.
+- **THEN** it SHALL default to `fullHeight={true}`, applying the full-screen mandate automatically.
+- **AND** it SHALL only opt-out of this height if `fullHeight={false}` is explicitly provided.
 
 ### Requirement: Media & Filter Standardization
 Any component rendering images SHALL apply the project's standard "Editorial Treatment" to ensure a consistent visual aesthetic.

@@ -3,6 +3,11 @@
 ## Purpose
 TBD - created by archiving change 2026-04-08-add-your-story-section. Update Purpose after archive.
 ## Requirements
+### Requirement: High-Impact Section Layout
+The Your Story section MUST provide a high-impact, focused visual experience.
+- **Requirement 1**: The section SHALL have a minimum height of `100vh` (e.g., `min-h-screen`).
+- **Requirement 2**: Content SHALL be centered both horizontally and vertically.
+
 ### Requirement: High-Impact Editorial Headline
 The section MUST feature a large, centered, uppercase headline with mixed typographic treatments.
 - **Requirement 1**: Use the `display-2xl` utility for responsive font sizes (6xl to 8xl).
