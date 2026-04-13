@@ -4,21 +4,21 @@
 TBD - created by archiving change implement-sidebar-navigation. Update Purpose after archive.
 ## Requirements
 ### Requirement: REQ-1 - Responsive Global Shell
-The layout MUST adapt to different screen sizes, transitions between a sidebar on desktop and a top header on mobile.
+The layout MUST adapt to different screen sizes, transitions between a fixed sidebar on desktop and a toggleable slide-over sidebar on mobile.
 
 #### Scenario: Desktop Screen View
 - **Given** a user is on a device with a screen width > 1024px.
 - **When** the page loads.
 - **Then** a fixed-position sidebar is visible on the left.
-- **And** the sidebar width is between 240px and 280px.
-- **And** the main content area has a left margin matching the sidebar width to prevent overlap.
+- **And** the sidebar width is 300px.
+- **And** the brand logo inside the desktop sidebar SHALL have its width reduced by 30% (target: ~126px).
 
 #### Scenario: Mobile/Tablet Screen View
 - **Given** a user is on a device with a screen width <= 1024px.
 - **When** the page loads.
-- **Then** a fixed-height header (64px to 80px) is visible at the top.
-- **And** the main content area starts below the header.
-- **And** the desktop sidebar is hidden.
+- **Then** a fixed-height header is visible at the top containing a burger menu.
+- **And** the mobile brand logo inside the header SHALL have its width reduced by 50% (target: ~60px).
+- **And** the sidebar is initially hidden off-screen to the left.
 
 ### Requirement: REQ-2 - Navigation Components
 The shell MUST include a branding element (logo) and a navigation menu with icons and text, using a single source of truth for all links.
@@ -35,14 +35,17 @@ The shell MUST include a branding element (logo) and a navigation menu with icon
 - **AND** it SHALL NOT include "Methodology".
 
 ### Requirement: REQ-3 - Mobile Navigation Interaction
-The mobile navigation menu MUST be toggleable via the burger button and remain fully visible and accessible when active.
+The mobile navigation menu MUST utilize the unified Sidebar component, entering from the left when toggled, and ensure all content is vertically visible.
 
-#### Scenario: Display Mobile Menu Content
-- **GIVEN** the mobile header is visible and the burger button is clicked.
-- **WHEN** the menu overlay is toggled on.
-- **THEN** it SHALL be rendered with `z-index: 50` or higher to ensure it's on top of all page sections.
-- **AND** it SHALL have `overflow-y-auto` to allow users to scroll if the content is taller than the remaining viewport.
-- **AND** the menu labels MUST remain fully legible and centered within the viewport.
+#### Scenario: Toggle Mobile Menu from Left
+- **Given** the mobile header is visible.
+- **When** the user clicks the burger button.
+- **Then** the unified sidebar SHALL slide in from the left side of the screen.
+
+#### Scenario: Full Vertical Alignment and Overflow
+- **Given** the sidebar is visible on a mobile device.
+- **THEN** it SHALL occupy the full vertical viewport height.
+- **AND** if the navigation links and content exceed the viewport height, the container SHALL allow vertical scrolling (`overflow-y-auto`) to prevent clipping.
 
 ### Requirement: REQ-4 - "Neon Noir Editorial" Styling
 The navigation elements MUST follow the "Neon Noir Editorial" high-contrast design, favoring atmospheric depth over hard borders.

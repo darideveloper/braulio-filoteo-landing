@@ -58,9 +58,6 @@ import clsx from 'clsx';
         duration: 0.4,
         ease: "none",
         onComplete: () => {
-          // DEBUG: Loader exit animation disabled to keep it on screen
-          document.dispatchEvent(new Event('loader:complete'));
-          /*
           // Final Exit Timeline
           const exitTl = gsap.timeline({
             onComplete: () => {
@@ -84,7 +81,6 @@ import clsx from 'clsx';
             autoAlpha: 0,
             duration: 0.5
           }, "-=0.8");
-          */
         }
       });
     });
