@@ -1,5 +1,6 @@
 ---
 import clsx from 'clsx';
+import type { SectionProps } from '../../types/Section';
 import SectionWrapper from './SectionWrapper.astro';
 import SectionHeader from '../molecules/SectionHeader.astro';
 import ServiceCard from '../molecules/ServiceCard.astro';
@@ -14,7 +15,7 @@ interface Service {
   variant?: 'default' | 'gradient';
 }
 
-interface Props {
+interface Props extends Partial<SectionProps> {
   title: string;
   label: string;
   subtitle: string;
@@ -22,10 +23,10 @@ interface Props {
   class?: string;
 }
 
-const { title, label, subtitle, services, class: className } = Astro.props;
+const { id, title, label, subtitle, services, class: className } = Astro.props;
 ---
 
-<SectionWrapper class={clsx("py-24", className)}>
+<SectionWrapper id={id} class={clsx("py-24", className)}>
   <SectionHeader 
     layout="inline"
     title={title}

@@ -1,6 +1,11 @@
 ---
+import type { SectionProps } from '../../types/Section';
 import SectionWrapper from './SectionWrapper.astro';
 import PillarCard from '../molecules/PillarCard.astro';
+
+interface Props extends Partial<SectionProps> {}
+
+const { id } = Astro.props;
 
 const pillars = [
   {
@@ -35,7 +40,7 @@ const pillars = [
 ---
 
 <SectionWrapper
-  id="pilares"
+  id={id}
   label="Metodología"
   title="PILARES"
   headerLayout="inline-start"

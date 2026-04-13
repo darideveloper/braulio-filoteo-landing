@@ -4,6 +4,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/free-mode';
 
 import clsx from 'clsx';
+import type { SectionProps } from '../../types/Section';
 import SectionHeader from '../molecules/SectionHeader.astro';
 import EditorialPortrait from '../molecules/EditorialPortrait.astro';
 import SocialCard from '../molecules/SocialCard.astro';
@@ -26,6 +27,12 @@ interface Portrait {
   src: any;
   alt: string;
 }
+
+interface Props extends Partial<SectionProps> {
+  class?: string;
+}
+
+const { id, class: className } = Astro.props;
 
 const platforms: Platform[] = [
   {
@@ -74,7 +81,7 @@ const portraits: Portrait[] = [
 ];
 ---
 
-<section class="bg-brand-background min-h-screen flex items-center w-full py-32 px-6 @md:px-12">
+<section id={id} class={clsx("bg-brand-background min-h-screen flex items-center w-full py-32 px-6 @md:px-12", className)}>
   <div class="max-w-[1440px] mx-auto w-full">
     <!-- Header Area -->
     <div class="mb-24">

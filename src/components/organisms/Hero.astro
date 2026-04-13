@@ -1,10 +1,15 @@
 ---
 import clsx from 'clsx';
+import type { SectionProps } from '../../types/Section';
 import Badge from '../atoms/Badge.astro';
 import BrandButton from '../atoms/BrandButton.astro';
 import StatItem from '../atoms/StatItem.astro';
 import EditorialPortrait from '../molecules/EditorialPortrait.astro';
 import heroImage from '../../assets/images/hero-portrait.webp';
+
+interface Props extends Partial<SectionProps> {}
+
+const { id, ...rest } = Astro.props;
 
 const badges = ["HOST", "ENTREPRENEUR", "CO-FOUNDER", "GRIT PARAGON"];
 
@@ -14,7 +19,7 @@ const stats = [
 ];
 ---
 
-<section class="relative min-h-screen flex items-center w-full overflow-hidden bg-brand-background js-hero-section">
+<section id={id} class="relative min-h-screen flex items-center w-full overflow-hidden bg-brand-background js-hero-section">
   <!-- Ambient Glow Effects - Optimized: Reduced blur radius and added will-change for better performance -->
   <div class="absolute top-1/4 -left-20 w-96 h-96 bg-brand-primary/10 rounded-full blur-[80px] js-hero-glow" style="will-change: transform;"></div>
   <div class="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-brand-secondary/5 rounded-full blur-[100px] js-hero-glow" style="will-change: transform;"></div>

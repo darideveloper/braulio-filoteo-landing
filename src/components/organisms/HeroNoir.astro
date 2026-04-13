@@ -1,9 +1,10 @@
 ---
 import clsx from 'clsx';
+import type { SectionProps } from '../../types/Section';
 import SectionWrapper from './SectionWrapper.astro';
 import EditorialPortrait from '../molecules/EditorialPortrait.astro';
 
-interface Props {
+interface Props extends Partial<SectionProps> {
   badge: string;
   title: string;
   description: string;
@@ -19,6 +20,7 @@ interface Props {
 }
 
 const { 
+  id,
   badge, 
   title, 
   description, 
@@ -30,7 +32,7 @@ const {
 const hasTitleSlot = Astro.slots.has('title');
 ---
 
-<SectionWrapper variant="lowest" class={clsx("pt-32 pb-24", className)} containerClass="grid grid-cols-1 @3xl:editorial-grid gap-8 @3xl:gap-12 items-end px-6 @3xl:px-0">
+<SectionWrapper id={id} variant="lowest" class={clsx("pt-32 pb-24", className)} containerClass="grid grid-cols-1 @3xl:editorial-grid gap-8 @3xl:gap-12 items-end px-6 @3xl:px-0">
   <div class="col-span-1 @3xl:col-span-7">
     <span class="text-brand-primary-light tracking-[0.2em] font-bold text-[10px] uppercase mb-4 block">
       {badge}

@@ -21,18 +21,13 @@ Developers SHALL NOT create new HTML for elements (e.g., buttons, icons, or head
 - **AND** it SHALL NOT define its own button styling or markup in the section component.
 
 ### Requirement: Standardized Section Interface
-All main content sections SHALL adhere to a global layout consistency to ensure a high-impact, editorial feel throughout the site.
+All section organism components SHALL support an `id` prop to handle their own identity within a page.
 
-#### Scenario: Full-Screen Section Mandate
-- **GIVEN** any main content section (e.g., Hero, About, Social, etc.).
-- **THEN** it SHALL apply `min-height: 100vh` to its base element.
-- **AND** it SHALL vertically center its content container using flexbox (e.g., `flex items-center`).
-- **AND** it SHALL provide consistent vertical padding (e.g., `py-24` or `py-32`).
-
-#### Scenario: SectionWrapper Defaults
-- **GIVEN** a `SectionWrapper` component.
-- **THEN** it SHALL default to `fullHeight={true}`, applying the full-screen mandate automatically.
-- **AND** it SHALL only opt-out of this height if `fullHeight={false}` is explicitly provided.
+#### Scenario: Supporting `id` prop in organisms
+- **GIVEN** a section organism component (e.g., `Hero`, `PodcastSection`).
+- **THEN** it SHALL define an optional `id` prop in its `Props` interface.
+- **AND** it SHALL apply this `id` to its root element.
+- **AND** if it uses `SectionWrapper`, it SHALL pass the `id` to it.
 
 ### Requirement: Media & Filter Standardization
 Any component rendering images SHALL apply the project's standard "Editorial Treatment" to ensure a consistent visual aesthetic.
@@ -62,4 +57,12 @@ GSAP SHALL be the standard animation library for the project. Developers SHALL N
 - **GIVEN** a user with `prefers-reduced-motion: reduce`.
 - **THEN** all non-essential GSAP animations SHALL be disabled or simplified to basic opacity fades.
 - **AND** the code SHALL check for this preference using `gsap.matchMedia()`.
+
+### Requirement: Clean Page Markup
+Page components SHALL NOT wrap section components in `<div>` elements only for the purpose of adding an `id`.
+
+#### Scenario: Clean Home Page Markup
+- **GIVEN** a page composed of multiple sections (e.g., `index.astro`).
+- **THEN** it SHALL pass the section's unique identifier as a prop instead of using a wrapper `<div>`.
+- **AND** it SHALL ensure that navigation IDs match the existing anchor links (e.g., `#home`, `#about`).
 

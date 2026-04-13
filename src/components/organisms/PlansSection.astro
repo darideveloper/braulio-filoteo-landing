@@ -1,15 +1,16 @@
 ---
 import clsx from 'clsx';
+import type { SectionProps } from '../../types/Section';
 import SectionWrapper from './SectionWrapper.astro';
 import SectionHeader from '../molecules/SectionHeader.astro';
 import PlansCard from '../molecules/PlansCard.astro';
 import MaterialIcon from '../atoms/MaterialIcon.astro';
 
-interface Props {
+interface Props extends Partial<SectionProps> {
   class?: string;
 }
 
-const { class: className } = Astro.props;
+const { id, class: className } = Astro.props;
 
 const plans = [
   {
@@ -54,7 +55,7 @@ const plans = [
 ];
 ---
 
-<SectionWrapper id="planes" class={clsx("py-24", className)}>
+<SectionWrapper id={id} class={clsx("py-24", className)}>
   <div class="relative">
     <SectionHeader 
       label="Oferta de valor"

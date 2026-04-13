@@ -53,17 +53,12 @@ const services = [
 ---
 
 <Layout>
-  <div id="home">
-    <Hero />
-  </div>
-  <div id="about">
-    <AboutSection />
-  </div>
-  <div id="podcast">
-    <PodcastSection />
-  </div>
+  <Hero id="home" />
+  <AboutSection id="about" />
+  <PodcastSection id="podcast" />
 
   <CtaSection
+    id="cta"
     watermark='GRIT'
     showContact={true}
   >
@@ -94,10 +89,8 @@ const services = [
       Empieza tu Viaje
     </BrandButton>
   </CtaSection>
-  <NewsletterSection />
-  <div id="social">
-    <SocialSection />
-  </div>
+  <NewsletterSection id="newsletter" />
+  <SocialSection id="social" />
 
   <SectionWrapper variant="lowest" class="py-24 relative overflow-hidden">
     <FeatureCTA 
@@ -113,43 +106,38 @@ const services = [
     </FeatureCTA>
   </SectionWrapper>
 
-  <div id="plans">
-    <PlansSection />
-  </div>
+  <PlansSection id="plans" />
 
   <!-- Gritones Studio Sections -->
-  <div id="studio">
-    <HeroNoir 
-      badge="Executive Vision"
-      title="Cofundador de GRITones Studio."
-      description="Un estudio creativo dedicado a ayudar a líderes y emprendedores a transformar su voz en contenido estratégico."
-      image={{
-        src: founderPortrait,
-        alt: "Cofundador Profile"
-      }}
-      statBox={{
-        value: "01/04",
-        label: "Creative Leadership"
-      }}
-    >
-      <span slot="title">
-        Cofundador de <br/>
-        <span class="text-brand-secondary">GRITones Studio.</span>
-      </span>
-    </HeroNoir>
+  <HeroNoir 
+    id="studio"
+    badge="Executive Vision"
+    title="Cofundador de GRITones Studio."
+    description="Un estudio creativo dedicado a ayudar a líderes y emprendedores a transformar su voz en contenido estratégico."
+    image={{
+      src: founderPortrait,
+      alt: "Cofundador Profile"
+    }}
+    statBox={{
+      value: "01/04",
+      label: "Creative Leadership"
+    }}
+  >
+    <span slot="title">
+      Cofundador de <br/>
+      <span class="text-brand-secondary">GRITones Studio.</span>
+    </span>
+  </HeroNoir>
 
-    <GritonesSection 
-      title="SERVICIOS / CORE"
-      label="Strategic Content Development"
-      subtitle="Transformamos la profundidad de tus ideas en activos digitales de alto impacto."
-      services={services}
-    />
-  </div>
+  <GritonesSection 
+    title="SERVICIOS / CORE"
+    label="Strategic Content Development"
+    subtitle="Transformamos la profundidad de tus ideas en activos digitales de alto impacto."
+    services={services}
+  />
 
-  <div id="methodology">
-    <PillarsSection />
-  </div>
+  <PillarsSection id="methodology" />
   
-  <CollabSection />
-  <YourStory />
+  <CollabSection id="colaboraciones" />
+  <YourStory id="your-story" />
 </Layout>

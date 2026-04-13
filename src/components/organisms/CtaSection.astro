@@ -1,9 +1,10 @@
 ---
 import clsx from 'clsx'
+import type { SectionProps } from '../../types/Section';
 import MaterialIcon from '../atoms/MaterialIcon.astro'
 import SectionHeader from '../molecules/SectionHeader.astro'
 
-interface Props {
+interface Props extends Partial<SectionProps> {
   label?: string
   watermark?: string
   showContact?: boolean
@@ -11,6 +12,7 @@ interface Props {
 }
 
 const { 
+  id,
   label = "CONTACTO",
   watermark, 
   showContact = false, 
@@ -19,6 +21,7 @@ const {
 ---
 
 <section
+  id={id}
   class={clsx(
     'relative min-h-screen flex items-center justify-center w-full py-24 px-6 bg-black overflow-hidden',
     className,

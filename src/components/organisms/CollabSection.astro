@@ -1,7 +1,12 @@
 ---
+import type { SectionProps } from '../../types/Section';
 import SectionWrapper from './SectionWrapper.astro';
 import CollabItem from '../molecules/CollabItem.astro';
 import SectionHeader from '../molecules/SectionHeader.astro';
+
+interface Props extends Partial<SectionProps> {}
+
+const { id } = Astro.props;
 
 const collabs = [
   { title: "Conferencias", icon: "mic" },
@@ -12,7 +17,7 @@ const collabs = [
 ---
 
 <SectionWrapper
-  id="colaboraciones"
+  id={id}
   variant="lowest"
   class="border-y border-brand-outline-variant/5"
 >
