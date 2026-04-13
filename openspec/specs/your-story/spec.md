@@ -5,14 +5,20 @@ TBD - created by archiving change 2026-04-08-add-your-story-section. Update Purp
 ## Requirements
 ### Requirement: High-Impact Section Layout
 The Your Story section MUST provide a high-impact, focused visual experience.
-- **Requirement 1**: The section SHALL have a minimum height of `100vh` (e.g., `min-h-screen`).
-- **Requirement 2**: Content SHALL be centered both horizontally and vertically.
+
+#### Scenario: Full Viewport Height
+- **Given** the "Your Story" section.
+- **When** rendered.
+- **Then** it SHALL have a minimum height of `100vh`.
+
+#### Scenario: Centered Content
+- **Given** the section content.
+- **When** rendered.
+- **Then** content SHALL be centered both horizontally and vertically.
 
 ### Requirement: High-Impact Editorial Headline
 The section MUST feature a large, centered, uppercase headline with mixed typographic treatments.
-- **Requirement 1**: Use the `display-2xl` utility for responsive font sizes (6xl to 8xl).
-- **Requirement 2**: Mix standard white text with `brand-secondary` (orange) for emphasis.
-- **Requirement 3**: Use the `decoration-editorial` utility (purple underline) for specific brand highlights.
+
 #### Scenario: Desktop Rendering
 - **Given** the user is on a large screen (md+).
 - **When** the "Your Story" section is rendered.
@@ -21,8 +27,7 @@ The section MUST feature a large, centered, uppercase headline with mixed typogr
 
 ### Requirement: Subheadline with Storytelling Highlights
 The section MUST include a centered subheadline with inline highlights that emphasize key storytelling elements.
-- **Requirement 1**: Use a max-width container (4xl) to maintain optimal line length.
-- **Requirement 2**: Highlight specific phrases using `border-b-2 border-brand-secondary`.
+
 #### Scenario: Subheadline Highlights
 - **Given** the subheadline "convertir tu voz en una plataforma".
 - **When** "convertir tu voz" and "plataforma" are rendered.
@@ -30,17 +35,22 @@ The section MUST include a centered subheadline with inline highlights that emph
 
 ### Requirement: Centered CTA & Contact Row
 The section MUST provide a centered action row with a primary CTA and contact information.
-- **Requirement 1**: Use the `BrandButton` component with its architectural default `rounded-[0.25rem]`.
-- **Requirement 2**: Use `MaterialIcon` and `label-md` utility for contact details.
+
 #### Scenario: CTA Action
 - **Given** the "Crea tu podcast" button.
 - **When** rendered in the "Your Story" section.
 - **Then** it MUST be centered and use the primary gradient variant.
 
+#### Scenario: Contact Email & Link
+- **Given** the "Your Story" section is rendered.
+- **When** the contact information is displayed.
+- **Then** the email SHALL be `info@grit-ones.com`.
+- **And** it SHALL be a clickable link (`mailto:info@grit-ones.com`).
+- **And** it SHALL change color on hover (e.g., `hover:text-brand-primary`).
+
 ### Requirement: Subtle Background Watermark
 The section MUST include a subtle, large background watermark to break visual monotony.
-- **Requirement 1**: Use the `text-watermark` utility for the text "GRIT".
-- **Requirement 2**: Position it absolutely behind the content, contained by the section.
+
 #### Scenario: Watermark Containment
 - **Given** the "GRIT" watermark text.
 - **When** rendered.
