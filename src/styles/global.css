@@ -3,16 +3,16 @@
 @theme {
   /* Colors */
   --color-brand-background: #0e0e0e; /* surface_container_lowest */
-  --color-brand-surface: #131313;    /* surface_container */
+  --color-brand-surface: #131313; /* surface_container */
   --color-brand-surface-container: #201f1f;
   --color-brand-surface-low: #1c1b1b;
   --color-brand-surface-bright: #393939;
-  
-  --color-brand-primary: #9b30ff;    /* primary_container (Purple) */
+
+  --color-brand-primary: #9b30ff; /* primary_container (Purple) */
   --color-brand-primary-light: #dcb8ff; /* primary */
-  --color-brand-secondary: #fe6500;  /* secondary_container (Orange) */
-  
-  --color-brand-text-high: #e5e2e1;  /* on_background */
+  --color-brand-secondary: #fe6500; /* secondary_container (Orange) */
+
+  --color-brand-text-high: #e5e2e1; /* on_background */
   --color-brand-text-muted: #cfc2d8; /* on_surface_variant */
 
   --color-brand-outline-variant: #4d4355;
@@ -27,7 +27,7 @@
   html {
     scroll-behavior: smooth;
   }
-  
+
   html,
   body {
     @apply bg-brand-background text-brand-text-high;
@@ -53,7 +53,7 @@
 
 /* Standard Container */
 .container {
-  @apply mx-auto max-w-7xl px-4 @3xl:px-6 @5xl:px-8;
+  @apply mx-auto max-w-7xl px-2 @3xl:px-6 @5xl:px-8;
 }
 
 /* Tailwind v4 Utility Definitions */
@@ -99,7 +99,11 @@
 }
 
 @utility bg-brand-gradient {
-  background: linear-gradient(135deg, var(--color-brand-primary-light) 0%, var(--color-brand-primary) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-brand-primary-light) 0%,
+    var(--color-brand-primary) 100%
+  );
 }
 
 @utility shadow-neon-purple {
@@ -137,7 +141,11 @@
 }
 
 @utility bg-noir-gradient {
-  background: radial-gradient(circle at center, var(--color-brand-surface) 0%, var(--color-brand-background) 100%);
+  background: radial-gradient(
+    circle at center,
+    var(--color-brand-surface) 0%,
+    var(--color-brand-background) 100%
+  );
 }
 
 @utility text-stroke-brand {
