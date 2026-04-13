@@ -1,137 +1,159 @@
 ---
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/free-mode';
+import 'swiper/css'
+import 'swiper/css/pagination'
+import 'swiper/css/free-mode'
 
-import clsx from 'clsx';
-import type { SectionProps } from '../../types/Section';
-import SectionHeader from '../molecules/SectionHeader.astro';
-import EditorialPortrait from '../molecules/EditorialPortrait.astro';
-import SocialCard from '../molecules/SocialCard.astro';
+import clsx from 'clsx'
+import type { SectionProps } from '../../types/Section'
+import SectionHeader from '../molecules/SectionHeader.astro'
+import EditorialPortrait from '../molecules/EditorialPortrait.astro'
+import SocialCard from '../molecules/SocialCard.astro'
 
-import portrait1 from '../../assets/images/portrait-1.svg';
-import portrait2 from '../../assets/images/portrait-2.svg';
-import portrait3 from '../../assets/images/portrait-3.svg';
-import portrait4 from '../../assets/images/portrait-4.svg';
+import portrait1 from '../../assets/images/gallery/portrait-1.webp'
+import portrait2 from '../../assets/images/gallery/portrait-2.webp'
+import portrait3 from '../../assets/images/gallery/portrait-3.webp'
+import portrait4 from '../../assets/images/gallery/portrait-4.webp'
+import portrait5 from '../../assets/images/gallery/portrait-5.webp'
+import portrait6 from '../../assets/images/gallery/portrait-6.webp'
 
 interface Platform {
-  platform: string;
-  description: string;
-  icon: string;
-  tag: string;
-  href: string;
-  accentColor: 'primary' | 'secondary' | 'error';
+  platform: string
+  description: string
+  icon: string
+  tag: string
+  href: string
+  accentColor: 'primary' | 'secondary'
 }
 
 interface Portrait {
-  src: any;
-  alt: string;
+  src: any
+  alt: string
 }
 
 interface Props extends Partial<SectionProps> {
-  class?: string;
+  class?: string
 }
 
-const { id, class: className } = Astro.props;
+const { id, class: className } = Astro.props
 
 const platforms: Platform[] = [
   {
-    platform: "LinkedIn",
-    description: "Perspectivas profesionales y análisis detallados sobre el futuro editorial.",
-    icon: "share",
-    tag: "Network",
-    href: "#",
-    accentColor: "primary"
+    platform: 'LinkedIn',
+    description:
+      'Perspectivas profesionales y análisis detallados sobre el futuro editorial.',
+    icon: 'share',
+    tag: 'Network',
+    href: '#',
+    accentColor: 'primary',
   },
   {
-    platform: "Instagram",
-    description: "Inspiración visual, detrás de cámaras y fragmentos de nuestra estética diaria.",
-    icon: "photo_camera",
-    tag: "Visual",
-    href: "#",
-    accentColor: "primary"
+    platform: 'Instagram',
+    description:
+      'Inspiración visual, detrás de cámaras y fragmentos de nuestra estética diaria.',
+    icon: 'photo_camera',
+    tag: 'Visual',
+    href: '#',
+    accentColor: 'primary',
   },
   {
-    platform: "YouTube",
-    description: "Contenido audiovisual de larga duración, entrevistas y workshops técnicos.",
-    icon: "play_circle",
-    tag: "Content",
-    href: "#",
-    accentColor: "primary"
-  }
-];
+    platform: 'YouTube',
+    description:
+      'Contenido audiovisual de larga duración, entrevistas y workshops técnicos.',
+    icon: 'play_circle',
+    tag: 'Content',
+    href: '#',
+    accentColor: 'primary',
+  },
+]
 
 const portraits: Portrait[] = [
   {
     src: portrait1,
-    alt: "Braulio Editorial Portrait 1"
+    alt: 'Braulio Editorial Portrait 1',
   },
   {
     src: portrait2,
-    alt: "Braulio Editorial Portrait 2"
+    alt: 'Braulio Editorial Portrait 2',
   },
   {
     src: portrait3,
-    alt: "Braulio Editorial Portrait 3"
+    alt: 'Braulio Editorial Portrait 3',
   },
   {
     src: portrait4,
-    alt: "Braulio Editorial Portrait 4"
-  }
-];
+    alt: 'Braulio Editorial Portrait 4',
+  },
+  {
+    src: portrait5,
+    alt: 'Braulio Editorial Portrait 5',
+  },
+  {
+    src: portrait6,
+    alt: 'Braulio Editorial Portrait 6',
+  },
+]
 ---
 
-<section id={id} class={clsx("bg-brand-background min-h-screen flex items-center w-full py-32 px-6 @md:px-12", className)}>
-  <div class="max-w-[1440px] mx-auto w-full">
+<section
+  id={id}
+  class={clsx(
+    'bg-brand-background min-h-screen flex items-center w-full py-32 px-6 @md:px-12',
+    className,
+  )}
+>
+  <div class='max-w-[1440px] mx-auto w-full'>
     <!-- Header Area -->
-    <div class="mb-24">
-      <SectionHeader 
-        label="Connect & Amplify"
-        title="Conversaciones que continúan."
-        description="Mantener presencia constante y ampliar conversaciones a través de nuestros ecosistemas digitales."
-        size="editorial"
-        titleColor="text-brand-secondary"
-        titleClass="text-[2.4rem] @3xl:text-7xl @5xl:text-8xl"
+    <div class='mb-24'>
+      <SectionHeader
+        label='Connect & Amplify'
+        title='Conversaciones que continúan.'
+        description='Mantener presencia constante y ampliar conversaciones a través de nuestros ecosistemas digitales.'
+        size='editorial'
+        titleColor='text-brand-secondary'
+        titleClass='text-[2.4rem] @3xl:text-7xl @5xl:text-8xl'
       />
     </div>
 
     <!-- Editorial Gallery Slider -->
-    <div class="mb-24 relative group">
-      <div class="swiper social-swiper">
-        <div class="swiper-wrapper pb-4 cursor-grab active:cursor-grabbing select-none">
-          {portraits.map((portrait, index) => (
-            <div class="swiper-slide !w-auto">
-              <EditorialPortrait 
-                src={portrait.src}
-                alt={portrait.alt}
-                variant="minimal"
-                aspect="aspect-[3/4]"
-                class="w-[300px] @md:w-[450px]"
-                data-index={index}
-              />
-            </div>
-          ))}
+    <div class='mb-24 relative group'>
+      <div class='swiper social-swiper'>
+        <div
+          class='swiper-wrapper pb-4 cursor-grab active:cursor-grabbing select-none'
+        >
+          {
+            portraits.map((portrait, index) => (
+              <div class='swiper-slide w-auto!'>
+                <EditorialPortrait
+                  src={portrait.src}
+                  alt={portrait.alt}
+                  variant='minimal'
+                  aspect='aspect-[3/4]'
+                  class='w-[300px] @md:w-[450px]'
+                  data-index={index}
+                />
+              </div>
+            ))
+          }
         </div>
-        
+
         <!-- Gallery Indicators -->
-        <div class="swiper-pagination !static mt-8 flex justify-center gap-3"></div>
+        <div class='swiper-pagination static! mt-8 flex justify-center gap-3'>
+        </div>
       </div>
     </div>
 
     <!-- Platform Engagement Grid -->
-    <div class="grid grid-cols-1 @3xl:grid-cols-3 gap-8">
-      {platforms.map((platform) => (
-        <SocialCard {...platform} />
-      ))}
+    <div class='grid grid-cols-1 @3xl:grid-cols-3 gap-8'>
+      {platforms.map((platform) => <SocialCard {...platform} />)}
     </div>
   </div>
 </section>
 
 <script>
-  import Swiper from 'swiper';
-  import { FreeMode, Pagination, Mousewheel } from 'swiper/modules';
+  import Swiper from 'swiper'
+  import { FreeMode, Pagination, Mousewheel } from 'swiper/modules'
 
-  const swiperElement = document.querySelector('.social-swiper');
+  const swiperElement = document.querySelector('.social-swiper')
   if (swiperElement) {
     new Swiper(swiperElement as HTMLElement, {
       modules: [FreeMode, Pagination, Mousewheel],
@@ -148,10 +170,10 @@ const portraits: Portrait[] = [
         el: '.swiper-pagination',
         clickable: true,
         renderBullet: function (index, className) {
-          return '<span class="' + className + ' custom-bullet"></span>';
+          return '<span class="' + className + ' custom-bullet"></span>'
         },
       },
-    });
+    })
   }
 </script>
 
@@ -162,7 +184,7 @@ const portraits: Portrait[] = [
     justify-content: center;
     gap: 0.75rem; /* gap-3 */
   }
-  
+
   .social-swiper .custom-bullet {
     width: 2rem !important; /* w-8 */
     height: 0.25rem !important; /* h-1 */
@@ -173,7 +195,7 @@ const portraits: Portrait[] = [
     cursor: pointer;
     display: block;
   }
-  
+
   .social-swiper .swiper-pagination-bullet-active {
     background: var(--color-brand-primary) !important;
     opacity: 1 !important;
