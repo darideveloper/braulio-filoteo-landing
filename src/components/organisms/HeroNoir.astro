@@ -30,27 +30,28 @@ const {
 const hasTitleSlot = Astro.slots.has('title');
 ---
 
-<SectionWrapper variant="lowest" class={clsx("pt-32 pb-24", className)} containerClass="editorial-grid gap-12 items-end">
-  <div class="col-span-12 @md:col-span-7">
+<SectionWrapper variant="lowest" class={clsx("pt-32 pb-24", className)} containerClass="grid grid-cols-1 @3xl:editorial-grid gap-8 @3xl:gap-12 items-end px-6 @3xl:px-0">
+  <div class="col-span-1 @3xl:col-span-7">
     <span class="text-brand-primary-light tracking-[0.2em] font-bold text-[10px] uppercase mb-4 block">
       {badge}
     </span>
-    
-    <h1 class="text-6xl @md:text-8xl font-black font-brand-display tracking-tightest leading-tightest text-brand-text-high mb-8 normal-case">
+
+    <h2 class="text-4xl @3xl:text-8xl font-black font-brand-display tracking-tightest leading-tightest text-brand-text-high mb-8 normal-case">
       {hasTitleSlot ? <slot name="title" /> : title}
-    </h1>
-    
-    <p class="text-xl @md:text-2xl text-brand-text-muted max-w-2xl font-light leading-relaxed">
+    </h2>
+
+    <p class="text-lg @3xl:text-2xl text-brand-text-muted max-w-2xl font-light leading-relaxed">
       {description}
     </p>
   </div>
-  
-  <div class="col-span-12 @md:col-span-5">
+
+  <div class="col-span-1 @3xl:col-span-5 mt-12 @3xl:mt-0">
     <EditorialPortrait 
       src={image.src}
       alt={image.alt}
       framePosition="top-left"
       accent="primary"
+      class="max-w-[calc(100%-2rem)] mx-auto @3xl:max-w-none"
     >
       {statBox && (
         <div slot="statCard">
