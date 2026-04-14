@@ -1,4 +1,5 @@
 ---
+import clsx from 'clsx';
 import AboutIcon from '../atoms/AboutIcon.astro';
 import AboutCard from '../molecules/AboutCard.astro';
 import QuoteBlock from '../molecules/QuoteBlock.astro';
@@ -34,7 +35,7 @@ const brandIcons = [
 ];
 ---
 
-<SectionWrapper id={id} variant={variant}>
+<SectionWrapper id={id} variant={variant} class="js-about-section">
   <div class="grid @3xl:grid-cols-2 gap-20 items-start">
     
     <!-- Left Column: Mission -->
@@ -42,11 +43,12 @@ const brandIcons = [
       <SectionHeader 
         label="La Misión" 
         title="Antes que podcaster, soy explorador de historias."
+        class="js-about-header js-about-reveal opacity-0"
       />
       
       <div class="grid gap-6">
         {missionPoints.map((point) => (
-          <AboutCard {...point} />
+          <AboutCard {...point} class="js-about-card js-about-reveal opacity-0" />
         ))}
       </div>
     </div>
@@ -56,11 +58,15 @@ const brandIcons = [
       <QuoteBlock 
         text="La inspiración está bien, pero la acción es mejor."
         author="Manifiesto GRITones"
+        class="js-about-quote js-about-reveal opacity-0"
       />
 
       <div class="grid grid-cols-1 @md:grid-cols-2 gap-4">
         {brandIcons.map((item) => (
-          <div key={item.label} class={`flex items-center gap-4 p-4 rounded-2xl ${item.special ? 'bg-brand-secondary/20' : 'bg-white/2'}`}>
+          <div key={item.label} class={clsx(
+            "flex items-center gap-4 p-4 rounded-2xl js-about-icon-item js-about-reveal opacity-0",
+            item.special ? 'bg-brand-secondary/20' : 'bg-white/2'
+          )}>
             <AboutIcon icon={item.icon} variant={item.variant as any} class="!text-3xl" />
             <h4 class="text-xs font-bold text-brand-text-high uppercase tracking-widest">
               {item.label}
@@ -72,3 +78,80 @@ const brandIcons = [
 
   </div>
 </SectionWrapper>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  function initAboutAnimations() {
+    const section = document.querySelector('.js-about-section');
+    if (!section) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      // 1. Unhide elements for GSAP to capture the correct natural state
+      gsap.set(".js-about-reveal", { 
+        autoAlpha: 1, 
+        force3D: true
+      });
+      
+      // 2. Timeline with 'from()' animations
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 75%",
+          toggleActions: "play none none none"
+        }
+      });
+
+      tl.from(".js-about-header", {
+        autoAlpha: 0,
+        y: 40,
+        duration: 1.4,
+        delay: 0.5,
+        ease: "power4.out"
+      })
+      .from(".js-about-card", {
+        autoAlpha: 0,
+        y: 30,
+        duration: 1.2,
+        stagger: 0.15,
+        ease: "power3.out"
+      }, "-=1.0")
+      .from(".js-about-quote", {
+        autoAlpha: 0,
+        y: 20,
+        duration: 1.2,
+        ease: "expo.out"
+      }, "-=0.8")
+      .from(".js-about-icon-item", {
+        autoAlpha: 0,
+        scale: 0.9,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: "back.out(1.7)"
+      }, "-=0.6");
+    });
+
+    // Fallback for reduced motion: only fade in
+    mm.add("(prefers-reduced-motion: reduce)", () => {
+      gsap.set(".js-about-reveal", { autoAlpha: 0 });
+      
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top 75%",
+        onEnter: () => {
+          gsap.to(".js-about-reveal", {
+            autoAlpha: 1,
+            duration: 0.8,
+            stagger: 0.1
+          });
+        }
+      });
+    });
+  }
+
+  // Initialize
+  initAboutAnimations();
+</script>

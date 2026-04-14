@@ -1,0 +1,24 @@
+# Tasks: Animate About Section with GSAP
+
+- [x] Add JS animation hooks to `src/components/organisms/AboutSection.astro`.
+  - [x] Add `class="js-about-section"` to the `SectionWrapper`.
+  - [x] Add `js-about-header` to the `SectionHeader` component (ensuring the component supports passing classes or wrap it in a `div`).
+  - [x] Add `js-about-card` to each `AboutCard` inside the `missionPoints` loop.
+  - [x] Add `js-about-quote` to the `QuoteBlock`.
+  - [x] Add `js-about-icon-item` to each icon container inside the `brandIcons` loop.
+- [x] Implement the GSAP ScrollTrigger script in `src/components/organisms/AboutSection.astro`.
+  - [x] Import `gsap` and `ScrollTrigger`.
+  - [x] Define the `initAboutAnimations` function.
+  - [x] Set initial states with `gsap.set` and `autoAlpha: 0`.
+    - [x] `js-about-header`, `js-about-card`, `js-about-quote` -> `y: 30`.
+    - [x] `js-about-icon-item` -> `scale: 0.9`.
+  - [x] Build the `ScrollTrigger` timeline with staggered reveals.
+    - [x] Header reveal (`power4.out`).
+    - [x] Mission cards stagger (0.2s).
+    - [x] Quote block reveal (0.6s offset).
+    - [x] Brand icons stagger (0.1s) with scale-up.
+  - [x] Wrap with `gsap.matchMedia` for accessibility (`prefers-reduced-motion`).
+- [x] Verify the implementation.
+  - [x] **Visual Validation:** Confirm staggered reveals trigger correctly on scroll.
+  - [x] **Performance Validation:** Check for layout shifts or frame drops.
+  - [x] **Accessibility Validation:** Test with `prefers-reduced-motion: reduce`.
