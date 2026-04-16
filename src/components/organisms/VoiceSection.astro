@@ -1,0 +1,144 @@
+---
+import clsx from 'clsx';
+import SectionWrapper from './SectionWrapper.astro';
+import TransformationCard from '../molecules/TransformationCard.astro';
+import type { SectionProps } from '../../types/Section';
+
+interface Props extends Partial<SectionProps> {}
+
+const { id } = Astro.props;
+
+const matrixItems = [
+  {
+    title: "claridad de propósito",
+    icon: "target"
+  },
+  {
+    title: "narrativa personal",
+    icon: "auto_stories"
+  },
+  {
+    title: "consistencia",
+    icon: "sync"
+  },
+  {
+    title: "conversaciones profundas",
+    icon: "forum"
+  }
+];
+---
+
+<SectionWrapper id={id} variant="lowest" fullHeight={false} class="pt-32 pb-0 js-voice-section">
+  <div class="editorial-grid gap-y-24">
+    <!-- Asymmetric Text Blocks -->
+    <div class="col-span-12 grid grid-cols-12 gap-y-16">
+      <!-- Headline Block: Columns 1-9 -->
+      <div class="col-span-12 @5xl:col-span-9 js-voice-reveal opacity-0">
+        <p class="label-md text-brand-secondary tracking-[0.2em] mb-4">
+          Metodología Noir
+        </p>
+        <h2 class="display-2xl text-brand-text-high uppercase">
+          Tu voz puede <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-primary to-brand-primary-light">convertirse</span> en una plataforma.
+        </h2>
+      </div>
+
+      <!-- Description Block: Columns 6-12 -->
+      <div class="col-span-12 @5xl:col-start-6 @5xl:col-span-6 border-l-4 border-brand-primary pl-8 py-4 js-voice-reveal opacity-0">
+        <p class="text-xl @md:text-2xl font-light text-brand-text-muted leading-relaxed">
+          Hoy la marca personal no se construye con frases motivacionales. Se construye con la profundidad de las ideas y la radicalidad de la ejecución.
+        </p>
+      </div>
+    </div>
+
+    <!-- Transformation Matrix Grid -->
+    <div class="col-span-12 grid grid-cols-1 @xl:grid-cols-2 @6xl:grid-cols-4 gap-6">
+      {matrixItems.map((item) => (
+        <TransformationCard 
+          {...item} 
+          class="js-matrix-card js-voice-reveal opacity-0"
+        />
+      ))}
+    </div>
+  </div>
+</SectionWrapper>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  // Register plugin locally
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initVoiceAnimations() {
+    const section = document.querySelector('.js-voice-section');
+    if (!section) return;
+
+    const reveals = section.querySelectorAll('.js-voice-reveal');
+    const matrixCards = section.querySelectorAll('.js-matrix-card');
+    
+    // Specifically target the text blocks which are the first two elements with .js-voice-reveal
+    const headline = reveals[0];
+    const description = reveals[1];
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      // Unhide for GSAP to capture natural state
+      gsap.set(reveals, { autoAlpha: 1 });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          toggleActions: "play none none none"
+        }
+      });
+
+      // 1. Headline reveal
+      if (headline) {
+        tl.from(headline, {
+          y: 40,
+          autoAlpha: 0,
+          duration: 1.2,
+          ease: "power4.out"
+        });
+      }
+
+      // 2. Description reveal
+      if (description) {
+        tl.from(description, {
+          y: 20,
+          autoAlpha: 0,
+          duration: 1.0,
+          ease: "power3.out"
+        }, "-=0.8");
+      }
+
+      // 3. Matrix Cards Reveal (Wave)
+      if (matrixCards.length > 0) {
+        tl.from(matrixCards, {
+          y: 30,
+          autoAlpha: 0,
+          duration: 1.0,
+          stagger: 0.1,
+          ease: "power3.out"
+        }, "-=0.6");
+      }
+    });
+
+    mm.add("(prefers-reduced-motion: reduce)", () => {
+      gsap.to(reveals, {
+        autoAlpha: 1,
+        duration: 0.8,
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          toggleActions: "play none none none"
+        }
+      });
+    });
+  }
+
+  initVoiceAnimations();
+</script>

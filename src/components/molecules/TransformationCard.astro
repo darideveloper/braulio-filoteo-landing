@@ -1,0 +1,26 @@
+---
+import clsx from 'clsx';
+import MaterialIcon from '../atoms/MaterialIcon.astro';
+
+interface Props {
+  title: string;
+  icon: string;
+  class?: string;
+}
+
+const { title, icon, class: className } = Astro.props;
+---
+
+<div class={clsx(
+  "bg-brand-surface-low p-8 flex flex-col justify-between min-h-[250px] group hover:bg-brand-surface transition-colors duration-500 border border-brand-outline-variant/5",
+  className
+)}>
+  <MaterialIcon name={icon} size="text-7xl!" class="text-brand-secondary" />
+  
+  <div>
+    <h3 class="font-brand-display text-2xl font-bold uppercase text-brand-text-high mb-4 tracking-tight leading-none">
+      {title}
+    </h3>
+    <div class="h-1 w-0 group-hover:w-full bg-brand-primary transition-all duration-700 ease-in-out"></div>
+  </div>
+</div>

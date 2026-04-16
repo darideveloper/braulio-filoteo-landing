@@ -13,6 +13,7 @@ import HeroNoir from '../components/organisms/HeroNoir.astro'
 import GritonesSection from '../components/organisms/GritonesSection.astro'
 import FeatureCTA from '../components/molecules/FeatureCTA.astro'
 import SectionWrapper from '../components/organisms/SectionWrapper.astro'
+import VoiceSection from '../components/organisms/VoiceSection.astro'
 import PlansSection from '../components/organisms/PlansSection.astro'
 import PillarsSection from '../components/organisms/PillarsSection.astro'
 import CollabSection from '../components/organisms/CollabSection.astro'
@@ -92,7 +93,9 @@ const services = [
   <NewsletterSection id="newsletter" />
   <SocialSection id="social" />
 
-  <SectionWrapper variant="lowest" class="py-24 relative overflow-hidden">
+  <VoiceSection />
+
+  <SectionWrapper variant="lowest" class="pb-24 pt-12 relative overflow-hidden">
     <FeatureCTA 
       label="El Vehículo" 
       ctaText="Inicia tu Proyecto" 

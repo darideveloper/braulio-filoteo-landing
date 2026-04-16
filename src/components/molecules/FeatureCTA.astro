@@ -23,10 +23,10 @@ const {
 } = Astro.props;
 ---
 
-<div class="flex flex-col items-center text-center max-w-4xl mx-auto py-12">
+<div class="flex flex-col items-center text-center max-w-4xl mx-auto py-12 js-feature-cta">
   {watermark && (
     <div class={clsx(
-      "absolute inset-0 flex -z-10 pointer-events-none items-center",
+      "absolute inset-0 flex -z-10 pointer-events-none items-center js-fcta-watermark js-fcta-reveal opacity-0",
       watermarkAlign === 'center' ? "justify-center" : "justify-end"
     )}>
       <span 
@@ -43,11 +43,11 @@ const {
       </span>
     </div>
   )}
-  <p class="label-md text-brand-primary tracking-[0.3em] uppercase mb-6">{label}</p>
-  <h2 class="display-lg text-4xl @md:text-6xl text-brand-text-high mb-12 normal-case">
+  <p class="label-md text-brand-primary tracking-[0.3em] uppercase mb-6 js-fcta-label js-fcta-reveal opacity-0">{label}</p>
+  <h2 class="display-lg text-4xl @md:text-6xl text-brand-text-high mb-12 normal-case js-fcta-headline js-fcta-reveal opacity-0">
     <slot />
   </h2>
-  <div class="flex items-center gap-4 group cursor-pointer">
+  <div class="flex items-center gap-4 group cursor-pointer js-fcta-button js-fcta-reveal opacity-0">
     <div class="bg-brand-secondary text-white p-6 rounded-[0.25rem] group-hover:bg-brand-primary transition-colors duration-300">
       <MaterialIcon name={icon} size="text-4xl" />
     </div>
@@ -56,3 +56,90 @@ const {
     </span>
   </div>
 </div>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  // Register plugin locally
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initFeatureCTAAnimations() {
+    const instances = gsap.utils.toArray('.js-feature-cta') as HTMLElement[];
+    
+    instances.forEach((container) => {
+      const reveals = container.querySelectorAll('.js-fcta-reveal');
+      const watermark = container.querySelector('.js-fcta-watermark');
+      const label = container.querySelector('.js-fcta-label');
+      const headline = container.querySelector('.js-fcta-headline');
+      const button = container.querySelector('.js-fcta-button');
+
+      const mm = gsap.matchMedia();
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        // Unhide for GSAP to capture natural state
+        gsap.set(reveals, { autoAlpha: 1 });
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: container,
+            start: "top 85%",
+            toggleActions: "play none none none"
+          }
+        });
+
+        if (watermark) {
+          tl.from(watermark, {
+            autoAlpha: 0,
+            scale: 0.95,
+            duration: 1.5,
+            ease: "power2.out"
+          });
+        }
+
+        if (label) {
+          tl.from(label, {
+            y: 20,
+            autoAlpha: 0,
+            duration: 0.8,
+            ease: "power2.out"
+          }, watermark ? "-=1.2" : "0");
+        }
+
+        if (headline) {
+          tl.from(headline, {
+            y: 40,
+            autoAlpha: 0,
+            duration: 1.2,
+            ease: "power4.out"
+          }, "-=0.8");
+        }
+
+        if (button) {
+          tl.from(button, {
+            y: 20,
+            autoAlpha: 0,
+            duration: 1.0,
+            ease: "power3.out"
+          }, "-=0.6");
+        }
+      });
+
+      mm.add("(prefers-reduced-motion: reduce)", () => {
+        gsap.to(reveals, {
+          autoAlpha: 1,
+          duration: 0.8,
+          stagger: 0.1,
+          scrollTrigger: {
+            trigger: container,
+            start: "top 85%",
+            toggleActions: "play none none none"
+          }
+        });
+      });
+    });
+  }
+
+  // Initialize
+  initFeatureCTAAnimations();
+</script>
