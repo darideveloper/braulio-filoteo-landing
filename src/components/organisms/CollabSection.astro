@@ -9,20 +9,40 @@ interface Props extends Partial<SectionProps> {}
 const { id = "colaboraciones" } = Astro.props;
 
 const collabs = [
-  { title: "Conferencias", icon: "mic" },
-  { title: "Entrevistas", icon: "chat_bubble" },
-  { title: "Podcasts", icon: "podcasts" },
-  { title: "Proyectos Narrativos", icon: "edit_note" }
+  { 
+    title: "Charla TED", 
+    icon: "mic", 
+    href: "https://www.youtube.com/watch?v=m39sWmlXaM0" 
+  },
+  { 
+    title: "La salud de tu marca", 
+    icon: "chat_bubble", 
+    href: "https://open.spotify.com/episode/6UIY0WwalkjF0VoEnhLkLZ?si=zC2_lfRXSF-_ou4vpWl1iA" 
+  },
+  { 
+    title: "Innokabi Podcast", 
+    icon: "chat_bubble", 
+    href: "https://www.youtube.com/watch?v=L5YcEYpDav4" 
+  },
+  { 
+    title: "GRITones Podcast", 
+    icon: "podcasts", 
+    href: "https://open.spotify.com/show/181uvsFpNljS7htYHcFt4v" 
+  },
+  { 
+    title: "Proyectos Narrativos", 
+    icon: "edit_note" 
+  }
 ];
 ---
 
 <SectionWrapper
   id={id}
   variant="lowest"
-  class="border-y border-brand-outline-variant/5"
+  class="border-y border-brand-outline-variant/5 js-collab-section"
 >
   <div class="editorial-grid gap-y-16">
-    <div class="col-span-12 @7xl:col-span-6">
+    <div class="col-span-12 @7xl:col-span-6 js-collab-header js-collab-reveal opacity-0">
       <SectionHeader
         label="Let's create together"
         title="Colaboremos"
@@ -33,8 +53,76 @@ const collabs = [
     </div>
     <div class="col-span-12 @7xl:col-span-5 @7xl:col-start-8 flex flex-col">
       {collabs.map((collab) => (
-        <CollabItem {...collab} />
+        <div class="js-collab-item js-collab-reveal opacity-0">
+          <CollabItem {...collab} />
+        </div>
       ))}
     </div>
   </div>
 </SectionWrapper>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  // Register plugin locally
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initCollabAnimations() {
+    const section = document.querySelector('.js-collab-section');
+    if (!section) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      // Unhide elements for GSAP to capture the correct natural state
+      gsap.set(section.querySelectorAll(".js-collab-reveal"), { 
+        autoAlpha: 1,
+        force3D: true
+      });
+      
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          toggleActions: "play none none none"
+        }
+      });
+
+      tl.from(".js-collab-header", {
+        autoAlpha: 0,
+        y: 40,
+        duration: 1.2,
+        ease: "power4.out"
+      })
+      .from(".js-collab-item", {
+        autoAlpha: 0,
+        x: 30,
+        y: 20,
+        duration: 1.0,
+        stagger: 0.1,
+        ease: "power3.out"
+      }, "-=0.8");
+    });
+
+    // Fallback for reduced motion: only fade in
+    mm.add("(prefers-reduced-motion: reduce)", () => {
+      gsap.set(section.querySelectorAll(".js-collab-reveal"), { autoAlpha: 0 });
+      
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top 80%",
+        onEnter: () => {
+          gsap.to(section.querySelectorAll(".js-collab-reveal"), {
+            autoAlpha: 1,
+            duration: 0.8,
+            stagger: 0.1
+          });
+        }
+      });
+    });
+  }
+
+  // Initialize
+  initCollabAnimations();
+</script>
