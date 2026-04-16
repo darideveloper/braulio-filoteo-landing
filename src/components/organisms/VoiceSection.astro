@@ -28,22 +28,22 @@ const matrixItems = [
 ];
 ---
 
-<SectionWrapper id={id} variant="lowest" fullHeight={false} class="pt-32 pb-0 js-voice-section">
-  <div class="editorial-grid gap-y-24">
+<SectionWrapper id={id} variant="lowest" fullHeight={false} class="pt-20 @3xl:pt-32 pb-0 js-voice-section">
+  <div class="editorial-grid gap-y-12 @3xl:gap-y-24">
     <!-- Asymmetric Text Blocks -->
-    <div class="col-span-12 grid grid-cols-12 gap-y-16">
-      <!-- Headline Block: Columns 1-9 -->
-      <div class="col-span-12 @5xl:col-span-9 js-voice-reveal opacity-0">
+    <div class="col-span-12 grid grid-cols-12 gap-y-12 @3xl:gap-y-16">
+      <!-- Headline Block: Responsive spans -->
+      <div class="col-span-12 @3xl:col-span-10 @5xl:col-span-9 js-voice-reveal opacity-0">
         <p class="label-md text-brand-secondary tracking-[0.2em] mb-4">
           Metodología Noir
         </p>
-        <h2 class="display-2xl text-brand-text-high uppercase">
+        <h2 class="font-brand-display text-4xl @3xl:text-6xl @5xl:text-8xl font-black tracking-tighter leading-[0.9] text-brand-text-high uppercase break-words">
           Tu voz puede <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-primary to-brand-primary-light">convertirse</span> en una plataforma.
         </h2>
       </div>
 
-      <!-- Description Block: Columns 6-12 -->
-      <div class="col-span-12 @5xl:col-start-6 @5xl:col-span-6 border-l-4 border-brand-primary pl-8 py-4 js-voice-reveal opacity-0">
+      <!-- Description Block: Responsive placement -->
+      <div class="col-span-12 @3xl:col-start-2 @3xl:col-span-11 @5xl:col-start-6 @5xl:col-span-6 border-l-4 border-brand-primary pl-6 @md:pl-8 py-4 js-voice-reveal opacity-0">
         <p class="text-xl @md:text-2xl font-light text-brand-text-muted leading-relaxed">
           Hoy la marca personal no se construye con frases motivacionales. Se construye con la profundidad de las ideas y la radicalidad de la ejecución.
         </p>
@@ -51,7 +51,7 @@ const matrixItems = [
     </div>
 
     <!-- Transformation Matrix Grid -->
-    <div class="col-span-12 grid grid-cols-1 @xl:grid-cols-2 @6xl:grid-cols-4 gap-6">
+    <div class="col-span-12 grid grid-cols-1 @md:grid-cols-2 @5xl:grid-cols-4 gap-6">
       {matrixItems.map((item) => (
         <TransformationCard 
           {...item} 
