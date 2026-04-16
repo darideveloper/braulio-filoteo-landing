@@ -44,15 +44,83 @@ const pillars = [
   label="Metodología"
   title="PILARES"
   headerLayout="inline-start"
-  headerClass="mb-16"
+  headerClass="mb-16 js-pillars-header js-pillars-reveal opacity-0"
   containerClass="pt-32"
   titleColor="text-brand-secondary"
   labelColor="text-brand-text-muted"
   size="editorial"
+  class="js-pillars-section"
 >
   <div class="grid grid-cols-1 @xl:grid-cols-2 @6xl:grid-cols-4 gap-1">
     {pillars.map((pillar) => (
-      <PillarCard {...pillar} />
+      <div class="js-pillars-card js-pillars-reveal opacity-0">
+        <PillarCard {...pillar} />
+      </div>
     ))}
   </div>
 </SectionWrapper>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  // Register plugin locally
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initPillarsAnimations() {
+    const section = document.querySelector('.js-pillars-section');
+    if (!section) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      // Unhide elements for GSAP to capture the correct natural state
+      gsap.set(section.querySelectorAll(".js-pillars-reveal"), { 
+        autoAlpha: 1,
+        force3D: true
+      });
+      
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          toggleActions: "play none none none"
+        }
+      });
+
+      tl.from(".js-pillars-header", {
+        autoAlpha: 0,
+        y: 50,
+        duration: 1.4,
+        ease: "power4.out"
+      })
+      .from(".js-pillars-card", {
+        autoAlpha: 0,
+        y: 30,
+        duration: 1.2,
+        stagger: 0.15,
+        ease: "power3.out"
+      }, "-=1.0");
+    });
+
+    // Fallback for reduced motion: only fade in
+    mm.add("(prefers-reduced-motion: reduce)", () => {
+      gsap.set(section.querySelectorAll(".js-pillars-reveal"), { autoAlpha: 0 });
+      
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top 80%",
+        onEnter: () => {
+          gsap.to(section.querySelectorAll(".js-pillars-reveal"), {
+            autoAlpha: 1,
+            duration: 0.8,
+            stagger: 0.1
+          });
+        }
+      });
+    });
+  }
+
+  // Initialize
+  initPillarsAnimations();
+</script>
