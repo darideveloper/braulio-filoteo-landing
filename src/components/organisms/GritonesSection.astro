@@ -26,7 +26,11 @@ interface Props extends Partial<SectionProps> {
 const { id = 'services', title, label, subtitle, services, class: className } = Astro.props;
 ---
 
-<SectionWrapper id={id} class={clsx("py-24", className)}>
+<SectionWrapper 
+  id={id} 
+  class={clsx("py-24", className)}
+  containerClass="container"
+>
   <SectionHeader 
     layout="inline"
     title={title}

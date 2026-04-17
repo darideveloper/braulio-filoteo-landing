@@ -9,6 +9,7 @@ import type { SectionProps } from '../../types/Section'
 
 import avatarMale from '../../assets/images/avatar-male.svg'
 import avatarFemale from '../../assets/images/avatar-female.svg'
+import BraulioPhoto from '../../assets/images/braulio-photo.webp'
 
 interface Props extends Partial<SectionProps> {}
 
@@ -31,85 +32,105 @@ const kineticWords = [
   id={id}
   variant={variant}
   class={clsx('bg-noir-gradient', className)}
-  containerClass='max-w-4xl w-full text-center space-y-12'
+  containerClass='text-center space-y-12'
 >
   <!-- Atmospheric Glow Elements -->
   <div
-    class='absolute top-1/4 -left-24 w-96 h-96 bg-brand-primary/10 rounded-full blur-[120px] pointer-events-none'
+    class='hidden lg:inline-block absolute top-1/4 -left-24 w-96 h-96 bg-brand-primary/10 rounded-full blur-[120px] pointer-events-none'
   >
   </div>
   <div
-    class='absolute bottom-1/4 -right-24 w-96 h-96 bg-brand-secondary/5 rounded-full blur-[120px] pointer-events-none'
+    class='hidden lg:inline-block absolute bottom-1/4 -right-24 w-96 h-96 bg-brand-secondary/5 rounded-full blur-[120px] pointer-events-none'
   >
   </div>
 
-  <!-- Editorial Overline -->
-  <SectionHeader
-    label='Membresía Privada'
-    align='center'
-    size='editorial'
-    titleColor='text-brand-secondary'
-  >
-    <Fragment slot='title'>
-      GRIT <span class='text-brand-text-high'>en la vida cotidiana</span>
-    </Fragment>
-  </SectionHeader>
+  <!-- Header & Intro Container -->
+  <div class='container space-y-12'>
+    <!-- Editorial Overline -->
+    <SectionHeader
+      label='Membresía Privada'
+      align='center'
+      size='editorial'
+      titleColor='text-brand-secondary'
+    >
+      <Fragment slot='title'>
+        GRIT <span class='text-brand-text-high'>en la vida cotidiana</span>
+      </Fragment>
+    </SectionHeader>
 
-  <!-- Descriptive Content Cluster -->
-  <div class='grid grid-cols-1 @md:grid-cols-12 gap-8 items-start'>
-    <div class='@md:col-span-12 space-y-6'>
-      <SideBorderQuote
-        class='text-xl @md:text-2xl font-light text-brand-text-high text-left max-w-2xl mx-auto'
-      >
-        "Reflexiones en audio y texto sobre liderazgo, decisiones difíciles y la
-        realidad detrás del emprendimiento."
-      </SideBorderQuote>
-
-      <div class='max-w-xl mx-auto space-y-4'>
-        <p
-          class='text-brand-text-muted font-brand-body leading-relaxed text-lg'
+    <!-- Descriptive Content Cluster -->
+    <div class='grid grid-cols-1 @md:grid-cols-12 gap-8 items-start'>
+      <div class='@md:col-span-12 space-y-6'>
+        <SideBorderQuote
+          class='text-xl @md:text-2xl font-light text-brand-text-high text-left max-w-2xl mx-auto'
         >
-          Lo que no cuento en el podcast, lo envío por aquí. Reflexiones crudas
-          sobre el camino del líder, enviadas en formato de audio corto y texto
-          para leer en 3 minutos.
-        </p>
-        <div class='flex flex-wrap justify-center gap-4 py-4'>
-          {
-            features.map((feature) => (
-              <div
-                key={feature.label}
-                class='flex items-center gap-2 text-brand-text-high text-sm font-brand-body uppercase tracking-widest font-bold'
-              >
-                <MaterialIcon
-                  name={feature.icon}
-                  class='text-brand-secondary text-lg'
-                />
-                {feature.label}
-              </div>
-            ))
-          }
+          "Reflexiones en audio y texto sobre liderazgo, decisiones difíciles y
+          la realidad detrás del emprendimiento."
+        </SideBorderQuote>
+
+        <div class='max-w-xl mx-auto space-y-4'>
+          <p
+            class='text-brand-text-muted font-brand-body leading-relaxed text-lg'
+          >
+            Lo que no cuento en el podcast, lo envío por aquí. Reflexiones
+            crudas sobre el camino del líder, enviadas en formato de audio corto
+            y texto para leer en 3 minutos.
+          </p>
+          <div class='flex flex-wrap justify-center gap-4 py-4'>
+            {
+              features.map((feature) => (
+                <div
+                  key={feature.label}
+                  class='flex items-center gap-2 text-brand-text-high text-sm font-brand-body uppercase tracking-widest font-bold'
+                >
+                  <MaterialIcon
+                    name={feature.icon}
+                    class='text-brand-secondary text-lg'
+                  />
+                  {feature.label}
+                </div>
+              ))
+            }
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Substack Embed Section -->
-  <div class='max-w-2xl mx-auto w-full pt-8'>
-    <div
-      class='bg-brand-surface min-h-[320px] rounded-lg overflow-hidden border border-brand-surface-bright/10 shadow-2xl'
-    >
-      <iframe
-        src='https://brauliofiloteo.substack.com/embed'
-        width='100%'
-        height='400'
-        frameborder='0'
-        scrolling='no'
-        title='Suscripción a la Membresía Privada en Substack'
-      ></iframe>
+  <div class='w-full pt-8'>
+    <div class='py-16 bg-[#000000]'>
+      <div class='relative flex items-center justify-center flex-col gap-4'>
+        <div class='flex items-center gap-4'>
+          <Image
+            src={BraulioPhoto}
+            alt='Braulio Filoteo'
+            width={80}
+            height={80}
+            class='mx-auto rounded-full'
+          />
+          <h3 class='text-white text-2xl font-bold text-left'>
+            <span class='block'> Braulio Filoteo </span>
+            <span class='text-brand-secondary block text-xl'> Substack </span>
+          </h3>
+        </div>
+        <iframe
+          id='substack-iframe'
+          src='https://brauliofiloteo.substack.com/embed?minimal=true'
+          width='350'
+          height='160'
+          frameborder='0'
+          scrolling='no'
+          title='Suscripción a la Membresía Privada en Substack'
+          class='invert-100 hue-rotate-180 scale-100 sm:scale-125 origin-top'
+        ></iframe>
+      </div>
     </div>
-
+  </div>
+  <!-- Social Proof & Footer Container -->
+  <div class='container mt-4 space-y-8'>
     <!-- Adblocker Fallback -->
-    <p class='text-xs text-brand-text-muted mt-4 font-brand-body'>
+    <p class='text-xs text-brand-text-muted font-brand-body'>
       ¿No ves el formulario? <a
         href='https://brauliofiloteo.substack.com'
         target='_blank'
@@ -120,7 +141,7 @@ const kineticWords = [
     </p>
 
     <!-- Value Proposition & Social Proof -->
-    <div class='mt-8 space-y-4'>
+    <div class='space-y-4'>
       <p
         class='text-brand-text-muted font-brand-body font-bold text-xs uppercase tracking-[0.15em] leading-relaxed max-w-lg mx-auto'
       >

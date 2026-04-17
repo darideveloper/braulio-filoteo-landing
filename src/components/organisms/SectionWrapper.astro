@@ -46,7 +46,7 @@ const backgroundClasses = {
   className
 )}>
   <slot name="background" />
-  <div class={clsx("container mx-auto relative z-10 w-full", containerClass)}>
+  <div class={clsx("relative z-10 w-full", containerClass)}>
     {(title || label || description) && (
       <SectionHeader 
         label={label || ""} 

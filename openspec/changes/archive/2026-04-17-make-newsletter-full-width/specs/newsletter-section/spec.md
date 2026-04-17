@@ -1,8 +1,7 @@
 # newsletter-section Specification
 
-## Purpose
-TBD - created by archiving change add-newsletter-section. Update Purpose after archive.
-## Requirements
+## MODIFIED Requirements
+
 ### Requirement: Standalone Newsletter Organism
 The system SHALL provide a `NewsletterSection` organism designed to capture email subscriptions for a private community using a Substack-managed flow.
 
@@ -15,4 +14,3 @@ The system SHALL provide a `NewsletterSection` organism designed to capture emai
 - **ADDED** requirement to use horizontal borders only (`border-y`) for the iframe container.
 - **ADDED** requirement to include an editorial profile section (photo and title) above the iframe for better branding.
 - **AND** it SHALL maintain the original iframe width, height, and scaling attributes.
-
