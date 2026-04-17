@@ -1,8 +1,7 @@
-# pillars-animation Specification
+# Spec Delta: pillars-animation
 
-## Purpose
-TBD - created by archiving change 2026-04-16-animate-pillars-section. Update Purpose after archive.
-## Requirements
+## MODIFIED Requirements
+
 ### Requirement: Pillars Section Scroll-Triggered Reveal
 The `PillarsSection` SHALL remain hidden until it enters the viewport and reaches a central focus area.
 
@@ -24,13 +23,3 @@ The `PillarsSection` SHALL use a sequenced reveal for its components to highligh
 - **AND** the Pillar Cards SHALL reveal with a `0.2s` stagger delay.
 - **AND** they SHALL start their animation `0.6s` after the Header begins (`-=0.8s` from end or `-=0.6s` relative start).
 - **AND** they SHALL slide up from `y: 30`.
-
-### Requirement: Accessible Motion for Pillars
-The system SHALL respect the user's preference for reduced motion for the `PillarsSection`.
-
-#### Scenario: Reduced Motion Preference
-- **GIVEN** a system-level `prefers-reduced-motion: reduce` setting.
-- **WHEN** the `PillarsSection` is rendered and scrolled into view.
-- **THEN** all vertical movement animations SHALL be bypassed.
-- **AND** elements SHALL only perform a simple staggered fade-in (`autoAlpha: 0` to `1`).
-

@@ -89,7 +89,7 @@ const pillars = [
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
-          start: 'top 80%',
+          start: 'top 65%',
           toggleActions: 'play none none none',
         },
       })
@@ -98,17 +98,17 @@ const pillars = [
         autoAlpha: 0,
         y: 50,
         duration: 1.4,
-        ease: 'power4.out',
+        ease: 'expo.out',
       }).from(
         '.js-pillars-card',
         {
           autoAlpha: 0,
           y: 30,
           duration: 1.2,
-          stagger: 0.15,
+          stagger: 0.2,
           ease: 'power3.out',
         },
-        '-=1.0',
+        '-=0.6',
       )
     })
 
