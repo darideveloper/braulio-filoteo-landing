@@ -17,17 +17,19 @@ const { id, class: className } = Astro.props
 <section
   id={id}
   class={clsx(
-    'relative min-h-screen flex items-center w-full py-24 px-6 @md:px-12 @lg:px-24 overflow-hidden bg-brand-background',
+    'js-podcast-section relative min-h-screen flex items-center w-full py-24 px-6 @md:px-12 @lg:px-24 overflow-hidden bg-brand-background',
     className,
   )}
 >
   <!-- Ambient Glow Effects -->
   <div
-    class='absolute top-0 right-0 -z-10 w-[500px] h-[500px] bg-brand-primary/5 rounded-full blur-[120px] pointer-events-none'
+    class='js-podcast-glow absolute top-0 right-0 -z-10 w-[500px] h-[500px] bg-brand-primary/5 rounded-full blur-[120px] pointer-events-none'
+    style='will-change: transform;'
   >
   </div>
   <div
-    class='absolute bottom-0 left-0 -z-10 w-[400px] h-[400px] bg-brand-secondary/5 rounded-full blur-[100px] pointer-events-none'
+    class='js-podcast-glow absolute bottom-0 left-0 -z-10 w-[400px] h-[400px] bg-brand-secondary/5 rounded-full blur-[100px] pointer-events-none'
+    style='will-change: transform;'
   >
   </div>
 
@@ -35,34 +37,38 @@ const { id, class: className } = Astro.props
     <!-- Header Section -->
     <div class='grid grid-cols-1 @2xl:grid-cols-12 gap-12 items-end mb-16'>
       <div class='@2xl:col-span-8'>
-        <SectionHeader
-          label='Editorial Series'
-          title='GRITones Podcast'
-          labelColor='text-brand-primary-light'
-          titleColor='text-brand-secondary'
-          description='Donde las historias de coraje personal se convierten en manuales de éxito. Únete a más de +100 conversaciones con genios que se atrevieron a endurecer para brillar.'
-        />
+        <div class='js-podcast-header js-podcast-reveal js-reveal'>
+          <SectionHeader
+            label='Editorial Series'
+            title='GRITones Podcast'
+            labelColor='text-brand-primary-light'
+            titleColor='text-brand-secondary'
+            description='Donde las historias de coraje personal se convierten en manuales de éxito. Únete a más de +100 conversaciones con genios que se atrevieron a endurecer para brillar.'
+          />
+        </div>
       </div>
       <div class='@2xl:col-span-4 pb-2'>
-        <SideBorderQuote
-          class='text-brand-text-high font-brand-body text-lg leading-relaxed'
-        >
-          Conversaciones con personas que transformaron momentos difíciles en
-          carácter. La prueba de que el Grit es el activo más valioso de un
-          individuo.
-        </SideBorderQuote>
+        <div class='js-podcast-quote js-podcast-reveal js-reveal'>
+          <SideBorderQuote
+            class='text-brand-text-high font-brand-body text-lg leading-relaxed'
+          >
+            Conversaciones con personas que transformaron momentos difíciles en
+            carácter. La prueba de que el Grit es el activo más valioso de un
+            individuo.
+          </SideBorderQuote>
+        </div>
       </div>
     </div>
 
     <!-- Spotify Embed -->
-    <div class='mb-24'>
+    <div class='js-podcast-embed js-podcast-reveal js-reveal mb-24'>
       <SpotifyEmbed
         url='https://open.spotify.com/show/181uvsFpNIjS7htYHcft4v'
       />
     </div>
 
     <!-- CTA Section -->
-    <div class='flex flex-col items-center mb-24'>
+    <div class='js-podcast-cta js-podcast-reveal js-reveal flex flex-col items-center mb-24'>
       <PodcastCTA
         title='¿Quieres lanzar tu podcast pero no sabes por dónde empezar?'
         description='Te enseñamos, paso a paso, en vivo'
@@ -71,7 +77,7 @@ const { id, class: className } = Astro.props
     </div>
 
     <!-- Explore Button -->
-    <div class='flex flex-col items-center'>
+    <div class='js-podcast-button js-podcast-reveal js-reveal flex flex-col items-center'>
       <BrandButton
         variant='outline'
         class='px-12! py-5! uppercase tracking-[0.2em]'
@@ -83,3 +89,111 @@ const { id, class: className } = Astro.props
     </div>
   </div>
 </section>
+
+<script>
+  import { gsap } from 'gsap'
+  import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+  function initPodcastAnimations() {
+    const section = document.querySelector('.js-podcast-section')
+    if (!section) return
+
+    const revealTargets = section.querySelectorAll('.js-podcast-reveal')
+    const glowTargets = section.querySelectorAll('.js-podcast-glow')
+    const mm = gsap.matchMedia()
+
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+      gsap.set(revealTargets, {
+        autoAlpha: 1,
+        force3D: true,
+      })
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 75%',
+          toggleActions: 'play none none none',
+        },
+      })
+
+      tl.from(section.querySelector('.js-podcast-header'), {
+        autoAlpha: 0,
+        y: 40,
+        duration: 1.4,
+        ease: 'power4.out',
+      })
+        .from(
+          section.querySelector('.js-podcast-quote'),
+          {
+            autoAlpha: 0,
+            y: 20,
+            duration: 1.2,
+            ease: 'expo.out',
+          },
+          '-=0.8',
+        )
+        .from(
+          section.querySelector('.js-podcast-embed'),
+          {
+            autoAlpha: 0,
+            y: 30,
+            duration: 1.2,
+            ease: 'power3.out',
+          },
+          '-=1.0',
+        )
+        .from(
+          section.querySelector('.js-podcast-cta'),
+          {
+            autoAlpha: 0,
+            y: 20,
+            duration: 1.2,
+            ease: 'expo.out',
+          },
+          '-=0.8',
+        )
+        .from(
+          section.querySelector('.js-podcast-button'),
+          {
+            autoAlpha: 0,
+            scale: 0.9,
+            duration: 0.8,
+            ease: 'back.out(1.7)',
+          },
+          '-=0.6',
+        )
+
+      gsap.to(glowTargets, {
+        y: (index) => (index === 0 ? 72 : -72),
+        x: (index) => (index === 0 ? 36 : -36),
+        ease: 'none',
+        force3D: true,
+        scrollTrigger: {
+          trigger: section,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.2,
+        },
+      })
+    })
+
+    mm.add('(prefers-reduced-motion: reduce)', () => {
+      gsap.set(revealTargets, { autoAlpha: 0 })
+
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top 75%',
+        onEnter: () => {
+          gsap.to(revealTargets, {
+            autoAlpha: 1,
+            duration: 0.7,
+            stagger: 0.08,
+            overwrite: 'auto',
+          })
+        },
+      })
+    })
+  }
+
+  initPodcastAnimations()
+</script>
