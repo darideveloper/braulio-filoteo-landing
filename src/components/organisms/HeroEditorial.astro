@@ -12,7 +12,7 @@ const { badge, title, description } = Astro.props;
 const hasTitleSlot = Astro.slots.has('title');
 ---
 
-<SectionWrapper variant="lowest" class="py-24" containerClass="editorial-grid gap-y-16">
+<SectionWrapper variant="lowest" class="py-24" containerClass="container editorial-grid gap-y-16">
   <div class="col-span-12 @md:col-span-9">
     <p class="label-md text-brand-secondary mb-4">{badge}</p>
     <h1 class="display-2xl text-[3.5rem] @md:text-[5rem] text-brand-text-high mb-8 normal-case">

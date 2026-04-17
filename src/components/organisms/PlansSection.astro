@@ -14,7 +14,7 @@ const { id = 'plans', class: className } = Astro.props
 
 const plans = [
   {
-    variant: 'entry',
+    variant: 'entry' as const,
     icon: 'bolt',
     badge: 'Entry Level',
     title: 'Podcast Express',
@@ -30,17 +30,18 @@ const plans = [
     },
     cta: {
       label: 'Ver próxima inmersión',
-      href: '#',
+      href: 'https://www.lanzaunpodcast.com/org',
     },
     colSpan: '@4xl:col-span-5',
     id: 'podcast-express',
   },
   {
-    variant: 'premium',
+    variant: 'premium' as const,
     icon: 'auto_awesome',
     badge: 'Advanced / Mentoría',
-    title: 'Podcast Pro+',
-    subtitle: 'Acelera tu marca personal con un podcast estratégico.',
+    title: '5 pasos para acelera',
+    subtitle:
+      'Acelera tu marca personal con un podcast estratégico. Rapidez, exclusividad y personalizacién',
     features: [
       'Posicionamiento',
       'Storytelling',
@@ -59,9 +60,10 @@ const plans = [
 
 <SectionWrapper
   id={id}
-  class={clsx('py-24', className)}
+  containerClass='container'
+  class={clsx('py-24 js-plans-section', className)}
 >
-  <div class='relative'>
+  <div class='relative js-plans-header js-plans-reveal opacity-0'>
     <SectionHeader
       label='Oferta de valor'
       title='Ecosistema de Planes'
@@ -72,16 +74,16 @@ const plans = [
 
     {/* Decorative Glow */}
     <div
-      class='absolute -top-20 -left-20 w-96 h-96 bg-brand-primary/10 blur-[120px] rounded-full -z-10'
+      class='absolute -top-20 -left-20 w-96 h-96 bg-brand-primary/10 blur-[120px] rounded-full -z-10 js-plans-glow js-plans-reveal opacity-0'
     >
     </div>
   </div>
 
   <div class='grid grid-cols-1 @4xl:grid-cols-12 gap-8'>
     {
-      plans.map((plan) => (
-        <div class={plan.colSpan}>
-          <PlansCard {...plan} />
+      plans.map(({ colSpan, ...planProps }) => (
+        <div class={clsx(colSpan, 'js-plans-card js-plans-reveal opacity-0')}>
+          <PlansCard {...planProps} />
         </div>
       ))
     }
@@ -89,7 +91,7 @@ const plans = [
 
   {/* Section Outro */}
   <footer
-    class='mt-32 border-t border-brand-outline-variant/10 pt-12 flex flex-col @md:flex-row items-end justify-between gap-8'
+    class='mt-32 border-t border-brand-outline-variant/10 pt-12 flex flex-col @md:flex-row items-end justify-between gap-8 js-plans-footer js-plans-reveal opacity-0'
   >
     <div class='max-w-md'>
       <h3
@@ -110,7 +112,7 @@ const plans = [
       <span
         class='font-brand-display font-black uppercase text-brand-secondary tracking-tighter text-xl'
       >
-        Agendar Llamada
+        ESCRIBENOS
       </span>
       <MaterialIcon
         name='arrow_forward'
@@ -119,3 +121,92 @@ const plans = [
     </a>
   </footer>
 </SectionWrapper>
+
+<script>
+  import { gsap } from 'gsap'
+  import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+  // Register plugin locally
+  gsap.registerPlugin(ScrollTrigger)
+
+  function initPlansAnimations() {
+    const section = document.querySelector('.js-plans-section')
+    if (!section) return
+
+    const mm = gsap.matchMedia()
+
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+      // Unhide elements for GSAP to capture the correct natural state
+      gsap.set(section.querySelectorAll('.js-plans-reveal'), {
+        autoAlpha: 1,
+        force3D: true,
+      })
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 75%',
+          toggleActions: 'play none none none',
+        },
+      })
+
+      tl.from('.js-plans-glow', {
+        autoAlpha: 0,
+        scale: 0.8,
+        duration: 2,
+        ease: 'power2.out',
+      })
+        .from(
+          '.js-plans-header',
+          {
+            autoAlpha: 0,
+            y: 40,
+            duration: 1.2,
+            ease: 'power4.out',
+          },
+          '-=1.5',
+        )
+        .from(
+          '.js-plans-card',
+          {
+            autoAlpha: 0,
+            y: 60,
+            duration: 1.2,
+            stagger: 0.2,
+            ease: 'expo.out',
+          },
+          '-=0.8',
+        )
+        .from(
+          '.js-plans-footer',
+          {
+            autoAlpha: 0,
+            y: 20,
+            duration: 1,
+            ease: 'power3.out',
+          },
+          '-=0.6',
+        )
+    })
+
+    // Fallback for reduced motion: only fade in
+    mm.add('(prefers-reduced-motion: reduce)', () => {
+      gsap.set(section.querySelectorAll('.js-plans-reveal'), { autoAlpha: 0 })
+
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top 75%',
+        onEnter: () => {
+          gsap.to(section.querySelectorAll('.js-plans-reveal'), {
+            autoAlpha: 1,
+            duration: 0.8,
+            stagger: 0.1,
+          })
+        },
+      })
+    })
+  }
+
+  // Initialize
+  initPlansAnimations()
+</script>

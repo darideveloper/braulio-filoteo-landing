@@ -13,52 +13,57 @@ import HeroNoir from '../components/organisms/HeroNoir.astro'
 import GritonesSection from '../components/organisms/GritonesSection.astro'
 import FeatureCTA from '../components/molecules/FeatureCTA.astro'
 import SectionWrapper from '../components/organisms/SectionWrapper.astro'
+import VoiceSection from '../components/organisms/VoiceSection.astro'
 import PlansSection from '../components/organisms/PlansSection.astro'
 import PillarsSection from '../components/organisms/PillarsSection.astro'
 import CollabSection from '../components/organisms/CollabSection.astro'
 
-import founderPortrait from '../assets/images/founder.svg';
+import founderPortrait from '../assets/images/gritones-founder.webp'
 
 const services = [
   {
     span: 2,
-    icon: "mic",
-    title: "producción de podcast",
-    description: "Elevamos tu narrativa sonora con calidad broadcast y dirección creativa de primer nivel.",
-    footerLabel: "Audio Excellence"
+    icon: 'mic',
+    title: 'producción de podcast',
+    description:
+      'Elevamos tu narrativa sonora con calidad broadcast y dirección creativa de primer nivel.',
+    footerLabel: 'Audio Excellence',
   },
   {
     span: 1,
-    icon: "hub",
-    title: "estrategia de marca personal",
-    description: "Construcción de autoridad y presencia digital para fundadores e innovadores.",
-    footerLabel: "Authority"
+    icon: 'hub',
+    title: 'estrategia de marca personal',
+    description:
+      'Construcción de autoridad y presencia digital para fundadores e innovadores.',
+    footerLabel: 'Authority',
   },
   {
     span: 1,
-    icon: "auto_stories",
-    title: "storytelling de marca",
-    description: "Narrativas que conectan, inspiran y convierten espectadores en embajadores.",
-    footerLabel: "Narrative"
+    icon: 'auto_stories',
+    title: 'storytelling de marca',
+    description:
+      'Narrativas que conectan, inspiran y convierten espectadores en embajadores.',
+    footerLabel: 'Narrative',
   },
   {
     span: 4,
-    variant: "gradient" as const,
-    icon: "ads_click",
-    title: "contenido narrativo",
-    description: "Transformamos ideas complejas en piezas de contenido digeribles, impactantes y altamente estratégicas para canales sociales y corporativos.",
-    footerLabel: "Premium Tier"
-  }
-];
+    variant: 'gradient' as const,
+    icon: 'ads_click',
+    title: 'contenido narrativo',
+    description:
+      'Transformamos ideas complejas en piezas de contenido digeribles, impactantes y altamente estratégicas para canales sociales y corporativos.',
+    footerLabel: 'Premium Tier',
+  },
+]
 ---
 
 <Layout>
-  <Hero id="home" />
-  <AboutSection id="about" />
-  <PodcastSection id="podcast" />
+  <Hero id='home' />
+  <AboutSection id='about' />
+  <PodcastSection id='podcast' />
 
   <CtaSection
-    id="cta"
+    id='cta'
     watermark='GRIT'
     showContact={true}
   >
@@ -71,12 +76,15 @@ const services = [
         CUENTAS,
       </span><br />CUENTA.
     </EditorialHeadline>
-    <div slot='description' class="mb-12">
+    <div
+      slot='description'
+      class='mb-12'
+    >
       <p>
         Las historias construyen <span
           class='text-white border-b-2 border-brand-primary'>reputación</span
         >. <br />
-        La reputation construye <span
+        La reputación construye <span
           class='text-white border-b-2 border-brand-primary'>oportunidades</span
         >.
       </p>
@@ -89,55 +97,70 @@ const services = [
       Empieza tu Viaje
     </BrandButton>
   </CtaSection>
-  <NewsletterSection id="newsletter" />
-  <SocialSection id="social" />
+  <NewsletterSection id='newsletter' />
+  <SocialSection id='social' />
 
-  <SectionWrapper variant="lowest" class="py-24 relative overflow-hidden">
-    <FeatureCTA 
-      label="El Vehículo" 
-      ctaText="Inicia tu Proyecto" 
-      icon="mic"
-      watermark="VOICE"
-      watermarkAlign="right"
-      watermarkSize="20rem"
+  <SectionWrapper
+    id='voice-section'
+    variant='lowest'
+    class='py-24 pt-12 relative overflow-hidden'
+    containerClass='container'
+  >
+    <VoiceSection />
+  </SectionWrapper>
+
+  <SectionWrapper
+    id='vehicle-cta'
+    variant='lowest'
+    class='pb-24 pt-12 relative overflow-hidden'
+  >
+    <FeatureCTA
+      label='El Vehículo'
+      ctaText='Inicia tu Proyecto'
+      icon='mic'
+      watermark='VOICE'
+      watermarkAlign='right'
+      watermarkSize='20rem'
       watermarkOpacity={0.08}
     >
-      El vehículo más poderoso para hacerlo es un <span class="decoration-editorial">podcast</span>.
+      El vehículo más poderoso para hacerlo es un <span
+        class='decoration-editorial'>podcast</span
+      >.
     </FeatureCTA>
   </SectionWrapper>
 
-  <PlansSection id="plans" />
+  <PlansSection id='plans' />
 
   <!-- Gritones Studio Sections -->
-  <HeroNoir 
-    id="studio"
-    badge="Executive Vision"
-    title="Cofundador de GRITones Studio."
-    description="Un estudio creativo dedicado a ayudar a líderes y emprendedores a transformar su voz en contenido estratégico."
+  <HeroNoir
+    id='studio'
+    badge='Executive Vision'
+    title='Cofundador de GRITones Studio.'
+    description='Un estudio creativo dedicado a ayudar a cualquier individuo o empresa a transformar su voz en contenido estratégico.'
     image={{
       src: founderPortrait,
-      alt: "Cofundador Profile"
+      alt: 'Cofundador Profile',
     }}
     statBox={{
-      value: "01/04",
-      label: "Creative Leadership"
+      value: '01/04',
+      label: 'Creative Leadership',
     }}
   >
-    <span slot="title">
-      Cofundador de <br/>
-      <span class="text-brand-secondary">GRITones Studio.</span>
+    <span slot='title'>
+      Cofundador de <br />
+      <span class='text-brand-secondary'>GRITones Studio.</span>
     </span>
   </HeroNoir>
 
-  <GritonesSection 
-    title="SERVICIOS / CORE"
-    label="Strategic Content Development"
-    subtitle="Transformamos la profundidad de tus ideas en activos digitales de alto impacto."
+  <GritonesSection
+    title='SERVICIOS / CORE'
+    label='Strategic Content Development'
+    subtitle='Transformamos la profundidad de tus ideas en activos digitales de alto impacto.'
     services={services}
   />
 
-  <PillarsSection id="methodology" />
-  
-  <CollabSection id="colaboraciones" />
-  <YourStory id="your-story" />
+  <PillarsSection id='methodology' />
+
+  <CollabSection id='colaboraciones' />
+  <YourStory id='your-story' />
 </Layout>

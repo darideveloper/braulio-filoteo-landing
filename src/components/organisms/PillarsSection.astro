@@ -1,58 +1,135 @@
 ---
-import type { SectionProps } from '../../types/Section';
-import SectionWrapper from './SectionWrapper.astro';
-import PillarCard from '../molecules/PillarCard.astro';
+import type { SectionProps } from '../../types/Section'
+import SectionWrapper from './SectionWrapper.astro'
+import PillarCard from '../molecules/PillarCard.astro'
 
 interface Props extends Partial<SectionProps> {}
 
-const { id = "methodology" } = Astro.props;
+const { id = 'methodology' } = Astro.props
 
 const pillars = [
   {
-    number: "01",
-    icon: "lightbulb",
-    title: "Propósito",
-    description: "Descubrir tu por qué. La brújula estratégica que define cada movimiento de tu marca.",
-    variant: "lowest" as const
+    number: '01',
+    icon: 'lightbulb',
+    title: 'Propósito',
+    description:
+      'Descubrir tu por qué. La brújula estratégica que define cada movimiento de tu marca.',
+    variant: 'lowest' as const,
   },
   {
-    number: "02",
-    icon: "auto_stories",
-    title: "Storytelling",
-    description: "Ordenar tu historia. Convertir el caos de la experiencia en una narrativa cautivadora.",
-    variant: "low" as const
+    number: '02',
+    icon: 'auto_stories',
+    title: 'Storytelling',
+    description:
+      'Ordenar tu historia. Convertir el caos de la experiencia en una narrativa cautivadora.',
+    variant: 'low' as const,
   },
   {
-    number: "03",
-    icon: "record_voice_over",
-    title: "Voz",
-    description: "Convertir conversación en contenido. Encontrar el tono único que resonará en tu audiencia.",
-    variant: "lowest" as const
+    number: '03',
+    icon: 'record_voice_over',
+    title: 'Voz',
+    description:
+      'Convertir conversación en contenido. Encontrar el tono único que resonará en tu audiencia.',
+    variant: 'lowest' as const,
   },
   {
-    number: "04",
-    icon: "verified",
-    title: "Marca personal",
-    description: "Transformar experiencia en autoridad. Posicionarte como el referente indiscutible de tu nicho.",
-    variant: "low" as const
-  }
-];
+    number: '04',
+    icon: 'verified',
+    title: 'Marca personal',
+    description:
+      'Transformar experiencia en autoridad. Posicionarte como el referente indiscutible de tu nicho.',
+    variant: 'low' as const,
+  },
+]
 ---
 
 <SectionWrapper
   id={id}
-  label="Metodología"
-  title="PILARES"
-  headerLayout="inline-start"
-  headerClass="mb-16"
-  containerClass="pt-32"
-  titleColor="text-brand-secondary"
-  labelColor="text-brand-text-muted"
-  size="editorial"
+  label='Metodología'
+  title='PILARES'
+  headerLayout='inline-start'
+  containerClass='container pt-32'
+  headerClass='mb-16 js-pillars-header js-pillars-reveal opacity-0'
+  titleColor='text-brand-secondary'
+  labelColor='text-brand-text-muted'
+  size='editorial'
+  class='js-pillars-section'
 >
-  <div class="grid grid-cols-1 @xl:grid-cols-2 @6xl:grid-cols-4 gap-1">
-    {pillars.map((pillar) => (
-      <PillarCard {...pillar} />
-    ))}
+  <div class='grid grid-cols-1 @xl:grid-cols-2 @6xl:grid-cols-4 gap-1'>
+    {
+      pillars.map((pillar) => (
+        <div class='js-pillars-card js-pillars-reveal opacity-0'>
+          <PillarCard {...pillar} />
+        </div>
+      ))
+    }
   </div>
 </SectionWrapper>
+
+<script>
+  import { gsap } from 'gsap'
+  import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+  // Register plugin locally
+  gsap.registerPlugin(ScrollTrigger)
+
+  function initPillarsAnimations() {
+    const section = document.querySelector('.js-pillars-section')
+    if (!section) return
+
+    const mm = gsap.matchMedia()
+
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+      // Unhide elements for GSAP to capture the correct natural state
+      gsap.set(section.querySelectorAll('.js-pillars-reveal'), {
+        autoAlpha: 1,
+        force3D: true,
+      })
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 65%',
+          toggleActions: 'play none none none',
+        },
+      })
+
+      tl.from('.js-pillars-header', {
+        autoAlpha: 0,
+        y: 50,
+        duration: 1.4,
+        ease: 'expo.out',
+      }).from(
+        '.js-pillars-card',
+        {
+          autoAlpha: 0,
+          y: 30,
+          duration: 1.2,
+          stagger: 0.2,
+          ease: 'power3.out',
+        },
+        '-=0.6',
+      )
+    })
+
+    // Fallback for reduced motion: only fade in
+    mm.add('(prefers-reduced-motion: reduce)', () => {
+      gsap.set(section.querySelectorAll('.js-pillars-reveal'), { autoAlpha: 0 })
+
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top 80%',
+        onEnter: () => {
+          gsap.to(section.querySelectorAll('.js-pillars-reveal'), {
+            autoAlpha: 1,
+            duration: 0.8,
+            stagger: 0.1,
+          })
+        },
+      })
+    })
+  }
+
+  // Initialize
+  initPillarsAnimations()
+</script>

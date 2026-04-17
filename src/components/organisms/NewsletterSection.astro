@@ -9,8 +9,11 @@ import type { SectionProps } from '../../types/Section'
 
 import avatarMale from '../../assets/images/avatar-male.svg'
 import avatarFemale from '../../assets/images/avatar-female.svg'
+import BraulioPhoto from '../../assets/images/braulio-photo.webp'
 
-interface Props extends Partial<SectionProps> {}
+interface Props extends Partial<SectionProps> {
+  class?: string
+}
 
 const { id = 'newsletter', variant = 'lowest', class: className } = Astro.props
 
@@ -30,16 +33,16 @@ const kineticWords = [
 <SectionWrapper
   id={id}
   variant={variant}
-  class={clsx('bg-noir-gradient', className)}
-  containerClass='max-w-4xl w-full text-center space-y-12'
+  class={clsx('bg-noir-gradient js-newsletter-section', className)}
+  containerClass='w-full text-center space-y-12 '
 >
   <!-- Atmospheric Glow Elements -->
   <div
-    class='absolute top-1/4 -left-24 w-96 h-96 bg-brand-primary/10 rounded-full blur-[120px] pointer-events-none'
+    class='absolute top-1/4 -left-24 w-96 h-96 bg-brand-primary/10 rounded-full blur-[120px] pointer-events-none js-newsletter-glow'
   >
   </div>
   <div
-    class='absolute bottom-1/4 -right-24 w-96 h-96 bg-brand-secondary/5 rounded-full blur-[120px] pointer-events-none'
+    class='absolute bottom-1/4 -right-24 w-96 h-96 bg-brand-secondary/5 rounded-full blur-[120px] pointer-events-none js-newsletter-glow'
   >
   </div>
 
@@ -49,6 +52,7 @@ const kineticWords = [
     align='center'
     size='editorial'
     titleColor='text-brand-secondary'
+    class='js-newsletter-header js-reveal'
   >
     <Fragment slot='title'>
       GRIT <span class='text-brand-text-high'>en la vida cotidiana</span>
@@ -59,13 +63,13 @@ const kineticWords = [
   <div class='grid grid-cols-1 @md:grid-cols-12 gap-8 items-start'>
     <div class='@md:col-span-12 space-y-6'>
       <SideBorderQuote
-        class='text-xl @md:text-2xl font-light text-brand-text-high text-left max-w-2xl mx-auto'
+        class='text-xl @md:text-2xl font-light text-brand-text-high text-left max-w-2xl mx-auto js-newsletter-quote js-reveal'
       >
         "Reflexiones en audio y texto sobre liderazgo, decisiones difíciles y la
         realidad detrás del emprendimiento."
       </SideBorderQuote>
 
-      <div class='max-w-xl mx-auto space-y-4'>
+      <div class='max-w-xl mx-auto space-y-4 js-newsletter-content js-reveal'>
         <p
           class='text-brand-text-muted font-brand-body leading-relaxed text-lg'
         >
@@ -76,10 +80,7 @@ const kineticWords = [
         <div class='flex flex-wrap justify-center gap-4 py-4'>
           {
             features.map((feature) => (
-              <div
-                key={feature.label}
-                class='flex items-center gap-2 text-brand-text-high text-sm font-brand-body uppercase tracking-widest font-bold'
-              >
+              <div class='flex items-center gap-2 text-brand-text-high text-sm font-brand-body uppercase tracking-widest font-bold js-newsletter-feature js-reveal'>
                 <MaterialIcon
                   name={feature.icon}
                   class='text-brand-secondary text-lg'
@@ -94,22 +95,40 @@ const kineticWords = [
   </div>
 
   <!-- Substack Embed Section -->
-  <div class='max-w-2xl mx-auto w-full pt-8'>
-    <div
-      class='bg-brand-surface min-h-[320px] rounded-lg overflow-hidden border border-brand-surface-bright/10 shadow-2xl'
-    >
-      <iframe
-        src='https://brauliofiloteo.substack.com/embed'
-        width='100%'
-        height='400'
-        frameborder='0'
-        scrolling='no'
-        title='Suscripción a la Membresía Privada en Substack'
-      ></iframe>
+  <div class='w-full pt-8 js-newsletter-embed js-reveal'>
+    <div class='py-16 bg-[#000000]'>
+      <div class='relative flex items-center justify-center flex-col gap-4'>
+        <div class='flex items-center gap-4'>
+          <Image
+            src={BraulioPhoto}
+            alt='Braulio Filoteo'
+            width={80}
+            height={80}
+            class='mx-auto rounded-full'
+          />
+          <h3 class='text-white text-2xl font-bold text-left'>
+            <span class='block'> Braulio Filoteo </span>
+            <span class='text-brand-secondary block text-xl'> Substack </span>
+          </h3>
+        </div>
+        <iframe
+          id='substack-iframe'
+          src='https://brauliofiloteo.substack.com/embed?minimal=true'
+          width='350'
+          height='160'
+          frameborder='0'
+          scrolling='no'
+          title='Suscripción a la Membresía Privada en Substack'
+          class='invert-100 hue-rotate-180 scale-100 sm:scale-125 origin-top'
+        ></iframe>
+      </div>
     </div>
+  </div>
 
+  <!-- Social Proof & Footer Container -->
+  <div class='container mt-4 space-y-8 js-newsletter-proof js-reveal'>
     <!-- Adblocker Fallback -->
-    <p class='text-xs text-brand-text-muted mt-4 font-brand-body'>
+    <p class='text-xs text-brand-text-muted font-brand-body'>
       ¿No ves el formulario? <a
         href='https://brauliofiloteo.substack.com'
         target='_blank'
@@ -175,7 +194,6 @@ const kineticWords = [
       {
         kineticWords.map((word) => (
           <span
-            key={word.text}
             class={clsx(
               'text-9xl font-black font-brand-display uppercase',
               word.variant === 'stroke'
@@ -190,3 +208,121 @@ const kineticWords = [
     </div>
   </div>
 </SectionWrapper>
+
+<script>
+  import { gsap } from 'gsap'
+  import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+  gsap.registerPlugin(ScrollTrigger)
+
+  function initNewsletterAnimations() {
+    const section = document.querySelector('.js-newsletter-section')
+    if (!section) return
+
+    const mm = gsap.matchMedia()
+
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+      // 1. Unhide elements for GSAP to capture correct natural state
+      gsap.set('.js-reveal', { autoAlpha: 1, force3D: true })
+      gsap.set('.js-newsletter-glow', { autoAlpha: 1 })
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 75%',
+          toggleActions: 'play none none none',
+        },
+      })
+
+      tl.from('.js-newsletter-glow', {
+        autoAlpha: 0,
+        duration: 2.0,
+        ease: 'power2.inOut',
+      })
+        .from(
+          '.js-newsletter-header',
+          {
+            autoAlpha: 0,
+            y: 40,
+            duration: 1.2,
+            delay: 0.3,
+            ease: 'power4.out',
+          },
+          0,
+        )
+        .from(
+          '.js-newsletter-quote',
+          {
+            autoAlpha: 0,
+            x: -20,
+            duration: 1.2,
+            ease: 'power3.out',
+          },
+          '-=0.8',
+        )
+        .from(
+          '.js-newsletter-content',
+          {
+            autoAlpha: 0,
+            y: 20,
+            duration: 1.0,
+            ease: 'power2.out',
+          },
+          '-=0.6',
+        )
+        .from(
+          '.js-newsletter-feature',
+          {
+            autoAlpha: 0,
+            y: 10,
+            stagger: 0.1,
+            duration: 0.8,
+            ease: 'power2.out',
+          },
+          '-=0.4',
+        )
+        .from(
+          '.js-newsletter-embed',
+          {
+            autoAlpha: 0,
+            scale: 0.98,
+            y: 20,
+            duration: 1.2,
+            ease: 'expo.out',
+          },
+          '-=0.5',
+        )
+        .from(
+          '.js-newsletter-proof',
+          {
+            autoAlpha: 0,
+            y: 15,
+            duration: 1.0,
+            ease: 'power2.out',
+          },
+          '-=0.8',
+        )
+    })
+
+    mm.add('(prefers-reduced-motion: reduce)', () => {
+      gsap.set('.js-reveal', { autoAlpha: 0 })
+      gsap.set('.js-newsletter-glow', { autoAlpha: 0 })
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 75%',
+          toggleActions: 'play none none none',
+        },
+      })
+
+      tl.to(['.js-newsletter-glow', '.js-reveal'], {
+        autoAlpha: 1,
+        duration: 0.8,
+        stagger: 0.1,
+      })
+    })
+  }
+
+  initNewsletterAnimations()
+</script>
