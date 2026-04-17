@@ -97,7 +97,7 @@ const portraits: Portrait[] = [
 <section
   id={id}
   class={clsx(
-    'bg-brand-background min-h-screen flex items-center w-full py-32 px-6 @md:px-12',
+    'bg-brand-background min-h-screen flex items-center w-full py-32 px-6 @md:px-12 js-social-section',
     className,
   )}
 >
@@ -111,18 +111,19 @@ const portraits: Portrait[] = [
         size='editorial'
         titleColor='text-brand-secondary'
         titleClass='text-[2.4rem] @3xl:text-7xl @5xl:text-8xl'
+        class="js-social-header js-social-reveal opacity-0"
       />
     </div>
 
     <!-- Editorial Gallery Slider -->
-    <div class='mb-24 relative group'>
+    <div class='mb-24 relative group js-social-gallery js-social-reveal opacity-0'>
       <div class='swiper social-swiper'>
         <div
           class='swiper-wrapper pb-4 cursor-grab active:cursor-grabbing select-none'
         >
           {
             portraits.map((portrait, index) => (
-              <div class='swiper-slide w-auto!'>
+              <div class='swiper-slide w-auto! js-social-portrait'>
                 <EditorialPortrait
                   src={portrait.src}
                   alt={portrait.alt}
@@ -144,7 +145,7 @@ const portraits: Portrait[] = [
 
     <!-- Platform Engagement Grid -->
     <div class='grid grid-cols-1 @3xl:grid-cols-3 gap-8'>
-      {platforms.map((platform) => <SocialCard {...platform} />)}
+      {platforms.map((platform) => <SocialCard {...platform} class="js-social-card js-social-reveal opacity-0" />)}
     </div>
   </div>
 </section>
@@ -152,29 +153,102 @@ const portraits: Portrait[] = [
 <script>
   import Swiper from 'swiper'
   import { FreeMode, Pagination, Mousewheel } from 'swiper/modules'
+  import { gsap } from 'gsap'
+  import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-  const swiperElement = document.querySelector('.social-swiper')
-  if (swiperElement) {
-    new Swiper(swiperElement as HTMLElement, {
-      modules: [FreeMode, Pagination, Mousewheel],
-      slidesPerView: 'auto',
-      spaceBetween: 24,
-      freeMode: {
-        enabled: true,
-        momentumBounce: false,
-      },
-      mousewheel: {
-        forceToAxis: true,
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-        renderBullet: function (index, className) {
-          return '<span class="' + className + ' custom-bullet"></span>'
+  function initSocialSwiper() {
+    const swiperElement = document.querySelector('.social-swiper')
+    if (swiperElement) {
+      new Swiper(swiperElement as HTMLElement, {
+        modules: [FreeMode, Pagination, Mousewheel],
+        slidesPerView: 'auto',
+        spaceBetween: 24,
+        freeMode: {
+          enabled: true,
+          momentumBounce: false,
         },
-      },
-    })
+        mousewheel: {
+          forceToAxis: true,
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+          renderBullet: function (index, className) {
+            return '<span class="' + className + ' custom-bullet"></span>'
+          },
+        },
+      })
+    }
   }
+
+  function initSocialAnimations() {
+    const section = document.querySelector('.js-social-section');
+    if (!section) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      // 1. Unhide elements for GSAP to capture the correct natural state
+      gsap.set(".js-social-reveal", { 
+        autoAlpha: 1, 
+        force3D: true
+      });
+      
+      // 2. Timeline with 'from()' animations
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 75%",
+          toggleActions: "play none none none"
+        }
+      });
+
+      tl.from(".js-social-header", {
+        autoAlpha: 0,
+        y: 40,
+        duration: 1.2,
+        delay: 0.3,
+        ease: "power4.out"
+      })
+      .from(".js-social-portrait", {
+        autoAlpha: 0,
+        scale: 0.95,
+        duration: 1.0,
+        stagger: 0.1,
+        ease: "power3.out"
+      }, "-=0.4")
+      .from(".js-social-card", {
+        autoAlpha: 0,
+        y: 30,
+        duration: 1.0,
+        stagger: 0.15,
+        ease: "power2.out"
+      }, "-=0.5");
+    });
+
+    // Fallback for reduced motion: only fade in
+    mm.add("(prefers-reduced-motion: reduce)", () => {
+      gsap.set(".js-social-reveal", { autoAlpha: 0 });
+      
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 75%",
+          toggleActions: "play none none none"
+        }
+      });
+
+      tl.to(".js-social-reveal", {
+        autoAlpha: 1,
+        duration: 0.8,
+        stagger: 0.1
+      });
+    });
+  }
+
+  // Initialize both
+  initSocialSwiper();
+  initSocialAnimations();
 </script>
 
 <style is:global>

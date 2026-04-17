@@ -35,30 +35,32 @@ const hasTitleSlot = Astro.slots.has('title')
 <SectionWrapper
   id={id}
   variant='lowest'
-  class={clsx('pt-32 pb-24', className)}
-  containerClass='container grid grid-cols-1 @3xl:editorial-grid gap-8 @3xl:gap-12 items-end'
+  class={clsx('pt-32 pb-24 js-hero-noir-section', className)}
+  containerClass='container grid grid-cols-1 @3xl:editorial-grid gap-8 @3xl:gap-12 items-end px-6 @3xl:px-0'
 >
   <div class='col-span-1 @3xl:col-span-7'>
     <span
-      class='text-brand-primary-light tracking-[0.2em] font-bold text-[10px] uppercase mb-4 block'
+      class='text-brand-primary-light tracking-[0.2em] font-bold text-[10px] uppercase mb-4 block js-hero-noir-badge js-hero-noir-reveal opacity-0'
     >
       {badge}
     </span>
 
     <h2
-      class='text-4xl @3xl:text-8xl font-black font-brand-display tracking-tightest leading-tightest text-brand-text-high mb-8 normal-case'
+      class='text-4xl @3xl:text-8xl font-black font-brand-display tracking-tightest leading-tightest text-brand-text-high mb-8 normal-case js-hero-noir-title js-hero-noir-reveal opacity-0'
     >
       {hasTitleSlot ? <slot name='title' /> : title}
     </h2>
 
     <p
-      class='text-lg @3xl:text-2xl text-brand-text-muted max-w-2xl font-light leading-relaxed'
+      class='text-lg @3xl:text-2xl text-brand-text-muted max-w-2xl font-light leading-relaxed js-hero-noir-description js-hero-noir-reveal opacity-0'
     >
       {description}
     </p>
   </div>
 
-  <div class='col-span-1 @3xl:col-span-5 mt-12 @3xl:mt-0'>
+  <div
+    class='col-span-1 @3xl:col-span-5 mt-12 @3xl:mt-0 js-hero-noir-portrait js-hero-noir-reveal opacity-0'
+  >
     <EditorialPortrait
       src={image.src}
       alt={image.alt}
@@ -81,3 +83,93 @@ const hasTitleSlot = Astro.slots.has('title')
     </EditorialPortrait>
   </div>
 </SectionWrapper>
+
+<script>
+  import { gsap } from 'gsap'
+  import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+  // Register plugin locally
+  gsap.registerPlugin(ScrollTrigger)
+
+  function initHeroNoirAnimations() {
+    const section = document.querySelector('.js-hero-noir-section')
+    if (!section) return
+
+    const mm = gsap.matchMedia()
+
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+      // Unhide elements for GSAP to capture the correct natural state
+      gsap.set(section.querySelectorAll('.js-hero-noir-reveal'), {
+        autoAlpha: 1,
+        force3D: true,
+      })
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+      })
+
+      tl.from('.js-hero-noir-badge', {
+        autoAlpha: 0,
+        y: 20,
+        duration: 0.8,
+        ease: 'power2.out',
+      })
+        .from(
+          '.js-hero-noir-title',
+          {
+            autoAlpha: 0,
+            y: 40,
+            duration: 1.2,
+            ease: 'power4.out',
+          },
+          '-=0.6',
+        )
+        .from(
+          '.js-hero-noir-description',
+          {
+            autoAlpha: 0,
+            y: 20,
+            duration: 1.0,
+            ease: 'power3.out',
+          },
+          '-=0.8',
+        )
+        .from(
+          '.js-hero-noir-portrait',
+          {
+            autoAlpha: 0,
+            scale: 1.05,
+            duration: 1.4,
+            ease: 'power2.out',
+          },
+          '-=1.0',
+        )
+    })
+
+    // Fallback for reduced motion: only fade in
+    mm.add('(prefers-reduced-motion: reduce)', () => {
+      gsap.set(section.querySelectorAll('.js-hero-noir-reveal'), {
+        autoAlpha: 0,
+      })
+
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top 80%',
+        onEnter: () => {
+          gsap.to(section.querySelectorAll('.js-hero-noir-reveal'), {
+            autoAlpha: 1,
+            duration: 0.8,
+            stagger: 0.1,
+          })
+        },
+      })
+    })
+  }
+
+  // Initialize
+  initHeroNoirAnimations()
+</script>
