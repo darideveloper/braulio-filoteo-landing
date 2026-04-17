@@ -16,12 +16,16 @@ const { id = 'your-story', class: className } = Astro.props
 <SectionWrapper
   id={id}
   variant='lowest'
-  class={clsx('min-h-screen flex items-center justify-center', className)}
+  class={clsx(
+    'js-your-story-section min-h-screen flex items-center justify-center',
+    className,
+  )}
 >
   <!-- Background Watermark -->
   <div
     slot='background'
-    class='absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none'
+    class='js-your-story-watermark js-your-story-reveal js-reveal absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none'
+    style='will-change: transform, opacity;'
   >
     <span
       class='text-watermark select-none'
@@ -37,38 +41,44 @@ const { id = 'your-story', class: className } = Astro.props
       size='editorial'
       class='mb-12'
     >
-      <Fragment slot='title'>
+      <div
+        slot='title'
+        class='js-your-story-title js-your-story-reveal js-reveal'
+      >
         <span class='display-2xl block text-brand-text-high !leading-tight'>
-          TU HISTORIA <span
+          EL ERROR QUE HACE QUE NUNCA <span
             class='text-brand-secondary italic decoration-editorial'
-            >MERECE</span
-          ><br />SER CONTADA.
+            >LANCES</span
+          ><br />TU PODCAST.
         </span>
-      </Fragment>
+      </div>
 
-      <Fragment slot='description'>
+      <div
+        slot='description'
+        class='js-your-story-description js-your-story-reveal js-reveal'
+      >
         <p
           class='text-xl @md:text-2xl font-medium max-w-2xl mx-auto leading-relaxed text-brand-text-muted'
         >
-          Si llevas años acumulando experiencia, quizá ya es momento de <span
+          Y como <span
             class='text-brand-text-high border-b-2 border-brand-secondary'
-            >convertir tu voz</span
-          > en una <span
+            >evitaro</span
+          > desde el <span
             class='text-brand-text-high border-b-2 border-brand-secondary'
-            >plataforma</span
+            >inicio</span
           >.
         </p>
-      </Fragment>
+      </div>
 
       <div
-        class='mt-12 flex flex-col sm:flex-row items-center justify-center gap-8'
+        class='js-your-story-actions js-your-story-reveal js-reveal mt-12 flex flex-col sm:flex-row items-center justify-center gap-8'
       >
         <BrandButton
           variant='primary-gradient'
-          href='#'
+          href='#plans'
           class='w-full sm:w-auto'
         >
-          Crea tu podcast
+          Descubre la receta GRIT
         </BrandButton>
 
         <div
@@ -84,3 +94,102 @@ const { id = 'your-story', class: className } = Astro.props
     </SectionHeader>
   </div>
 </SectionWrapper>
+
+<script>
+  import { gsap } from 'gsap'
+  import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+  function initYourStoryAnimations() {
+    const section = document.querySelector('.js-your-story-section')
+    if (!section) return
+
+    const revealTargets = section.querySelectorAll('.js-your-story-reveal')
+    const watermark = section.querySelector('.js-your-story-watermark')
+    const title = section.querySelector('.js-your-story-title')
+    const description = section.querySelector('.js-your-story-description')
+    const actions = section.querySelector('.js-your-story-actions')
+    const mm = gsap.matchMedia()
+
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+      gsap.set(revealTargets, {
+        autoAlpha: 1,
+        force3D: true,
+      })
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 65%',
+          toggleActions: 'play none none none',
+        },
+      })
+
+      if (watermark) {
+        tl.from(watermark, {
+          autoAlpha: 0,
+          scale: 1.04,
+          duration: 1.26,
+          ease: 'power2.out',
+        })
+      }
+
+      if (title) {
+        tl.from(
+          title,
+          {
+            autoAlpha: 0,
+            y: 40,
+            duration: 1.26,
+            ease: 'power4.out',
+          },
+          '-=0.54',
+        )
+      }
+
+      if (description) {
+        tl.from(
+          description,
+          {
+            autoAlpha: 0,
+            y: 24,
+            duration: 1.05,
+            ease: 'power3.out',
+          },
+          '-=0.4',
+        )
+      }
+
+      if (actions) {
+        tl.from(
+          actions,
+          {
+            autoAlpha: 0,
+            y: 20,
+            duration: 0.96,
+            ease: 'expo.out',
+          },
+          '-=0.32',
+        )
+      }
+    })
+
+    mm.add('(prefers-reduced-motion: reduce)', () => {
+      gsap.set(revealTargets, { autoAlpha: 0 })
+
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top 65%',
+        onEnter: () => {
+          gsap.to(revealTargets, {
+            autoAlpha: 1,
+            duration: 0.81,
+            stagger: 0.1,
+            overwrite: 'auto',
+          })
+        },
+      })
+    })
+  }
+
+  initYourStoryAnimations()
+</script>
