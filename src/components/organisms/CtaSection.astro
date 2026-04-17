@@ -23,27 +23,31 @@ const {
 <section
   id={id}
   class={clsx(
-    'relative min-h-screen flex items-center justify-center w-full py-24 px-6 bg-black overflow-hidden',
+    'js-cta-section relative min-h-screen flex items-center justify-center w-full py-24 px-6 bg-black overflow-hidden',
     className,
   )}
 >
   <div class='max-w-4xl mx-auto relative z-10 w-full'>
-    <SectionHeader 
-      label={label}
-      align="center"
-      size="editorial"
-      titleColor="text-brand-text-high"
-      class="mb-12"
-    >
-      <slot name="headline" slot="title" />
-      <slot name="description" />
-    </SectionHeader>
+    <div class='js-cta-header js-cta-reveal js-reveal'>
+      <SectionHeader 
+        label={label}
+        align="center"
+        size="editorial"
+        titleColor="text-brand-text-high"
+        class="mb-12"
+      >
+        <slot name="headline" slot="title" />
+        <slot name="description" />
+      </SectionHeader>
+    </div>
 
     <div class='flex flex-col @xl:flex-row items-center justify-center gap-6'>
-      <slot name='cta' />
+      <div class='js-cta-actions js-cta-reveal js-reveal'>
+        <slot name='cta' />
+      </div>
       {
         showContact && (
-          <div class='flex items-center gap-4 text-sm font-bold tracking-widest uppercase text-brand-text-muted'>
+          <div class='js-cta-contact js-cta-reveal js-reveal flex items-center gap-4 text-sm font-bold tracking-widest uppercase text-brand-text-muted'>
             <MaterialIcon
               name='mail'
               class='text-brand-secondary'
@@ -57,9 +61,112 @@ const {
 
   {
     watermark && (
-      <div class='absolute inset-0 z-0 flex items-center justify-center pointer-events-none'>
+      <div
+        class='js-cta-watermark js-cta-reveal js-reveal absolute inset-0 z-0 flex items-center justify-center pointer-events-none'
+        style='will-change: transform, opacity;'
+      >
         <span class='text-watermark'>{watermark}</span>
       </div>
     )
   }
 </section>
+
+<script>
+  import { gsap } from 'gsap'
+  import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+  function initCtaAnimations() {
+    const section = document.querySelector('.js-cta-section')
+    if (!section) return
+
+    const revealTargets = section.querySelectorAll('.js-cta-reveal')
+    const header = section.querySelector('.js-cta-header')
+    const actions = section.querySelector('.js-cta-actions')
+    const contact = section.querySelector('.js-cta-contact')
+    const watermark = section.querySelector('.js-cta-watermark')
+    const mm = gsap.matchMedia()
+
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+      gsap.set(revealTargets, {
+        autoAlpha: 1,
+        force3D: true,
+      })
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 75%',
+          toggleActions: 'play none none none',
+        },
+      })
+
+      if (header) {
+        tl.from(header, {
+          autoAlpha: 0,
+          y: 40,
+          duration: 1.05,
+          delay: 0.24,
+          ease: 'power4.out',
+        })
+      }
+
+      if (actions) {
+        tl.from(
+          actions,
+          {
+            autoAlpha: 0,
+            y: 24,
+            duration: 0.9,
+            ease: 'power3.out',
+          },
+          '-=0.46',
+        )
+      }
+
+      if (contact) {
+        tl.from(
+          contact,
+          {
+            autoAlpha: 0,
+            y: 20,
+            duration: 0.84,
+            ease: 'expo.out',
+          },
+          '-=0.49',
+        )
+      }
+
+      if (watermark) {
+        tl.from(
+          watermark,
+          {
+            autoAlpha: 0,
+            scale: 1.03,
+            duration: 1.12,
+            ease: 'power2.out',
+          },
+          '-=0.6',
+        )
+      }
+    })
+
+    mm.add('(prefers-reduced-motion: reduce)', () => {
+      gsap.set(revealTargets, { autoAlpha: 0 })
+
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top 75%',
+        onEnter: () => {
+          gsap.to(revealTargets, {
+            autoAlpha: 1,
+            duration: 0.7,
+            stagger: 0.08,
+            overwrite: 'auto',
+          })
+        },
+      })
+    })
+  }
+
+  initCtaAnimations()
+</script>
