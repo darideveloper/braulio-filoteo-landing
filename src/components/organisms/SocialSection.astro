@@ -155,7 +155,6 @@ const portraits: Portrait[] = [
   import { FreeMode, Pagination, Mousewheel } from 'swiper/modules'
   import { gsap } from 'gsap'
   import { ScrollTrigger } from 'gsap/ScrollTrigger'
-  import { animationManager } from '../../scripts/animation-manager'
 
   function initSocialSwiper() {
     const swiperElement = document.querySelector('.social-swiper')
@@ -197,7 +196,6 @@ const portraits: Portrait[] = [
       
       // 2. Timeline with 'from()' animations
       const tl = gsap.timeline({
-        paused: true,
         scrollTrigger: {
           trigger: section,
           start: "top 75%",
@@ -226,9 +224,6 @@ const portraits: Portrait[] = [
         stagger: 0.15,
         ease: "power2.out"
       }, "-=0.5");
-
-      // Register with animation manager to wait for loader if necessary
-      animationManager.registerEntrance(tl);
     });
 
     // Fallback for reduced motion: only fade in
@@ -236,7 +231,6 @@ const portraits: Portrait[] = [
       gsap.set(".js-social-reveal", { autoAlpha: 0 });
       
       const tl = gsap.timeline({
-        paused: true,
         scrollTrigger: {
           trigger: section,
           start: "top 75%",
@@ -249,8 +243,6 @@ const portraits: Portrait[] = [
         duration: 0.8,
         stagger: 0.1
       });
-
-      animationManager.registerEntrance(tl);
     });
   }
 
