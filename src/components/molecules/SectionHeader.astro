@@ -35,6 +35,7 @@ const {
 
 const Tag = level === 1 ? 'h1' : 'h2';
 const hasTitleSlot = Astro.slots.has('title');
+const hasDescriptionSlot = Astro.slots.has('description');
 
 const isInline = layout === 'inline';
 const isInlineStart = layout === 'inline-start';
@@ -61,21 +62,25 @@ const sizeClasses = {
         {hasTitleSlot ? <slot name="title" /> : title}
       </Tag>
       <div class="h-px flex-grow mx-8 bg-brand-outline-variant/20 hidden @3xl:block"></div>
-      <span class={clsx(
-        "label-md tracking-tight uppercase",
-        labelColor
-      )}>
-        {label}
-      </span>
+      {label && (
+        <span class={clsx(
+          "label-md tracking-tight uppercase",
+          labelColor
+        )}>
+          {label}
+        </span>
+      )}
     </div>
   ) : isInlineStart ? (
     <div class="flex flex-col @3xl:flex-row items-baseline gap-4 mb-12">
-      <span class={clsx(
-        "label-md tracking-[0.2em] uppercase",
-        labelColor
-      )}>
-        {label}
-      </span>
+      {label && (
+        <span class={clsx(
+          "label-md tracking-[0.2em] uppercase",
+          labelColor
+        )}>
+          {label}
+        </span>
+      )}
       <Tag class={clsx(
         sizeClasses[size],
         titleColor,
@@ -87,12 +92,14 @@ const sizeClasses = {
     </div>
   ) : (
     <>
-      <span class={clsx(
-        "label-md tracking-[0.4em] uppercase",
-        labelColor
-      )}>
-        {label}
-      </span>
+      {label && (
+        <span class={clsx(
+          "label-md tracking-[0.4em] uppercase",
+          labelColor
+        )}>
+          {label}
+        </span>
+      )}
       
       <Tag class={clsx(
         sizeClasses[size],
@@ -104,14 +111,14 @@ const sizeClasses = {
     </>
   )}
 
-  {description && (
-    <p class={clsx(
+  {(description || hasDescriptionSlot) && (
+    <div class={clsx(
       "headline-md text-brand-text-high max-w-3xl mt-2",
       withBorder && "border-l-4 border-brand-primary pl-6",
       align === 'center' && "mx-auto"
     )}>
-      {description}
-    </p>
+      {hasDescriptionSlot ? <slot name="description" /> : description}
+    </div>
   )}
   
   <slot />

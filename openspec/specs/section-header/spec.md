@@ -26,12 +26,13 @@ The `SectionHeader` SHALL support different heading levels for semantic correctn
 - **THEN** it SHALL use an `<h2>` tag for the title.
 
 ### Requirement: Rich Text Support
-The `SectionHeader` SHALL support rich text in the title via slots.
+The `SectionHeader` SHALL support rich text in the title and description via slots.
 
-#### Scenario: Rendering with Title Slot
+#### Scenario: Rendering with Description Slot
 - **GIVEN** a `SectionHeader`.
-- **WHEN** content is provided to the `title` slot.
-- **THEN** it SHALL render that content inside the heading tag instead of the `title` prop.
+- **WHEN** content is provided to the `description` slot.
+- **THEN** it SHALL render that content instead of the `description` prop.
+- **AND** it SHALL maintain the standard description styling (`headline-md text-brand-text-high max-w-3xl mt-2`).
 
 ### Requirement: Header Alignment
 The `SectionHeader` SHALL support different horizontal alignments.
@@ -78,4 +79,12 @@ The project SHALL provide a `MatrixCard` molecule for transformation-oriented gr
 - **GIVEN** a `MatrixCard` component.
 - **THEN** it SHALL feature a large scale icon (using `text-5xl!`) as the primary visual element.
 - **AND** it SHALL feature an interactive progress-line that expands on hover.
+
+### Requirement: Conditional Label Rendering
+The `SectionHeader` SHALL NOT render an empty label container if no label is provided.
+
+#### Scenario: No Label Provided
+- **GIVEN** a `SectionHeader` with `label=""` or no `label` prop.
+- **WHEN** rendered.
+- **THEN** it SHALL NOT render the `<span>` element reserved for the label.
 

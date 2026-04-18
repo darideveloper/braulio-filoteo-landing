@@ -36,7 +36,6 @@ const { id = 'your-story', class: className } = Astro.props
 
   <div class='max-w-4xl mx-auto'>
     <SectionHeader
-      label=''
       align='center'
       size='editorial'
       class='mb-12'
@@ -62,7 +61,7 @@ const { id = 'your-story', class: className } = Astro.props
         >
           Y como <span
             class='text-brand-text-high border-b-2 border-brand-secondary'
-            >evitaro</span
+            >evitarlo</span
           > desde el <span
             class='text-brand-text-high border-b-2 border-brand-secondary'
             >inicio</span
@@ -88,7 +87,11 @@ const { id = 'your-story', class: className } = Astro.props
             name='mail'
             class='text-brand-primary'
           />
-          <a href="mailto:info@grit-ones.com" class="label-md lowercase hover:text-brand-primary transition-colors">info@grit-ones.com</a>
+          <a
+            href='mailto:info@grit-ones.com'
+            class='label-md lowercase hover:text-brand-primary transition-colors'
+            >info@grit-ones.com</a
+          >
         </div>
       </div>
     </SectionHeader>
