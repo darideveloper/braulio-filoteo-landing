@@ -15,29 +15,10 @@ The `branding` specification SHALL be the authoritative source for all hex codes
 ### Requirement: Color Palette
 The project SHALL implement the "Neon Noir Editorial" high-contrast color scheme in the CSS theme, prioritizing "Midnight" foundations and "Electric Citrus" accents.
 
-#### Scenario: Background and Surface Hierarchy
-- **GIVEN** the global CSS theme.
-- **THEN** the `brand-background` SHALL be set to `surface_container_lowest` (#0E0E0E).
-- **AND** the `brand-surface` SHALL be set to `surface_container` (#131313).
-- **AND** the `brand-surface-container` SHALL be set to `#201F1F`.
-- **AND** the `brand-surface-low` SHALL be set to `surface_container_low` (#1C1B1B).
-- **AND** additional tiers SHALL include `surface_bright` (#393939) for elevated elements.
-
-#### Scenario: Primary Action and Heading Roles
-- **GIVEN** the primary and secondary colors.
-- **THEN** `brand-primary` SHALL be set to `primary_container` (#9B30FF - Neon Purple) for high-intent interactions.
-- **AND** `brand-secondary` SHALL be set to `secondary_container` (#FE6500 - Editorial Orange) for headlines and contrast emphasis.
-- **AND** `brand-primary-light` SHALL be set to `primary` (#DCB8FF) for gradient starts.
-
-#### Scenario: Text Hierarchy
-- **GIVEN** the text color definitions.
-- **THEN** `on_background` SHALL be set to `#E5E2E1` for primary body text.
-- **AND** `on_surface_variant` SHALL be set to `#CFC2D8` for secondary descriptions.
-
-#### Scenario: Primary Brand Gradient
-- **GIVEN** an element with the `.text-brand-gradient` class.
-- **THEN** it SHALL have a text gradient transitioning from `#FFFFFF` to `brand-primary`.
-- **AND** it SHALL use `-webkit-background-clip: text` for the effect.
+#### Scenario: SEO Theme Color (Added)
+- **GIVEN** the primary brand identity.
+- **THEN** a `theme-color` SHALL be defined for browser UI integration.
+- **AND** it SHALL use the OKLCH value `oklch(0.68 0.28 296)` as specified in the SEO standards to ensure consistent branding across meta tags and CSS.
 
 ### Requirement: Typography Strategy
 The brand identity SHALL define a core typography system based on 'Epilogue' (Display) and 'Inter' (Body).

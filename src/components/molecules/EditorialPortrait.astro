@@ -16,6 +16,9 @@ interface Props {
   framePosition?: 'top-right' | 'top-left';
   variant?: 'default' | 'minimal';
   class?: string;
+  loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  decoding?: 'async' | 'sync' | 'auto';
 }
 
 const { 
@@ -31,7 +34,10 @@ const {
   showFrame = true,
   framePosition = 'top-right',
   variant = 'default',
-  class: className 
+  class: className,
+  loading = 'lazy',
+  fetchpriority = 'auto',
+  decoding = 'async'
 } = Astro.props;
 
 const accentColors = {
@@ -74,6 +80,9 @@ const frameClasses = {
       width={width}
       height={height}
       inferSize={inferSize}
+      loading={loading}
+      fetchpriority={fetchpriority}
+      decoding={decoding}
       class="w-full h-full object-cover img-editorial js-portrait-img" 
       style="will-change: transform;"
     />

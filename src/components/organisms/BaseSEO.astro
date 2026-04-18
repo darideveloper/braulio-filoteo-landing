@@ -1,0 +1,108 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonicalURL?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = "Portafolio oficial de Braulio Filoteo – Hub creativo para podcasts, redes sociales y potencial humano.",
+  ogImage = "/og-image.png",
+  canonicalURL = Astro.url.href,
+  noindex = !import.meta.env.PROD,
+} = Astro.props;
+
+const siteName = "Braulio Filoteo";
+const fullTitle = title ? `${title} | ${siteName}` : siteName;
+
+// Schema.org Person Data
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Braulio Filoteo",
+  "url": "https://brauliofiloteo.com",
+  "image": "https://brauliofiloteo.com/og-image.png",
+  "jobTitle": "Creador de Contenido y Emprendedor",
+  "sameAs": [
+    "https://open.spotify.com/show/181uvsFpNIjS7htYHcft4v",
+    "https://www.instagram.com/brauliofiloteo/"
+  ]
+};
+
+// Schema.org Service Data (Gritones Studio)
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Producción de Podcast y Consultoría Creativa",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "GRITones Studio",
+    "image": "https://brauliofiloteo.com/og-image.png"
+  },
+  "areaServed": "Worldwide",
+  "description": "Servicios profesionales de creación, producción y escalamiento de podcasts."
+};
+
+// Breadcrumb Schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": "https://brauliofiloteo.com"
+    }
+  ]
+};
+---
+
+<!-- Global Metadata -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Primary Meta Tags -->
+<title>{fullTitle}</title>
+<meta name="title" content={fullTitle} />
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Crawling Controls -->
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(ogImage, Astro.url)} />
+<meta property="og:site_name" content={siteName} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalURL} />
+<meta property="twitter:title" content={fullTitle} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={new URL(ogImage, Astro.url)} />
+
+<!-- Favicons & Manifest -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="oklch(0.68 0.28 296)" />
+
+<!-- Performance: Preconnect & Preload -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<!-- Note: Hero image preload is handled in individual pages or more specific logic if src is dynamic -->
+
+<!-- Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />

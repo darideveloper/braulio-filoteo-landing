@@ -55,9 +55,12 @@ const services = [
     footerLabel: 'Premium Tier',
   },
 ]
+
+const pageTitle = "Braulio Filoteo / Creative Portfolio & Podcast Hub";
+const pageDescription = "Explora el universo creativo de Braulio Filoteo. Estrategia de marca, producción de podcasts de alto impacto y narrativas que transforman.";
 ---
 
-<Layout>
+<Layout title={pageTitle} description={pageDescription}>
   <Hero id='home' />
   <AboutSection id='about' />
   <PodcastSection id='podcast' />

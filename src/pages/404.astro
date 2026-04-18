@@ -2,9 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import EditorialHeadline from '../components/molecules/EditorialHeadline.astro';
 import BrandButton from '../components/atoms/BrandButton.astro';
+
+const pageTitle = "404 - Página no encontrada / Braulio Filoteo";
+const pageDescription = "Lo sentimos, la página que buscas no existe. Regresa al inicio para explorar el portafolio creativo de Braulio Filoteo.";
 ---
 
-<Layout title="404 - Page Not Found / Braulio Filoteo">
+<Layout title={pageTitle} description={pageDescription}>
   <section class="flex flex-col items-center justify-center min-h-screen text-center px-6">
     <EditorialHeadline class="text-brand-primary drop-shadow-neon-purple leading-none mb-4">
       404.
