@@ -4,18 +4,13 @@
 TBD - created by archiving change 2026-04-08-implement-plans-section. Update Purpose after archive.
 ## Requirements
 ### Requirement: Plans Card Molecule
-The system SHALL provide a `PlansCard` molecule to display detailed service offerings.
+The `PlansCard` molecule SHALL support external booking links for premium service variants.
 
-#### Scenario: Entry Level Card
-- **GIVEN** a `PlansCard` with `variant="entry"`.
-- **THEN** it SHALL use `brand-secondary` accents (e.g., orange icons and badges).
-- **AND** it SHALL feature a solid border on a dark surface background.
-
-#### Scenario: Premium Card
+#### Scenario: Premium Card CTA
 - **GIVEN** a `PlansCard` with `variant="premium"`.
-- **THEN** it SHALL use `brand-primary` accents (e.g., purple icons and badges).
-- **AND** it SHALL feature a glass-morphic background with a primary gradient overlay and ambient purple glow.
-- **AND** it SHALL use horizontal line-markers for feature lists instead of icons.
+- **THEN** the CTA button SHALL point to a Calendly booking URL.
+- **AND** it SHALL open in a new tab (`target="_blank"`).
+- **AND** it SHALL include `rel="noopener noreferrer"`.
 
 ### Requirement: Plans Section Organism
 The system SHALL provide a `PlansSection` organism to orchestrate the value proposition grid.
