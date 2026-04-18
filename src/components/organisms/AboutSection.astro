@@ -31,12 +31,18 @@ const brandIcons = [
   { icon: "fitness_center", label: "GRIT", variant: "primary" },
   { icon: "menu_book", label: "Storytelling", variant: "primary" },
   { icon: "verified", label: "Personal Brand", variant: "primary" },
-  { icon: "arrow_forward", label: "Sigue explorando", variant: "secondary", special: true }
+  { 
+    icon: "arrow_forward", 
+    label: "Sigue explorando", 
+    variant: "secondary", 
+    special: true,
+    href: "#podcast"
+  }
 ];
 ---
 
 <SectionWrapper id={id} variant={variant} class="js-about-section" containerClass="container">
-  <div class="grid @3xl:grid-cols-2 gap-20 items-start">
+  <div class="grid @3xl:grid-cols-2 gap-16 items-start">
     
     <!-- Left Column: Mission -->
     <div class="space-y-16">
@@ -63,17 +69,26 @@ const brandIcons = [
       />
 
       <div class="grid grid-cols-1 @md:grid-cols-2 gap-4">
-        {brandIcons.map((item) => (
-          <div key={item.label} class={clsx(
-            "flex items-center gap-4 p-4 rounded-2xl js-about-icon-item js-about-reveal opacity-0",
-            item.special ? 'bg-brand-secondary/20' : 'bg-white/2'
-          )} style="will-change: transform;">
-            <AboutIcon icon={item.icon} variant={item.variant as any} class="!text-3xl" />
-            <h4 class="text-xs font-bold text-brand-text-high uppercase tracking-widest">
-              {item.label}
-            </h4>
-          </div>
-        ))}
+        {brandIcons.map((item) => {
+          const Element = item.href ? 'a' : 'div';
+          return (
+            <Element 
+              key={item.label} 
+              href={item.href}
+              class={clsx(
+                "flex items-center gap-4 p-4 rounded-2xl js-about-icon-item js-about-reveal opacity-0 transition-all duration-300",
+                item.special ? 'bg-brand-secondary/20' : 'bg-white/2',
+                item.href && "hover:scale-105 hover:bg-brand-secondary/30 active:scale-95"
+              )} 
+              style="will-change: transform;"
+            >
+              <AboutIcon icon={item.icon} variant={item.variant as any} class="!text-3xl" />
+              <h4 class="text-xs font-bold text-brand-text-high uppercase tracking-widest">
+                {item.label}
+              </h4>
+            </Element>
+          );
+        })}
       </div>
     </div>
 
