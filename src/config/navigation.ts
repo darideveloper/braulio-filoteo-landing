@@ -34,20 +34,26 @@ export const navItems = [
 export const socialLinks = [
   {
     name: 'LinkedIn',
-    href: '#',
+    href: 'https://www.linkedin.com/in/braulio-filoteo-thrive/',
     icon: 'share',
-    platform: 'LinkedIn'
+    platform: 'LinkedIn',
+    target: '_blank',
+    rel: 'noopener noreferrer'
   },
   {
     name: 'Instagram',
-    href: '#',
+    href: 'https://www.instagram.com/brauliofiloteo/',
     icon: 'photo_camera',
-    platform: 'Instagram'
+    platform: 'Instagram',
+    target: '_blank',
+    rel: 'noopener noreferrer'
   },
   {
     name: 'YouTube',
-    href: '#',
+    href: 'https://www.youtube.com/@GRITonespodcast/featured',
     icon: 'play_circle',
-    platform: 'YouTube'
+    platform: 'YouTube',
+    target: '_blank',
+    rel: 'noopener noreferrer'
   }
 ];

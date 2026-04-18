@@ -15,6 +15,8 @@ const { className, iconSize = "text-2xl" } = Astro.props;
   {socialLinks.map((platform) => (
     <a 
       href={platform.href} 
+      target="_blank"
+      rel="noopener noreferrer"
       class="w-10 h-10 flex items-center justify-center rounded-lg bg-brand-surface-low border border-brand-outline-variant/20 text-brand-text-muted hover:text-brand-primary hover:border-brand-primary/50 transition-all hover:scale-110 group hover:shadow-neon-purple"
       aria-label={platform.name}
     >

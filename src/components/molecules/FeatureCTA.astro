@@ -6,6 +6,7 @@ interface Props {
   label: string;
   ctaText: string;
   icon: string;
+  href?: string;
   watermark?: string;
   watermarkAlign?: 'center' | 'right';
   watermarkSize?: string;
@@ -16,11 +17,14 @@ const {
   label, 
   ctaText, 
   icon, 
+  href,
   watermark,
   watermarkAlign = 'center',
   watermarkSize,
   watermarkOpacity
 } = Astro.props;
+
+const Element = href ? 'a' : 'div';
 ---
 
 <div class="flex flex-col items-center text-center max-w-4xl mx-auto py-12 js-feature-cta">
@@ -47,14 +51,17 @@ const {
   <h2 class="display-lg text-4xl @md:text-6xl text-brand-text-high mb-12 normal-case js-fcta-headline js-fcta-reveal opacity-0">
     <slot />
   </h2>
-  <div class="flex items-center gap-4 group cursor-pointer js-fcta-button js-fcta-reveal opacity-0">
+  <Element 
+    href={href}
+    class="flex items-center gap-4 group cursor-pointer js-fcta-button js-fcta-reveal opacity-0"
+  >
     <div class="bg-brand-secondary text-white p-6 rounded-[0.25rem] group-hover:bg-brand-primary transition-colors duration-300">
       <MaterialIcon name={icon} size="text-4xl" />
     </div>
     <span class="font-brand-display font-bold text-xl uppercase tracking-tighter group-hover:text-brand-primary transition-colors">
       {ctaText}
     </span>
-  </div>
+  </Element>
 </div>
 
 <script>

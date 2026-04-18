@@ -4,6 +4,8 @@ import clsx from 'clsx';
 interface Props {
   variant?: 'primary' | 'primary-gradient' | 'secondary' | 'outline' | 'outline-secondary' | 'ghost';
   href?: string;
+  target?: string;
+  rel?: string;
   disabled?: boolean;
   class?: string;
   icon?: string;
@@ -14,12 +16,17 @@ interface Props {
 const { 
   variant = 'primary', 
   href,
+  target,
+  rel,
   disabled = false, 
   class: className,
   icon,
   circular = false,
   ...rest 
 } = Astro.props;
+
+const isExternal = target === '_blank';
+const finalRel = rel || (isExternal ? 'noopener noreferrer' : undefined);
 
 const variants = {
   primary: "bg-brand-primary text-white shadow-neon-purple hover:opacity-90 active:scale-95",
@@ -41,6 +48,8 @@ const Element = href ? 'a' : 'button';
 
 <Element
   href={href}
+  target={target}
+  rel={finalRel}
   class={clsx(
     baseClasses,
     variants[variant],
