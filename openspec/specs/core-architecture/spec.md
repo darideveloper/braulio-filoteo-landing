@@ -30,12 +30,11 @@ All section organism components SHALL support an `id` prop to handle their own i
 - **AND** if it uses `SectionWrapper`, it SHALL pass the `id` to it.
 
 ### Requirement: Media & Filter Standardization
-Any component rendering images SHALL apply the project's standard "Editorial Treatment" to ensure a consistent visual aesthetic.
-
-#### Scenario: Image filter application
-- **GIVEN** an image component.
-- **THEN** it SHALL use a shared utility class or component that applies the standard grayscale/hover-scale behavior.
-- **AND** it SHALL NOT hardcode their own filters for brand-specific effects.
+Any component rendering images SHALL apply the project's standard "Editorial Treatment".
+#### Scenario: Efficient Transitions
+- **ADDED** **GIVEN** an editorial image with hover effects.
+- **ADDED** **THEN** the CSS transition SHALL explicitly target moving or filtering properties (e.g., `filter`, `transform`).
+- **ADDED** **AND** it SHALL NOT use `transition: all` on elements undergoing continuous GSAP manipulation.
 
 ### Requirement: Container-Aware Responsiveness
 All new editorial components SHALL use container-aware breakpoints (@3xl for 768px, @5xl for 1024px) instead of viewport breakpoints to ensure layout stability within the main content container.

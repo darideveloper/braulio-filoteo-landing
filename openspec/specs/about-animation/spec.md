@@ -6,14 +6,10 @@ Define the high-fidelity, scroll-triggered animation behavior for the About sect
 ### Requirement: Scroll-Triggered Reveal
 The About section SHALL have 100% initial transparency and a deliberate reveal sequence.
 
-#### Scenario: Entrance Animation Timing & Transparency
-- **GIVEN** a user scrolls down to the `AboutSection`.
-- **WHEN** the top of the section reaches `75%` of the viewport height.
-- **THEN** all targeted elements SHALL be 100% transparent (`opacity: 0`) initially.
-- **AND** it SHALL wait for a `0.5s` initial delay before starting the visual reveal of the Header.
-- **AND** the sequence SHALL use the `tl.from()` pattern to animate towards the final CSS state.
-
----
+#### Scenario: Hardware Acceleration Hygiene
+- **GIVEN** elements targeted by the GSAP reveal timeline.
+- **ADDED** **THEN** hardware acceleration (e.g., `will-change: transform`) SHALL be applied only to elements that undergo physical translation or scaling.
+- **ADDED** **AND** static elements (e.g., text fading in-place) SHALL NOT use `will-change` to avoid unnecessary GPU memory allocation.
 
 ### Requirement: Staggered Content Entrance
 The About section SHALL use significant overlapping reveals to create a high-end "zipper" effect.

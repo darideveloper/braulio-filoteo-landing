@@ -38,11 +38,13 @@ const kineticWords = [
 >
   <!-- Atmospheric Glow Elements -->
   <div
-    class='absolute top-1/4 -left-24 w-96 h-96 bg-brand-primary/10 rounded-full blur-[120px] pointer-events-none js-newsletter-glow'
+    class='absolute top-1/4 -left-24 w-96 h-96 bg-brand-primary/10 rounded-full blur-[60px] pointer-events-none js-newsletter-glow'
+    style='will-change: transform;'
   >
   </div>
   <div
-    class='absolute bottom-1/4 -right-24 w-96 h-96 bg-brand-secondary/5 rounded-full blur-[120px] pointer-events-none js-newsletter-glow'
+    class='absolute bottom-1/4 -right-24 w-96 h-96 bg-brand-secondary/5 rounded-full blur-[60px] pointer-events-none js-newsletter-glow'
+    style='will-change: transform;'
   >
   </div>
 
@@ -53,6 +55,7 @@ const kineticWords = [
     size='editorial'
     titleColor='text-brand-secondary'
     class='js-newsletter-header js-reveal'
+    style='will-change: transform;'
   >
     <Fragment slot='title'>
       GRIT <span class='text-brand-text-high'>en la vida cotidiana</span>
@@ -69,7 +72,10 @@ const kineticWords = [
         realidad detrás del emprendimiento."
       </SideBorderQuote>
 
-      <div class='max-w-xl mx-auto space-y-4 js-newsletter-content js-reveal'>
+      <div
+        class='max-w-xl mx-auto space-y-4 js-newsletter-content js-reveal'
+        style='will-change: transform;'
+      >
         <p
           class='text-brand-text-muted font-brand-body leading-relaxed text-lg'
         >
@@ -95,7 +101,10 @@ const kineticWords = [
   </div>
 
   <!-- Substack Embed Section -->
-  <div class='w-full pt-8 js-newsletter-embed js-reveal'>
+  <div
+    class='w-full pt-8 js-newsletter-embed js-reveal'
+    style='will-change: transform;'
+  >
     <div class='py-16 bg-[#000000]'>
       <div class='relative flex items-center justify-center flex-col gap-4'>
         <div class='flex items-center gap-4'>

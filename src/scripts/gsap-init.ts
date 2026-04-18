@@ -4,6 +4,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 // Register Plugins
 gsap.registerPlugin(ScrollTrigger);
 
+// Configure ScrollTrigger Performance
+ScrollTrigger.config({
+  limitCallbacks: true,
+  ignoreMobileResize: true
+});
+
 // Set Global Defaults
 gsap.defaults({
   ease: "power4.out",

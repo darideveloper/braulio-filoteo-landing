@@ -31,10 +31,11 @@ The Hero section MUST include a prominent call to action button utilizing the si
 ### Requirement: Atmospheric Glows
 The Hero section SHALL implement ambient background blurs for depth.
 
-#### Scenario: Render background blurs
-- **WHEN** the Hero component is rendered.
-- **THEN** it SHALL include at least two absolute-positioned glow elements (`bg-brand-primary/10` and `bg-brand-secondary/5`).
-- **AND** they SHALL have a `blur-[120px]` or higher filter.
+#### Scenario: Optimized Blur Rendering
+- **GIVEN** decorative glow elements.
+- **THEN** they SHALL use CSS `blur()` or `backdrop-filter: blur()`.
+- **ADDED** **AND** the blur radius SHALL NOT exceed `60px` during active scroll animations to maintain GPU performance.
+- **ADDED** **AND** the `scrub` catch-up duration for parallax glow effects SHALL NOT exceed `0.8s`.
 
 ### Requirement: Editorial Statistics
 The Hero section SHALL display micro-credibility signals using consistent editorial styling.

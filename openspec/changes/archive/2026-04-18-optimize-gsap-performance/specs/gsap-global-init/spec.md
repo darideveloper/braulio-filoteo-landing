@@ -1,8 +1,7 @@
-# gsap-global-init Specification
+# Specification Delta: gsap-global-init
 
-## Purpose
-TBD - created by archiving change refactor-gsap-architecture. Update Purpose after archive.
-## Requirements
+## MODIFIED Requirements
+
 ### Requirement: Centralized GSAP Registration
 The project SHALL have a single source for GSAP plugin registration.
 #### Scenario: Initialize GSAP Plugins
@@ -12,11 +11,3 @@ The project SHALL have a single source for GSAP plugin registration.
 - **AND** it SHALL enable performance-critical configurations (e.g., `force3D: true`).
 - **ADDED** **AND** it SHALL configure `ScrollTrigger` with `limitCallbacks: true` to prevent redundant triggers during high-speed scrolling.
 - **ADDED** **AND** it SHALL configure `ScrollTrigger` with `ignoreMobileResize: true` to prevent expensive recalculations during mobile browser chrome toggling.
-
-### Requirement: Global Initialization Injection
-The GSAP global configuration SHALL be injected into the main layout to ensure it is available to all components.
-#### Scenario: Layout Integration
-- **GIVEN** a `Layout.astro` component.
-- **WHEN** rendered.
-- **THEN** it SHALL import the global GSAP initialization script.
-

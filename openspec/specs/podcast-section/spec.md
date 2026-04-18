@@ -31,3 +31,10 @@ The `PodcastSection` SHALL maintain the "Neon Noir" aesthetic through ambient gl
 - **AND** a bottom-left glow in `brand-secondary` color.
 - **AND** both SHALL use large blurs (`100px+`) and low opacity for a subtle ambient effect.
 
+### Requirement: Editorial Motion
+The Podcast section SHALL utilize scroll-driven reveals for its key components.
+
+#### Scenario: Snappy Scrubbing
+- **GIVEN** a scroll-driven reveal timeline.
+- **THEN** the `scrub` catch-up duration SHALL NOT exceed `0.8s` to ensure a responsive interaction model.
+

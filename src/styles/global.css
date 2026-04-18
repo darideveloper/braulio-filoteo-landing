@@ -129,7 +129,11 @@
 }
 
 @utility img-editorial {
-  @apply grayscale brightness-90 transition-all duration-700 ease-in-out hover:scale-105 hover:grayscale-0 hover:brightness-100;
+  @apply grayscale brightness-90 scale-100;
+  transition: filter 0.7s ease-in-out, transform 0.7s ease-in-out;
+  &:hover {
+    @apply grayscale-0 brightness-100 scale-105;
+  }
 }
 
 @utility bg-glow-purple {

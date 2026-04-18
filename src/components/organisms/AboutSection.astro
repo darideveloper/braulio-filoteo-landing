@@ -44,11 +44,12 @@ const brandIcons = [
         label="La Misión" 
         title="Antes que podcaster, soy explorador de historias."
         class="js-about-header js-about-reveal opacity-0"
+        style="will-change: transform;"
       />
       
       <div class="grid gap-6">
         {missionPoints.map((point) => (
-          <AboutCard {...point} class="js-about-card js-about-reveal opacity-0" />
+          <AboutCard {...point} class="js-about-card js-about-reveal opacity-0" style="will-change: transform;" />
         ))}
       </div>
     </div>
@@ -66,7 +67,7 @@ const brandIcons = [
           <div key={item.label} class={clsx(
             "flex items-center gap-4 p-4 rounded-2xl js-about-icon-item js-about-reveal opacity-0",
             item.special ? 'bg-brand-secondary/20' : 'bg-white/2'
-          )}>
+          )} style="will-change: transform;">
             <AboutIcon icon={item.icon} variant={item.variant as any} class="!text-3xl" />
             <h4 class="text-xs font-bold text-brand-text-high uppercase tracking-widest">
               {item.label}

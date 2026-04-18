@@ -6,26 +6,18 @@ TBD - created by archiving change animate-newsletter-noir. Update Purpose after 
 ### Requirement: Scroll-Triggered Sequence
 The Newsletter section SHALL initiate its reveal sequence based on scroll position using standardized CSS selectors.
 
-#### Scenario: Entrance Trigger with Standard Selectors
-- **GIVEN** the `NewsletterSection` component.
-- **WHEN** the top of the section reaches `75%` of the viewport height.
-- **THEN** it SHALL trigger a coordinated GSAP timeline.
-- **AND** it SHALL use the following selectors for targeting:
-    - `.js-newsletter-header` for the header.
-    - `.js-newsletter-quote` for the side-border quote.
-    - `.js-newsletter-content` for the descriptive paragraph.
-    - `.js-newsletter-feature` for loop-rendered items.
-    - `.js-newsletter-embed` for the Substack area.
-    - `.js-newsletter-proof` for social proof elements.
+#### Scenario: Hardware Acceleration Hygiene
+- **GIVEN** the animated components of the newsletter.
+- **ADDED** **THEN** hardware acceleration (e.g., `will-change: transform`) SHALL be applied to major moving containers (`.js-newsletter-header`, `.js-newsletter-content`, `.js-newsletter-embed`).
 
 ### Requirement: Atmospheric Branding Reveal
 The decorative background elements SHALL provide the foundation for the reveal.
 
-#### Scenario: Glow Elements Fade
+#### Scenario: Optimized Glow Rendering
 - **GIVEN** the `.js-newsletter-glow` elements.
-- **WHEN** the timeline starts.
-- **THEN** they SHALL fade from `opacity: 0` to their target opacity over `2.0s`.
-- **AND** they SHALL use `power2.inOut` easing for a "breathing" effect.
+- **THEN** they SHALL use CSS `blur()`.
+- **ADDED** **AND** the blur radius SHALL NOT exceed `60px` during active scroll animations.
+- **ADDED** **AND** hardware acceleration (e.g., `will-change: transform`) SHALL be applied to these elements.
 
 ### Requirement: Staggered Content Flourish
 Content SHALL reveal using the "Zipper" pattern to guide the eye.
