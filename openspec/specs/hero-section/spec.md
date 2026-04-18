@@ -65,15 +65,23 @@ The project SHALL include a "Gritones Studio" bento services section.
 - **AND** it SHALL support variable col-spans for its items to create an asymmetric layout.
 
 ### Requirement: Hero Entrance Sequence
-The Hero section SHALL implement a sequenced GSAP entrance timeline that registers with the `animation-orchestrator`.
-#### Scenario: Centralized Hero Reveal
-- **GIVEN** the Hero section is initialized.
-- **WHEN** the Hero component's script executes.
-- **THEN** it SHALL NOT register GSAP plugins locally.
-- **AND** it SHALL create its entrance timeline and call `animationManager.registerEntrance(tl)`.
-- **AND** the timeline SHALL first scale down the `.js-hero-portrait` from `1.15` to `1` over `1.4` seconds while fading in (autoAlpha).
-- **AND** the timeline SHALL then proceed with the reveal of headlines, badges, and stats as per the existing sequence.
-- **AND** the timeline SHALL only play once permitted by the orchestrator.
+The Hero section SHALL implement a sequenced GSAP entrance timeline that explicitly defines its starting state and registers with the `animation-orchestrator`.
+
+#### Scenario: Robust Entrance Animation
+- **GIVEN** the Hero section is initialized with `.js-reveal` elements (initially hidden by `opacity: 0; visibility: hidden` in CSS).
+- **WHEN** the `animationManager` triggers the registered timeline.
+- **THEN** it SHALL use `.from()` animations to define starting offsets and initial transparency.
+- **AND** the sequence SHALL follow this order:
+    1. **Portrait**: Scale from `1.15` to `1` and fade in (`autoAlpha: 0` to `1`).
+    2. **Headline & Subheadline**: Slide up (`y: 40`) and fade in.
+    3. **Eyebrow**: Slide up (`y: 20`) and fade in.
+    4. **Badges**: Staggered slide right (`x: -20`) and fade in.
+    5. **Description**: Slide up (`y: 30`) and fade in.
+    6. **CTA Buttons**: Slide up (`y: 20`) and fade in.
+    7. **Stats**: Staggered slide up (`y: 20`) and fade in.
+    8. **Scroll Indicator Wrapper**: Slide up (`y: 10`) and fade in.
+- **AND** all animations SHALL use `power4.out` or `power3.out` easing for a premium feel.
+- **AND** the timeline SHALL NOT play until the loader finishes.
 
 ### Requirement: Hero Depth & Interactivity
 The Hero section SHALL utilize GSAP's `ScrollTrigger` and mouse event listeners to create depth.

@@ -223,8 +223,8 @@ const kineticWords = [
 
     mm.add('(prefers-reduced-motion: no-preference)', () => {
       // 1. Unhide elements for GSAP to capture correct natural state
-      gsap.set('.js-reveal', { autoAlpha: 1, force3D: true })
-      gsap.set('.js-newsletter-glow', { autoAlpha: 1 })
+      gsap.set(section.querySelectorAll('.js-reveal'), { autoAlpha: 1, force3D: true })
+      gsap.set(section.querySelectorAll('.js-newsletter-glow'), { autoAlpha: 1 })
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -234,13 +234,13 @@ const kineticWords = [
         },
       })
 
-      tl.from('.js-newsletter-glow', {
+      tl.from(section.querySelectorAll('.js-newsletter-glow'), {
         autoAlpha: 0,
         duration: 2.0,
         ease: 'power2.inOut',
       })
         .from(
-          '.js-newsletter-header',
+          section.querySelector('.js-newsletter-header'),
           {
             autoAlpha: 0,
             y: 40,
@@ -251,7 +251,7 @@ const kineticWords = [
           0,
         )
         .from(
-          '.js-newsletter-quote',
+          section.querySelector('.js-newsletter-quote'),
           {
             autoAlpha: 0,
             x: -20,
@@ -261,7 +261,7 @@ const kineticWords = [
           '-=0.8',
         )
         .from(
-          '.js-newsletter-content',
+          section.querySelector('.js-newsletter-content'),
           {
             autoAlpha: 0,
             y: 20,
@@ -271,7 +271,7 @@ const kineticWords = [
           '-=0.6',
         )
         .from(
-          '.js-newsletter-feature',
+          section.querySelectorAll('.js-newsletter-feature'),
           {
             autoAlpha: 0,
             y: 10,
@@ -282,7 +282,7 @@ const kineticWords = [
           '-=0.4',
         )
         .from(
-          '.js-newsletter-embed',
+          section.querySelector('.js-newsletter-embed'),
           {
             autoAlpha: 0,
             scale: 0.98,
@@ -293,7 +293,7 @@ const kineticWords = [
           '-=0.5',
         )
         .from(
-          '.js-newsletter-proof',
+          section.querySelector('.js-newsletter-proof'),
           {
             autoAlpha: 0,
             y: 15,
@@ -305,8 +305,8 @@ const kineticWords = [
     })
 
     mm.add('(prefers-reduced-motion: reduce)', () => {
-      gsap.set('.js-reveal', { autoAlpha: 0 })
-      gsap.set('.js-newsletter-glow', { autoAlpha: 0 })
+      gsap.set(section.querySelectorAll('.js-reveal'), { autoAlpha: 0 })
+      gsap.set(section.querySelectorAll('.js-newsletter-glow'), { autoAlpha: 0 })
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -316,11 +316,17 @@ const kineticWords = [
         },
       })
 
-      tl.to(['.js-newsletter-glow', '.js-reveal'], {
-        autoAlpha: 1,
-        duration: 0.8,
-        stagger: 0.1,
-      })
+      tl.to(
+        [
+          ...section.querySelectorAll('.js-newsletter-glow'),
+          ...section.querySelectorAll('.js-reveal'),
+        ],
+        {
+          autoAlpha: 1,
+          duration: 0.8,
+          stagger: 0.1,
+        },
+      )
     })
   }
 
