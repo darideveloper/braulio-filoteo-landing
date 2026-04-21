@@ -6,6 +6,7 @@ import SideBorderQuote from '../molecules/SideBorderQuote.astro'
 import SpotifyEmbed from '../atoms/SpotifyEmbed.astro'
 import PodcastCTA from '../molecules/PodcastCTA.astro'
 import BrandButton from '../atoms/BrandButton.astro'
+import SocialIcon from '../atoms/SocialIcon.astro'
 
 interface Props extends Partial<SectionProps> {
   class?: string
@@ -85,6 +86,7 @@ const { id, class: className } = Astro.props
         target='_blank'
       >
         Explorar todos los episodios
+        <SocialIcon platform="Spotify" class="text-xl ml-2 group-hover:translate-x-1 transition-transform" />
       </BrandButton>
     </div>
   </div>

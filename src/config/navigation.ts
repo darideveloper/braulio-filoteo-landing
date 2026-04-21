@@ -35,7 +35,6 @@ export const socialLinks = [
   {
     name: 'LinkedIn',
     href: 'https://www.linkedin.com/in/braulio-filoteo-thrive/',
-    icon: 'share',
     platform: 'LinkedIn',
     target: '_blank',
     rel: 'noopener noreferrer'
@@ -43,7 +42,6 @@ export const socialLinks = [
   {
     name: 'Instagram',
     href: 'https://www.instagram.com/brauliofiloteo/',
-    icon: 'photo_camera',
     platform: 'Instagram',
     target: '_blank',
     rel: 'noopener noreferrer'
@@ -51,7 +49,6 @@ export const socialLinks = [
   {
     name: 'YouTube',
     href: 'https://www.youtube.com/@GRITonespodcast/featured',
-    icon: 'play_circle',
     platform: 'YouTube',
     target: '_blank',
     rel: 'noopener noreferrer'

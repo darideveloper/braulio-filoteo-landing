@@ -1,11 +1,11 @@
 ---
 import clsx from 'clsx';
 import MaterialIcon from '../atoms/MaterialIcon.astro';
+import SocialIcon from '../atoms/SocialIcon.astro';
 
 interface Props {
   platform: string;
   description: string;
-  icon: string;
   tag: string;
   href: string;
   accentColor?: 'primary' | 'secondary';
@@ -15,7 +15,6 @@ interface Props {
 const { 
   platform, 
   description, 
-  icon, 
   tag, 
   href, 
   accentColor = 'primary',
@@ -49,8 +48,8 @@ const iconContainerClasses = {
       "w-14 h-14 bg-brand-surface-bright flex items-center justify-center rounded-lg transition-colors duration-500",
       iconContainerClasses[accentColor]
     )}>
-      <MaterialIcon 
-        name={icon} 
+      <SocialIcon 
+        platform={platform} 
         class={clsx(
           "text-3xl transition-colors duration-500",
           accentColor === 'primary' && "text-brand-primary group-hover:text-white",

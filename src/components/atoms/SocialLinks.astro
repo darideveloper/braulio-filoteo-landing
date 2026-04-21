@@ -1,5 +1,5 @@
 ---
-import MaterialIcon from './MaterialIcon.astro';
+import SocialIcon from './SocialIcon.astro';
 import clsx from 'clsx';
 import { socialLinks } from '../../config/navigation';
 
@@ -20,8 +20,8 @@ const { className, iconSize = "text-2xl" } = Astro.props;
       class="w-10 h-10 flex items-center justify-center rounded-lg bg-brand-surface-low border border-brand-outline-variant/20 text-brand-text-muted hover:text-brand-primary hover:border-brand-primary/50 transition-all hover:scale-110 group hover:shadow-neon-purple"
       aria-label={platform.name}
     >
-      <MaterialIcon 
-        name={platform.icon} 
+      <SocialIcon 
+        platform={platform.name} 
         class={clsx("transition-transform group-hover:scale-110", iconSize)} 
       />
     </a>

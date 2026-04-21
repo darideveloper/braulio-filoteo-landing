@@ -5,6 +5,7 @@ import Badge from '../atoms/Badge.astro'
 import BrandButton from '../atoms/BrandButton.astro'
 import StatItem from '../atoms/StatItem.astro'
 import EditorialPortrait from '../molecules/EditorialPortrait.astro'
+import SocialIcon from '../atoms/SocialIcon.astro'
 import heroImage from '../../assets/images/hero-portrait.webp'
 
 interface Props extends Partial<SectionProps> {}
@@ -80,11 +81,11 @@ const stats = [
         >
           <BrandButton
             variant='secondary'
-            icon='play_circle'
             href='https://open.spotify.com/show/181uvsFpNIjS7htYHcft4v?si=33b057e40a5f47f0'
             target='_blank'
           >
             Escucha GRITones
+            <SocialIcon platform="Spotify" class="text-xl group-hover:translate-x-1 transition-transform" />
           </BrandButton>
           <BrandButton
             variant='outline'

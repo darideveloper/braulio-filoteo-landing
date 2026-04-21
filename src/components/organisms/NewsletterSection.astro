@@ -5,6 +5,7 @@ import SideBorderQuote from '../molecules/SideBorderQuote.astro'
 import MaterialIcon from '../atoms/MaterialIcon.astro'
 import SectionHeader from '../molecules/SectionHeader.astro'
 import SectionWrapper from './SectionWrapper.astro'
+import SocialIcon from '../atoms/SocialIcon.astro'
 import type { SectionProps } from '../../types/Section'
 
 import avatarMale from '../../assets/images/avatar-male.svg'
@@ -116,7 +117,10 @@ const kineticWords = [
           />
           <h3 class='text-white text-2xl font-bold text-left'>
             <span class='block'> Braulio Filoteo </span>
-            <span class='text-brand-secondary block text-xl'> Substack </span>
+            <span class='flex items-center gap-2 text-brand-secondary text-xl'>
+              <SocialIcon platform="Substack" class="text-xl" />
+              Substack
+            </span>
           </h3>
         </div>
         <iframe

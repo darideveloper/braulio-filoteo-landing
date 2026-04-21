@@ -33,11 +33,10 @@ The Social Section MUST include a horizontal scrolling gallery for editorial por
 ### Requirement: Platform Engagement Grid
 The Social Section MUST include a grid of social platform links that provide clear visual feedback based on the platform's brand.
 
-#### Scenario: Verify social card hover
+#### Scenario: Verify social card icon
 - **GIVEN** a social platform card in the grid.
-- **WHEN** the user hovers over the card.
-- **THEN** it SHALL transition to its platform-specific `accentColor` for the border and icon background.
-- **AND** it SHALL increase the background brightness to `brand-surface-bright`.
+- **THEN** it SHALL render the official brand logo (SVG) instead of a generic icon.
+- **AND** it SHALL inherit the platform's `accentColor` for the SVG fill on hover.
 
 ### Requirement: Data-Driven Interface
 The `SocialSection` component MUST be fully configurable through props to ensure easy updates without modifying component logic.
@@ -63,4 +62,20 @@ The gallery indicators MUST be dynamically linked to the internal state of the s
 - **WHEN** the user slides the gallery.
 - **THEN** the indicators SHALL automatically update to reflect the current active slide or position.
 - **AND** the indicators SHALL match the brand's aesthetic (`w-8 h-1` horizontal bars).
+
+### Requirement: Accessible Social Links
+All social media links SHALL use official brand logos that are semantically identified for accessibility.
+
+#### Scenario: Verify icon accessibility
+- **GIVEN** a `SocialIcon` component.
+- **THEN** it SHALL have `aria-hidden="true"` to prevent redundant screen reader announcements (as parent links already have `aria-label`).
+- **AND** it SHALL be rendered as an inline-block element for consistent layout alignment.
+
+### Requirement: Centralized Social Asset Management
+The system SHALL maintain a single source of truth for social brand assets.
+
+#### Scenario: Add a new platform logo
+- **WHEN** a new SVG path is added to the `SocialIcon` component.
+- **THEN** it SHALL be immediately available for use across `SocialLinks`, `SocialCard`, and other social-aware components.
+- **AND** it SHALL automatically support the "Neon Noir" transition system.
 
