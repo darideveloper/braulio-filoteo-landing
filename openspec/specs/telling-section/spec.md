@@ -4,12 +4,14 @@
 TBD - created by archiving change add-telling-section. Update Purpose after archive.
 ## Requirements
 ### Requirement: Standalone High-Impact Section
-The `CtaSection` MUST be a standalone component that covers the full viewport without including global site navigation or page footers.
+The `CtaSection` MUST be a standalone component that uses standardized vertical padding instead of enforcing a full viewport height.
 
-#### Scenario: Full-Screen Rendering
+#### Scenario: Section Rendering
 - **Given** the `CtaSection` component.
 - **When** it is rendered on any page.
-- **Then** it must occupy `min-h-screen` and center its content vertically, independent of other layout elements.
+- **Then** it SHALL utilize standardized vertical padding (e.g., `py-24`).
+- **AND** it SHALL center its content vertically within that area.
+- **REMOVED** ~~**Then** it must occupy `min-h-screen` and center its content vertically, independent of other layout elements.~~
 
 ### Requirement: Integrated Contact Info
 The section MUST allow including contact info as part of the main content group.

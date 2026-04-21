@@ -28,7 +28,6 @@ const {
   titleColor,
   labelColor,
   size = 'standard',
-  fullHeight = true,
 } = Astro.props
 
 const backgroundClasses = {
@@ -43,7 +42,6 @@ const backgroundClasses = {
   class={clsx(
     backgroundClasses[variant],
     'py-24 relative overflow-hidden',
-    fullHeight && 'min-h-screen flex items-center w-full',
     showDivider && 'border-t border-brand-surface-bright/20',
     className,
   )}

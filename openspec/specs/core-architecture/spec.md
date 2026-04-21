@@ -93,6 +93,18 @@ To ensure maximum search visibility, all interactive components SHALL utilize th
 - **THEN** its primary SEO content (titles, text, links) SHALL be passed as Astro `<slot />` content.
 - **AND** it SHALL NOT rely exclusively on client-side state for rendering essential information.
 
+### Requirement: Standardized Section Spacing
+All main content sections SHALL NOT enforce a minimum height of `100vh`, with explicit exceptions for above-the-fold entry points and specialized layout containers.
+
+#### Scenario: Global Spacing Consistency
+- **GIVEN** a standard main section component (e.g., `SectionWrapper`, `PodcastSection`).
+- **THEN** it SHALL NOT apply `min-h-screen` or `min-height: 100vh`.
+- **AND** it SHALL utilize standardized vertical padding (e.g., `py-24`).
+
+#### Scenario: Spacing Exceptions
+- **GIVEN** a specialized entry or layout component (e.g., `Hero`, `Layout`, `404.astro`).
+- **THEN** it MAY utilize `min-h-screen` to ensure proper viewport coverage or structural integrity.
+
 ### Requirement: Critical Resource Preloading
 Pages SHALL prioritize the loading of above-the-fold assets to improve Core Web Vitals (LCP).
 

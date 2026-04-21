@@ -106,7 +106,7 @@ The Hero section MUST provide sufficient vertical clearance for absolute-positio
 #### Scenario: Prevent Scroll Indicator Overlap
 - **GIVEN** a Hero section with a centered container and a bottom-aligned scroll indicator.
 - **WHEN** the viewport height is reduced or content expands.
-- **THEN** the main container SHALL include a minimum bottom padding of `6rem` (`pb-24`).
+- **THEN** the main container SHALL ensure that content height and padding provide sufficient clearance for the scroll indicator.
 - **AND** this padding SHALL ensure the content grid does not overlap with the scroll indicator positioned at `bottom-10`.
 
 ### Requirement: Hero Scroll Indicator Animation

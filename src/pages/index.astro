@@ -56,11 +56,15 @@ const services = [
   },
 ]
 
-const pageTitle = "Braulio Filoteo / Creative Portfolio & Podcast Hub";
-const pageDescription = "Explora el universo creativo de Braulio Filoteo. Estrategia de marca, producción de podcasts de alto impacto y narrativas que transforman.";
+const pageTitle = 'Braulio Filoteo / Creative Portfolio & Podcast Hub'
+const pageDescription =
+  'Explora el universo creativo de Braulio Filoteo. Estrategia de marca, producción de podcasts de alto impacto y narrativas que transforman.'
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+>
   <Hero id='home' />
   <AboutSection id='about' />
   <PodcastSection id='podcast' />
@@ -103,19 +107,12 @@ const pageDescription = "Explora el universo creativo de Braulio Filoteo. Estrat
   <NewsletterSection id='newsletter' />
   <SocialSection id='social' />
 
-  <SectionWrapper
-    id='voice-section'
-    variant='lowest'
-    class='py-24 pt-12 relative overflow-hidden'
-    containerClass='container'
-  >
-    <VoiceSection />
-  </SectionWrapper>
+  <VoiceSection />
 
   <SectionWrapper
     id='vehicle-cta'
     variant='lowest'
-    class='pb-24 pt-12 relative overflow-hidden'
+    class='py-24 relative overflow-hidden'
   >
     <FeatureCTA
       label='El Vehículo'

@@ -18,7 +18,7 @@ const { id, class: className } = Astro.props
 <section
   id={id}
   class={clsx(
-    'js-podcast-section relative min-h-screen flex items-center w-full py-24 px-6 @md:px-12 @lg:px-24 overflow-hidden bg-brand-background',
+    'js-podcast-section relative w-full py-24 px-6 @md:px-12 @lg:px-24 overflow-hidden bg-brand-background',
     className,
   )}
 >
@@ -62,14 +62,16 @@ const { id, class: className } = Astro.props
     </div>
 
     <!-- Spotify Embed -->
-    <div class='js-podcast-embed js-podcast-reveal js-reveal mb-24'>
+    <div class='js-podcast-embed js-podcast-reveal js-reveal'>
       <SpotifyEmbed
         url='https://open.spotify.com/show/181uvsFpNIjS7htYHcft4v'
       />
     </div>
 
     <!-- CTA Section -->
-    <div class='js-podcast-cta js-podcast-reveal js-reveal flex flex-col items-center mb-24'>
+    <div
+      class='js-podcast-cta js-podcast-reveal js-reveal flex flex-col items-center mb-24'
+    >
       <PodcastCTA
         title='¿Quieres lanzar tu podcast pero no sabes por dónde empezar?'
         description='Te enseñamos, paso a paso, en vivo'
@@ -78,7 +80,9 @@ const { id, class: className } = Astro.props
     </div>
 
     <!-- Explore Button -->
-    <div class='js-podcast-button js-podcast-reveal js-reveal flex flex-col items-center'>
+    <div
+      class='js-podcast-button js-podcast-reveal js-reveal flex flex-col items-center'
+    >
       <BrandButton
         variant='outline'
         class='px-12! py-5! uppercase tracking-[0.2em]'
@@ -86,7 +90,10 @@ const { id, class: className } = Astro.props
         target='_blank'
       >
         Explorar todos los episodios
-        <SocialIcon platform="Spotify" class="text-xl ml-2 group-hover:translate-x-1 transition-transform" />
+        <SocialIcon
+          platform='Spotify'
+          class='text-xl ml-2 group-hover:translate-x-1 transition-transform'
+        />
       </BrandButton>
     </div>
   </div>
@@ -176,7 +183,6 @@ const { id, class: className } = Astro.props
           end: 'bottom top',
           scrub: 0.8,
         },
-
       })
     })
 

@@ -4,5 +4,4 @@ export interface SectionProps {
   label?: string; // Small caps overline
   description?: string;
   variant?: 'lowest' | 'low' | 'bright'; // Maps to surface tiers
-  fullHeight?: boolean; // Whether the section should take up the full viewport height
 }
