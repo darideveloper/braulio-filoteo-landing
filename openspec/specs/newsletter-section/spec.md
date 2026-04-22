@@ -1,8 +1,16 @@
 # newsletter-section Specification
 
 ## Purpose
-TBD - created by archiving change add-newsletter-section. Update Purpose after archive.
+The `NewsletterSection` captures professional engagement through a high-fidelity "Membresía Privada" call-to-action, leveraging Substack for a premium editorial newsletter experience.
 ## Requirements
+### Requirement: Newsletter Editorial Copy
+The `NewsletterSection` SHALL use specific, high-intent editorial copy.
+
+#### Scenario: Substack Quote and Description
+- **GIVEN** the `NewsletterSection` quote.
+- **THEN** it SHALL be: "Reflexiones en audio y texto sobre liderazgo, decisiones difíciles y el poder de la resiliencia".
+- **AND** the secondary description SHALL mention the format as "audio corto y texto para leer en 3 minutos".
+
 ### Requirement: Standalone Newsletter Organism
 The system SHALL provide a `NewsletterSection` organism designed to capture email subscriptions for a private community using a Substack-managed flow.
 

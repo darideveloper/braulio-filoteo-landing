@@ -73,7 +73,12 @@ All social media links SHALL use official brand logos that are semantically iden
 - **AND** it SHALL be rendered as an inline-block element for consistent layout alignment.
 
 ### Requirement: Centralized Social Asset Management
-The system SHALL maintain a single source of truth for social brand assets.
+The system SHALL maintain a single source of truth for social brand assets via the `SocialIcon` atom.
+
+#### Scenario: Platform Icon Rendering
+- **GIVEN** a social platform link or card.
+- **THEN** it SHALL utilize the `SocialIcon` component to render the official brand logo.
+- **AND** it SHALL NOT use generic `MaterialIcon` symbols for social platforms.
 
 #### Scenario: Add a new platform logo
 - **WHEN** a new SVG path is added to the `SocialIcon` component.

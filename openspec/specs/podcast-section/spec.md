@@ -1,8 +1,16 @@
 # podcast-section Specification
 
 ## Purpose
-TBD - created by archiving change add-podcast-section. Update Purpose after archive.
+The `PodcastSection` highlights the "GRITones Podcast" as a primary editorial asset, focusing on high-value conversations and personal brand authority.
 ## Requirements
+### Requirement: Editorial Branding
+The `PodcastSection` SHALL maintain consistent brand labels and correct nomenclature.
+
+#### Scenario: Label and Typo Correction
+- **GIVEN** the `PodcastSection` header.
+- **THEN** the label SHALL be "Línea editorial de alto valor".
+- **AND** all instances of the brand watermark or text SHALL be "GRIT" (correcting any "GIRT" typos).
+
 ### Requirement: Podcast Layout
 The Podcast Section MUST provide a focused editorial experience using standardized vertical padding instead of forcing a full viewport height.
 

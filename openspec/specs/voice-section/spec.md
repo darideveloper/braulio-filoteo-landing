@@ -1,8 +1,16 @@
 # voice-section Specification
 
 ## Purpose
-TBD - created by archiving change implement-voice-section. Update Purpose after archive.
+The `VoiceSection` organism provides a high-impact editorial space to establish the authority of the "platform" concept, emphasizing the depth of personal brand ideas through a stark, asymmetric design.
 ## Requirements
+### Requirement: Editorial Copy
+The `VoiceSection` SHALL use specific, verified copy to maintain brand authority.
+
+#### Scenario: Headline and Description
+- **GIVEN** the `VoiceSection` headline.
+- **THEN** it SHALL be: "TU VOZ PUEDE CONVERTIRSE EN UNA PLATAFORMA."
+- **AND** the description SHALL be: "Hoy la marca personal no se construye con frases motivacionales. Se construye con la profundidad de las ideas and la radicalidad de la ejecución."
+
 ### Requirement: Asymmetric Editorial Grid
 The `VoiceSection` SHALL implement an asymmetric layout based on the 12-column editorial grid.
 

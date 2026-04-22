@@ -29,6 +29,11 @@ All section organism components SHALL support an `id` prop to handle their own i
 - **AND** it SHALL apply this `id` to its root element.
 - **AND** if it uses `SectionWrapper`, it SHALL pass the `id` to it.
 
+#### Scenario: Deprecation of Full-Height Layouts
+- **GIVEN** a standard section component.
+- **THEN** it SHALL NOT expose or utilize a `fullHeight` prop.
+- **AND** any legacy `fullHeight` logic SHALL be removed in favor of standardized padding.
+
 ### Requirement: Media & Filter Standardization
 Any component rendering images SHALL apply the project's standard "Editorial Treatment".
 #### Scenario: Efficient Transitions
