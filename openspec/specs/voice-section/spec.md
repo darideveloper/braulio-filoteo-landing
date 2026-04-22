@@ -37,3 +37,10 @@ The `VoiceSection` SHALL implement scroll-triggered entrance animations.
 - **THEN** the headline SHALL slide up and fade in.
 - **AND** the description SHALL follow with a `0.2s` delay.
 
+### Requirement: Methodology Pillar Titles
+The `VoiceSection` SHALL use specific terminology for its methodology pillars to ensure brand alignment.
+
+#### Scenario: Update Clarity Pillar
+- **GIVEN** the first pillar in the `VoiceSection` transformation matrix.
+- **THEN** its title SHALL be "claridad de promesa de valor".
+
