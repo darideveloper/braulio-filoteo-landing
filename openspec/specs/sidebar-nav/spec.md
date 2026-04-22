@@ -27,7 +27,7 @@ The shell MUST include a branding element (logo) and a navigation menu with icon
 - **GIVEN** the navigation system is loaded.
 - **THEN** it SHALL display the following items in Spanish:
   - "Inicio" (#home)
-  - "Biografía" (#about)
+  - "Misión" (#about)
   - "Podcast" (#podcast)
   - "Estudio" (#studio)
   - "Planes" (#plans)

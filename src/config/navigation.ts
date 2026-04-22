@@ -5,7 +5,7 @@ export const navItems = [
     icon: 'home'
   },
   {
-    label: 'Biografía',
+    label: 'Misión',
     href: '#about',
     icon: 'person'
   },
