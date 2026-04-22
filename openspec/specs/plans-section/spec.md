@@ -15,13 +15,8 @@ The `PlansCard` molecule SHALL support external booking links for premium servic
 ### Requirement: Plans Section Organism
 The system SHALL provide a `PlansSection` organism to orchestrate the value proposition grid.
 
-#### Scenario: Bento Grid Layout
+#### Scenario: Section Identity Content
 - **GIVEN** a `PlansSection` organism.
-- **THEN** it SHALL arrange two `PlansCard` components in a responsive 12-column bento grid.
-- **AND** on desktop, the first card SHALL span 5 columns and the second SHALL span 7 columns.
-
-#### Scenario: Section Outro
-- **GIVEN** the `PlansSection`.
-- **THEN** it SHALL feature a footer area with a high-impact call-to-action for exploratory calls.
-- **AND** the footer SHALL be separated by an editorial border and include a link with a transitioning arrow icon.
+- **THEN** it SHALL display a `SectionHeader` with the label "ECOSISTEMA".
+- **AND** it SHALL display the title "Consolida tu Marca Personal".
 
