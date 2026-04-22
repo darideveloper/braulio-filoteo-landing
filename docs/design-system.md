@@ -43,7 +43,7 @@ The design uses a "Big & Bold" approach, mixing a geometric sans-serif for impac
 ### **D. Image Treatment**
 * **Filter:** High-contrast **Grayscale**.
 * **Frame:** Use of "floating" decorative borders in purple (`primary-container`) that are offset from the image itself.
-* **Badges:** Small "EST. 2024" or "HOST" labels pinned to the corners of images.
+* **Badges:** Small "HOST" or role labels pinned to the corners of images.
 
 ---
 

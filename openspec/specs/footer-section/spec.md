@@ -32,13 +32,8 @@ The Footer SHALL integrate brand identity and navigation elements.
 #### Scenario: Brand Identity
 - **GIVEN** the Footer component.
 - **THEN** it SHALL display the brand logo (`logo.webp`).
-- **AND** it SHALL include a timestamp label (e.g., "Est. 2024 / Braulio Filoteo.") using `Label-MD` typography as defined in `branding/spec.md`.
+- **MODIFIED** **AND** it SHALL include a location label (e.g., "México.") using `Label-MD` typography as defined in `branding/spec.md` (timestamp "Est. 2024" removed and location simplified).
 - **AND** it SHALL include a dynamic copyright notice showing the current calendar year.
-
-#### Scenario: Secondary Navigation
-- **GIVEN** the Footer component.
-- **THEN** it SHALL render the primary site navigation links.
-- **AND** it SHALL use the same `Navigation` molecule as the Header for DRY consistency.
 
 ### Requirement: Responsive Layout
 The Footer SHALL utilize the `editorial-grid` for its structural layout across all screen sizes.
