@@ -200,9 +200,10 @@ const kineticWords = [
 
   <!-- Kinetic Scroller Decoration (Subtle Visual Interest) -->
   <div
-    class='absolute bottom-0 left-0 w-full overflow-hidden opacity-5 pointer-events-none'
+    class='absolute bottom-0 left-0 w-full overflow-hidden opacity-5 pointer-events-none js-marquee'
+    style='will-change: transform;'
   >
-    <div class='flex gap-4 p-8 whitespace-nowrap'>
+    <div class='flex gap-4 p-8 whitespace-nowrap js-marquee-content'>
       {
         kineticWords.map((word) => (
           <span
@@ -227,9 +228,15 @@ const kineticWords = [
 
   gsap.registerPlugin(ScrollTrigger)
 
+import { initNewsletterMarquee } from '../../scripts/newsletter-marquee'
+
   function initNewsletterAnimations() {
     const section = document.querySelector('.js-newsletter-section')
     if (!section) return
+    
+    // Initialize Marquee
+    const marqueeContainer = section.querySelector('.js-marquee') as HTMLElement
+    const cleanupMarquee = marqueeContainer ? initNewsletterMarquee(marqueeContainer) : undefined
 
     const mm = gsap.matchMedia()
 
