@@ -119,10 +119,14 @@ const pageDescription =
       ctaText='Inicia tu Proyecto'
       icon='mic'
       href='#plans'
-      watermark='VOICE'
-      watermarkAlign='right'
-      watermarkSize='20rem'
-      watermarkOpacity={0.08}
+      marqueeWords={[
+        { text: 'VOZ', variant: 'filled' },
+        { text: 'PODCAST', variant: 'stroke' },
+        { text: 'NARRATIVA', variant: 'filled' },
+        { text: 'ESTRATEGIA', variant: 'stroke' },
+        { text: 'PLATAFORMA', variant: 'filled' },
+        { text: 'IMPACTO', variant: 'stroke' },
+      ]}
     >
       El vehículo más poderoso para hacerlo es un <span
         class='decoration-editorial'>podcast</span

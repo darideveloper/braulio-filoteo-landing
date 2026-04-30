@@ -2,6 +2,11 @@
 import clsx from 'clsx';
 import MaterialIcon from '../atoms/MaterialIcon.astro';
 
+interface MarqueeWord {
+  text: string;
+  variant: 'filled' | 'stroke';
+}
+
 interface Props {
   label: string;
   ctaText: string;
@@ -11,6 +16,7 @@ interface Props {
   watermarkAlign?: 'center' | 'right';
   watermarkSize?: string;
   watermarkOpacity?: number;
+  marqueeWords?: MarqueeWord[];
 }
 
 const { 
@@ -21,18 +27,47 @@ const {
   watermark,
   watermarkAlign = 'center',
   watermarkSize,
-  watermarkOpacity
+  watermarkOpacity,
+  marqueeWords
 } = Astro.props;
 
 const Element = href ? 'a' : 'div';
 ---
 
-<div class="flex flex-col items-center text-center max-w-4xl mx-auto py-12 js-feature-cta">
-  {watermark && (
-    <div class={clsx(
-      "absolute inset-0 flex -z-10 pointer-events-none items-center js-fcta-watermark js-fcta-reveal opacity-0",
-      watermarkAlign === 'center' ? "justify-center" : "justify-end"
-    )}>
+<div 
+  class="flex flex-col items-center text-center py-12 js-feature-cta relative"
+  data-watermark-opacity={watermarkOpacity}
+>
+  {marqueeWords ? (
+    <div
+      class='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-screen overflow-hidden opacity-5 pointer-events-none flex items-center js-marquee'
+      style='will-change: transform; opacity: 0;'
+    >
+      <div class='flex gap-4 p-8 whitespace-nowrap js-marquee-content'>
+        {
+          marqueeWords.map((word) => (
+            <span
+              class={clsx(
+                'text-9xl font-black font-brand-display uppercase',
+                word.variant === 'stroke'
+                  ? 'text-stroke-brand'
+                  : 'text-brand-text-high',
+              )}
+            >
+              {word.text}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+  ) : watermark && (
+    <div 
+      class={clsx(
+        "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-screen flex -z-10 pointer-events-none items-center js-fcta-watermark",
+        watermarkAlign === 'center' ? "justify-center" : "justify-end"
+      )}
+      style={{ opacity: 0 }}
+    >
       <span 
         class={clsx(
           "hidden sm:inline-block text-watermark uppercase whitespace-nowrap",
@@ -40,33 +75,36 @@ const Element = href ? 'a' : 'div';
         )}
         style={{
           ...(watermarkSize ? { fontSize: watermarkSize } : {}),
-          ...(watermarkOpacity !== undefined ? { opacity: watermarkOpacity } : {})
         }}
       >
         {watermark}
       </span>
     </div>
   )}
-  <p class="label-md text-brand-primary tracking-[0.3em] uppercase mb-6 js-fcta-label js-fcta-reveal opacity-0">{label}</p>
-  <h2 class="display-lg text-4xl @md:text-6xl text-brand-text-high mb-12 normal-case js-fcta-headline js-fcta-reveal opacity-0">
-    <slot />
-  </h2>
-  <Element 
-    href={href}
-    class="flex items-center gap-4 group cursor-pointer js-fcta-button js-fcta-reveal opacity-0"
-  >
-    <div class="bg-brand-secondary text-white p-6 rounded-[0.25rem] group-hover:bg-brand-primary transition-colors duration-300">
-      <MaterialIcon name={icon} size="text-4xl" />
-    </div>
-    <span class="font-brand-display font-bold text-xl uppercase tracking-tighter group-hover:text-brand-primary transition-colors">
-      {ctaText}
-    </span>
-  </Element>
+  
+  <div class="relative z-10 flex flex-col items-center max-w-4xl mx-auto">
+    <p class="label-md text-brand-primary tracking-[0.3em] uppercase mb-6 js-fcta-label js-fcta-reveal opacity-0">{label}</p>
+    <h2 class="display-lg text-4xl @md:text-6xl text-brand-text-high mb-12 normal-case js-fcta-headline js-fcta-reveal opacity-0">
+      <slot />
+    </h2>
+    <Element 
+      href={href}
+      class="flex items-center gap-4 group cursor-pointer js-fcta-button js-fcta-reveal opacity-0"
+    >
+      <div class="bg-brand-secondary text-white p-6 rounded-[0.25rem] group-hover:bg-brand-primary transition-colors duration-300">
+        <MaterialIcon name={icon} size="text-4xl" />
+      </div>
+      <span class="font-brand-display font-bold text-xl uppercase tracking-tighter group-hover:text-brand-primary transition-colors">
+        {ctaText}
+      </span>
+    </Element>
+  </div>
 </div>
 
 <script>
   import { gsap } from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import { initNewsletterMarquee } from '../../scripts/newsletter-marquee';
 
   // Register plugin locally
   gsap.registerPlugin(ScrollTrigger);
@@ -76,10 +114,15 @@ const Element = href ? 'a' : 'div';
     
     instances.forEach((container) => {
       const reveals = container.querySelectorAll('.js-fcta-reveal');
-      const watermark = container.querySelector('.js-fcta-watermark');
+      const background = container.querySelector('.js-marquee, .js-fcta-watermark') as HTMLElement;
       const label = container.querySelector('.js-fcta-label');
       const headline = container.querySelector('.js-fcta-headline');
       const button = container.querySelector('.js-fcta-button');
+
+      // Initialize Marquee if present
+      if (background && background.classList.contains('js-marquee')) {
+        initNewsletterMarquee(background);
+      }
 
       const mm = gsap.matchMedia();
 
@@ -95,12 +138,16 @@ const Element = href ? 'a' : 'div';
           }
         });
 
-        if (watermark) {
-          tl.from(watermark, {
-            autoAlpha: 0,
-            scale: 0.95,
+        if (background) {
+          const isMarquee = background.classList.contains('js-marquee');
+          const dataOpacity = container.dataset.watermarkOpacity;
+          const targetOpacity = isMarquee ? 0.05 : (dataOpacity ? parseFloat(dataOpacity) : 1);
+
+          tl.to(background, {
+            opacity: targetOpacity,
             duration: 1.5,
-            ease: "power2.out"
+            ease: "power2.out",
+            startAt: { scale: 0.95 }
           });
         }
 
@@ -110,7 +157,7 @@ const Element = href ? 'a' : 'div';
             autoAlpha: 0,
             duration: 0.8,
             ease: "power2.out"
-          }, watermark ? "-=1.2" : "0");
+          }, background ? "-=1.2" : "0");
         }
 
         if (headline) {
