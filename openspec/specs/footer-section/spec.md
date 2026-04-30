@@ -33,7 +33,7 @@ The Footer SHALL integrate brand identity and navigation elements.
 - **GIVEN** the Footer component.
 - **THEN** it SHALL display the brand logo (`logo.webp`) with "GRITONES PODCAST Logo" alt text.
 - **AND** it SHALL include a location label (e.g., "México. GRITONES PODCAST") using `Label-MD` typography as defined in `branding/spec.md`.
-- **AND** it SHALL include a dynamic copyright notice showing the current calendar year and "GRITONES PODCAST" as the holder.
+- **AND** it SHALL include a copyright notice with the text "2026 GRITONES STUDIO LLC ALL RIGHTS RESERVED".
 
 ### Requirement: Responsive Layout
 The Footer SHALL utilize the `editorial-grid` for its structural layout across all screen sizes.
