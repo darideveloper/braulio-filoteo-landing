@@ -1,57 +1,77 @@
 ---
-import Navigation from '../molecules/Navigation.astro';
-import SocialLinks from '../atoms/SocialLinks.astro';
-import { Image } from 'astro:assets';
-import logo from '../../assets/images/logo.webp';
-import clsx from 'clsx';
+import Navigation from '../molecules/Navigation.astro'
+import SocialLinks from '../atoms/SocialLinks.astro'
+import { Image } from 'astro:assets'
+import logo from '../../assets/images/logo.webp'
+import clsx from 'clsx'
 
 interface Props {
-  class?: string;
+  class?: string
 }
 
-const { class: className } = Astro.props;
+const { class: className } = Astro.props
 ---
-<div id="sidebar-overlay" class="fixed inset-0 bg-brand-background/80 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-500 xl:hidden"></div>
 
-<aside 
-  id="global-sidebar"
+<div
+  id='sidebar-overlay'
+  class='fixed inset-0 bg-brand-background/80 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-500 xl:hidden'
+>
+</div>
+
+<aside
+  id='global-sidebar'
   class={clsx(
-  "flex flex-col w-[250px] h-[100dvh] fixed left-0 top-0 glass-surface z-[60] border-r border-brand-outline-variant/10",
-  "-translate-x-full xl:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.85,0,0.15,1)]",
-  className
-)}>
+    'flex flex-col w-[250px] h-[100dvh] fixed left-0 top-0 glass-surface z-[60] border-r border-brand-outline-variant/10',
+    '-translate-x-full xl:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.85,0,0.15,1)]',
+    className,
+  )}
+>
   {/* Accent Glow */}
-  <div class="absolute top-0 right-0 w-[1px] h-full bg-gradient-to-b from-transparent via-brand-primary/30 to-transparent"></div>
+  <div
+    class='absolute top-0 right-0 w-[1px] h-full bg-gradient-to-b from-transparent via-brand-primary/30 to-transparent'
+  >
+  </div>
 
-  <div class="p-8 flex flex-col h-full relative z-10 overflow-y-auto">
-    <div class="mb-12">
-      <a href="#home" class="block group">
-        <Image 
-          src={logo} 
-          alt="Braulio Filoteo Logo" 
-          width={126} 
-          height={42}
-          class="w-auto h-auto transition-all duration-500 group-hover:scale-105 group-hover:brightness-110 rounded-xl opacity-70 hover:opacity-80 mx-auto"
+  <div class='p-8 flex flex-col h-full relative z-10 overflow-y-auto'>
+    <div class='mb-12'>
+      <a
+        href='#home'
+        class='block group'
+      >
+        <Image
+          src={logo}
+          alt='Braulio Filoteo Logo'
+          width={300}
+          height={300}
+          class='w-8/12 aspect-square transition-all duration-500 group-hover:scale-105 group-hover:brightness-110 opacity-70 hover:opacity-80 mx-auto'
         />
       </a>
     </div>
 
-    <div class="flex-grow">
+    <div class='flex-grow'>
       <Navigation />
     </div>
 
-    <div class="mt-auto pt-8 space-y-8">
+    <div class='mt-auto pt-8 space-y-8'>
       <div>
-        <p class="label-md text-[0.65rem] text-brand-text-muted mb-6 tracking-[0.3em]">
+        <p
+          class='label-md text-[0.65rem] text-brand-text-muted mb-6 tracking-[0.3em]'
+        >
           Ecosistema Digital
         </p>
-        <SocialLinks className="gap-4" iconSize="text-lg" />
+        <SocialLinks
+          className='gap-4'
+          iconSize='text-lg'
+        />
       </div>
 
-      <div class="pt-6 border-t border-brand-outline-variant/20">
-        <p class="text-[10px] uppercase font-brand-display tracking-[0.25em] text-brand-text-muted/60 leading-relaxed">
+      <div class='pt-6 border-t border-brand-outline-variant/20'>
+        <p
+          class='text-[10px] uppercase font-brand-display tracking-[0.25em] text-brand-text-muted/60 leading-relaxed'
+        >
           Braulio Filoteo. <br />
-          <span class="text-brand-primary/40">© {new Date().getFullYear()}</span>
+          <span class='text-brand-primary/40'>© {new Date().getFullYear()}</span
+          >
         </p>
       </div>
     </div>

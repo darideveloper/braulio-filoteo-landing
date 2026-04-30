@@ -1,88 +1,108 @@
 ---
-import { Image } from 'astro:assets';
-import logo from '../../assets/images/logo.webp';
-import clsx from 'clsx';
+import { Image } from 'astro:assets'
+import logo from '../../assets/images/logo.webp'
+import clsx from 'clsx'
 
 interface Props {
-  class?: string;
+  class?: string
 }
 
-const { class: className } = Astro.props;
+const { class: className } = Astro.props
 ---
 
-<header class={clsx(
-  "flex xl:hidden items-center justify-between h-20 px-6 fixed top-0 left-0 right-0 glass-surface z-40 border-b border-white/5",
-  className
-)}>
-  <a href="#home" class="block relative z-40">
-    <Image 
-      src={logo} 
-      alt="Braulio Filoteo Logo" 
-      width={60} 
-      height={60}
-      class="w-auto"
+<header
+  class={clsx(
+    'flex xl:hidden items-center justify-between h-20 px-6 fixed top-0 left-0 right-0 glass-surface z-40 border-b border-white/5',
+    className,
+  )}
+>
+  <a
+    href='#home'
+    class='block relative z-40'
+  >
+    <Image
+      src={logo}
+      alt='Braulio Filoteo Logo'
+      width={300}
+      height={300}
+      class='h-full max-h-20 w-auto aspect-square'
     />
   </a>
 
-  <button 
-    id="mobile-menu-toggle"
-    class="relative w-10 h-10 flex flex-col justify-center items-center group focus:outline-none z-[70]"
-    aria-label="Toggle Mobile Menu"
+  <button
+    id='mobile-menu-toggle'
+    class='relative w-10 h-10 flex flex-col justify-center items-center group focus:outline-none z-[70]'
+    aria-label='Toggle Mobile Menu'
   >
-    <div id="burger-top" class="w-6 h-0.5 bg-brand-text-high mb-1.5 transition-all duration-300 rounded-full"></div>
-    <div id="burger-mid" class="w-6 h-0.5 bg-brand-text-high mb-1.5 transition-all duration-300 rounded-full"></div>
-    <div id="burger-bot" class="w-6 h-0.5 bg-brand-text-high transition-all duration-300 rounded-full"></div>
+    <div
+      id='burger-top'
+      class='w-6 h-0.5 bg-brand-text-high mb-1.5 transition-all duration-300 rounded-full'
+    >
+    </div>
+    <div
+      id='burger-mid'
+      class='w-6 h-0.5 bg-brand-text-high mb-1.5 transition-all duration-300 rounded-full'
+    >
+    </div>
+    <div
+      id='burger-bot'
+      class='w-6 h-0.5 bg-brand-text-high transition-all duration-300 rounded-full'
+    >
+    </div>
   </button>
 </header>
 
 <script>
-  const toggleBtn = document.getElementById('mobile-menu-toggle');
-  const sidebar = document.getElementById('global-sidebar');
-  const overlay = document.getElementById('sidebar-overlay');
-  
-  const burgerTop = document.getElementById('burger-top');
-  const burgerMid = document.getElementById('burger-mid');
-  const burgerBot = document.getElementById('burger-bot');
+  const toggleBtn = document.getElementById('mobile-menu-toggle')
+  const sidebar = document.getElementById('global-sidebar')
+  const overlay = document.getElementById('sidebar-overlay')
+
+  const burgerTop = document.getElementById('burger-top')
+  const burgerMid = document.getElementById('burger-mid')
+  const burgerBot = document.getElementById('burger-bot')
 
   const toggleMenu = () => {
-    const isOpen = sidebar?.classList.contains('translate-x-0');
-    
-    if (!isOpen) {
-      document.body.style.overflow = 'hidden';
-      // Open
-      sidebar?.classList.remove('-translate-x-full');
-      sidebar?.classList.add('translate-x-0');
-      overlay?.classList.remove('opacity-0', 'pointer-events-none');
-      overlay?.classList.add('opacity-100', 'pointer-events-auto');
-      
-      burgerTop?.classList.add('rotate-45', 'translate-y-2');
-      burgerMid?.classList.add('opacity-0');
-      burgerBot?.classList.add('-rotate-45', '-translate-y-2');
-    } else {
-      document.body.style.overflow = '';
-      // Close
-      sidebar?.classList.add('-translate-x-full');
-      sidebar?.classList.remove('translate-x-0');
-      overlay?.classList.add('opacity-0', 'pointer-events-none');
-      overlay?.classList.remove('opacity-100', 'pointer-events-auto');
-      
-      burgerTop?.classList.remove('rotate-45', 'translate-y-2');
-      burgerMid?.classList.remove('opacity-0');
-      burgerBot?.classList.remove('-rotate-45', '-translate-y-2');
-    }
-  };
+    const isOpen = sidebar?.classList.contains('translate-x-0')
 
-  toggleBtn?.addEventListener('click', toggleMenu);
-  overlay?.addEventListener('click', toggleMenu);
+    if (!isOpen) {
+      document.body.style.overflow = 'hidden'
+      // Open
+      sidebar?.classList.remove('-translate-x-full')
+      sidebar?.classList.add('translate-x-0')
+      overlay?.classList.remove('opacity-0', 'pointer-events-none')
+      overlay?.classList.add('opacity-100', 'pointer-events-auto')
+
+      burgerTop?.classList.add('rotate-45', 'translate-y-2')
+      burgerMid?.classList.add('opacity-0')
+      burgerBot?.classList.add('-rotate-45', '-translate-y-2')
+    } else {
+      document.body.style.overflow = ''
+      // Close
+      sidebar?.classList.add('-translate-x-full')
+      sidebar?.classList.remove('translate-x-0')
+      overlay?.classList.add('opacity-0', 'pointer-events-none')
+      overlay?.classList.remove('opacity-100', 'pointer-events-auto')
+
+      burgerTop?.classList.remove('rotate-45', 'translate-y-2')
+      burgerMid?.classList.remove('opacity-0')
+      burgerBot?.classList.remove('-rotate-45', '-translate-y-2')
+    }
+  }
+
+  toggleBtn?.addEventListener('click', toggleMenu)
+  overlay?.addEventListener('click', toggleMenu)
 
   // Close menu on navigation
-  const links = sidebar?.querySelectorAll('a');
-  links?.forEach(link => {
+  const links = sidebar?.querySelectorAll('a')
+  links?.forEach((link) => {
     link.addEventListener('click', () => {
       // Only close if it's currently open (on mobile)
-      if (sidebar?.classList.contains('translate-x-0') && window.innerWidth < 1280) {
-          toggleMenu();
+      if (
+        sidebar?.classList.contains('translate-x-0') &&
+        window.innerWidth < 1280
+      ) {
+        toggleMenu()
       }
-    });
-  });
+    })
+  })
 </script>

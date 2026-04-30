@@ -1,75 +1,97 @@
 ---
-import { Image } from 'astro:assets';
-import logo from '../../assets/images/logo.webp';
-import SocialLinks from '../atoms/SocialLinks.astro';
-import { navItems } from '../../config/navigation';
-import clsx from 'clsx';
+import { Image } from 'astro:assets'
+import logo from '../../assets/images/logo.webp'
+import SocialLinks from '../atoms/SocialLinks.astro'
+import { navItems } from '../../config/navigation'
+import clsx from 'clsx'
 
 interface Props {
-  class?: string;
+  class?: string
 }
 
-const { class: className } = Astro.props;
-const currentYear = new Date().getFullYear();
+const { class: className } = Astro.props
+const currentYear = new Date().getFullYear()
 ---
 
-<footer class={clsx(
-  "bg-brand-background py-24 px-6 relative overflow-hidden border-t border-white/5",
-  className
-)}>
-
+<footer
+  class={clsx(
+    'bg-brand-background py-24 px-6 relative overflow-hidden border-t border-white/5',
+    className,
+  )}
+>
   {/* Ambient Purple Glow */}
-  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-glow-purple opacity-40 pointer-events-none"></div>
+  <div
+    class='absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-glow-purple opacity-40 pointer-events-none'
+  >
+  </div>
 
-  <div class="max-w-7xl mx-auto relative z-10">
-    <div class="grid grid-cols-1 @3xl:grid-cols-12 gap-16 items-start">
-      
+  <div class='max-w-7xl mx-auto relative z-10'>
+    <div class='grid grid-cols-1 @3xl:grid-cols-12 gap-16 items-start'>
       {/* Brand Column */}
-      <div class="@3xl:col-span-4 flex flex-col items-center @3xl:items-start gap-8 text-center @3xl:text-left">
-        <a href="/" class="block group">
-          <Image 
-            src={logo} 
-            alt="GRITONES STUDIO LLC Logo" 
-            width={160} 
-            height={52}
-            class="w-auto h-14 transition-all duration-500 group-hover:scale-105 group-hover:brightness-110"
+      <div
+        class='@3xl:col-span-4 flex flex-col items-center @3xl:items-start gap-8 text-center @3xl:text-left'
+      >
+        <a
+          href='/'
+          class='block group'
+        >
+          <Image
+            src={logo}
+            alt='GRITONES STUDIO LLC Logo'
+            width={300}
+            height={300}
+            class='h-full max-h-32 w-auto aspect-square transition-all duration-500 group-hover:scale-105 group-hover:brightness-110'
           />
         </a>
-        <p class="body-lg text-brand-text-muted leading-relaxed max-w-[320px]">
-          Transformando la narrativa personal en impacto estratégico a través del diseño editorial y la voz digital.
+        <p class='body-lg text-brand-text-muted leading-relaxed max-w-[320px]'>
+          Transformando la narrativa personal en impacto estratégico a través
+          del diseño editorial y la voz digital.
         </p>
-        <SocialLinks className="justify-center @3xl:justify-start" />
+        <SocialLinks className='justify-center @3xl:justify-start' />
       </div>
 
       {/* Navigation Column */}
-      <div class="@3xl:col-span-4 flex flex-col items-center @3xl:items-start gap-8">
-        <h4 class="label-md tracking-[0.3em] text-brand-primary/80">Navegación</h4>
-        <nav class="grid grid-cols-2 gap-x-12 gap-y-4">
-          {navItems.map((item) => (
-            <a 
-              href={item.href} 
-              class="text-sm font-brand-body text-brand-text-muted hover:text-brand-primary transition-colors duration-300"
-            >
-              {item.label}
-            </a>
-          ))}
+      <div
+        class='@3xl:col-span-4 flex flex-col items-center @3xl:items-start gap-8'
+      >
+        <h4 class='label-md tracking-[0.3em] text-brand-primary/80'>
+          Navegación
+        </h4>
+        <nav class='grid grid-cols-2 gap-x-12 gap-y-4'>
+          {
+            navItems.map((item) => (
+              <a
+                href={item.href}
+                class='text-sm font-brand-body text-brand-text-muted hover:text-brand-primary transition-colors duration-300'
+              >
+                {item.label}
+              </a>
+            ))
+          }
         </nav>
       </div>
 
       {/* Legal Column */}
-      <div class="@3xl:col-span-4 flex flex-col items-center @3xl:items-end gap-8 text-center @3xl:text-right">
-        <h3 class="label-md tracking-[0.3em] text-brand-secondary/80">Ubicación</h3>
-        <div class="space-y-4">
-          <p class="text-[10px] uppercase font-brand-display tracking-[0.25em] text-brand-text-muted leading-relaxed">
+      <div
+        class='@3xl:col-span-4 flex flex-col items-center @3xl:items-end gap-8 text-center @3xl:text-right'
+      >
+        <h3 class='label-md tracking-[0.3em] text-brand-secondary/80'>
+          Ubicación
+        </h3>
+        <div class='space-y-4'>
+          <p
+            class='text-[10px] uppercase font-brand-display tracking-[0.25em] text-brand-text-muted leading-relaxed'
+          >
             México. <br />
             GRITONES STUDIO LLC.
           </p>
-          <div class="text-[11px] uppercase tracking-widest text-brand-text-muted/40 font-brand-display">
+          <div
+            class='text-[11px] uppercase tracking-widest text-brand-text-muted/40 font-brand-display'
+          >
             © {currentYear} GRITONES STUDIO LLC. <br /> All rights reserved.
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </footer>
