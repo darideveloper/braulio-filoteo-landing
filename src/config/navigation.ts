@@ -26,8 +26,9 @@ export const navItems = [
   },
   {
     label: 'Newsletter',
-    href: '#newsletter',
-    icon: 'mail'
+    href: 'https://brauliofiloteo.substack.com',
+    icon: 'mail',
+    target: '_blank'
   },
   {
     label: 'Contacto',

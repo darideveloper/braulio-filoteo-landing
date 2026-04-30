@@ -21,12 +21,12 @@ The layout MUST adapt to different screen sizes, transitions between a fixed sid
 - **And** the sidebar is initially hidden off-screen to the left.
 
 ### Requirement: REQ-2 - Navigation Components
-The navigation system MUST include a link to the Newsletter section.
+The navigation system MUST include a link to the Substack profile.
 
 #### Scenario: User navigates to Newsletter via Sidebar
 - **Given** the sidebar is open
 - **When** the user clicks on the "Newsletter" option
-- **Then** the page MUST scroll to the Newsletter section (ID: `newsletter`)
+- **Then** the browser MUST open the Substack profile (`https://brauliofiloteo.substack.com`) in a new tab.
 - **And** the icon used MUST be a relevant Material Icon (e.g., `mail`)
 
 ### Requirement: REQ-3 - Mobile Navigation Interaction
