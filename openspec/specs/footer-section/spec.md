@@ -31,14 +31,9 @@ The Footer SHALL integrate brand identity and navigation elements.
 
 #### Scenario: Brand Identity
 - **GIVEN** the Footer component.
-- **THEN** it SHALL display the brand logo (`logo.webp`) with "GRITONES STUDIO LLC Logo" alt text.
-- **AND** it SHALL include a location label (e.g., "México. GRITONES STUDIO LLC") using `Label-MD` typography as defined in `branding/spec.md`.
-- **AND** it SHALL include a dynamic copyright notice showing the current calendar year and "GRITONES STUDIO LLC" as the holder.
-
-#### Scenario: Secondary Navigation
-- **GIVEN** the Footer component.
-- **THEN** it SHALL render the primary site navigation links.
-- **AND** it SHALL use the same `Navigation` molecule as the Header for DRY consistency.
+- **THEN** it SHALL display the brand logo (`logo.webp`) with "GRITONES PODCAST Logo" alt text.
+- **AND** it SHALL include a location label (e.g., "México. GRITONES PODCAST") using `Label-MD` typography as defined in `branding/spec.md`.
+- **AND** it SHALL include a dynamic copyright notice showing the current calendar year and "GRITONES PODCAST" as the holder.
 
 ### Requirement: Responsive Layout
 The Footer SHALL utilize the `editorial-grid` for its structural layout across all screen sizes.
