@@ -25,6 +25,11 @@ export const navItems = [
     icon: 'payments'
   },
   {
+    label: 'Newsletter',
+    href: '#newsletter',
+    icon: 'mail'
+  },
+  {
     label: 'Contacto',
     href: '#social',
     icon: 'share'

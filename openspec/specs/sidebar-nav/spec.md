@@ -21,18 +21,13 @@ The layout MUST adapt to different screen sizes, transitions between a fixed sid
 - **And** the sidebar is initially hidden off-screen to the left.
 
 ### Requirement: REQ-2 - Navigation Components
-The shell MUST include a branding element (logo) and a navigation menu with icons and text, using a single source of truth for all links.
+The navigation system MUST include a link to the Newsletter section.
 
-#### Scenario: Navigation Items and Language
-- **GIVEN** the navigation system is loaded.
-- **THEN** it SHALL display the following items in Spanish:
-  - "Inicio" (#home)
-  - "Misión" (#about)
-  - "Podcast" (#podcast)
-  - "Estudio" (#studio)
-  - "Planes" (#plans)
-  - "Social" (#social)
-- **AND** it SHALL NOT include "Methodology".
+#### Scenario: User navigates to Newsletter via Sidebar
+- **Given** the sidebar is open
+- **When** the user clicks on the "Newsletter" option
+- **Then** the page MUST scroll to the Newsletter section (ID: `newsletter`)
+- **And** the icon used MUST be a relevant Material Icon (e.g., `mail`)
 
 ### Requirement: REQ-3 - Mobile Navigation Interaction
 The mobile navigation menu MUST utilize the unified Sidebar component, entering from the left when toggled, and ensure all content is vertically visible.
@@ -48,19 +43,14 @@ The mobile navigation menu MUST utilize the unified Sidebar component, entering 
 - **AND** if the navigation links and content exceed the viewport height, the container SHALL allow vertical scrolling (`overflow-y-auto`) to prevent clipping.
 
 ### Requirement: REQ-4 - "Neon Noir Editorial" Styling
-The navigation elements MUST follow the "Neon Noir Editorial" high-contrast design, favoring atmospheric depth over hard borders.
+The sidebar MUST maintain a balanced layout even with the additional navigation item.
 
-#### Scenario: Styling Consistency
-- **GIVEN** any navigation component is rendered.
-- **THEN** labels SHALL be displayed in all-caps using `Label-MD` typography (Inter, bold, 0.1em letter spacing).
-- **AND** the mobile header SHALL use `surface_variant` at `60%` opacity with a `blur(12px)` and NO border.
-- **AND** the desktop sidebar SHALL be defined by a tonal shift to `surface_container_low` (#1C1B1B) relative to the background, with NO solid border.
-
-#### Scenario: Active and Hover States
-- **GIVEN** a navigation link.
-- **WHEN** in an active or hover state.
-- **THEN** it SHALL NOT use a divider or underline.
-- **AND** it SHALL provide a subtle `surface_bright` (#393939) background highlight or a 2px `brand-primary` (Purple) side stroke.
+#### Scenario: Sidebar layout on standard screens
+- **Given** a standard desktop or mobile viewport
+- **When** the sidebar is rendered
+- **Then** all navigation items SHOULD be visible without vertical scrolling if possible
+- **And** the vertical spacing between items MUST be reduced to `py-2` (or equivalent)
+- **And** the logo margin and section paddings MUST be tightened to optimize vertical space
 
 ### Requirement: REQ-5 - Smooth Scrolling and Logo Interaction
 The global navigation MUST provide a refresh-free scroll back to the home section when clicking the brand logo or internal hash links.
