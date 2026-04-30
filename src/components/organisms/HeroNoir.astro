@@ -71,7 +71,10 @@ const hasTitleSlot = Astro.slots.has('title')
       {
         statBox && (
           <div slot='statCard'>
-            <div class='text-brand-secondary font-brand-display font-black text-4xl leading-none italic'>
+            <div 
+              class='text-brand-secondary font-brand-display font-black text-4xl leading-none italic js-stat-value'
+              data-value={statBox.value}
+            >
               {statBox.value}
             </div>
             <div class='text-[10px] tracking-widest text-brand-text-muted uppercase mt-1'>
@@ -104,12 +107,22 @@ const hasTitleSlot = Astro.slots.has('title')
         force3D: true,
       })
 
+      // Initialize counters to 0 immediately
+      section.querySelectorAll('.js-stat-value').forEach(counter => {
+        const targetValueAttr = counter.getAttribute('data-value') || '';
+        const numericMatch = targetValueAttr.match(/(\d+)/);
+        if (numericMatch) {
+          const suffix = targetValueAttr.replace(numericMatch[0], '');
+          counter.textContent = "0" + suffix;
+        }
+      });
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           start: 'top 80%',
           toggleActions: 'play none none none',
-        },
+        }
       })
 
       tl.from('.js-hero-noir-badge', {
@@ -148,6 +161,8 @@ const hasTitleSlot = Astro.slots.has('title')
           },
           '-=1.0',
         )
+
+      animateCounters(section, tl)
     })
 
     // Fallback for reduced motion: only fade in
@@ -168,6 +183,34 @@ const hasTitleSlot = Astro.slots.has('title')
         },
       })
     })
+  }
+
+  function animateCounters(container: Element, tl?: any) {
+    const counters = container.querySelectorAll('.js-stat-value');
+    counters.forEach(counter => {
+      const targetValueAttr = counter.getAttribute('data-value') || '';
+      const numericMatch = targetValueAttr.match(/(\d+)/);
+      if (!numericMatch) return;
+      
+      const targetValue = parseInt(numericMatch[0], 10);
+      const suffix = targetValueAttr.replace(numericMatch[0], '');
+      const obj = { value: 0 };
+      
+      const tweenParams = {
+        value: targetValue,
+        duration: 1.4,
+        ease: 'power4.out',
+        onUpdate: () => {
+          counter.textContent = Math.round(obj.value) + suffix;
+        }
+      };
+
+      if (tl) {
+        tl.to(obj, tweenParams, '<');
+      } else {
+        gsap.to(obj, tweenParams);
+      }
+    });
   }
 
   // Initialize

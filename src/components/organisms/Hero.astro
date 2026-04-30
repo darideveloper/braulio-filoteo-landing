@@ -159,6 +159,16 @@ const stats = [
     // Ensure elements are visible to GSAP before defining .from() destination
     gsap.set(hero.querySelectorAll('.js-reveal'), { autoAlpha: 1 })
 
+    // Initialize counters to 0 immediately
+    hero.querySelectorAll('.js-stat-value').forEach(counter => {
+      const targetValueAttr = counter.getAttribute('data-value') || '';
+      const numericMatch = targetValueAttr.match(/(\d+)/);
+      if (numericMatch) {
+        const suffix = targetValueAttr.replace(numericMatch[0], '');
+        counter.textContent = "0" + suffix;
+      }
+    });
+
     // 1. Entrance Timeline
     const tl = gsap.timeline({
       paused: true,
@@ -166,7 +176,7 @@ const stats = [
         force3D: true,
         ease: 'power4.out',
         duration: 1.2,
-      },
+      }
     })
 
     // The Portrait uses .from to define the starting state
@@ -239,6 +249,8 @@ const stats = [
         '-=0.2',
       )
 
+    animateCounters(hero, tl)
+
     // Register with orchestrator
     animationManager.registerEntrance(tl)
 
@@ -272,6 +284,34 @@ const stats = [
         },
       })
     })
+  }
+
+  function animateCounters(container: Element, tl?: any) {
+    const counters = container.querySelectorAll('.js-stat-value');
+    counters.forEach(counter => {
+      const targetValueAttr = counter.getAttribute('data-value') || '';
+      const numericMatch = targetValueAttr.match(/(\d+)/);
+      if (!numericMatch) return;
+      
+      const targetValue = parseInt(numericMatch[0], 10);
+      const suffix = targetValueAttr.replace(numericMatch[0], '');
+      const obj = { value: 0 };
+      
+      const tweenParams = {
+        value: targetValue,
+        duration: 1.2,
+        ease: 'power4.out',
+        onUpdate: () => {
+          counter.textContent = Math.round(obj.value) + suffix;
+        }
+      };
+
+      if (tl) {
+        tl.to(obj, tweenParams, '<');
+      } else {
+        gsap.to(obj, tweenParams);
+      }
+    });
   }
 
   // Execute on load

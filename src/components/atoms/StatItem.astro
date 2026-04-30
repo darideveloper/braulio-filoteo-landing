@@ -19,6 +19,11 @@ const variants = {
   "border-l-4 pl-6 py-2",
   variants[variant]
 )}>
-  <p class="font-brand-display text-2xl font-black tracking-tighter text-brand-text-high uppercase">{value}</p>
+  <p 
+    class="font-brand-display text-2xl font-black tracking-tighter text-brand-text-high uppercase js-stat-value"
+    data-value={value}
+  >
+    {value}
+  </p>
   <p class="font-brand-body text-[10px] text-brand-text-muted tracking-widest uppercase mt-1">{label}</p>
 </div>
