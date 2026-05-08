@@ -9,7 +9,7 @@ The Hero section MUST display "BRAULIO FILOTEO" using the `EditorialPortrait` co
 #### Scenario: Image usage in Hero
 - **WHEN** the Hero component is rendered.
 - **THEN** it SHALL use an `EditorialPortrait` with its main editorial image.
-- **MODIFIED** **AND** it SHALL display the "DOCUMENTING HUMAN POTENTIAL" vertical text (floating "EST. 2024" label removed).
+- **MODIFIED** **AND** it SHALL NOT display the "DOCUMENTING HUMAN POTENTIAL" vertical text.
 
 ### Requirement: Hero Section Color Palette
 The Hero section MUST use `brand-background` for its background and `brand-secondary` for its primary heading.
